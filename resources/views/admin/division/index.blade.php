@@ -11,7 +11,7 @@
                 <div class="font-bold text-blue-900 text-xl">Admin<span class="text-orange-600">Panel</span></div>
                 <div class="flex items-center text-gray-500">
                     <div class="bg-center bg-cover bg-no-repeat rounded-full inline-block h-12 w-12 ml-2"
-                    style="background-image: url('{{ asset('imgs/deped_logo.png') }}');">
+                        style="background-image: url('{{ asset('imgs/deped_logo.png') }}');">
                     </div>
                 </div>
             </div>
@@ -25,7 +25,8 @@
                         <h1 class="font-bold text-2xl">Division List</h1>
                     </div>
                     <div class="w-full flex justify-end px-6">
-                        <button data-modal="modal1" class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Create Division</button>
+                        <button data-modal="modal1"
+                            class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Create Division</button>
                     </div>
                     <div class="flex flex-row p-[2rem] w-full">
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
@@ -40,10 +41,16 @@
                                 <tbody>
                                     @foreach ($divisions as $division)
                                         <tr>
-                                            <td class="data1">{{$division->name}}</td>
-                                            <td class="data2">{{$division->address}}</td>
+                                            <td class="data1">{{ $division->name }}</td>
+                                            <td class="data2">{{ $division->address }}</td>
                                             <td>
-                                                <button class="open-modal" onclick="editModal('1','2')">edit</button>
+                                                <button
+                                                    class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
+                                                    data-modal="edit_modal" data-id="{{ $division->id }}"
+                                                    data-name="{{ $division->name }}"
+                                                    data-address="{{ $division->address }}">
+                                                    edit
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -58,14 +65,14 @@
 
     </div>
     <script>
-        $(document).ready( function () {
+        $(document).ready(function() {
             $('#myTable2').DataTable();
         });
 
-        $('.create_division').click(function(){
+        $('.create_division').click(function() {
             var name = $('#name').val();
             var address = $('#address').val();
-            
+
             $.ajax({
                 url: "{{ route('store_division') }}",
                 type: "POST",
@@ -74,8 +81,8 @@
                     address: address,
                     _token: "{{ csrf_token() }}"
                 },
-                success: function(response){
-                    if(response.message == 'success'){
+                success: function(response) {
+                    if (response.message == 'success') {
                         alert('Division created successfully');
                         location.reload();
                     }
@@ -83,13 +90,54 @@
             });
         });
 
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.open-modal').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const button = event.currentTarget;
+                    const modalId = button.getAttribute('data-modal');
+                    const modal = document.getElementById(modalId);
+                    const id = button.getAttribute('data-id');
+                    const name = button.getAttribute('data-name');
+                    const address = button.getAttribute('data-address');
 
-        // function editModal(param1,param2){
-        //     console.log(param1,param2);
-        //     $('.first').text(param1);
-        //     $('.second').text(param2);
+                    // Open the modal
+                    modal.classList.remove('hidden');
+                    setTimeout(() => {
+                        modal.classList.add('modal-enter-active');
+                        modal.classList.remove('modal-enter');
+                    }, 10);
 
-        // }
+                    // Fill the modal with data
+                    $('#edit_name').val(name);
+                    $('#edit_address').val(address);
+                    $('#edit_division_id').val(id);
+                    
+                });
+            });
+        });
+
+        $('.update_division').click(function() {
+            var name = $('#edit_name').val();
+            var address = $('#edit_address').val();
+            var id = $('#edit_division_id').val();  
+        
+            $.ajax({
+                url: "{{ route('update_division') }}",
+                type: "PATCH",
+                data: {
+                    name: name,
+                    address: address,
+                    id: id,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response.message == 'success') {
+                        alert('Division updated successfully');
+                        location.reload();
+                    }
+                }
+            });
+        });
     </script>
     <script src="{{ mix('js/app.js') }}"></script>
 </x-layout>

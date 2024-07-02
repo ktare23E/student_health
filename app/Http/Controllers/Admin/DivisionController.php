@@ -33,4 +33,22 @@ class DivisionController extends Controller
             'message' => 'success',
         ]);
     }
+
+    public function update(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'id' => 'required|integer',
+        ]);
+
+        $division = Division::findOrFail($request->id);
+        $division->update([
+            'name' => $request->name,
+            'address' => $request->address,
+        ]);
+
+        return response()->json([
+            'message' => 'success',
+        ]);
+    }
 }

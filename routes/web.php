@@ -32,5 +32,6 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/division', [DivisionController::class,'index'])->name('admin.division');
 
     Route::post('/store_division', [DivisionController::class,'store'])->name('store_division');
+    Route::patch('/update_division', [DivisionController::class,'update'])->name('update_division');
 
 });
