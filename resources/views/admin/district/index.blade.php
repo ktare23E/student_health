@@ -26,7 +26,7 @@
                                     <tr>
                                         <th>District Name</th>
                                         <th>Address</th>
-                                        <th>Division Name</th>
+                                        <th>Under of Division</th>
                                         
                                         <th>Action</th>
                                     </tr>
@@ -63,21 +63,24 @@
             $('#myTable2').DataTable();
         });
 
-        $('.create_division').click(function() {
+        $('.create_district').click(function() {
             var name = $('#name').val();
             var address = $('#address').val();
+            var division_id = $('#division_id').val();
 
             $.ajax({
-                url: "{{ route('store_division') }}",
+                url: "{{ route('store_district') }}",
                 type: "POST",
                 data: {
                     name: name,
                     address: address,
+                    division_id: division_id,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
+                    console.log(response);
                     if (response.message == 'success') {
-                        alert('Division created successfully');
+                        alert('District created successfully');
                         location.reload();
                     }
                 }

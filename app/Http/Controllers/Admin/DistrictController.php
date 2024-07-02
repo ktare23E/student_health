@@ -20,4 +20,16 @@ class DistrictController extends Controller
             'divisions' => $divisions,
         ]);
     }
+
+    public function store(Request $request){
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'division_id' => 'required',
+            'address' => 'required',
+        ]);
+
+        District::create($validatedData);
+
+        return response()->json(['message' => 'success']);
+    }
 }

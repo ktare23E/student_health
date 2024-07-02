@@ -35,6 +35,6 @@ Route::middleware(['auth'])->group(function(){
     Route::patch('/update_division', [DivisionController::class,'update'])->name('update_division');
 
     Route::get('/district', [DistrictController::class,'index'])->name('admin.district');
-    // Route::get('/district_modal', [DivisionController::class,'divisions'])->name('admin.district_modal');
+    Route::post('/store_district', [DistrictController::class,'store'])->name('store_district');
 
 });

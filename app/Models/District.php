@@ -9,10 +9,11 @@ use App\Models\Division;
 class District extends Model
 {
     use HasFactory;
-    protected $fillable = ['district_name','division_id'];
+
+    protected $fillable = ['name','division_id','address'];
 
     public function division()
     {
-        $this->belongsTo(Division::class);
+        return $this->belongsTo(Division::class);
     }
 }
