@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Admin\DivisionController;
 
 Route::get('/', function () {
-    return view('index');
+    return view('login');
 });
 
 Route::get('/login', function () {
@@ -28,8 +29,8 @@ Route::middleware(['auth'])->group(function(){
     })->name('admin.index');
 
 
-    Route::get('/division', function () {
-        return view('admin.division.index');
-    })->name('admin.division');
+    Route::get('/division', [DivisionController::class,'index'])->name('admin.division');
+
+    Route::post('/store_division', [DivisionController::class,'store'])->name('store_division');
 
 });

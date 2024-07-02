@@ -27,19 +27,8 @@ document.querySelectorAll('.close').forEach(button => {
     });
 });
 
-window.addEventListener('click', (event) => {
-    document.querySelectorAll('.fixed').forEach(modal => {
-        if (event.target === modal) {
-            modal.classList.add('modal-leave-active');
-            modal.classList.remove('modal-enter-active');
-            modal.addEventListener('transitionend', () => {
-                modal.classList.add('hidden');
-                modal.classList.remove('modal-leave-active');
-                modal.classList.add('modal-enter');
-            }, { once: true });
-        }
-    });
-});
+
+
 // document.addEventListener('DOMContentLoaded', function() {
 //     // Listen for click events on elements with the data-modal-toggle attribute
 //     document.querySelectorAll('[data-modal-toggle]').forEach(function(toggleBtn) {

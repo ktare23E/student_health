@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Division::class)->constrained()->onDelete('cascade');
             $table->string('name');
+            $table->string('address');
             $table->timestamps();
         });
     }

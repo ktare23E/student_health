@@ -19,74 +19,77 @@
 
         <div class="flex flex-row pt-24 px-10 pb-4">
             @include('components.sidebar')
-            @include('components.modal.modal_test')
             <div class="w-10/12 flex flex-col">
                 <div>
                     <div class="flex flex-row">
                         <h1 class="font-bold text-2xl">Division List</h1>
-                        <button data-modal="modal1" class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Open Modal 1</button>
-                        <button data-modal="modal2" class="open-modal bg-green-500 text-white px-4 py-2 rounded m-2">Open Modal 2</button>
                     </div>
-                    <div class="flex flex-row p-[2rem] mt-2 w-full">
-                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-[50%] mx-auto">
-                            <table id="myTable" class="display">
-                                <thead>
-                                    <tr>
-                                        <th>Column 1</th>
-                                        <th>Column 2</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Row 1 Data 1</td>
-                                        <td>Row 1 Data 2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Row 2 Data 1</td>
-                                        <td>Row 2 Data 2</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        
+                    <div class="w-full flex justify-end px-6">
+                        <button data-modal="modal1" class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Create Division</button>
                     </div>
-                </div>
-                <div>
-                    <div class="flex flex-row">
-                        <h1 class="font-bold text-2xl">Division List</h1>
-                    </div>
-                    <div class="flex flex-row p-[2rem] mt-2 w-full">
-                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-[50%] mx-auto">
+                    <div class="flex flex-row p-[2rem] w-full">
+                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
                             <table id="myTable2" class="display">
                                 <thead>
                                     <tr>
-                                        <th>Column 1</th>
-                                        <th>Column 2</th>
+                                        <th>Division Name</th>
+                                        <th>Address</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Row 1 Data 1</td>
-                                        <td>Row 1 Data 2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Row 2 Data 1</td>
-                                        <td>Row 2 Data 2</td>
-                                    </tr>
+                                    @foreach ($divisions as $division)
+                                        <tr>
+                                            <td class="data1">{{$division->name}}</td>
+                                            <td class="data2">{{$division->address}}</td>
+                                            <td>
+                                                <button class="open-modal" onclick="editModal('1','2')">edit</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
-                        
                     </div>
                 </div>
             </div>
         </div>
+        @include('components.modal.modal_test')
+
     </div>
     <script>
         $(document).ready( function () {
-            $('#myTable').DataTable();
             $('#myTable2').DataTable();
-        } );
+        });
+
+        $('.create_division').click(function(){
+            var name = $('#name').val();
+            var address = $('#address').val();
+            
+            $.ajax({
+                url: "{{ route('store_division') }}",
+                type: "POST",
+                data: {
+                    name: name,
+                    address: address,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response){
+                    if(response.message == 'success'){
+                        alert('Division created successfully');
+                        location.reload();
+                    }
+                }
+            });
+        });
+
+
+        // function editModal(param1,param2){
+        //     console.log(param1,param2);
+        //     $('.first').text(param1);
+        //     $('.second').text(param2);
+
+        // }
     </script>
     <script src="{{ mix('js/app.js') }}"></script>
 </x-layout>
