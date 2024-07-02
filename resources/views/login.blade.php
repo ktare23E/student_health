@@ -2,7 +2,8 @@
     <div class="flex items-center justify-center">
         <div class="h-screen bg-gradient-to-br from-blue-600 to-cyan-300 flex justify-center items-center w-full">
         
-            <form method='POST' action='#'>
+            <x-forms.form method='POST' action="{{route('login.store')}}">
+        
                 <div class="bg-white px-10 py-8 rounded-xl w-screen shadow-xl max-w-sm">
                     <div class="space-y-4">
                         <h1 class="text-center text-2xl font-semibold text-gray-600">Login</h1>
@@ -29,7 +30,7 @@
                     
                 </div>
                 
-            </form>
+            </x-forms.form>
         </div>
     </div>
 </x-layout>
