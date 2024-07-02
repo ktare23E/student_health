@@ -10,7 +10,7 @@
             Division
             <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
         </a>
-        <a href="" class="inline-block text-gray-600 hover:text-black my-4 w-full">
+        <a href="{{route('admin.district')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
             <span class="material-icons-outlined float-left pr-2">domain</span>
             District
             <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
