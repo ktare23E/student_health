@@ -42,6 +42,13 @@ class LoginController extends Controller
     public function destroy(){
         Auth::logout();
 
-        return redirect()->route('dashboard');
+        // Invalidate the session to prevent unauthorized access
+        request()->session()->invalidate();
+    
+        // Regenerate the CSRF token to prevent any potential reuse
+        request()->session()->regenerateToken();
+    
+        // Redirect to login page
+        return redirect()->route('login');
     }
 }

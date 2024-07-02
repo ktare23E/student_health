@@ -11,11 +11,9 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-// Route::get('/admin', function () {
-//     return view('admin.index');
-// });
 
 Route::post('/login',[LoginController::class,'store'])->name('login.store');
+Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
 
 
 
@@ -32,6 +30,6 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/division', function () {
         return view('admin.division.index');
-    });
+    })->name('admin.division');
 
 });

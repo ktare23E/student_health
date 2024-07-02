@@ -19,25 +19,74 @@
 
         <div class="flex flex-row pt-24 px-10 pb-4">
             @include('components.sidebar')
-
-            <div class="w-10/12">
-                <div class="flex flex-row">
-                    <h1>Division List</h1>
-                    <button class="click">Click me</button>
+            @include('components.modal.modal_test')
+            <div class="w-10/12 flex flex-col">
+                <div>
+                    <div class="flex flex-row">
+                        <h1 class="font-bold text-2xl">Division List</h1>
+                        <button data-modal="modal1" class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Open Modal 1</button>
+                        <button data-modal="modal2" class="open-modal bg-green-500 text-white px-4 py-2 rounded m-2">Open Modal 2</button>
+                    </div>
+                    <div class="flex flex-row p-[2rem] mt-2 w-full">
+                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-[50%] mx-auto">
+                            <table id="myTable" class="display">
+                                <thead>
+                                    <tr>
+                                        <th>Column 1</th>
+                                        <th>Column 2</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Row 1 Data 1</td>
+                                        <td>Row 1 Data 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Row 2 Data 1</td>
+                                        <td>Row 2 Data 2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
                 </div>
-                <div class="flex flex-row h-64 mt-6">
-                    <div class="bg-white rounded-xl shadow-lg px-6 py-4 w-4/12">
-                        a
+                <div>
+                    <div class="flex flex-row">
+                        <h1 class="font-bold text-2xl">Division List</h1>
                     </div>
-                    <div class="bg-white rounded-xl shadow-lg mx-6 px-6 py-4 w-4/12">
-                        b
-                    </div>
-                    <div class="bg-white rounded-xl shadow-lg px-6 py-4 w-4/12">
-                        c
+                    <div class="flex flex-row p-[2rem] mt-2 w-full">
+                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-[50%] mx-auto">
+                            <table id="myTable2" class="display">
+                                <thead>
+                                    <tr>
+                                        <th>Column 1</th>
+                                        <th>Column 2</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Row 1 Data 1</td>
+                                        <td>Row 1 Data 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Row 2 Data 1</td>
+                                        <td>Row 2 Data 2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+            $('#myTable2').DataTable();
+        } );
+    </script>
     <script src="{{ mix('js/app.js') }}"></script>
 </x-layout>

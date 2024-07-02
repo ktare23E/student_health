@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.modal-enter {
+    transform: translateY(100%);
+    opacity: 0;
+}
+.modal-enter-active {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(0);
+    opacity: 1;
+}
+.modal-leave-active {
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    transform: translateY(100%);
+    opacity: 0;
+}

@@ -18,44 +18,7 @@
         </div>
 
         <div class="flex flex-row pt-24 px-10 pb-4">
-            <div class="w-2/12 mr-6">
-                <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-                    <a href="" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                        <span class="material-icons-outlined float-left pr-2">dashboard</span>
-                        Dashboard
-                        <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-                    </a>
-                    <a href="" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                        <span class="material-icons-outlined float-left pr-2">apartment</span>
-                        Division
-                        <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-                    </a>
-                    <a href="" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                        <span class="material-icons-outlined float-left pr-2">domain</span>
-                        District
-                        <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-                    </a>
-                    <a href="" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                        <span class="material-icons-outlined float-left pr-2">medication</span>
-                        Nurse
-                        <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-                    </a>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-                    <a href="" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                        <span class="material-icons-outlined float-left pr-2">face</span>
-                        Profile
-                        <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-                    </a>
-                    
-                    <a href="" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                        <span class="material-icons-outlined float-left pr-2">power_settings_new</span>
-                        Log out
-                        <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-                    </a>
-                </div>
-            </div>
+            @include('components.sidebar')
 
             <div class="w-10/12">
                 <div class="flex flex-row">
@@ -74,6 +37,10 @@
                                 messages</strong></a>
                     </div>
                 </div>
+          
+    <button id="openModal" class="bg-blue-500 text-white px-4 py-2 rounded">Compose</button>
+
+    
                 <div class="flex flex-row h-64 mt-6">
                     <div class="bg-white rounded-xl shadow-lg px-6 py-4 w-4/12">
                         a
