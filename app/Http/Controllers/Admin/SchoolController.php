@@ -35,4 +35,18 @@ class SchoolController extends Controller
 
         return response()->json(['message' => 'success']);
     }
+
+    public function update(Request $request){
+
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'district_id' => 'required',
+            'address' => 'required',
+            'status' => 'required',
+        ]);
+
+        School::find($request->id)->update($validatedData);
+
+        return response()->json(['message' => 'success']);
+    }
 }

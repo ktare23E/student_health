@@ -41,7 +41,8 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/school', [SchoolController::class,'index'])->name('admin.school');
     Route::post('/store_school', [SchoolController::class,'store'])->name('store_school');
+    Route::patch('/update_school', [SchoolController::class,'update'])->name('update_school');
 
 
-
+    
 });

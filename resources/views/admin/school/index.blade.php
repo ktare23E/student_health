@@ -122,25 +122,27 @@
             });
         });
 
-        $('.update_district').click(function() {
-            var name = $('#edit_name').val();
-            var address = $('#edit_address').val();
-            let divistion_id = $('#edit_division_id').val();
-            let id = $('#edit_district_id').val();
-        
+        $('.update_school').click(function() {
+            let name = $('#edit_name').val();
+            let address = $('#edit_address').val();
+            let status = $('#edit_status').val();
+            let district_id = $('#edit_district_id').val();
+            let id = $('#edit_school_id').val();
+    
             $.ajax({
-                url: "{{ route('update_district') }}",
+                url: "{{ route('update_school') }}",
                 type: "PATCH",
                 data: {
                     name: name,
                     address: address,
-                    division_id: divistion_id,
+                    status: status,
+                    district_id: district_id,
                     id: id,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
                     if (response.message == 'success') {
-                        alert('Division updated successfully');
+                        alert('School updated successfully');
                         location.reload();
                     }
                 }

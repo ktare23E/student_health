@@ -67,5 +67,5 @@
             </select>
         </div>
     </div>
-    <button class="update_district bg-blue-500 text-white px-4 py-2 rounded">update</button>
+    <button class="update_school bg-blue-500 text-white px-4 py-2 rounded">update</button>
 </div>
