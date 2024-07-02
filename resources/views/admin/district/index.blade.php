@@ -27,7 +27,6 @@
                                         <th>District Name</th>
                                         <th>Address</th>
                                         <th>Under of Division</th>
-                                        
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -42,7 +41,8 @@
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
                                                     data-modal="edit_modal" data-id="{{ $district->id }}"
                                                     data-name="{{ $district->name }}"
-                                                    data-address="{{ $district->address }}">
+                                                    data-address="{{ $district->address }}"
+                                                    data-division="{{$district->division->id}}">
                                                     edit
                                                 </button>
                                             </td>
@@ -96,6 +96,7 @@
                     const id = button.getAttribute('data-id');
                     const name = button.getAttribute('data-name');
                     const address = button.getAttribute('data-address');
+                    const divistion_id = button.getAttribute('data-division');
 
                     // Open the modal
                     modal.classList.remove('hidden');
@@ -107,23 +108,26 @@
                     // Fill the modal with data
                     $('#edit_name').val(name);
                     $('#edit_address').val(address);
-                    $('#edit_division_id').val(id);
+                    $('#edit_division_id').val(divistion_id);
+                    $('#edit_district_id').val(id);
                     
                 });
             });
         });
 
-        $('.update_division').click(function() {
+        $('.update_district').click(function() {
             var name = $('#edit_name').val();
             var address = $('#edit_address').val();
-            var id = $('#edit_division_id').val();  
+            let divistion_id = $('#edit_division_id').val();
+            let id = $('#edit_district_id').val();
         
             $.ajax({
-                url: "{{ route('update_division') }}",
+                url: "{{ route('update_district') }}",
                 type: "PATCH",
                 data: {
                     name: name,
                     address: address,
+                    division_id: divistion_id,
                     id: id,
                     _token: "{{ csrf_token() }}"
                 },

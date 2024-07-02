@@ -32,4 +32,18 @@ class DistrictController extends Controller
 
         return response()->json(['message' => 'success']);
     }
+
+    public function update(Request $request){
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'division_id' => 'required',
+            'address' => 'required',
+            'id' => 'required',
+        ]);
+
+        $district = District::findOrFail($validatedData['id']);
+        $district->update($validatedData);
+
+        return response()->json(['message' => 'success']);
+    }
 }

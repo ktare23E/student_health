@@ -34,13 +34,22 @@
     <div class="grid gap-6 mb-6 md:grid-cols-1">
         <div>
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Division name</label>
-            <input type="hidden" id="edit_division_id">
+            <input type="hidden" id="edit_district_id">
             <input type="text" id="edit_name" name="edit_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required />
         </div>
         <div>
             <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
             <input type="text" id="edit_address" name="edit_address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ozamis City" required />
         </div>
+        <div>
+            <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Division</label>
+            <select id="edit_division_id" name="edit_division_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <option>Select Division</option>
+                @foreach ($divisions as $division)
+                    <option value="{{$division->id}}">{{$division->name}}</option>
+                @endforeach
+            </select>
+        </div>
     </div>
-    <button class="update_division bg-blue-500 text-white px-4 py-2 rounded">update</button>
+    <button class="update_district bg-blue-500 text-white px-4 py-2 rounded">update</button>
 </div>

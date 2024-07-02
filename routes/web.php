@@ -36,5 +36,6 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/district', [DistrictController::class,'index'])->name('admin.district');
     Route::post('/store_district', [DistrictController::class,'store'])->name('store_district');
+    Route::patch('/update_district', [DistrictController::class,'update'])->name('update_district');
 
 });
