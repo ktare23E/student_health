@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class School extends Model
 {
     use HasFactory;
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function nurses()
+    {
+        return $this->hasMany(Nurse::class)->where('type',Nurse::TYPE_SCHOOL);
+    }
 }
