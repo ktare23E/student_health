@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\DistrictController;
+use App\Http\Controllers\Admin\SchoolController;
 
 Route::get('/', function () {
     return view('login');
@@ -37,5 +38,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/district', [DistrictController::class,'index'])->name('admin.district');
     Route::post('/store_district', [DistrictController::class,'store'])->name('store_district');
     Route::patch('/update_district', [DistrictController::class,'update'])->name('update_district');
+
+    Route::get('/school', [SchoolController::class,'index'])->name('admin.school');
+
 
 });
