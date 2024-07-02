@@ -6,16 +6,7 @@
         rel="stylesheet" />
 
     <div class="bg-blue-100 min-h-screen">
-        <div class="fixed bg-white text-blue-800 px-10 py-1 z-10 w-full">
-            <div class="flex items-center justify-between py-2 text-5x1">
-                <div class="font-bold text-blue-900 text-xl">Admin<span class="text-orange-600">Panel</span></div>
-                <div class="flex items-center text-gray-500">
-                    <div class="bg-center bg-cover bg-no-repeat rounded-full inline-block h-12 w-12 ml-2"
-                        style="background-image: url('{{ asset('imgs/deped_logo.png') }}');">
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('components.header')
 
         <div class="flex flex-row pt-24 px-10 pb-4">
             @include('components.sidebar')
@@ -26,7 +17,7 @@
                     </div>
                     <div class="w-full flex justify-end px-6">
                         <button data-modal="modal1"
-                            class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Create Division</button>
+                            class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Create District</button>
                     </div>
                     <div class="flex flex-row p-[2rem] w-full">
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
@@ -64,7 +55,7 @@
                 </div>
             </div>
         </div>
-        @include('components.modal.modal_test')
+        @include('components.modal.district_modal')
 
     </div>
     <script>

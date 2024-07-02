@@ -51,6 +51,14 @@ class DivisionController extends Controller
             'message' => 'success',
         ]);
     }
+    
+    public function divisions(){
+        $divisions = Division::all();
+        
+        return view('components.modal.district_modal',[
+            'divisions' => $divisions,
+        ]);
+    }
 
 
 }

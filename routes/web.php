@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\DistrictController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\DivisionController;
+use App\Http\Controllers\Admin\DistrictController;
 
 Route::get('/', function () {
     return view('login');
@@ -35,5 +35,6 @@ Route::middleware(['auth'])->group(function(){
     Route::patch('/update_division', [DivisionController::class,'update'])->name('update_division');
 
     Route::get('/district', [DistrictController::class,'index'])->name('admin.district');
+    // Route::get('/district_modal', [DivisionController::class,'divisions'])->name('admin.district_modal');
 
 });
