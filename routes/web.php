@@ -40,6 +40,8 @@ Route::middleware(['auth'])->group(function(){
     Route::patch('/update_district', [DistrictController::class,'update'])->name('update_district');
 
     Route::get('/school', [SchoolController::class,'index'])->name('admin.school');
+    Route::post('/store_school', [SchoolController::class,'store'])->name('store_school');
+
 
 
 });

@@ -21,4 +21,18 @@ class SchoolController extends Controller
         ]);
 
     }
+
+    public function store(Request $request){
+
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'district_id' => 'required',
+            'address' => 'required',
+            'status' => 'required',
+        ]);
+
+        School::create($validatedData);
+
+        return response()->json(['message' => 'success']);
+    }
 }

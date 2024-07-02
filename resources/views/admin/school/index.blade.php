@@ -44,7 +44,8 @@
                                                     data-modal="edit_modal" data-id="{{ $school->id }}"
                                                     data-name="{{ $school->name }}"
                                                     data-address="{{ $school->address }}"
-                                                    data-division="{{$school->district->id}}">
+                                                    data-status="{{ $school->status }}"
+                                                    data-district="{{$school->district->id}}">
                                                     edit
                                                 </button>
                                             </td>
@@ -65,24 +66,26 @@
             $('#myTable2').DataTable();
         });
 
-        $('.create_district').click(function() {
+        $('.create_school').click(function() {
             var name = $('#name').val();
             var address = $('#address').val();
-            var division_id = $('#division_id').val();
-
+            var district_id = $('#district_id').val();
+            var status = $('#status').val();
+            
             $.ajax({
-                url: "{{ route('store_district') }}",
+                url: "{{ route('store_school') }}",
                 type: "POST",
                 data: {
                     name: name,
                     address: address,
-                    division_id: division_id,
+                    district_id: district_id,
+                    status: status,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
                     console.log(response);
                     if (response.message == 'success') {
-                        alert('District created successfully');
+                        alert('School created successfully');
                         location.reload();
                     }
                 }
@@ -98,7 +101,8 @@
                     const id = button.getAttribute('data-id');
                     const name = button.getAttribute('data-name');
                     const address = button.getAttribute('data-address');
-                    const divistion_id = button.getAttribute('data-division');
+                    const status = button.getAttribute('data-status');
+                    const district_id = button.getAttribute('data-district');
 
                     // Open the modal
                     modal.classList.remove('hidden');
@@ -110,8 +114,9 @@
                     // Fill the modal with data
                     $('#edit_name').val(name);
                     $('#edit_address').val(address);
-                    $('#edit_division_id').val(divistion_id);
-                    $('#edit_district_id').val(id);
+                    $('#edit_status').val(status);
+                    $('#edit_district_id').val(district_id);
+                    $('#edit_school_id').val(id);
                     
                 });
             });
