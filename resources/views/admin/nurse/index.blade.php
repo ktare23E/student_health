@@ -49,6 +49,7 @@
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
                                                     data-modal="edit_modal" data-id="{{ $nurse->id }}"
                                                     data-first-name="{{ $nurse->first_name }}"
+                                                    data-middle-name="{{ $nurse->middle_name }}"
                                                     data-last-name="{{ $nurse->last_name }}"
                                                     data-gender="{{ $nurse->gender }}"
                                                     data-address="{{ $nurse->address }}"
@@ -95,6 +96,36 @@
                         entityIdSelect.innerHTML = '<option value="">Select Entity</option>';
                         data.forEach(entity => {
                             console.log(entity);
+                            var option = document.createElement('option');
+                            option.value = entity.id;
+                            option.textContent = entity.name;
+                            entityIdSelect.appendChild(option);
+                        });
+                    });
+            } else {
+                entityIdDiv.style.display = 'none'; // Hide if no type is selected
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var nurseTypeSelect = document.getElementById('edit_type');
+        var entityIdSelect = document.getElementById('edit_entity_id');
+        var entityIdDiv = document.getElementById('entity_id_div');
+        
+        nurseTypeSelect.addEventListener('change', function () {
+            var selectedType = nurseTypeSelect.value;
+            entityIdSelect.innerHTML = ''; // Clear previous options
+
+            if (selectedType) {
+                // Fetch entities based on selected type
+                var url = "{{ route('api.entities', ['type' => ':type']) }}";
+                url = url.replace(':type', selectedType);
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        entityIdSelect.innerHTML = '<option value="">Select Entity</option>';
+                        data.forEach(entity => {
                             var option = document.createElement('option');
                             option.value = entity.id;
                             option.textContent = entity.name;
@@ -156,11 +187,18 @@
                     const modalId = button.getAttribute('data-modal');
                     const modal = document.getElementById(modalId);
                     const id = button.getAttribute('data-id');
-                    const name = button.getAttribute('data-name');
+                    const first_name = button.getAttribute('data-first-name');
+                    const middle_name = button.getAttribute('data-middle-name');
+                    const last_name = button.getAttribute('data-last-name');
                     const address = button.getAttribute('data-address');
                     const status = button.getAttribute('data-status');
-                    const district_id = button.getAttribute('data-district');
-
+                    const gender = button.getAttribute('data-gender');
+                    const email = button.getAttribute('data-email');
+                    const type = button.getAttribute('data-type');
+                    const entity = button.getAttribute('data-entity');
+                    var entityIdSelect = document.getElementById('edit_entity_id');
+                    console.log(entity);
+                
                     // Open the modal
                     modal.classList.remove('hidden');
                     setTimeout(() => {
@@ -168,12 +206,42 @@
                         modal.classList.remove('modal-enter');
                     }, 10);
 
+                    //check type and append entity
+                    if(type){
+                        var url = "{{ route('api.entities', ['type' => ':type']) }}";
+                        url = url.replace(':type', type);
+                        fetch(url)
+                            .then(response => response.json())
+                            .then(data => {
+                                data.forEach(entity => {
+                                    if(entity.id == entity){
+                                        var option = document.createElement('option');
+                                        option.value = entity.id;
+                                        option.textContent = entity.name;
+                                        option.selected = true;
+                                        entityIdSelect.appendChild(option);
+                                    }
+                                    else{
+                                        var option = document.createElement('option');
+                                        option.value = entity.id;
+                                        option.textContent = entity.name;
+                                        entityIdSelect.appendChild(option);
+                                    }
+                                });
+                            });
+                    }
+
                     // Fill the modal with data
-                    $('#edit_name').val(name);
+                    $('#edit_first_name').val(first_name);
+                    $('#edit_middle_name').val(middle_name);
+                    $('#edit_last_name').val(middle_name);
                     $('#edit_address').val(address);
                     $('#edit_status').val(status);
-                    $('#edit_district_id').val(district_id);
-                    $('#edit_school_id').val(id);
+                    $('#edit_gender').val(gender);
+                    $('#edit_email').val(email);
+                    $('#edit_type').val(type);
+                    $('#edit_entity_id').val(entity);
+                    $('#edit_nurse_id').val(id);
                     
                 });
             });
