@@ -26,16 +26,24 @@ class LoginController extends Controller
             //check user type and redirect accordingly
             if(Auth::user()->role == 'admin'){
                 return redirect()->route('admin.index');
-            }elseif(Auth::user()->type == 'school'){
-                return redirect()->route('business_admin.index');
-            }elseif(Auth::user()->type == 'district'){
-                return redirect()->route('admin.index');
-            }elseif(Auth::user()->type == 'division'){
-                return redirect()->route('business_admin.index');
-            }        
+            }   
         }
 
-        return back()->with('status', 'Invalid login details');
+        if (Auth::guard('nurse')->attempt($request->only('email', 'password'))) {
+            return 'dre sulod ning gana';
+            $nurse = Auth::guard('nurse')->user();
+
+            if ($nurse->type === 'school') {
+                return 'Kani ang ning gana';
+            } elseif ($nurse->type === 'district') {
+                return redirect()->intended('/nurse/district/dashboard');
+            } elseif ($nurse->type === 'division') {
+                return redirect()->intended('/nurse/division/dashboard');
+            }
+        }
+
+        return 'error tanan';
+        // return back()->with('status', 'Invalid login details');
     }
 
 
