@@ -1,0 +1,210 @@
+<x-layout>
+    <!-- source https://gist.github.com/dsursulino/369a0998c0fc8c25e19962bce729674f -->
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet" />
+
+    <div class="bg-blue-100 min-h-screen">
+        @include('components.header')
+
+        <div class="flex flex-row pt-24 px-10 pb-4">
+            @include('components.sidebar')
+            <div class="w-10/12 flex flex-col">
+                <div>
+                    <div class="flex flex-row">
+                        <h1 class="font-bold text-2xl">Nurse List</h1>
+                    </div>
+                    <div class="w-full flex justify-end px-6">
+                        <button data-modal="modal1"
+                            class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Create Nurse</button>
+                    </div>
+                    <div class="flex flex-row p-[2rem] w-full">
+                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
+                            <table id="myTable2" class="display">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Gender</th>
+                                        <th>Address</th>
+                                        <th>Email</th>
+                                        <th>Nurse Type</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($nurses as $nurse)
+                                        <tr>
+                                            <td class="data1">{{ $nurse->first_name }}</td>
+                                            <td class="data2">{{ $nurse->last_name }}</td>
+                                            <td class="data2">{{ $nurse->gender }}</td>
+                                            <td class="data2">{{ $nurse->address }}</td>
+                                            <td class="data2">{{ $nurse->email }}</td>
+                                            <td class="data2">{{ $nurse->type }}</td>
+                                            <td class="data2">{{ $nurse->status }}</td>
+                                            <td>
+                                                <button
+                                                    class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
+                                                    data-modal="edit_modal" data-id="{{ $nurse->id }}"
+                                                    data-first-name="{{ $nurse->first_name }}"
+                                                    data-last-name="{{ $nurse->last_name }}"
+                                                    data-gender="{{ $nurse->gender }}"
+                                                    data-address="{{ $nurse->address }}"
+                                                    data-email="{{ $nurse->email }}"
+                                                    data-type="{{ $nurse->type }}"
+                                                    data-status="{{ $nurse->status }}"
+                                                    data-entity="{{$nurse->entity->id}}">
+                                                    edit
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @include('components.modal.nurse_modal')
+
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#myTable2').DataTable();
+        });
+        
+        document.addEventListener('DOMContentLoaded', function () {
+        var nurseTypeSelect = document.getElementById('type');
+        var entityIdSelect = document.getElementById('entity_id');
+        var entityIdDiv = document.getElementById('entity_id_div');
+        
+        nurseTypeSelect.addEventListener('change', function () {
+            var selectedType = nurseTypeSelect.value;
+            entityIdSelect.innerHTML = ''; // Clear previous options
+
+            if (selectedType) {
+                // Fetch entities based on selected type
+                var url = "{{ route('api.entities', ['type' => ':type']) }}";
+                url = url.replace(':type', selectedType);
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        entityIdSelect.innerHTML = '<option value="">Select Entity</option>';
+                        data.forEach(entity => {
+                            console.log(entity);
+                            var option = document.createElement('option');
+                            option.value = entity.id;
+                            option.textContent = entity.name;
+                            entityIdSelect.appendChild(option);
+                        });
+                    });
+            } else {
+                entityIdDiv.style.display = 'none'; // Hide if no type is selected
+            }
+        });
+    });
+
+        $('.create_nurse').click(function() {
+                var first_name = $('#first_name').val();
+                var middle_name = $('#middle_name').val();
+                var last_name = $('#last_name').val();
+                var address = $('#address').val();
+                var gender = $('#gender').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var type = $('#type').val();
+                var entity_id = $('#entity_id').val();
+                var status = $('#status').val();
+
+                console.log(first_name, middle_name, last_name);
+                console.log(address,gender,email);
+                console.log(password,type,entity_id,status);
+                
+                $.ajax({
+                    url: "{{ route('store_nurse') }}",
+                    type: "POST",
+                    data: {
+                        first_name: first_name,
+                        middle_name: middle_name,
+                        last_name: last_name,
+                        address: address,
+                        gender: gender,
+                        email :email,
+                        password: password,
+                        type: type,
+                        entity_id: entity_id,
+                        status: status,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response.message == 'success') {
+                            alert('Nurse created successfully');
+                            location.reload();
+                        }
+                    }
+                });
+            });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.open-modal').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const button = event.currentTarget;
+                    const modalId = button.getAttribute('data-modal');
+                    const modal = document.getElementById(modalId);
+                    const id = button.getAttribute('data-id');
+                    const name = button.getAttribute('data-name');
+                    const address = button.getAttribute('data-address');
+                    const status = button.getAttribute('data-status');
+                    const district_id = button.getAttribute('data-district');
+
+                    // Open the modal
+                    modal.classList.remove('hidden');
+                    setTimeout(() => {
+                        modal.classList.add('modal-enter-active');
+                        modal.classList.remove('modal-enter');
+                    }, 10);
+
+                    // Fill the modal with data
+                    $('#edit_name').val(name);
+                    $('#edit_address').val(address);
+                    $('#edit_status').val(status);
+                    $('#edit_district_id').val(district_id);
+                    $('#edit_school_id').val(id);
+                    
+                });
+            });
+        });
+
+        $('.update_school').click(function() {
+            let name = $('#edit_name').val();
+            let address = $('#edit_address').val();
+            let status = $('#edit_status').val();
+            let district_id = $('#edit_district_id').val();
+            let id = $('#edit_school_id').val();
+    
+            $.ajax({
+                url: "{{ route('update_school') }}",
+                type: "PATCH",
+                data: {
+                    name: name,
+                    address: address,
+                    status: status,
+                    district_id: district_id,
+                    id: id,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response.message == 'success') {
+                        alert('School updated successfully');
+                        location.reload();
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="{{ mix('js/app.js') }}"></script>
+</x-layout>

@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\SchoolController;
+use App\Http\Controllers\Admin\NurseController;
 
 Route::get('/', function () {
     return view('login');
@@ -43,6 +44,8 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/store_school', [SchoolController::class,'store'])->name('store_school');
     Route::patch('/update_school', [SchoolController::class,'update'])->name('update_school');
 
-
+    Route::get('/admin_nurse', [NurseController::class,'index'])->name('admin_nurse');
+    Route::get('/api/entities/{type}', [NurseController::class, 'getEntities'])->name('api.entities');
+    Route::post('/store_nurse', [NurseController::class,'store'])->name('store_nurse');
     
 });
