@@ -47,5 +47,6 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/admin_nurse', [NurseController::class,'index'])->name('admin_nurse');
     Route::get('/api/entities/{type}', [NurseController::class, 'getEntities'])->name('api.entities');
     Route::post('/store_nurse', [NurseController::class,'store'])->name('store_nurse');
+    Route::patch('/update_nurse', [NurseController::class,'update'])->name('update_nurse');
     
 });

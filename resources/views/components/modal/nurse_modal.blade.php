@@ -7,7 +7,6 @@
         <div class="grid gap-6 mb-6 md:grid-cols-1">
             <div class="grid grid-cols-3 gap-2">
                 <div>
-                    <input type="hidden" id="edit_nurse_id">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
                     <input type="text" id="first_name" name="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="First Name" required />
                 </div>
@@ -81,6 +80,7 @@
     <div class="grid gap-6 mb-6 md:grid-cols-1">
         <div class="grid grid-cols-3 gap-2">
             <div>
+                <input type="hidden" id="edit_nurse_id">
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
                 <input type="text" id="edit_first_name" name="edit_first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="First Name" required />
             </div>
@@ -140,5 +140,5 @@
             </div>
         </div>
     </div>
-    <button class="update_school bg-blue-500 text-white px-4 py-2 rounded">update</button>
+    <button class="update_nurse bg-blue-500 text-white px-4 py-2 rounded">update</button>
 </div> 

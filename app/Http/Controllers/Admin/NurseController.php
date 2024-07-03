@@ -68,4 +68,24 @@ class NurseController extends Controller
 
         return response()->json(['message' => 'success']);
     }
+
+    public function update(Request $request){
+        $validatedData = $request->validate([
+            'id' => 'required',
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+            'address' => 'required',
+            'email' => 'required',
+            'gender' => 'required',
+            'status' => 'required',
+            'type' => 'required',
+            'entity_id' => 'required',
+        ]);
+
+        $nurse = Nurse::findOrFail($validatedData['id'])->update($validatedData);
+
+        return response()->json(['message' => 'success']);
+
+    }
 }

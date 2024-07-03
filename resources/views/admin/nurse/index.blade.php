@@ -234,7 +234,7 @@
                     // Fill the modal with data
                     $('#edit_first_name').val(first_name);
                     $('#edit_middle_name').val(middle_name);
-                    $('#edit_last_name').val(middle_name);
+                    $('#edit_last_name').val(last_name);
                     $('#edit_address').val(address);
                     $('#edit_status').val(status);
                     $('#edit_gender').val(gender);
@@ -247,27 +247,37 @@
             });
         });
 
-        $('.update_school').click(function() {
-            let name = $('#edit_name').val();
-            let address = $('#edit_address').val();
-            let status = $('#edit_status').val();
-            let district_id = $('#edit_district_id').val();
-            let id = $('#edit_school_id').val();
+        $('.update_nurse').click(function() {
+                let first_name =     $('#edit_first_name').val();
+                let middle_name =     $('#edit_middle_name').val();
+                let last_name =   $('#edit_last_name').val();
+                let address =     $('#edit_address').val();
+                let status =    $('#edit_status').val();
+                let gender =     $('#edit_gender').val();
+                let email =     $('#edit_email').val();
+                let  type =   $('#edit_type').val();
+                let  entity_id =   $('#edit_entity_id').val();
+                let  id =   $('#edit_nurse_id').val();
     
             $.ajax({
-                url: "{{ route('update_school') }}",
+                url: "{{ route('update_nurse') }}",
                 type: "PATCH",
                 data: {
-                    name: name,
+                    first_name: first_name,
+                    middle_name: middle_name,
+                    last_name: last_name,
                     address: address,
                     status: status,
-                    district_id: district_id,
+                    gender : gender,
+                    email: email,
+                    type: type,
+                    entity_id : id,
                     id: id,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
                     if (response.message == 'success') {
-                        alert('School updated successfully');
+                        alert('Nurse updated successfully');
                         location.reload();
                     }
                 }
