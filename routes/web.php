@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/archive_nurse', [NurseController::class,'archive'])->name('archive_nurse');
     Route::post('update_nurse_status/{id}', [NurseController::class,'archiveNurse'])->name('update_nurse_status');
     Route::post('active_nurse_status/{id}', [NurseController::class,'activeNurse'])->name('active_nurse_status');
+    Route::post('reset_nurse_password/{id}', [NurseController::class,'resetPassword'])->name('reset_nurse_password');
 
 
 });

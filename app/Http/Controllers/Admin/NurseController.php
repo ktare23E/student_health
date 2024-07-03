@@ -9,6 +9,9 @@ use App\Models\School;
 use App\Models\District;
 use App\Models\Division;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NurseEmailNotification;
 
 class NurseController extends Controller
 {
@@ -50,6 +53,22 @@ class NurseController extends Controller
         $nurse = Nurse::findOrFail($id);
         $nurse->status = 'active';
         $nurse->save();
+
+        return response()->json(['message' => 'success']);
+    }
+
+    public function resetPassword($id){
+        $nurse = Nurse::findOrFail($id);
+
+
+        $nurse->password = bcrypt('password');
+        $nurse->save();
+        
+        $details = [
+            'password' => 'password',
+        ];
+
+        Mail::to($nurse->email)->queue(new NurseEmailNotification($details));
 
         return response()->json(['message' => 'success']);
     }

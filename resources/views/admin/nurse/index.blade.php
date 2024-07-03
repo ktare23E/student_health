@@ -229,6 +229,55 @@
                 });
             });
 
+            $('#reset').click(function(){
+                var id = $(this).data('id');
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, reset it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `{{ route('reset_nurse_password', '') }}/${id}`,
+                            type: "POST",
+                            data: {
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                console.log(response);
+                                if (response.message == 'success') {
+                                    Swal.fire(
+                                        'Reset!',
+                                        'The nurse password has been reset.',
+                                        'success'
+                                    ).then(() => {
+                                        location.reload();
+                                    });
+                                } else {
+                                    Swal.fire(
+                                        'Error!',
+                                        'There was an issue resetting the nurse password.',
+                                        'error'
+                                    );
+                                }
+                            },
+                            error: function(xhr) {
+                                Swal.fire(
+                                    'Error!',
+                                    'There was an issue resetting the nurse password.',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
+            });
+
 
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.open-modal').forEach(button => {
