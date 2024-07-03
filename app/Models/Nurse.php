@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Psy\VersionUpdater\Checker;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Nurse extends Model
+
+class Nurse extends Authenticatable
 {
     use HasFactory;
-    protected $fillable = ['first_name','middle_name','last_name','gender','address','email','password','status','type','entity_id'];
 
+    protected $table = 'nurses';
+    protected $fillable = ['first_name','middle_name','last_name','gender','address','email','password','status','type','entity_id'];
+    protected $hidden = ['password','remember_token'];
     const TYPE_SCHOOL = 'school';
     const TYPE_DISTRICT = 'district';
     const TYPE_DIVISION = 'division';

@@ -9,16 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CheckNurseType
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next,$type): Response
-    {   
-        if(Auth::guard('nurse')->check() && Auth::guard('nurse')->user()->type == $type){
+    public function handle(Request $request, Closure $next, $type): Response
+    {
+        if (Auth::guard('nurse')->check() && Auth::guard('nurse')->user()->type == $type) {
             return $next($request);
         }
-        return redirect()->route('nurse.login')->withErrors(['access_denied' => 'You do not have access to this area.']);
+
+        return redirect()->route('login')->withErrors(['access_denied' => 'You do not have access to this area.']);
     }
 }

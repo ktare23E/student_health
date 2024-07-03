@@ -14,6 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         //register checkUserType middleware
 
+        // $middleware->append(CheckNurseType::class);
+
         $middleware->alias([
             'nurse.type' => CheckNurseType::class
         ]);
