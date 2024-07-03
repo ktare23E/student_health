@@ -28,7 +28,6 @@
                                         <th>Last Name</th>
                                         <th>Gender</th>
                                         <th>Address</th>
-                                        <th>Email</th>
                                         <th>Nurse Type</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -41,7 +40,6 @@
                                             <td class="data2">{{ $nurse->last_name }}</td>
                                             <td class="data2">{{ $nurse->gender }}</td>
                                             <td class="data2">{{ $nurse->address }}</td>
-                                            <td class="data2">{{ $nurse->email }}</td>
                                             <td class="data2">{{ $nurse->type }}</td>
                                             <td class="data2">{{ $nurse->status }}</td>
                                             <td>
@@ -59,6 +57,8 @@
                                                     data-entity="{{$nurse->entity->id}}">
                                                     edit
                                                 </button>
+                                                <button id="reset" class="text-sm py-1 px-2 rounded-sm bg-red-600 text-white" data-id="{{$nurse->id}}">reset</button>
+                                                <button id="archive" class="bg-blue-500 text-sm text-white py-1 px-2 rounded-sm" data-id="{{$nurse->id}}">archive</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -179,6 +179,56 @@
                     }
                 });
             });
+
+            $('#archive').click(function(){
+                var id = $(this).data('id');
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, archive it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `{{ route('update_nurse_status', '') }}/${id}`,
+                            type: "POST",
+                            data: {
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                console.log(response);
+                                if (response.message == 'success') {
+                                    Swal.fire(
+                                        'Archived!',
+                                        'The nurse has been archived.',
+                                        'success'
+                                    ).then(() => {
+                                        location.reload();
+                                    });
+                                } else {
+                                    Swal.fire(
+                                        'Error!',
+                                        'There was an issue archiving the nurse.',
+                                        'error'
+                                    );
+                                }
+                            },
+                            error: function(xhr) {
+                                Swal.fire(
+                                    'Error!',
+                                    'There was an issue archiving the nurse.',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
+            });
+
 
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.open-modal').forEach(button => {

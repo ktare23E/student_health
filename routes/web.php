@@ -48,5 +48,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/api/entities/{type}', [NurseController::class, 'getEntities'])->name('api.entities');
     Route::post('/store_nurse', [NurseController::class,'store'])->name('store_nurse');
     Route::patch('/update_nurse', [NurseController::class,'update'])->name('update_nurse');
-    
+    Route::get('/archive_nurse', [NurseController::class,'archive'])->name('archive_nurse');
+    Route::post('update_nurse_status/{id}', [NurseController::class,'archiveNurse'])->name('update_nurse_status');
+    Route::post('active_nurse_status/{id}', [NurseController::class,'activeNurse'])->name('active_nurse_status');
+
+
 });

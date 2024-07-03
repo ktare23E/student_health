@@ -16,14 +16,42 @@ class NurseController extends Controller
 
     public function index(){
            // Retrieve all nurses with their associated entities
-           $nurses = Nurse::all()->map(function ($nurse) {
+        $nurses = Nurse::all()->map(function ($nurse) {
             $nurse->entity = $nurse->entity; // Ensure entity relationship is loaded
             return $nurse;
-        });
+        })->where('status', 'active');
 
         return view('admin.nurse.index',[
             'nurses' => $nurses
         ]);
+    }
+
+    public function archive(){
+        // Retrieve all nurses with their associated entities
+        $nurses = Nurse::all()->map(function ($nurse) {
+            $nurse->entity = $nurse->entity; // Ensure entity relationship is loaded
+            return $nurse;
+        })->where('status', 'inactive');
+
+        return view('admin.nurse.archive',[
+            'nurses' => $nurses
+        ]);
+    }
+
+    public function archiveNurse($id){
+        $nurse = Nurse::findOrFail($id);
+        $nurse->status = 'inactive';
+        $nurse->save();
+
+        return response()->json(['message' => 'success']);
+    }
+
+    public function activeNurse($id){
+        $nurse = Nurse::findOrFail($id);
+        $nurse->status = 'active';
+        $nurse->save();
+
+        return response()->json(['message' => 'success']);
     }
 
     public function getEntities($type)

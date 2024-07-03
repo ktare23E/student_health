@@ -25,6 +25,11 @@
             Nurse
             <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
         </a>
+        <a href="{{route('archive_nurse')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
+            <span class="material-icons-outlined float-left pr-2">medication</span>
+            Archive Nurse
+            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
+        </a>
     </div>
 
     <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
