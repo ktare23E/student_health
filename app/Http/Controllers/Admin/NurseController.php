@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NurseEmailNotification;
+use App\Mail\NurseCreationNotification;
 
 class NurseController extends Controller
 {
@@ -112,6 +113,13 @@ class NurseController extends Controller
         $validatedData['password'] = bcrypt($validatedData['password']);
         
         Nurse::create($validatedData);
+
+        $details = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        Mail::to($request->email)->queue(new NurseCreationNotification($details));
 
         return response()->json(['message' => 'success']);
     }
