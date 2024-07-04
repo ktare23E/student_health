@@ -44,8 +44,10 @@
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
                                                     data-modal="edit_modal" data-id="{{ $student->id }}"
+                                                    data-student-lrn="{{ $student->student_lrn }}"
                                                     data-first-name="{{ $student->first_name }}"
                                                     data-last-name="{{ $student->last_name }}"
+                                                    data-address="{{ $student->address }}"
                                                     data-grade="{{ $student->grade_level }}"
                                                     data-status="{{ $student->status }}">
                                                     edit
@@ -104,8 +106,12 @@
                     const modalId = button.getAttribute('data-modal');
                     const modal = document.getElementById(modalId);
                     const id = button.getAttribute('data-id');
-                    const name = button.getAttribute('data-name');
+                    const first_name = button.getAttribute('data-first-name');
+                    const last_name = button.getAttribute('data-last-name');
                     const address = button.getAttribute('data-address');
+                    const student_lrn = button.getAttribute('data-student-lrn');
+                    const grade_level = button.getAttribute('data-grade');
+                    const status = button.getAttribute('data-status');
 
                     // Open the modal
                     modal.classList.remove('hidden');
@@ -115,9 +121,13 @@
                     }, 10);
 
                     // Fill the modal with data
-                    $('#edit_name').val(name);
+                    $('#edit_first_name').val(first_name);
+                    $('#edit_last_name').val(last_name);
                     $('#edit_address').val(address);
-                    $('#edit_division_id').val(id);
+                    $('#edit_student_lrn').val(student_lrn);
+                    $('#edit_grade_level').val(grade_level);
+                    $('#edit_status').val(status);
+                    $('#edit_student_id').val(id);
                     
                 });
             });
