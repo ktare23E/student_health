@@ -24,8 +24,7 @@ return new class extends Migration
             $table->string('birth_place');
             $table->string('parent_name');
             $table->string('adviser_name');
-            $table->string('address');
-            $table->string('student_lrn');
+            $table->string('school_id');
             $table->string('region');
             $table->string('division');
             $table->string('telephone_no');

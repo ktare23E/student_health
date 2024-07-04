@@ -115,7 +115,7 @@
                                     <p class="text-sm">Weight: test kg</p>
                                     <p class="text-sm">Notes: test</p>
                                 </div>
-                                <div class="bg-gray-100 rounded-sm w-[70%] p-4 flex flex-col shadow-xl transition-all ease-in-out hover:shadow-none pb-12">
+                                <div class="bg-gray-100 rounded-sm w-[70%] p-4 flex flex-col shadow-xl transition-all ease-in-out hover:shadow-none">
                                     <h2 class="font-semibold text-md">Checkup Date: test</h2>
                                     <p class="text-sm">Height: test cm</p>
                                     <p class="text-sm">Weight: test kg</p>

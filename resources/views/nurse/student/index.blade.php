@@ -12,7 +12,7 @@
                     <div class="flex flex-row">
                         <h1 class="font-bold text-2xl">Student List</h1>
                     </div>
-                    <div class="w-full flex justify-end px-6 gap-1">
+                    <div class="w-full flex justify-end px-6">
                         <button id="toggle-upload" class="bg-blue-500 text-white text-sm px-4 py-2 rounded m-2">Register Student Via .csv</button>
                         <form class="flex items-center justify-center" method="POST" action="{{route('import_student')}}" enctype="multipart/form-data">
                             @csrf
