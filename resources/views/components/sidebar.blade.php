@@ -27,11 +27,35 @@
                 <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
             </a>
             <a href="{{route('archive_nurse')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                <span class="material-icons-outlined float-left pr-2">medication</span>
+                <span class="material-icons-outlined float-left pr-2">archive</span>
                 Archive Nurse
                 <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
             </a>
         </div>
+    @endif
+    @if (auth()->user()->type == 'school')
+    <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
+        <a href="{{route('admin.index')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
+            <span class="material-icons-outlined float-left pr-2">dashboard</span>
+            Dashboard
+            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
+        </a>
+        <a href="{{route('school_nurse.student_list')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
+            <span class="material-icons-outlined float-left pr-2">group</span>
+            Student
+            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
+        </a>
+        <a href="{{route('admin.division')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
+            <span class="material-icons-outlined float-left pr-2">archive</span>
+            Archive Student
+            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
+        </a>
+        <a href="{{route('admin.district')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
+            <span class="material-icons-outlined float-left pr-2">summarize</span>
+            Report
+            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
+        </a>
+    </div>
     @endif
     <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
         <a href="" class="inline-flex items-center text-gray-600 hover:text-black my-4 w-full rounded-md transition ease-in-out duration-150">

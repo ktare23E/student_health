@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\NurseController;
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\DistrictNurse\DistrictDashboard;
+use App\Http\Controllers\DistrictNurse\StudentSchoolList;
 use App\Http\Middleware\CheckUserType;
 use App\Http\Controllers\SchoolNurse\SchoolNurseDashboardController;
 
@@ -53,11 +54,12 @@ Route::middleware(CheckUserType::class)->group(function(){
 
 Route::middleware('auth:nurse')->group(function(){
     Route::middleware('nurse.type:school')->group(function(){
-        Route::get('/nurse_dashboard',[SchoolNurseDashboardController::class,'index'])->name('nurse_dashboard');
+        Route::get('/school_nurse_dashboard',[SchoolNurseDashboardController::class,'index'])->name('nurse_dashboard');
+        Route::get('/student_list',[StudentSchoolList::class,'index'])->name('school_nurse.student_list');
     });
 
     Route::middleware('nurse.type:district')->group(function(){
-        Route::get('/nurse_dashboard',[DistrictDashboard::class,'index'])->name('district_nurse_dashboard');
+        Route::get('/district_nurse_dashboard',[StudentSchoolList::class,'index'])->name('district_nurse_dashboard');
     });
 });
 
