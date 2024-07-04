@@ -38,16 +38,16 @@
                     <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Grade Level</label>
                     <select id="grade_level" name="grade_level" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                         <option selected>Select Grade Level</option>
-                            <option value="1">Grade 1</option>
-                            <option value="2">Grade 2</option>
-                            <option value="3">Grade 3</option>
-                            <option value="4">Grade 4</option>
-                            <option value="5">Grade 5</option>
-                            <option value="6">Grade 6</option>
-                            <option value="7">Grade 7</option>
-                            <option value="7">Grade 8</option>
-                            <option value="7">Grade 9</option>
-                            <option value="7">Grade 10</option>
+                        <option value="1">Grade 1</option>
+                        <option value="2">Grade 2</option>
+                        <option value="3">Grade 3</option>
+                        <option value="4">Grade 4</option>
+                        <option value="5">Grade 5</option>
+                        <option value="6">Grade 6</option>
+                        <option value="7">Grade 7</option>
+                        <option value="8">Grade 8</option>
+                        <option value="9">Grade 9</option>
+                        <option value="10">Grade 10</option>
                     </select>
                 </div>
             </div>
@@ -102,9 +102,9 @@
                         <option value="5">Grade 5</option>
                         <option value="6">Grade 6</option>
                         <option value="7">Grade 7</option>
-                        <option value="7">Grade 8</option>
-                        <option value="7">Grade 9</option>
-                        <option value="7">Grade 10</option>
+                        <option value="8">Grade 8</option>
+                        <option value="9">Grade 9</option>
+                        <option value="10">Grade 10</option>
                 </select>
             </div>
         </div>

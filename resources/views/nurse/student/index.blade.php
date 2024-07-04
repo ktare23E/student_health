@@ -133,23 +133,31 @@
             });
         });
 
-        $('.update_division').click(function() {
-            var name = $('#edit_name').val();
-            var address = $('#edit_address').val();
-            var id = $('#edit_division_id').val();  
-        
+        $('.update_student').click(function() {
+            let first_name = $('#edit_first_name').val();
+            let last_name = $('#edit_last_name').val();
+            let address = $('#edit_address').val();
+            let student_lrn = $('#edit_student_lrn').val();
+            let grade_level = $('#edit_grade_level').val();
+            let status = $('#edit_status').val();
+            let id = $('#edit_student_id').val();
+
             $.ajax({
-                url: "{{ route('update_division') }}",
+                url: "{{ route('update_student') }}",
                 type: "PATCH",
                 data: {
-                    name: name,
-                    address: address,
-                    id: id,
+                    first_name : first_name,
+                    last_name : last_name,
+                    address : address,
+                    student_lrn : student_lrn,
+                    grade_level : grade_level,
+                    status : status,
+                    id : id,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
                     if (response.message == 'success') {
-                        alert('Division updated successfully');
+                        alert('Student updated successfully');
                         location.reload();
                     }
                 }

@@ -50,4 +50,21 @@ class StudentSchoolList extends Controller
             'message' => 'success'
         ]);
     }
+
+    public function update(Request $request){
+        $validated = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'address' => 'required',
+            'student_lrn' => 'required',
+            'status' => 'required',
+            'grade_level' => 'required'
+        ]);
+
+        $student = Student::findOrFail($request->id)->update($validated);
+
+        return response()->json([
+            'message' => 'success'
+        ]);
+    }
 }

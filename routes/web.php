@@ -60,7 +60,7 @@ Route::middleware('auth:nurse')->group(function(){
 
         Route::get('/student_list',[StudentSchoolList::class,'index'])->name('school_nurse.student_list');
         Route::post('/store_student',[StudentSchoolList::class, 'store'])->name('store_student');
-
+        Route::patch('/update_student',[StudentSchoolList::class, 'update'])->name('update_student');
     });
 
     Route::middleware('nurse.type:district')->group(function(){
