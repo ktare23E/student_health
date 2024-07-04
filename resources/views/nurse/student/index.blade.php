@@ -35,14 +35,19 @@
                                 <tbody>
                                     @foreach ($students as $student)
                                         <tr>
-                                            <td class="data1">{{ $student->name }}</td>
-                                            <td class="data2">{{ $student->address }}</td>
+                                            <td>{{ $student->student_lrn }}</td>
+                                            <td>{{ $student->first_name.' '.$student->last_name }}</td>
+                                            <td>{{ "Grade ".$student->grade_level }}</td>
+                                            <td>{{ $student->school->name }}</td>
+                                            <td>{{ $student->status }}</td>
                                             <td>
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
-                                                    data-modal="edit_modal" data-id="{{ $division->id }}"
-                                                    data-name="{{ $division->name }}"
-                                                    data-address="{{ $division->address }}">
+                                                    data-modal="edit_modal" data-id="{{ $student->id }}"
+                                                    data-first-name="{{ $student->first_name }}"
+                                                    data-last-name="{{ $student->last_name }}"
+                                                    data-grade="{{ $student->grade_level }}"
+                                                    data-status="{{ $student->status }}">
                                                     edit
                                                 </button>
                                             </td>
@@ -55,7 +60,7 @@
                 </div>
             </div>
         </div>
-        @include('components.modal.modal_test')
+        @include('components.modal.student_modal')
 
     </div>
     <script>
@@ -63,21 +68,29 @@
             $('#myTable2').DataTable();
         });
 
-        $('.create_division').click(function() {
-            var name = $('#name').val();
-            var address = $('#address').val();
+        $('.create_student').click(function() {
+            let first_name = $('#first_name').val();
+            let last_name = $('#last_name').val();
+            let address = $('#address').val();
+            let student_lrn = $('#student_lrn').val();
+            let status = $('#status').val();
+            let grade_level = $('#grade_level').val();
 
             $.ajax({
-                url: "{{ route('store_division') }}",
+                url: "{{ route('store_student') }}",
                 type: "POST",
                 data: {
-                    name: name,
-                    address: address,
+                    first_name : first_name,
+                    last_name : last_name,
+                    address : address,
+                    student_lrn : student_lrn,
+                    status : status,
+                    grade_level : grade_level,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
                     if (response.message == 'success') {
-                        alert('Division created successfully');
+                        alert('Student created successfully');
                         location.reload();
                     }
                 }

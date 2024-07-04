@@ -54,8 +54,13 @@ Route::middleware(CheckUserType::class)->group(function(){
 
 Route::middleware('auth:nurse')->group(function(){
     Route::middleware('nurse.type:school')->group(function(){
+
+
         Route::get('/school_nurse_dashboard',[SchoolNurseDashboardController::class,'index'])->name('nurse_dashboard');
+
         Route::get('/student_list',[StudentSchoolList::class,'index'])->name('school_nurse.student_list');
+        Route::post('/store_student',[StudentSchoolList::class, 'store'])->name('store_student');
+
     });
 
     Route::middleware('nurse.type:district')->group(function(){

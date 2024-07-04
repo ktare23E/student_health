@@ -22,4 +22,32 @@ class StudentSchoolList extends Controller
             'students' => $students
         ]);
     }
+
+    public function store(Request $request){
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'address' => 'required',
+            'student_lrn' => 'required',
+            'status' => 'required',
+            'grade_level' => 'required'
+        ]);
+
+        $nurse = Auth::user();
+        $school_id = $nurse->entity_id;
+
+        Student::create([
+            'school_id' => $school_id,
+            'student_lrn' => $request->student_lrn,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'address' => $request->address,
+            'status' => $request->status,
+            'grade_level' => $request->grade_level,
+        ]);
+
+        return response()->json([
+            'message' => 'success'
+        ]);
+    }
 }
