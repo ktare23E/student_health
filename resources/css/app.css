@@ -17,3 +17,13 @@
     transform: translateY(100%);
     opacity: 0;
 }
+
+
+/* Tailwind CSS classes for smooth animation and transition */
+#upload-container.show {
+    opacity: 1;
+  }
+  
+.hidden {
+display: none;
+}

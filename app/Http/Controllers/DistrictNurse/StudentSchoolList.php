@@ -67,4 +67,42 @@ class StudentSchoolList extends Controller
             'message' => 'success'
         ]);
     }
+    public function importStudent(Request $request)
+    {
+        $file = $request->file('file');
+        $fileContents = file($file->getPathname());
+        $nurse = Auth::user();
+        $school_id = $nurse->entity_id;
+    
+        foreach ($fileContents as $line) {
+            $data = str_getcsv($line);
+    
+            // Check if student already exists
+            $student = Student::where('student_lrn', $data[0])->first();
+    
+            if ($student) {
+                // Update existing student
+                $student->update([
+                    'first_name' => $data[1],
+                    'last_name' => $data[2],
+                    'address' => $data[3],
+                    'status' => $data[4],
+                    'grade_level' => $data[5],
+                ]);
+            } else {
+                // Create new student
+                Student::create([
+                    'school_id' => $school_id,
+                    'student_lrn' => $data[0],
+                    'first_name' => $data[1],
+                    'last_name' => $data[2],
+                    'address' => $data[3],
+                    'status' => $data[4],
+                    'grade_level' => $data[5],
+                ]);
+            }
+        }
+    
+        return redirect()->back()->with('success', 'CSV file imported successfully.');
+    }
 }

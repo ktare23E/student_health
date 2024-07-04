@@ -60,6 +60,7 @@ Route::middleware('auth:nurse')->group(function(){
 
         Route::get('/student_list',[StudentSchoolList::class,'index'])->name('school_nurse.student_list');
         Route::post('/store_student',[StudentSchoolList::class, 'store'])->name('store_student');
+        Route::post('/import_student',[StudentSchoolList::class, 'importStudent'])->name('import_student');
         Route::patch('/update_student',[StudentSchoolList::class, 'update'])->name('update_student');
     });
 

@@ -15,10 +15,17 @@
                     <div class="flex flex-row">
                         <h1 class="font-bold text-2xl">Student List</h1>
                     </div>
-                    <div class="w-full flex justify-end px-6">
-                        <button data-modal="modal1"
-                            class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Create Student</button>
+                    <div class="w-full flex justify-end px-6 gap-1">
+                        <button id="toggle-upload" class="bg-blue-500 text-white text-sm px-4 py-2 rounded m-2">Register Student Via .csv</button>
+                        <form class="flex items-center justify-center" method="POST" action="{{route('import_student')}}" enctype="multipart/form-data">
+                            @csrf
+                            <input id="file-input" type="file" name="file" accept=".csv" class="hidden mt-2 text-sm file:mr-4 file:rounded-md file:border-0 file:bg-teal-500 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-teal-700 focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
+                            <button id="upload-btn" type="submit" class="hidden bg-green-500 text-white text-sm px-4 py-2 rounded m-2">Upload</button>
+                        </form>
+                        
+                        <button data-modal="modal1" class="open-modal bg-blue-500 text-sm text-white px-4 py-2 rounded m-2">Create Student</button>
                     </div>
+                    
                     <div class="flex flex-row p-[2rem] w-full">
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
                             <table id="myTable2" class="display">
@@ -52,6 +59,8 @@
                                                     data-status="{{ $student->status }}">
                                                     edit
                                                 </button>
+                                                <button id="reset" class="text-sm py-1 px-2 rounded-sm bg-black text-white" >view</button>
+                                                <button id="archive" class="bg-blue-500 text-sm text-white py-1 px-2 rounded-sm" data-id="{{$student->id}}">archive</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -69,7 +78,21 @@
         $(document).ready(function() {
             $('#myTable2').DataTable();
         });
+        
 
+        $(document).ready(function() {
+            $('#toggle-upload').on('click', function() {
+                $('#file-input').click();
+            });
+
+            $('#file-input').on('change', function() {
+                if (this.files.length > 0) {
+                    $('#toggle-upload').hide(); // Hide the "Register Student Via .csv" button
+                    $('#file-input').removeClass('hidden').addClass('block'); // Show the file input
+                    $('#upload-btn').removeClass('hidden').addClass('block'); // Show the "Upload" button
+                }
+            });
+        });
         $('.create_student').click(function() {
             let first_name = $('#first_name').val();
             let last_name = $('#last_name').val();
@@ -163,6 +186,7 @@
                 }
             });
         });
+
     </script>
     <script src="{{ mix('js/app.js') }}"></script>
 </x-layout>
