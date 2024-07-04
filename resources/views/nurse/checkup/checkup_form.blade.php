@@ -26,8 +26,15 @@
                                 <span class="px-1">></span>
                             </li>
                             <li>
-                                <a href="#" class="text-blue-600 hover:text-blue-800 hover:underline">Student
+                                <a href="{{route('view_student',$student->id)}}" class="text-blue-600 hover:text-blue-800 hover:underline">Student
                                     Profile</a>
+                            </li>
+                            <li>
+                                <span class="px-1">></span>
+                            </li>
+                            <li>
+                                <a href="#" class="text-blue-600 hover:text-blue-800 hover:underline">
+                                    Checkup Form</a>
                             </li>
                         </ol>
                     </nav>
@@ -35,7 +42,7 @@
                     <div class="p-[2rem] w-full">
                         <div
                             class="bg-white rounded-md px-6 py-4 w-full mx-auto shadow-2xl transition-all hover:shadow-none">
-                            <h1 class="font-semibold text-md mb-4">Student Profile</h1>
+                            <h1 class="font-semibold text-md mb-4">Checkup Form</h1>
 
                             <!-- Profile Image -->
                             <div class="flex justify-center mb-4">
@@ -84,46 +91,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-20 mb-8 w-full flex justify-end">
-                            <button class="text-sm bg-green-500 rounded-sm py-1 px-2 text-white">
-                                <a href="{{route('checkup_student',$student->id)}}">+Checkup</a>    
-                            </button>
-                        </div>
-                        <div
-                            class="bg-white rounded-md px-6 py-4 w-full mx-auto shadow-2xl transition-all hover:shadow-none">
-                            <h1 class="font-semibold text-md mb-4">Student Checkup History</h1>
-
-                            <!-- checkup Details -->
-                            <!-- Checkup Details -->
-                            <div class="space-y-4 flex flex-col items-center justify-center w-full">
-                                <!-- Example Checkup Item -->
-                                <div class="bg-gray-100 rounded-sm w-[70%] p-4 flex flex-col shadow-xl transition-all ease-in-out hover:shadow-none">
-                                    <h2 class="font-semibold text-md">Checkup Date: test</h2>
-                                    <p class="text-sm">Height: test cm</p>
-                                    <p class="text-sm">Weight: test kg</p>
-                                    <p class="text-sm">Notes: test</p>
-                                </div>
-                                <div class="bg-gray-100 rounded-sm w-[70%] p-4 flex flex-col shadow-xl transition-all ease-in-out hover:shadow-none">
-                                    <h2 class="font-semibold text-md">Checkup Date: test</h2>
-                                    <p class="text-sm">Height: test cm</p>
-                                    <p class="text-sm">Weight: test kg</p>
-                                    <p class="text-sm">Notes: test</p>
-                                </div>
-                                <div class="bg-gray-100 rounded-sm w-[70%] p-4 flex flex-col shadow-xl transition-all ease-in-out hover:shadow-none">
-                                    <h2 class="font-semibold text-md">Checkup Date: test</h2>
-                                    <p class="text-sm">Height: test cm</p>
-                                    <p class="text-sm">Weight: test kg</p>
-                                    <p class="text-sm">Notes: test</p>
-                                </div>
-                                <div class="bg-gray-100 rounded-sm w-[70%] p-4 flex flex-col shadow-xl transition-all ease-in-out hover:shadow-none pb-12">
-                                    <h2 class="font-semibold text-md">Checkup Date: test</h2>
-                                    <p class="text-sm">Height: test cm</p>
-                                    <p class="text-sm">Weight: test kg</p>
-                                    <p class="text-sm">Notes: test</p>
-                                </div>
-                                
-                            </div>
-                        </div>
+                        
+                        
                     </div>
 
                 </div>

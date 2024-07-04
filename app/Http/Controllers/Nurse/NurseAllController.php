@@ -149,4 +149,12 @@ class NurseAllController extends Controller
             'studentSchool' => $studentSchool
         ]);
     }
+
+    public function checkupStudent($id){
+        $student = Student::findOrFail($id);
+
+        return view('nurse.checkup.checkup_form',[
+            'student' => $student
+        ]);
+    }
 }
