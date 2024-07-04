@@ -68,8 +68,10 @@ Route::middleware('auth:nurse')->group(function(){
         Route::post('/update_student_status/{id}',[NurseAllController::class,'updateStatus'])->name('update_student_status');
         Route::post('/restore_student/{id}',[NurseAllController::class,'restoreStudent'])->name('restore_student');
         Route::get('/view_student/{student}',[NurseAllController::class,'viewStudent'])->name('view_student');
-        Route::get('/checkup_student/{id}',[NurseAllController::class,'checkupStudent'])->name('checkup_student');
 
+
+        Route::get('/checkup_student/{id}',[NurseAllController::class,'checkupStudent'])->name('checkup_student');
+        Route::post('/store_checkup/{id}',[NurseAllController::class,'storeCheckup'])->name('store_checkup');
     });
 
     // Route::middleware('nurse.type:district')->group(function(){
