@@ -9,8 +9,9 @@ use App\Http\Controllers\Admin\NurseController;
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\DistrictNurse\DistrictDashboard;
 use App\Http\Controllers\DistrictNurse\StudentSchoolList;
+use App\Http\Controllers\Nurse\NurseAllController;
 use App\Http\Middleware\CheckUserType;
-use App\Http\Controllers\SchoolNurse\SchoolNurseDashboardController;
+use App\Http\Controllers\Nurse\NurseDashboard;
 
 Route::get('/', function () {
     return view('login');
@@ -56,17 +57,19 @@ Route::middleware('auth:nurse')->group(function(){
     Route::middleware('nurse.type:school')->group(function(){
 
 
-        Route::get('/school_nurse_dashboard',[SchoolNurseDashboardController::class,'index'])->name('nurse_dashboard');
+        Route::get('/school_nurse_dashboard',[NurseDashboard::class,'index'])->name('nurse_dashboard');
 
-        Route::get('/student_list',[StudentSchoolList::class,'index'])->name('school_nurse.student_list');
-        Route::post('/store_student',[StudentSchoolList::class, 'store'])->name('store_student');
-        Route::post('/import_student',[StudentSchoolList::class, 'importStudent'])->name('import_student');
-        Route::patch('/update_student',[StudentSchoolList::class, 'update'])->name('update_student');
+        Route::get('/student_list',[NurseAllController::class,'index'])->name('school_nurse.student_list');
+        Route::post('/store_student',[NurseAllController::class, 'store'])->name('store_student');
+        Route::post('/import_student',[NurseAllController::class, 'importStudent'])->name('import_student');
+        Route::patch('/update_student',[NurseAllController::class, 'update'])->name('update_student');
+
+        Route::get('/archive_student',[NurseAllController::class,'archiveStudent'])->name('school.archive_student');
     });
 
-    Route::middleware('nurse.type:district')->group(function(){
-        Route::get('/district_nurse_dashboard',[StudentSchoolList::class,'index'])->name('district_nurse_dashboard');
-    });
+    // Route::middleware('nurse.type:district')->group(function(){
+    //     Route::get('/district_nurse_dashboard',[StudentSchoolList::class,'index'])->name('district_nurse_dashboard');
+    // });
 });
 
 
