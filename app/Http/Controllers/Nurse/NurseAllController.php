@@ -138,4 +138,15 @@ class NurseAllController extends Controller
             'message' => 'success'
         ]);
     }
+
+    public function viewStudent(Student $student){
+        $student = Student::findOrFail($student->id);
+        $studentCheckUps = $student->checkups;
+        $studentSchool = $student->school;
+        return view('nurse.student.view_student',[
+            'student' => $student,
+            'checkups' => $studentCheckUps,
+            'studentSchool' => $studentSchool
+        ]);
+    }
 }

@@ -56,7 +56,9 @@
                                                     data-status="{{ $student->status }}">
                                                     edit
                                                 </button>
-                                                <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >view</button>
+                                                <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
+                                                    <a href="{{route('view_student',$student->id)}}">view</a>   
+                                                </button>
                                                 <button class="archive bg-blue-500 text-sm text-white py-1 px-2 rounded-sm" data-id="{{$student->id}}">archive</button>
                                             </td>
                                         </tr>

@@ -35,12 +35,12 @@
     @endif
     @if (auth()->user()->type == 'school')
     <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-        <a href="{{route('admin.index')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
+        <a href="{{route('nurse_dashboard')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
             <span class="material-icons-outlined float-left pr-2">dashboard</span>
             Dashboard
             <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
         </a>
-        <a href="{{route('school_nurse.student_list')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
+        <a href="{{route('student_list')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
             <span class="material-icons-outlined float-left pr-2">group</span>
             Student
             <span class="material-icons-outlined float-right">keyboard_arrow_right</span>

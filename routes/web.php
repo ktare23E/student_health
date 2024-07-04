@@ -57,9 +57,9 @@ Route::middleware('auth:nurse')->group(function(){
     Route::middleware('nurse.type:school')->group(function(){
 
 
-        Route::get('/school_nurse_dashboard',[NurseDashboard::class,'index'])->name('nurse_dashboard');
+        Route::get('/nurse_dashboard',[NurseDashboard::class,'index'])->name('nurse_dashboard');
 
-        Route::get('/student_list',[NurseAllController::class,'index'])->name('school_nurse.student_list');
+        Route::get('/student_list',[NurseAllController::class,'index'])->name('student_list');
         Route::post('/store_student',[NurseAllController::class, 'store'])->name('store_student');
         Route::post('/import_student',[NurseAllController::class, 'importStudent'])->name('import_student');
         Route::patch('/update_student',[NurseAllController::class, 'update'])->name('update_student');
@@ -67,6 +67,8 @@ Route::middleware('auth:nurse')->group(function(){
         Route::get('/archive_student',[NurseAllController::class,'archiveStudent'])->name('school.archive_student');
         Route::post('/update_student_status/{id}',[NurseAllController::class,'updateStatus'])->name('update_student_status');
         Route::post('/restore_student/{id}',[NurseAllController::class,'restoreStudent'])->name('restore_student');
+        Route::get('/view_student/{student}',[NurseAllController::class,'viewStudent'])->name('view_student');
+
     });
 
     // Route::middleware('nurse.type:district')->group(function(){

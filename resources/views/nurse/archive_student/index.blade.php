@@ -38,7 +38,9 @@
                                             <td class="text-red-500">{{ $student->status }}</td>
                                             <td>
                                                 
-                                                <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >view</button>
+                                                <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
+                                                    <a href="{{route('view_student',$student->id)}}">view</a>   
+                                                </button>
                                                 <button  class="restore bg-green-500 text-sm text-white py-1 px-2 rounded-sm" data-id="{{$student->id}}">restore</button>
                                             </td>
                                         </tr>
