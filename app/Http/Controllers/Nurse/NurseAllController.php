@@ -117,4 +117,25 @@ class NurseAllController extends Controller
     
         return redirect()->back()->with('success', 'CSV file imported successfully.');
     }
+
+    public function updateStatus($id){
+        $student = Student::findOrFail($id);
+        $student->status = 'inactive';
+        $student->save();
+
+        return response()->json([
+            'message' => 'success'
+        ]);
+    }
+
+    
+    public function restoreStudent($id){
+        $student = Student::findOrFail($id);
+        $student->status = 'active';
+        $student->save();
+
+        return response()->json([
+            'message' => 'success'
+        ]);
+    }
 }

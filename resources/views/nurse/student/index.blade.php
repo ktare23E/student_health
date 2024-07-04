@@ -1,9 +1,6 @@
 <x-layout>
     <!-- source https://gist.github.com/dsursulino/369a0998c0fc8c25e19962bce729674f -->
 
-    <link
-        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-        rel="stylesheet" />
 
     <div class="bg-blue-100 min-h-screen">
         @include('components.header')
@@ -41,12 +38,12 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($students as $student)
-                                        <tr>
+                                        <tr class="text-sm">
                                             <td>{{ $student->student_lrn }}</td>
                                             <td>{{ $student->first_name.' '.$student->last_name }}</td>
                                             <td>{{ "Grade ".$student->grade_level }}</td>
                                             <td>{{ $student->school->name }}</td>
-                                            <td>{{ $student->status }}</td>
+                                            <td class="text-green-500">{{ $student->status }}</td>
                                             <td>
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
@@ -59,8 +56,8 @@
                                                     data-status="{{ $student->status }}">
                                                     edit
                                                 </button>
-                                                <button id="reset" class="text-sm py-1 px-2 rounded-sm bg-black text-white" >view</button>
-                                                <button id="archive" class="bg-blue-500 text-sm text-white py-1 px-2 rounded-sm" data-id="{{$student->id}}">archive</button>
+                                                <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >view</button>
+                                                <button class="archive bg-blue-500 text-sm text-white py-1 px-2 rounded-sm" data-id="{{$student->id}}">archive</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -185,6 +182,55 @@
                     }
                 }
             });
+        });
+
+        $('.archive').click(function(){
+            let student_id = $(this).data('id');
+
+            Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, archive it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `{{ route('update_student_status', '') }}/${student_id}`,
+                            type: "POST",
+                            data: {
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                console.log(response);
+                                if (response.message == 'success') {
+                                    Swal.fire(
+                                        'Archived!',
+                                        'The student has been archived.',
+                                        'success'
+                                    ).then(() => {
+                                        location.reload();
+                                    });
+                                } else {
+                                    Swal.fire(
+                                        'Error!',
+                                        'There was an issue archiving the student.',
+                                        'error'
+                                    );
+                                }
+                            },
+                            error: function(xhr) {
+                                Swal.fire(
+                                    'Error!',
+                                    'There was an issue archiving the student.',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
         });
 
     </script>

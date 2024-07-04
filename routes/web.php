@@ -65,6 +65,8 @@ Route::middleware('auth:nurse')->group(function(){
         Route::patch('/update_student',[NurseAllController::class, 'update'])->name('update_student');
 
         Route::get('/archive_student',[NurseAllController::class,'archiveStudent'])->name('school.archive_student');
+        Route::post('/update_student_status/{id}',[NurseAllController::class,'updateStatus'])->name('update_student_status');
+        Route::post('/restore_student/{id}',[NurseAllController::class,'restoreStudent'])->name('restore_student');
     });
 
     // Route::middleware('nurse.type:district')->group(function(){

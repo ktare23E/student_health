@@ -1,9 +1,7 @@
 <x-layout>
     <!-- source https://gist.github.com/dsursulino/369a0998c0fc8c25e19962bce729674f -->
 
-    <link
-        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-        rel="stylesheet" />
+
 
     <div class="bg-blue-100 min-h-screen">
         @include('components.header')
