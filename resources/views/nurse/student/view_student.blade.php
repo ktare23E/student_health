@@ -97,7 +97,7 @@
                             <!-- Checkup Details -->
                             <div class="space-y-4 flex flex-col items-center justify-center w-full">
                                 <!-- Example Checkup Item -->
-                                @forelse ($checkups as $checkup)
+                                @forelse ($studentCheckUps[0]->checkups as $checkups)
                                     <div class="bg-gray-100 rounded-sm w-[70%] p-4 flex flex-col shadow-xl transition-all ease-in-out hover:shadow-none">
                                         <h2 class="font-semibold text-md">Checkup Date: test</h2>
                                         <p class="text-sm">Height: test cm</p>

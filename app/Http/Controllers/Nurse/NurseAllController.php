@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
+use function Pest\Laravel\json;
+
 class NurseAllController extends Controller
 {
     //
@@ -145,13 +147,12 @@ class NurseAllController extends Controller
 
     public function viewStudent(Student $student){
         $student = Student::findOrFail($student->id);
-        $studentCheckUps = $student->checkups;
+        $studentCheckUps = Student::with('checkups.nurse')->where('id',$student->id)->get();
         $studentSchool = $student->school;
-
 
         return view('nurse.student.view_student',[
             'student' => $student,
-            'checkups' => $studentCheckUps,
+            'studentCheckUps' => $studentCheckUps,
             'studentSchool' => $studentSchool
         ]);
     }
