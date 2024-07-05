@@ -72,8 +72,13 @@
                 },
                 success: function(response) {
                     if (response.message == 'success') {
-                        alert('Division created successfully');
-                        location.reload();
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Created Division",
+                            icon: "success"
+                        }).then(function() {
+                            location.reload();
+                        });
                     }
                 }
             });
@@ -121,8 +126,13 @@
                 },
                 success: function(response) {
                     if (response.message == 'success') {
-                        alert('Division updated successfully');
-                        location.reload();
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Updated Division",
+                            icon: "success"
+                        }).then(function(){
+                            location.reload();
+                        });
                     }
                 }
             });

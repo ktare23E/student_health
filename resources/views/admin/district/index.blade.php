@@ -78,8 +78,13 @@
                 success: function(response) {
                     console.log(response);
                     if (response.message == 'success') {
-                        alert('District created successfully');
-                        location.reload();
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Created District",
+                            icon: "success"
+                        }).then(function(){
+                            location.reload();
+                        });
                     }
                 }
             });
@@ -131,8 +136,13 @@
                 },
                 success: function(response) {
                     if (response.message == 'success') {
-                        alert('Division updated successfully');
-                        location.reload();
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Updated District",
+                            icon: "success"
+                        }).then(function(){
+                            location.reload();
+                        });
                     }
                 }
             });

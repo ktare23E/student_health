@@ -39,7 +39,7 @@
                                             <td class="data2">{{ $nurse->gender }}</td>
                                             <td class="data2">{{ $nurse->address }}</td>
                                             <td class="data2">{{ $nurse->type }}</td>
-                                            <td class="data2">{{ $nurse->status }}</td>
+                                            <td class="capitalize text-green-500">{{ $nurse->status }}</td>
                                             <td>
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
@@ -171,8 +171,13 @@
                     success: function(response) {
                         console.log(response);
                         if (response.message == 'success') {
-                            alert('Nurse created successfully');
-                            location.reload();
+                            Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Created Nurse",
+                            icon: "success"
+                            }).then(function(){
+                                location.reload();
+                            });
                         }
                     }
                 });

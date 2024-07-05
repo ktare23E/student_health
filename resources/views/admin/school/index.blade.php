@@ -37,7 +37,7 @@
                                             <td class="data1">{{ $school->name }}</td>
                                             <td class="data2">{{ $school->address }}</td>
                                             <td class="data2">{{ $school->district->name }}</td>
-                                            <td class="data2">{{ $school->status }}</td>
+                                            <td class="">{{ $school->status }}</td>
                                             <td>
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
@@ -85,8 +85,13 @@
                 success: function(response) {
                     console.log(response);
                     if (response.message == 'success') {
-                        alert('School created successfully');
-                        location.reload();
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Created School",
+                            icon: "success"
+                        }).then(function(){
+                            location.reload();
+                        });
                     }
                 }
             });
@@ -142,8 +147,13 @@
                 },
                 success: function(response) {
                     if (response.message == 'success') {
-                        alert('School updated successfully');
-                        location.reload();
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Updated School",
+                            icon: "success"
+                        }).then(function(){
+                            location.reload();
+                        });
                     }
                 }
             });
