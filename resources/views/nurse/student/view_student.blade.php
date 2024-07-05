@@ -132,11 +132,11 @@
                                             </div>
                                         </div>
                                         <div class="mt-6 w-full flex justify-center gap-2">
-                                            <button class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white">
+                                            <a href="{{route('edit_checkup',$checkup->id)}}" class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white">
                                                 edit
-                                            </button>
+                                            </a>
                                         <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
-                                            <a href="{{route('view_student',$student->id)}}">view</a>   
+                                            <a href="{{route('edit_checkup',$checkup->id)}}">view</a>   
                                         </button>
                                         </div>
                                     </div>

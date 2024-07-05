@@ -263,4 +263,63 @@ class NurseAllController extends Controller
 
         return redirect()->route('view_student',$student->id)->with('success','Checkup successfully added');
     }
+
+    public function editCheckUp(Request $request,Checkup $checkup){
+
+
+        $checkup = Checkup::findOrFail($checkup->id);
+
+
+        return view('nurse.checkup.edit_checkup',[
+            'checkup' => $checkup
+        ]);
+    }
+
+    public function updateCheckUp(Request $request,Checkup $checkup){
+
+        $validateDate = $request->validate([
+            'date_of_birth' => 'required',
+            'birth_place' => 'required',
+            'parent_name' => 'required',
+            'student_age' => 'required',
+            'adviser_name' => 'required',
+            'school_id' => 'required',
+            'region' => 'required',
+            'division' => 'required',
+            'telephone_no' => 'required',
+            'temperature' => 'required',
+            'systolic' => 'required',
+            'diastolic' => 'required',
+            'heart_rate' => 'required',
+            'respiratory_rate' => 'required',
+            'pulse_rate' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+            'bmi_weight' => 'required',
+            'bmi_height' => 'required',
+            'vision_screening' => 'required',
+            'auditory_screening' => 'required',
+            'skin' => 'required',
+            'scalp' => 'required',
+            'ears' => 'required',
+            'eyes' => 'required',
+            'nose' => 'required',
+            'mouth' => 'required',
+            'lungs' => 'required',
+            'heart' => 'required',
+            'abdomen' => 'required',
+            'deformities' => 'required',
+            'iron_supplementation' => 'required',
+            'deworming' => 'required',
+            'immunization' => 'required',
+            'sbfp_beneficiary' => 'required',
+            'four_p_beneficiary' => 'required',
+            'menarche' => 'required',
+            'remarks' => 'required'
+        ]);
+
+        $checkup = Checkup::findOrFail($checkup->id)->update($validateDate);
+
+        return redirect()->route('view_student',$checkup->student_id)->with('success','Checkup successfully updated');
+    }
 }
