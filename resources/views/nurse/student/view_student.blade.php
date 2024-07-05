@@ -100,7 +100,16 @@
                                 @forelse ($studentCheckUps[0]->checkups as $checkup)
                                     <div class="bg-gray-100 rounded-sm w-[70%] p-4 flex flex-col shadow-xl transition-all ease-in-out hover:shadow-none">
                                         <div class="flex justify-between items-center">
-                                            <h2 class="font-bold text-md">Checkup Date: <span class="font-normal text-sm">{{$checkup->date_of_checkup}}</span></h2>
+                                            @php
+
+
+                                                $date = $checkup->date_of_checkup;
+                                                $carbonDatetime = \Carbon\Carbon::parse($date);
+                                                $formattedDate = $carbonDatetime->format('F j, Y');
+                                                $formattedTime = $carbonDatetime->format('g:i A');
+
+                                            @endphp
+                                            <h2 class="font-bold text-md">Checkup Date: <span class="font-normal text-sm">{{$formattedDate.' '.$formattedTime}}</span></h2>
                                             <h1 class="font-semibold">School: <span class="font-normal text-sm">{{ $student->school->name }}</span></span></h1>
                                         </div>
                                         <div class="flex justify-between items-center">
