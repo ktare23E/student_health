@@ -17,25 +17,26 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Student::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(Nurse::class)->constrained()->onDelete('cascade');
-            $table->string('student_grade_level');
+            $table->string('student_grade_level')->nullable();
+            $table->string('student_lrn')->nullable();
             $table->string('student_age');
-            $table->timestamp('date_of_checkup');
-            $table->date('date_of_birth');
-            $table->string('birth_place');
-            $table->string('parent_name');
-            $table->string('adviser_name');
-            $table->string('school_id');
-            $table->string('region');
-            $table->string('division');
-            $table->string('telephone_no');
-            $table->decimal('temperature', 5, 2)->nullable();
-            $table->integer('systolic')->nullable();
-            $table->integer('diastolic')->nullable();
-            $table->integer('heart_rate')->nullable();
-            $table->integer('pulse_rate')->nullable();
-            $table->integer('respiratory_rate')->nullable();
-            $table->decimal('height', 5, 2)->nullable(); // Adding height column
-            $table->decimal('weight', 5, 2)->nullable(); // Adding weight column
+            $table->timestamp('date_of_checkup')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('birth_place')->nullable();
+            $table->string('parent_name')->nullable();
+            $table->string('adviser_name')->nullable();
+            $table->string('school_id')->nullable();
+            $table->string('region')->nullable();
+            $table->string('division')->nullable();
+            $table->string('telephone_no')->nullable();
+            $table->string('temperature')->nullable();
+            $table->string('systolic')->nullable();
+            $table->string('diastolic')->nullable();
+            $table->string('heart_rate')->nullable();
+            $table->string('pulse_rate')->nullable();
+            $table->string('respiratory_rate')->nullable();
+            $table->string('height')->nullable(); // Adding height column
+            $table->string('weight')->nullable(); // Adding weight column
             $table->string('bmi_weight')->nullable();
             $table->string('bmi_height')->nullable();
             $table->string('vision_screening')->nullable();
@@ -46,8 +47,8 @@ return new class extends Migration
             $table->string('ears')->nullable();
             $table->string('nose')->nullable();
             $table->string('mouth')->nullable();
-            $table->string('throat')->nullable();
-            $table->string('neck')->nullable();
+            // $table->string('throat')->nullable();
+            // $table->string('neck')->nullable();
             $table->string('lungs')->nullable();
             $table->string('heart')->nullable();
             $table->string('abdomen')->nullable();
@@ -56,9 +57,9 @@ return new class extends Migration
             $table->string('deworming')->nullable();
             $table->string('immunization')->nullable();
             $table->string('sbfp_beneficiary')->nullable();
-            $table->string('4ps_beneficiary')->nullable();
+            $table->string('four_p_beneficiary')->nullable();
             $table->string('menarche')->nullable();
-            $table->string('others')->nullable();
+            // $table->string('others')->nullable();
             $table->string('remarks')->nullable();
             $table->timestamps();
         });

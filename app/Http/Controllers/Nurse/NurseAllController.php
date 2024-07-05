@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Nurse;
 
 use App\Http\Controllers\Controller;
+use App\Models\Checkup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
-
+use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class NurseAllController extends Controller
 {
@@ -79,6 +82,7 @@ class NurseAllController extends Controller
             'message' => 'success'
         ]);
     }
+
     public function importStudent(Request $request)
     {
         $file = $request->file('file');
@@ -143,6 +147,8 @@ class NurseAllController extends Controller
         $student = Student::findOrFail($student->id);
         $studentCheckUps = $student->checkups;
         $studentSchool = $student->school;
+
+
         return view('nurse.student.view_student',[
             'student' => $student,
             'checkups' => $studentCheckUps,
@@ -156,5 +162,104 @@ class NurseAllController extends Controller
         return view('nurse.checkup.checkup_form',[
             'student' => $student
         ]);
+    }
+
+    public function storeCheckup(Request $request,Student $student){
+
+    
+        $request->validate([
+            'date_of_birth' => 'required',
+            'birth_place' => 'required',
+            'parent_name' => 'required',
+            'student_age' => 'required',
+            'adviser_name' => 'required',
+            'school_id' => 'required',
+            'region' => 'required',
+            'division' => 'required',
+            'telephone_no' => 'required',
+            'temperature' => 'required',
+            'systolic' => 'required',
+            'diastolic' => 'required',
+            'heart_rate' => 'required',
+            'respiratory_rate' => 'required',
+            'pulse_rate' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+            'bmi_weight' => 'required',
+            'bmi_height' => 'required',
+            'vision_screening' => 'required',
+            'auditory_screening' => 'required',
+            'skin' => 'required',
+            'scalp' => 'required',
+            'ears' => 'required',
+            'eyes' => 'required',
+            'nose' => 'required',
+            'mouth' => 'required',
+            'lungs' => 'required',
+            'heart' => 'required',
+            'abdomen' => 'required',
+            'deformities' => 'required',
+            'iron_supplementation' => 'required',
+            'deworming' => 'required',
+            'immunization' => 'required',
+            'sbfp_beneficiary' => 'required',
+            'four_p_beneficiary' => 'required',
+            'menarche' => 'required',
+            'remarks' => 'required'
+        ]);
+
+
+
+        $nurse = Auth::user();
+        
+      
+
+        $checkup = Checkup::create([
+            'student_id' => $student->id,
+            'nurse_id' => $nurse->id,
+            'student_lrn' => $student->student_lrn,
+            'student_grade_level' => $student->grade_level,
+            'student_age' => $request->student_age,
+            'date_of_birth' => $request->date_of_birth,
+            'date_of_checkup' => now(),
+            'birth_place' => $request->birth_place,
+            'parent_name' => $request->parent_name,
+            'adviser_name' => $request->adviser_name,
+            'school_id' => $request->school_id,
+            'region' => $request->region,
+            'division' => $request->division,
+            'telephone_no' => $request->telephone_no,
+            'temperature' => $request->temperature,
+            'systolic' => $request->systolic,
+            'diastolic' => $request->diastolic,
+            'heart_rate' => $request->heart_rate,
+            'respiratory_rate' => $request->respiratory_rate,
+            'pulse_rate' => $request->pulse_rate,
+            'weight' => $request->weight,
+            'height' => $request->height,
+            'bmi_weight' => $request->bmi_weight,
+            'bmi_height' => $request->bmi_height,
+            'vision_screening' => $request->vision_screening,
+            'auditory_screening' => $request->auditory_screening,
+            'skin' => $request->skin,
+            'scalp' => $request->scalp,
+            'ears' => $request->ears,
+            'eyes' => $request->eyes,
+            'nose' => $request->nose,
+            'mouth' => $request->mouth,
+            'lungs' => $request->lungs,
+            'heart' => $request->heart,
+            'abdomen' => $request->abdomen,
+            'deformities' => $request->deformities,
+            'iron_supplementation' => $request->iron_supplementation,
+            'deworming' => $request->deworming,
+            'immunization' => $request->immunization,
+            'sbfp_beneficiary' => $request->sbfp_beneficiary,
+            'four_p_beneficiary' => $request->four_p_beneficiary,
+            'menarche' => $request->menarche,
+            'remarks' => $request->remarks
+        ]);
+
+        return redirect()->route('view_student',$student->id)->with('success','Checkup successfully added');
     }
 }

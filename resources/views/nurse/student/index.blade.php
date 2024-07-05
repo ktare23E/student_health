@@ -43,7 +43,7 @@
                                             <td>{{ $student->first_name.' '.$student->last_name }}</td>
                                             <td>{{ "Grade ".$student->grade_level }}</td>
                                             <td>{{ $student->school->name }}</td>
-                                            <td class="text-green-500">{{ $student->status }}</td>
+                                            <td class="text-green-500 capitalize">{{ $student->status }}</td>
                                             <td>
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"

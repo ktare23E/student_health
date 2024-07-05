@@ -43,11 +43,10 @@
                         <div
                             class="bg-white rounded-md px-6 py-4 w-full mx-auto shadow-2xl transition-all hover:shadow-none">
                             <h1 class="font-semibold text-md mb-4">Checkup Form</h1>
-                            <form action="{{route('store_checkup',$student->id)}}" method="post">
-                                @csrf
+                            <x-forms.form action="{{route('store_checkup',$student->id)}}" method="POST">
                                 <div class="w-[70%] mx-auto space-y-2">
                                     <div class="grid grid-cols-3 gap-3 ">
-                                        <div class="relative max-w-sm">
+                                        {{-- <div class="relative max-w-sm">
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
 
                                             <div class="absolute bottom-3 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -55,7 +54,12 @@
                                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                                 </svg>
                                             </div>
-                                            <input datepicker id="default-datepicker" name="data_of_birth" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                                            <input name="data_of_birth" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                                        
+                                        </div> --}}
+                                        <div>
+                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
+                                            <input type="date" id="date_of_birth" name="date_of_birth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
                                         </div>
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Birth Place</label>
@@ -68,6 +72,10 @@
                                     </div>
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
+                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
+                                            <input type="text" id="student_age" name="student_age" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12 years old" required />
+                                        </div>
+                                        <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Adviser Name</label>
                                             <input type="text" id="adviser_name" name="adviser_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Adviser Name" required />
                                         </div>
@@ -75,53 +83,58 @@
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">School Id</label>
                                             <input type="text" id="school_id" name="school_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="School ID" required />
                                         </div>
+                                    
+                                    </div> 
+                                    <div class="grid grid-cols-3 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Region</label>
                                             <input type="text" id="region" name="region" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Region" required />
                                         </div>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Division</label>
-                                            <input type="text" id="divison" name="divison" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Division" required />
+                                            <input type="text" id="division" name="division" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Division" required />
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telephone Number</label>
+                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telephone text</label>
                                             <input type="text" id="telephone_no" name="telephone_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="+639 3213 3213" required />
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-3 gap-3">
+                                    <div class="grid grid-cols-4 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Temperature</label>
-                                            <input type="number" id="temperature" name="temperature" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="35.00" required />
+                                            <input type="text" id="temperature" name="temperature" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="35.00" required />
                                         </div>
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Systolic</label>
-                                            <input type="number" id="systolic" name="systolic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="120" required />
+                                            <input type="text" id="systolic" name="systolic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="120" required />
+                                        </div>
+                                        <div>
+                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Diastolic</label>
+                                            <input type="text" id="diastolic" name="diastolic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="80" required />
                                         </div>
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Heart Rate</label>
-                                            <input type="number" id="heart_rate" name="heart_rate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="72" required />
+                                            <input type="text" id="heart_rate" name="heart_rate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="72" required />
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pulse Rate</label>
-                                            <input type="number" id="pulse_rate" name="pulse_rate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="60" required />
+                                            <input type="text" id="pulse_rate" name="pulse_rate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="60" required />
                                         </div>
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Respiratory Rate</label>
-                                            <input type="number" id="respiratory_rate" name="respiratory_rate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="20" required />
+                                            <input type="text" id="respiratory_rate" name="respiratory_rate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="20" required />
                                         </div>
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Height(cm)</label>
-                                            <input type="number" id="height" name="height" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="160.50 cm" required />
+                                            <input type="text" id="height" name="height" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="160.50 cm" required />
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Weight(kg)</label>
-                                            <input type="number" id="weight" name="weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="55.75 kg" required />
+                                            <label for="name" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Weight(kg)</label>
+                                            <input type="text" id="weight" name="weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="55.75 kg" required />
                                         </div>
                                         <div>
                                             <label for="name" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nutritional Status (BMI/Wt-for-Age)</label>
@@ -145,10 +158,18 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-3 gap-3">
+                                    <div class="grid grid-cols-4 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vision Screening</label>
                                             <select id="vision_screening" name="vision_screening" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                                <option value="">Select Value</option>
+                                                <option value="passed">Passed</option>
+                                                <option value="failed">Failed</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Audiitory Screening</label>
+                                            <select id="auditory_screening" name="auditory_screening" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                                 <option value="">Select Value</option>
                                                 <option value="passed">Passed</option>
                                                 <option value="failed">Failed</option>
@@ -194,7 +215,7 @@
                                         </div>
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ear</label>
-                                            <select id="ear" name="ear" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <select id="ears" name="ears" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                                 <option value="">Select Value</option>
                                                 <option value="normal">Normal</option>
                                                 <option value="ear_discharge">Ear Discharge</option>
@@ -339,7 +360,7 @@
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">4P's Beneficiary</label>
-                                            <select id="4ps_beneficiary" name="4ps_beneficiary" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <select id="four_p_beneficiary" name="four_p_beneficiary" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                                 <option value="">Select Value</option>
                                                 <option value="yes">Yes</option>
                                                 <option value="no">No</option>
@@ -354,15 +375,20 @@
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Others</label>
-                                            <input type="text" id="others_check" name="others_check" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Others" />
+                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Remarks</label>
+                                            <select id="remarks" name="remarks" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                                <option value="">Select Value</option>
+                                                <option value="normal">Normal</option>
+                                                <option value="healthy">Healthy</option>
+                                                <option value="unhealthy">Unhealthy</option>
+                                            </select>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <div class="pt-4 flex justify-center">
-                                        <button class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">submit</button>
+                                        <button type="submit" class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">submit</button>
                                     </div>
                                 </div>
-                            </form>
+                            </x-forms.form>
                             
                         </div>
                         
@@ -401,13 +427,13 @@
                 this.classList.add('hidden');
                 othersInput.type = 'text';
                 othersInput.removeEventListener('input', function () {
-                    document.getElementById('mouth').value = othersInput.value;
+                    document.getElementById('lungs').value = othersInput.value;
                 });
             } else {
                 othersInput.type = 'hidden';
                 this.classList.remove('hidden');
                 othersInput.removeEventListener('input', function () {
-                    document.getElementById('mouth').value = othersInput.value;
+                    document.getElementById('lungs').value = othersInput.value;
                 });
             }
         });
@@ -418,13 +444,13 @@
                 this.classList.add('hidden');
                 othersInput.type = 'text';
                 othersInput.removeEventListener('input', function () {
-                    document.getElementById('mouth').value = othersInput.value;
+                    document.getElementById('heart').value = othersInput.value;
                 });
             } else {
                 othersInput.type = 'hidden';
                 this.classList.remove('hidden');
                 othersInput.removeEventListener('input', function () {
-                    document.getElementById('mouth').value = othersInput.value;
+                    document.getElementById('heart').value = othersInput.value;
                 });
             }
         });
@@ -435,13 +461,13 @@
                 this.classList.add('hidden');
                 othersInput.type = 'text';
                 othersInput.removeEventListener('input', function () {
-                    document.getElementById('mouth').value = othersInput.value;
+                    document.getElementById('abdomen').value = othersInput.value;
                 });
             } else {
                 othersInput.type = 'hidden';
                 this.classList.remove('hidden');
                 othersInput.removeEventListener('input', function () {
-                    document.getElementById('mouth').value = othersInput.value;
+                    document.getElementById('abdomen').value = othersInput.value;
                 });
             }
         });
@@ -452,13 +478,13 @@
                 this.classList.add('hidden');
                 othersInput.type = 'text';
                 othersInput.removeEventListener('input', function () {
-                    document.getElementById('mouth').value = othersInput.value;
+                    document.getElementById('deformities').value = othersInput.value;
                 });
             } else {
                 othersInput.type = 'hidden';
                 this.classList.remove('hidden');
                 othersInput.removeEventListener('input', function () {
-                    document.getElementById('mouth').value = othersInput.value;
+                    document.getElementById('deformities').value = othersInput.value;
                 });
             }
         });
