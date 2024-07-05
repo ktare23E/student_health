@@ -60,6 +60,7 @@
                                         </div> --}}
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
+                                            <input type="hidden" name="student_id" value="{{$checkup->student_id}}">
                                             <input type="date" id="date_of_birth" name="date_of_birth" value="{{$checkup->date_of_birth}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
                                         </div>
                                         <div>

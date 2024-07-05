@@ -318,7 +318,10 @@ class NurseAllController extends Controller
             'remarks' => 'required'
         ]);
 
-        $checkup = Checkup::findOrFail($checkup->id)->update($validateDate);
+        // $student_id = $request->student_id;
+
+        $checkups = Checkup::findOrFail($checkup->id)->update($validateDate);
+
 
         return redirect()->route('view_student',$checkup->student_id)->with('success','Checkup successfully updated');
     }
