@@ -44,6 +44,7 @@
                             class="bg-white rounded-md px-6 py-4 w-full mx-auto shadow-2xl transition-all hover:shadow-None">
                             <h1 class="font-semibold text-md mb-4">Edit Checkup</h1>
                             <x-forms.form action="{{route('update_checkup',$checkup->id)}}" method="POST">
+                                @method('PATCH')
                                 <div class="w-[70%] mx-auto space-y-2">
                                     <div class="grid grid-cols-3 gap-3 ">
                                         {{-- <div class="relative max-w-sm">
@@ -300,7 +301,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-3 gap-3">
+                                    {{-- <div class="grid grid-cols-3 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Abdomen</label>
                                             <select id="abdomen" name="abdomen" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
@@ -330,7 +331,7 @@
                                                 <option value="No" {{$checkup->iron_supplementation ===  'No' ? 'selected':'' }}>No</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deworming</label>
