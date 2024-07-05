@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div class="mt-20 mb-8 w-full flex justify-end">
-                            <button class="text-sm bg-green-500 rounded-sm py-1 px-2 text-white">
+                            <button class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">
                                 <a href="{{route('checkup_student',$student->id)}}">+Checkup</a>    
                             </button>
                         </div>
@@ -97,12 +97,39 @@
                             <!-- Checkup Details -->
                             <div class="space-y-4 flex flex-col items-center justify-center w-full">
                                 <!-- Example Checkup Item -->
-                                @forelse ($studentCheckUps[0]->checkups as $checkups)
+                                @forelse ($studentCheckUps[0]->checkups as $checkup)
                                     <div class="bg-gray-100 rounded-sm w-[70%] p-4 flex flex-col shadow-xl transition-all ease-in-out hover:shadow-none">
-                                        <h2 class="font-semibold text-md">Checkup Date: test</h2>
-                                        <p class="text-sm">Height: test cm</p>
-                                        <p class="text-sm">Weight: test kg</p>
-                                        <p class="text-sm">Notes: test</p>
+                                        <div class="flex justify-between items-center">
+                                            <h2 class="font-bold text-md">Checkup Date: <span class="font-normal text-sm">{{$checkup->date_of_checkup}}</span></h2>
+                                            <h1 class="font-semibold">School: <span class="font-normal text-sm">{{ $student->school->name }}</span></span></h1>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <h2 class="font-bold text-md">Nurse: <span class="font-normal tex-sm">{{$checkup->nurse->first_name.' '.$checkup->nurse->last_name}}</span></h2>
+                                            <h1 class="font-semibold">Checkup Remarks: <span class="capitalize {{$checkup->remarks === 'Healthy' ? 'text-green-500':'text-red-500'}}">{{$checkup->remarks}}</span></h1>
+                                        </div>
+                                        <h1 class="font-semibold mt-4">Checkup Details:</h1>
+                                        <div class="w-full grid grid-cols-3 gap-4">
+                                            <div class="flex flex-col items-center">
+                                                <p class="font-bold text-center">Height:</p>
+                                                <p class="text-center">{{ $checkup->height }}</p>
+                                            </div>
+                                            <div class="flex flex-col items-center">
+                                                <p class="font-bold text-center">BMI:</p>
+                                                <p class="text-center">{{ $checkup->bmi_weight }}</p>
+                                            </div>
+                                            <div class="flex flex-col items-center">
+                                                <p class="font-semibold text-center">Bllod Pressure:</p>
+                                                <p class="text-center">{{ $checkup->systolic.'/'.$checkup->diastolic }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-6 w-full flex justify-center gap-2">
+                                            <button class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white">
+                                                edit
+                                            </button>
+                                        <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
+                                            <a href="{{route('view_student',$student->id)}}">view</a>   
+                                        </button>
+                                        </div>
                                     </div>
                                 @empty
                                     <h1>No checkup yet.</h1>
