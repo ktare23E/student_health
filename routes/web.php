@@ -12,6 +12,7 @@ use App\Http\Controllers\DistrictNurse\StudentSchoolList;
 use App\Http\Controllers\Nurse\NurseAllController;
 use App\Http\Middleware\CheckUserType;
 use App\Http\Controllers\Nurse\NurseDashboard;
+use App\Http\Controllers\Nurse\ReportController;
 
 Route::get('/', function () {
     return view('login');
@@ -75,6 +76,8 @@ Route::middleware('auth:nurse')->group(function(){
         Route::get('/edit_checkup/{checkup}',[NurseAllController::class,'editCheckup'])->name('edit_checkup');
         Route::patch('/update_checkup/{checkup}',[NurseAllController::class,'updateCheckup'])->name('update_checkup');
         Route::get('/view_checkup/{checkup}',[NurseAllController::class,'viewCheckup'])->name('view_checkup');
+
+        Route::get('/report',[ReportController::class,'index'])->name('report');
 
     });
 
