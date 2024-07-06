@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Models\Student;
 
 class ReportController extends Controller
 {
@@ -34,16 +35,59 @@ class ReportController extends Controller
         ]);
     }
 
-    public function filterReport(Request $request) {
-        $nurse = Auth::user();
-        
-        // Initialize the query builder
-        $query = DB::table('checkups')->where('nurse_id',$nurse->id)->get();
-        
-        // if ($request->filled('grade_level') && $request->grade_level !== 'all') {
-        //     $query->where('student_grade_level', $request->grade_level);
-        // }
+        public function filterReport(Request $request)
+        {
+            $nurse = Auth::user();
+            $query = Checkup::query();
+    
+            // Filter by school if applicable
+            if ($request->filled('school_id')) {
+                $query->where('school_id', $request->school_id);
+            }
+    
+            // Filter by category
+            if ($request->filled('category')) {
+                $query->select($request->category,'student_id','id');
+            }
+    
+            // Filter by grade level
+            if ($request->filled('grade_level') && $request->grade_level != 'all') {
+                $query->whereHas('student', function ($q) use ($request) {
+                    $q->where('grade_level', $request->grade_level);
+                });
+            }
+    
+            // Filter by date range
+            if ($request->filled('range')) {
+                switch ($request->range) {
+                    case 'weekly':
+                        $query->whereBetween('date_of_checkup', [now()->subWeek(), now()]);
+                        break;
+                    case 'monthly':
+                        $query->whereBetween('date_of_checkup', [now()->subMonth(), now()]);
+                        break;
+                    case 'annually':
+                        $query->whereBetween('date_of_checkup', [now()->subYear(), now()]);
+                        break;
+                    case 'custom':
+                        if ($request->filled('start_date') && $request->filled('end_date')) {
+                            $query->whereBetween('date_of_checkup', [$request->start_date, $request->end_date]);
+                        }
+                        break;
+                }
+            }
+    
+            $checkups = $query->where('nurse_id',$nurse->id)->get();
 
-        return $query;
-    }
+           // Eager load student and adviser relationships
+            $students = Student::with(['checkups' => function ($q) use ($checkups) {
+                $q->whereIn('id', $checkups->pluck('id'));
+            }]) // Assuming 'adviser' is the relationship name in Student model
+            ->whereIn('id', $checkups->pluck('student_id'))->get();
+            return $checkups;
+            // return $students[0]->checkups[0]->adviser_name;
+            // return $students[0]->checkups->first()->adviser_name;
+            return view('nurse.report.result', compact('checkups', 'students'));
+        }
 }
+

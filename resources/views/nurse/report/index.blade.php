@@ -18,25 +18,25 @@
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-[50%] mx-auto">
                             <h1 class="font-bold mb-6">Filter Report</h1>
                             <div class="grid gap-6 mb-6 md:grid-cols-1">
-                                <x-forms.form method="POST" action="{{route('filter_report')}}">
+                                <x-forms.form method="POST" action="{{ route('filter_report') }}">
+                                    @csrf
                                     <div class="grid grid-cols-1 gap-2">
                                         @if (auth()->user()->type == 'district')
                                             <div>
-                                                <label for="address"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">School
-                                                    </label>
+                                                <label for="school_id"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">School</label>
                                                 <select id="school_id" name="school_id"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required>
                                                     <option selected>Select School</option>
                                                     @foreach ($schools as $school)
-                                                    <option value="{{$school->id}}">{{$school->name}}</option>
+                                                        <option value="{{ $school->id }}">{{ $school->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         @endif
                                         <div>
-                                            <label for="address"
+                                            <label for="category"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                                             <select id="category" name="category"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -65,7 +65,7 @@
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="address"
+                                            <label for="grade_level"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Grade
                                                 Level</label>
                                             <select id="grade_level" name="grade_level"
@@ -86,19 +86,32 @@
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="address"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type
-                                                of</label>
+                                            <label for="range"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date
+                                                Range</label>
                                             <select id="range" name="range"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 required>
                                                 <option selected>Select Range</option>
                                                 <option value="weekly">Weekly</option>
                                                 <option value="monthly">Monthly</option>
-                                                <option value="anually">Anually</option>
+                                                <option value="annually">Annually</option>
+                                                <option value="custom">Custom</option>
                                             </select>
                                         </div>
-                                        <div class="w-full flex justify-center mt-4 items-center -mb-6">
+                                        <div id="custom-date-range" class="hidden">
+                                            <label for="start_date"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
+                                                Date</label>
+                                            <input type="date" id="start_date" name="start_date"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <label for="end_date"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
+                                                Date</label>
+                                            <input type="date" id="end_date" name="end_date"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        </div>
+                                        <div class="w-full flex justify-center mt-4 items-center">
                                             <button class="py-1 px-2 bg-blue-500 text-white rounded-sm">Submit</button>
                                         </div>
                                     </div>
@@ -111,5 +124,16 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.getElementById('range').addEventListener('change', function () {
+            const customDateRange = document.getElementById('custom-date-range');
+            if (this.value === 'custom') {
+                customDateRange.classList.remove('hidden');
+            } else {
+                customDateRange.classList.add('hidden');
+            }
+        });
+    </script>
     <script src="{{ mix('js/app.js') }}"></script>
 </x-layout>
