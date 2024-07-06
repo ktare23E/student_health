@@ -74,6 +74,8 @@ Route::middleware('auth:nurse')->group(function(){
         Route::post('/store_checkup/{student}',[NurseAllController::class,'storeCheckup'])->name('store_checkup');
         Route::get('/edit_checkup/{checkup}',[NurseAllController::class,'editCheckup'])->name('edit_checkup');
         Route::patch('/update_checkup/{checkup}',[NurseAllController::class,'updateCheckup'])->name('update_checkup');
+        Route::get('/view_checkup/{checkup}',[NurseAllController::class,'viewCheckup'])->name('view_checkup');
+
     });
 
     // Route::middleware('nurse.type:district')->group(function(){

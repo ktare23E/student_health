@@ -136,7 +136,7 @@
                                                 edit
                                             </a>
                                         <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
-                                            <a href="{{route('edit_checkup',$checkup->id)}}">view</a>   
+                                            <a href="{{route('view_checkup',$checkup->id)}}">view</a>   
                                         </button>
                                         </div>
                                     </div>
@@ -150,10 +150,8 @@
                 </div>
             </div>
         </div>
-        @include('components.modal.student_modal')
 
     </div>
 
-    <script></script>
     <script src="{{ mix('js/app.js') }}"></script>
 </x-layout>

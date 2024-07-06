@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
-
-use function Pest\Laravel\json;
+use App\Models\Nurse;
 
 class NurseAllController extends Controller
 {
@@ -324,5 +322,16 @@ class NurseAllController extends Controller
 
 
         return redirect()->route('view_student',$checkup->student_id)->with('success','Checkup successfully updated');
+    }
+
+    public function viewCheckup(Checkup $checkup){
+        $studentData = Student::with('school')->findOrFail($checkup->student_id);
+        $nurseData = Nurse::findOrFail($checkup->nurse_id);
+
+        return view('nurse.checkup.view_checkup',[
+            'checkup' => $checkup,
+            'student' => $studentData,
+            'nurse' => $nurseData
+        ]);
     }
 }
