@@ -148,6 +148,8 @@
     let inflamedCount = 0;
     let enlargeCount = 0;
     let otherCount = 0;
+    let ralesCount = 0;
+    let wheezeCount = 0;
 
     // Count Yes and No values
     values.forEach(value => {
@@ -217,6 +219,10 @@
             enlargeCount++;
         }else if (value === 'others'){
             otherCount++;
+        }else if (value === 'Rales'){
+            ralesCount++;
+        }else if (value === 'Wheeze'){
+            wheezeCount++;
         }
     });
 
@@ -591,6 +597,45 @@
                     backgroundColor: [
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
+    }else if(category[0] === 'lungs'){
+        label = 'Lungs';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(normalCount,ralesCount,wheezeCount,otherCount), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
+        };
+
+        // Prepare the data for the bar chart
+        chartValues = [normalCount,ralesCount,wheezeCount,otherCount];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Normal', 'Rales','Wheeze','Others'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
