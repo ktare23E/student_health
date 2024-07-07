@@ -47,7 +47,7 @@ class ReportController extends Controller
     
             // Filter by category
             if ($request->filled('category')) {
-                $query->select($request->category,'student_id','id');
+                $query->select($request->category,'student_id','id','date_of_checkup');
             }
     
             // Filter by grade level
@@ -78,16 +78,30 @@ class ReportController extends Controller
             }
     
             $checkups = $query->where('nurse_id',$nurse->id)->get();
-
+            // return $checkups;
            // Eager load student and adviser relationships
+
+              // Prepare data for Chart.js
+            $chartData = [];
+            foreach ($checkups as $checkup) {
+
+                $student = $checkup->student_id;
+                $chartData[] = [
+                    'category' => $request->category, 
+                    'student' => 'Student '.$student, // or any unique identifier for the student
+                    'value' => $checkup->{$request->category}
+                ];
+            }
+
             $students = Student::with(['checkups' => function ($q) use ($checkups) {
-                $q->whereIn('id', $checkups->pluck('id'));
+            $q->whereIn('id', $checkups->pluck('id'));
             }]) // Assuming 'adviser' is the relationship name in Student model
             ->whereIn('id', $checkups->pluck('student_id'))->get();
-            return $checkups;
+
+
             // return $students[0]->checkups[0]->adviser_name;
             // return $students[0]->checkups->first()->adviser_name;
-            return view('nurse.report.result', compact('checkups', 'students'));
+            return view('nurse.report.result', compact('checkups', 'students', 'chartData'));
         }
 }
 
