@@ -98,6 +98,7 @@ class ReportController extends Controller
             }]) // Assuming 'adviser' is the relationship name in Student model
             ->whereIn('id', $checkups->pluck('student_id'))->get();
 
+            // return $students;
 
             // return $students[0]->checkups[0]->adviser_name;
             // return $students[0]->checkups->first()->adviser_name;

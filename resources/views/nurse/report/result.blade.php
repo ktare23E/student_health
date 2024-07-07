@@ -50,7 +50,8 @@
                                         <th>Student LRN</th>
                                         <th>Student Name</th>
                                         <th>Grade Level</th>
-                                        <th>Action</th>
+                                        <th>Adviser</th>
+                                        {{-- <th>Action</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,12 +60,13 @@
                                             <td>{{ $student->student_lrn }}</td>
                                             <td>{{ $student->first_name . ' ' . $student->last_name }}</td>
                                             <td>{{ 'Grade ' . $student->grade_level }}</td>
-                                            <td>
+                                            <td>{{ $student->checkups[0]->adviser_name }}</td>
+                                            {{-- <td>
 
                                                 <button class="text-sm py-1 px-2 rounded-sm bg-black text-white">
                                                     <a href="{{ route('view_student', $student->id) }}">view</a>
                                                 </button>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
