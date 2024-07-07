@@ -81,9 +81,9 @@ Route::middleware('auth:nurse')->group(function(){
         Route::post('/filter_report',[ReportController::class,'filterReport'])->name('filter_report');
     });
 
-    // Route::middleware('nurse.type:district')->group(function(){
-    //     Route::get('/district_nurse_dashboard',[StudentSchoolList::class,'index'])->name('district_nurse_dashboard');
-    // });
+    Route::middleware('nurse.type:district')->group(function(){
+        Route::get('/district_nurse_dashboard',[NurseDashboard::class,'index'])->name('district_nurse_dashboard');
+    });
 });
 
 
