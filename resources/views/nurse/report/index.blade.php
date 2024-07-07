@@ -53,6 +53,7 @@
                                                 <option value="skin">Skin</option>
                                                 <option value="scalp">Scalp</option>
                                                 <option value="eyes">Eyes</option>
+                                                <option value="ears">Ears</option>
                                                 <option value="nose">Nose</option>
                                                 <option value="mouth">Mouth</option>
                                                 <option value="lungs">Lungs</option>

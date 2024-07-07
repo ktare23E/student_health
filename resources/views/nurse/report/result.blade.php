@@ -99,7 +99,7 @@
     const category = chartData.map(data => data.category);
     const labels = chartData.map(data => data.student);
     const values = chartData.map(data => data.value);
-
+    console.log(values);
     // Mapping of string values to numeric
     const valueMapping = {
         'Yes': 1,
@@ -121,7 +121,33 @@
     let wasted_underweight = 0;
     let overweight = 0;
     let obese = 0;
-    let severly
+    let severely_wasted_underweight = 0;
+    let passedCount = 0;
+    let failedCount = 0;
+    let normalCount = 0;
+    let rednessCount = 0;
+    let whiteSpotsCount = 0;
+    let impetigoCount = 0;
+    let bruisesCount = 0;
+    let skinLessionCount = 0;
+    let itchinessCount = 0;
+    let acneCount = 0;
+    let liceCount = 0;
+    let styeCount = 0;
+    let eyeRedness = 0;
+    let ocularCount = 0;
+    let paleCount = 0;
+    let eyeDischargeCount = 0;
+    let mattedCount = 0;
+    let earDischargeCount = 0;
+    let impactedCerumenCount = 0;
+    let mucusDischargeCount = 0;
+    let noseBleedingCount = 0;
+    let enlargeTonsilCount = 0;
+    let presenceLessionCount = 0;
+    let inflamedCount = 0;
+    let enlargeCount = 0;
+    let otherCount = 0;
 
     // Count Yes and No values
     values.forEach(value => {
@@ -129,8 +155,72 @@
             yesCount++;
         } else if (value === 'No') {
             noCount++;
+        }else if (value === 'Normal Weight') {
+            normal_weight++;
+        }else if (value === 'Wasted Underweight') {
+            wasted_underweight++;
+        }else if (value === 'Overweight') {
+            overweight++;
+        }else if (value === 'Obese') {
+            obese++;
+        }else if (value === 'Severely Wasted Underweight') {
+            severely_wasted_underweight++;
+        }else if (value === 'Passed') {
+            passedCount++;
+        }else if(value === 'Failed'){
+            failedCount++;
+        }else if(value === "Normal"){
+            normalCount++;
+        }else if (value === "Redness of Skin"){
+            rednessCount++;
+        }else if (value === 'White Spots'){
+            whiteSpotsCount++;
+        }else if (value === 'Impetigo/Boil'){
+            impetigoCount++;
+        }else if (value === 'Bruises/Injuries'){
+            bruisesCount++;
+        }else if (value === 'Skin Lession'){
+            skinLessionCount++;
+        }else if (value === 'Itchiness'){
+            itchinessCount++;
+        }else if (value === 'Acne/Pimple'){
+            acneCount++;
+        }else if (value === 'Presence of Lice'){
+            liceCount++;
+        }else if (value === 'Stye'){
+            styeCount++;
+        }else if (value === 'Eye Redness'){
+            eyeRedness++;
+        }else if (value === 'Ocular Misallignment'){
+            ocularCount++;
+        }else if (value === 'Pale Conjunctiva'){
+            paleCount++;
+        }else if (value === 'Eye Discharge'){
+            eyeDischargeCount++;
+        }else if (value === 'Matted Eyelashes'){
+            mattedCount++;
+        }else if (value === 'Ear Discharge'){
+            earDischargeCount++;
+        }else if (value === 'Impacted Cerumen'){
+            impactedCerumenCount++;
+        }else if (value === 'Mucus Discharge'){
+            mucusDischargeCount++;
+        }else if (value === 'Nose Bleeding(Eplstaxis)'){
+            noseBleedingCount++;
+        }else if (value === 'Enlarge Tonsils'){
+            enlargeTonsilCount++;
+        }else if (value === 'Presence of Lesions'){
+            presenceLessionCount++;
+        }else if (value === 'Inflamed Pharynx'){
+            inflamedCount++;
+        }else if (value === 'Enlarge LymphNodes'){
+            enlargeCount++;
+        }else if (value === 'others'){
+            otherCount++;
         }
     });
+
+    
 
     const ctx = document.getElementById('reportChart').getContext('2d');
 
@@ -203,7 +293,322 @@
             }
         });
     }else if (category[0] === 'bmi_weight'){
+        label = "BMI Weight";
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(normal_weight,wasted_underweight,severely_wasted_underweight,obese,overweight), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
+        };
 
+        // Prepare the data for the bar chart
+        chartValues = [normal_weight,wasted_underweight,severely_wasted_underweight,obese,overweight];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Normal Weight', 'Wasted Underweight','Severely Wasted Underweight','Obese','Overweight'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
+    }else if (category[0] === 'vision_screening' || category[0] === 'auditory_screening'){
+        label = category[0] === 'vision_screening' ? 'Vision Screening' : 'Auditory Screening';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(passedCount, failedCount), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
+        };
+
+        // Prepare the data for the bar chart
+        chartValues = [passedCount, failedCount];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Passed', 'Failed'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
+    }else if(category[0] === 'skin'){
+
+        label = 'Skin';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(normalCount,rednessCount,whiteSpotsCount,impetigoCount,skinLessionCount,itchinessCount,acneCount), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
+        };
+
+        // Prepare the data for the bar chart
+        chartValues = [normalCount,rednessCount,whiteSpotsCount,impetigoCount,skinLessionCount,itchinessCount,acneCount];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Normal', 'Redness of Skin','White Spots','Impetigo/Boil','Bruises/Injuries','Skin Lession','Itchiness','Acne/Pimple'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
+    }else if(category[0] === 'scalp'){
+        label = 'Scalp';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(normalCount,itchinessCount,liceCount), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
+        };
+
+        // Prepare the data for the bar chart
+        chartValues = [normalCount,itchinessCount,liceCount];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Normal', 'Itchiness','Presence of Lice'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
+    }else if(category[0] === 'eyes'){
+        label = 'Eyes';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(normalCount,styeCount,eyeRedness,ocularCount,paleCount,eyeDischargeCount,mattedCount), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
+        };
+
+        // Prepare the data for the bar chart
+        chartValues = [normalCount,styeCount,eyeRedness,ocularCount,paleCount,eyeDischargeCount,mattedCount];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Normal', 'Stye','Eye Redness','Ocular Misallignment','Pale Conjunctiva','Eye Discharge','Matted Eyelashes'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
+    }else if(category[0] === 'ears'){
+        label = 'Ears';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(normalCount,earDischargeCount,impactedCerumenCount), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
+        };
+
+        // Prepare the data for the bar chart
+        chartValues = [normalCount,earDischargeCount,impactedCerumenCount];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Normal', 'Ear Discharge','Impacted Cerumen'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
+    }else if(category[0] === 'nose'){
+        label = 'Nose';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(normalCount,mucusDischargeCount,noseBleedingCount), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
+        };
+
+        // Prepare the data for the bar chart
+        chartValues = [normalCount,mucusDischargeCount,noseBleedingCount];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Normal', 'Mucus Discharge','Nose Bleeding(Eplstaxis)'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
+    }else if(category[0] === 'mouth'){
+        label = 'Mouth';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(normalCount,enlargeTonsilCount,presenceLessionCount,inflamedCount,enlargeCount,otherCount), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
+        };
+
+        // Prepare the data for the bar chart
+        chartValues = [normalCount,enlargeTonsilCount,presenceLessionCount,inflamedCount,enlargeCount,otherCount];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Normal', 'Enlarge Tonsils','Presence of Lesions','Inflamed Pharynx','Enlarge LymphNodes','Others'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
     }
 
 </script>

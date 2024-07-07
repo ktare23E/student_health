@@ -142,7 +142,7 @@
                                                 <option value="">Select Value</option>
                                                 <option value="Normal Weight">Normal Weight</option>
                                                 <option value="Wasted Underweight">Wasted Underweight</option>
-                                                <option value="Serverly Wasted Underweight">Serverly Wasted Underweight</option>
+                                                <option value="Severely Wasted Underweight">Severely Wasted Underweight</option>
                                                 <option value="Overweight">Overweight</option>
                                                 <option value="Obese">Obese</option>
                                             </select>
