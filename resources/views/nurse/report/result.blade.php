@@ -152,6 +152,9 @@
     let wheezeCount = 0;
     let mumurCount = 0;
     let irregularHeartCount = 0;
+    let distendedCount = 0;
+    let tendernessCount = 0;
+    let dysmenorrheaCount = 0;
 
 
     // Count Yes and No values
@@ -230,6 +233,12 @@
             mumurCount++;
         }else if (value === 'Irregular Heart Rate'){
             irregularHeartCount++;
+        }else if (value === 'Distended'){
+            distendedCount++;
+        }else if (value === 'Tenderness'){
+            tendernessCount++;
+        }else if (value === 'Dysmenorrhea'){
+            dysmenorrheaCount++;
         }
     });
 
@@ -684,6 +693,83 @@
                     backgroundColor: [
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
+    }else if (category[0] === 'abdomen'){
+        label = 'Abdomen';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(normalCount,distendedCount,tendernessCount,dysmenorrheaCount,otherCount), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
+        };
+
+        // Prepare the data for the bar chart
+        chartValues = [normalCount,distendedCount,tendernessCount,dysmenorrheaCount,otherCount];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Normal', 'Distended','Tenderness','Dysmenorrhea','Others'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
+    }else if (category[0] === 'deformities'){
+        label = 'Deformities';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(normalCount,otherCount), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
+        };
+
+        // Prepare the data for the bar chart
+        chartValues = [normalCount,otherCount];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Normal','Others'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(255, 99, 132, 0.2)',
                     ],
