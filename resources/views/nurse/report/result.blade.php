@@ -93,88 +93,122 @@
         });
     </script>
 
-    <script>
-        const chartData = @json($chartData);
+<script>
+    const chartData = @json($chartData);
 
-        const category = chartData.map(data => data.category);
-        const labels = chartData.map(data => data.student);
-        const values = chartData.map(data => data.value);
+    const category = chartData.map(data => data.category);
+    const labels = chartData.map(data => data.student);
+    const values = chartData.map(data => data.value);
 
-        // Mapping of string values to numeric
-        const valueMapping = {
-            'Yes': 1,
-            'No': 0
+    // Mapping of string values to numeric
+    const valueMapping = {
+        'Yes': 1,
+        'No': 0
+    };
+
+    // Reverse mapping for displaying labels
+    const reverseMapping = Object.keys(valueMapping).reduce((obj, key) => {
+        obj[valueMapping[key]] = key;
+        return obj;
+    }, {});
+
+    let label = '';
+    let yAxisConfig = {};
+    let chartValues;
+    let yesCount = 0;
+    let noCount = 0;
+    let normal_weight = 0;
+    let wasted_underweight = 0;
+    let overweight = 0;
+    let obese = 0;
+    let severly
+
+    // Count Yes and No values
+    values.forEach(value => {
+        if (value === 'Yes') {
+            yesCount++;
+        } else if (value === 'No') {
+            noCount++;
+        }
+    });
+
+    const ctx = document.getElementById('reportChart').getContext('2d');
+
+    // Determine the chart type and configuration
+    if (category[0] === 'temperature' || category[0] === 'heart_rate' || category[0] === 'pulse_rate' || category[0] === 'respiratory_rate') {
+        label = 'Temperature';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: 100,
+            ticks: {
+                stepSize: 10
+            }
+        };
+        // Use original values for temperature
+        chartValues = values;
+        const reportChart = new Chart(ctx, {
+            type: 'line', // or other types like 'bar', 'radar', etc.
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use dynamically determined values
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
+                }
+            }
+        });
+    } else if (category[0] === 'deworming' || category[0] === 'iron_supplementation' || category[0] === 'immunization') {
+        label = category[0] === 'deworming' ? 'Deworming' : category[0] === 'iron_supplementation' ? 'Iron Supplementation' : 'Immunization';
+        yAxisConfig = {
+            beginAtZero: true,
+            min: 0,
+            max: Math.max(yesCount, noCount), // Ensure the y-axis max accommodates the counts
+            ticks: {
+                stepSize: 1
+            }
         };
 
-        // Reverse mapping for displaying labels
-        const reverseMapping = Object.keys(valueMapping).reduce((obj, key) => {
-            obj[valueMapping[key]] = key;
-            return obj;
-        }, {});
-
-        let label = '';
-        let container = [];
-        let yAxisConfig = {};
-        let chartValues;
-
-        const ctx = document.getElementById('reportChart').getContext('2d');
-
-
-        // Determine the y-axis configuration and data values
-        if (category[0] === 'temperature') {
-            // console.log('temperature');
-            label = 'Temperature';
-            yAxisConfig = {
-                beginAtZero: true,
-                min: 0,
-                max: 100,
-                ticks: {
-                    stepSize: 10
+        // Prepare the data for the bar chart
+        chartValues = [yesCount, noCount];
+        const reportChart = new Chart(ctx, {
+            type: 'bar', // Bar chart for deworming or iron supplementation
+            data: {
+                labels: ['Yes', 'No'],
+                datasets: [{
+                    label: label,
+                    data: chartValues, // Use the counts of Yes and No
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: yAxisConfig // Apply the dynamic y-axis configuration
                 }
-            };
-            // Use original values for temperature
-            chartValues = values;
-            const reportChart = new Chart(ctx, {
-                type: 'line', // or other types like 'bar', 'radar', etc.
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: label,
-                        data: chartValues, // Use dynamically determined values
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1,
-                        fill: false
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: yAxisConfig // Apply the dynamic y-axis configuration
-                    }
-                }
-            });
-        } else if (category[0] === 'deworming') {
-            container.push('Yes', 'No');
-            label = 'Deworming';
-            yAxisConfig = {
-                ticks: {
-                    callback: function(value) {
-                        return reverseMapping[value] || value; // Display string labels
-                    }
-                }
-            };
-            // Convert values to numeric
-            chartValues = values.map(val => valueMapping[val]);
-        } else {
-            // Handle other categories if needed
-            label = 'Other Data';
-            yAxisConfig = {
-                // Default y-axis configuration
-            };
-            chartValues = values; // Use original values for other categories
-        }
+            }
+        });
+    }else if (category[0] === 'bmi_weight'){
 
-      
-    </script>
+    }
+
+</script>
+
+
 
     <script src="{{ mix('js/app.js') }}"></script>
 </x-layout>
