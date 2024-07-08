@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\School;
+use App\Models\Student;
 
 class NurseDashboard extends Controller
 {
@@ -40,4 +41,16 @@ class NurseDashboard extends Controller
             'students' => $students
         ]);
     }
+
+    public function viewStudent(Student $student){
+      $student = Student::findOrFail($student->id);
+      $studentCheckUps = Student::with('checkups.nurse')->where('id',$student->id)->get();
+      $studentSchool = $student->school;
+
+      return view('nurse.student.view_student',[
+          'student' => $student,
+          'studentCheckUps' => $studentCheckUps,
+          'studentSchool' => $studentSchool
+      ]);
+  }
 }

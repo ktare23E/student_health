@@ -85,9 +85,11 @@
                             </div>
                         </div>
                         <div class="mt-20 mb-8 w-full flex justify-end">
-                            <button class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">
-                                <a href="{{route('checkup_student',$student->id)}}">+Checkup</a>    
-                            </button>
+                            @if (auth()->user()->type == 'school')
+                                <button class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">
+                                    <a href="{{route('checkup_student',$student->id)}}">+Checkup</a>    
+                                </button>
+                            @endif
                         </div>
                         <div
                             class="bg-white rounded-md px-6 py-4 w-full mx-auto shadow-2xl transition-all hover:shadow-none">
@@ -132,9 +134,11 @@
                                             </div>
                                         </div>
                                         <div class="mt-6 w-full flex justify-center gap-2">
-                                            <a href="{{route('edit_checkup',$checkup->id)}}" class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white">
-                                                edit
-                                            </a>
+                                            @if (auth()->user()->type == 'school')
+                                                <a href="{{route('edit_checkup',$checkup->id)}}" class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white">
+                                                    edit
+                                                </a>
+                                            @endif
                                         <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
                                             <a href="{{route('view_checkup',$checkup->id)}}">view</a>   
                                         </button>
