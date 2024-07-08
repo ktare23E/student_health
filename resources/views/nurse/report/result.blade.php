@@ -58,6 +58,7 @@
                                         <th>Student Name</th>
                                         <th>Grade Level</th>
                                         <th>Adviser</th>
+                                        <th>Checkup Remarks</th>
                                         {{-- <th>Action</th> --}}
                                     </tr>
                                 </thead>
@@ -68,6 +69,7 @@
                                             <td>{{ $student->first_name . ' ' . $student->last_name }}</td>
                                             <td>{{ 'Grade ' . $student->grade_level }}</td>
                                             <td>{{ $student->checkups[0]->adviser_name }}</td>
+                                            <td class="{{$student->checkups[0]->remarks === 'Healthy' ? 'text-green-500':'text-red-500'}}">{{ $student->checkups[0]->remarks }}</td>
                                             {{-- <td>
 
                                                 <button class="text-sm py-1 px-2 rounded-sm bg-black text-white">
@@ -258,6 +260,7 @@
     // Determine the chart type and configuration
     if (category[0] === 'temperature' || category[0] === 'heart_rate' || category[0] === 'pulse_rate' || category[0] === 'respiratory_rate') {
         label = 'Temperature';
+        let summary = document.querySelector('.summary');
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -268,6 +271,20 @@
         };
         // Use original values for temperature
         chartValues = values;
+        let totalValue = 0;
+        let count = 0;
+
+        //avg Temperature, string to number
+        chartValues.forEach(values =>{
+            const temperature = parseFloat(values);
+            if (!isNaN(temperature)) {
+                totalValue += temperature; // Sum up the temperatures
+                count++;
+            }
+        });
+
+        const avgValue = totalValue / count;
+        summary.textContent = `Average student ${category[0] === 'temperature' ? 'Temperature':category[0] === 'heart_rate' ? 'Heart Rate': category[0] === 'pulse_rate' ? 'Pulse Rate': category[0] === 'respiratory_rate' ? 'Respiratory Rate' : ''}: ${avgValue.toFixed(2)}`;
         const reportChart = new Chart(ctx, {
             type: 'line', // or other types like 'bar', 'radar', etc.
             data: {
@@ -327,6 +344,8 @@
         });
     }else if (category[0] === 'bmi_weight'){
         label = "BMI Weight";
+        let summary = document.querySelector('.summary');
+        summary.textContent = `Total student that has Normal Weight: ${normal_weight}, Total student that has Wasted Underweight: ${wasted_underweight}, Total student that has Severely Wasted Underweight: ${severely_wasted_underweight}, Total student that has Obese: ${obese}, Total student that has Overweight: ${overweight}`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
