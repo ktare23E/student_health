@@ -114,8 +114,13 @@
                 },
                 success: function(response) {
                     if (response.message == 'success') {
-                        alert('Student created successfully');
-                        location.reload();
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Created Student",
+                            icon: "success"
+                        }).then(function(){
+                            location.reload();
+                        });
                     }
                 }
             });
@@ -179,8 +184,13 @@
                 },
                 success: function(response) {
                     if (response.message == 'success') {
-                        alert('Student updated successfully');
-                        location.reload();
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Updated Student",
+                            icon: "success"
+                        }).then(function(){
+                            location.reload();
+                        });
                     }
                 }
             });
