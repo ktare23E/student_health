@@ -223,7 +223,6 @@ class ReportController extends Controller
 
                     // Retrieve the checkups
                     $checkups = $query->get();
-   
                     // Prepare data for Chart.js
                     $chartData = [];
                     foreach ($checkups as $checkup) {
@@ -240,6 +239,9 @@ class ReportController extends Controller
                     }])
                         ->whereIn('id', $checkups->pluck('student_id'))
                         ->get();
+
+                        return view('nurse.report.result', compact('checkups', 'students', 'chartData'));
+
                 }
             }
         }
