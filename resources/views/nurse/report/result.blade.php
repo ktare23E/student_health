@@ -434,6 +434,15 @@
     }else if(category[0] === 'skin'){
 
         label = 'Skin';
+        let summary = document.querySelector('.summary');
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal</span>: ${normalCount}</p>
+                            <p>Total student that has <span class="font-bold">Redness of Skin</span>: ${rednessCount}</p>
+                            <p>Total student that has <span class="font-bold">White Spots</span>: ${whiteSpotsCount}</p>
+                            <p>Total student that has <span class="font-bold">Impetigo/Boil</span>: ${impetigoCount}</p> 
+                            <p>Total student that has <span class="font-bold">Bruises/Injuries</span>: ${bruisesCount}</p>
+                            <p>Total student that has <span class="font-bold">Skin Lession</span>: ${skinLessionCount}</p>
+                            <p>Total student that has <span class="font-bold">Itchiness</span>: ${itchinessCount}</p>
+                            <p>Total student that has <span class="font-bold">Acne/Pimple</span>: ${acneCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -477,6 +486,10 @@
         });
     }else if(category[0] === 'scalp'){
         label = 'Scalp';
+        let summary = document.querySelector('.summary');
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal</span>: ${normalCount}</p>
+                            <p>Total student that has <span class="font-bold">Itchiness</span>: ${itchinessCount}</p>
+                            <p>Total student that has <span class="font-bold">Presence of Lice</span>: ${liceCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -515,6 +528,14 @@
         });
     }else if(category[0] === 'eyes'){
         label = 'Eyes';
+        let summary = document.querySelector('.summary');
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal</span>: ${normalCount}</p>
+                            <p>Total student that has <span class="font-bold">Stye</span>: ${styeCount}</p>
+                            <p>Total student that has <span class="font-bold">Eye Redness</span>: ${eyeRedness}</p>
+                            <p>Total student that has <span class="font-bold">Ocular Misallignment</span>: ${ocularCount}</p>
+                            <p>Total student that has <span class="font-bold">Pale Conjunctiva</span>: ${paleCount}</p>
+                            <p>Total student that has <span class="font-bold">Eye Discharge</span>: ${eyeDischargeCount}</p>
+                            <p>Total student that has <span class="font-bold">Matted Eyelashes</span>: ${mattedCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -557,6 +578,10 @@
         });
     }else if(category[0] === 'ears'){
         label = 'Ears';
+        let summary = document.querySelector('.summary');
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal</span>: ${normalCount}</p>
+                            <p>Total student that has <span class="font-bold">Ear Discharge</span>: ${earDischargeCount}</p>
+                            <p>Total student that has <span class="font-bold">Impacted Cerumen</span>: ${impactedCerumenCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -595,6 +620,10 @@
         });
     }else if(category[0] === 'nose'){
         label = 'Nose';
+        let summary = document.querySelector('.summary');
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal</span>: ${normalCount}</p>
+                            <p>Total student that has <span class="font-bold">Mucus Discharge</span>: ${mucusDischargeCount}</p>
+                            <p>Total student that has <span class="font-bold">Nose Bleeding(Eplstaxis)</span>: ${noseBleedingCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -633,6 +662,13 @@
         });
     }else if(category[0] === 'mouth'){
         label = 'Mouth';
+        let summary = document.querySelector('.summary');
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal</span>: ${normalCount}</p>
+                            <p>Total student that has <span class="font-bold">Enlarge Tonsils</span>: ${enlargeTonsilCount}</p>
+                            <p>Total student that has <span class="font-bold">Presence of Lesions</span>: ${presenceLessionCount}</p>
+                            <p>Total student that has <span class="font-bold">Inflamed Pharynx</span>: ${inflamedCount}</p>
+                            <p>Total student that has <span class="font-bold">Enlarge LymphNodes</span>: ${enlargeCount}</p>
+                            <p>Total student that has <span class="font-bold">Others</span>: ${otherCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -674,6 +710,11 @@
         });
     }else if(category[0] === 'lungs'){
         label = 'Lungs';
+        let summary = document.querySelector('.summary');
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal</span>: ${normalCount}</p>
+                            <p>Total student that has <span class="font-bold">Rales</span>: ${ralesCount}</p>
+                            <p>Total student that has <span class="font-bold">Wheeze</span>: ${wheezeCount}</p>
+                            <p>Total student that has <span class="font-bold">Others</span>: ${otherCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -713,6 +754,11 @@
         });
     }else if(category[0] === 'heart'){
         label = 'Heart';
+        let summary = document.querySelector('.summary');
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal</span>: ${normalCount}</p>
+                            <p>Total student that has <span class="font-bold">Murmur</span>: ${mumurCount}</p>
+                            <p>Total student that has <span class="font-bold">Irregular Heart Rate</span>: ${irregularHeartCount}</p>
+                            <p>Total student that has <span class="font-bold">Others</span>: ${otherCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -752,6 +798,12 @@
         });
     }else if (category[0] === 'abdomen'){
         label = 'Abdomen';
+        let summary = document.querySelector('.summary');
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal</span>: ${normalCount}</p>
+                            <p>Total student that has <span class="font-bold">Distended</span>: ${distendedCount}</p>
+                            <p>Total student that has <span class="font-bold">Tenderness</span>: ${tendernessCount}</p>
+                            <p>Total student that has <span class="font-bold">Dysmenorrhea</span>: ${dysmenorrheaCount}</p>
+                            <p>Total student that has <span class="font-bold">Others</span>: ${otherCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -792,6 +844,9 @@
         });
     }else if (category[0] === 'deformities'){
         label = 'Deformities';
+        let summary = document.querySelector('.summary');
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal</span>: ${normalCount}</p>
+                            <p>Total student that has <span class="font-bold">Others</span>: ${otherCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
