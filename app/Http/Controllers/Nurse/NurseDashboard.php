@@ -102,4 +102,12 @@ class NurseDashboard extends Controller
         }
         
     }
+
+    public function changePassword(Request $request){   
+        $nurse = Nurse::findOrFail($request->id);
+        $nurse->password = bcrypt($request->password);
+        $nurse->save();
+        
+        return response()->json(['message' => 'success']);
+    }
 }

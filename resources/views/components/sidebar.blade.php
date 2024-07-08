@@ -57,7 +57,7 @@
         </a>
     </div>
     <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-        <a href="" class="inline-flex items-center text-gray-600 hover:text-black my-4 w-full rounded-md transition ease-in-out duration-150">
+        <a href="{{route('school_profile')}}" class="inline-flex items-center text-gray-600 hover:text-black my-4 w-full rounded-md transition ease-in-out duration-150">
             <span class="material-icons-outlined mr-2">face</span>
             Profile
             <span class="material-icons-outlined ml-auto">keyboard_arrow_right</span>

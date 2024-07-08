@@ -76,9 +76,13 @@ Route::middleware('auth:nurse')->group(function(){
         Route::get('/edit_checkup/{checkup}',[NurseAllController::class,'editCheckup'])->name('edit_checkup');
         Route::patch('/update_checkup/{checkup}',[NurseAllController::class,'updateCheckup'])->name('update_checkup');
         Route::get('/view_checkup/{checkup}',[NurseAllController::class,'viewCheckup'])->name('view_checkup');
+        
 
         Route::get('/report',[ReportController::class,'index'])->name('report');
         Route::post('/filter_report',[ReportController::class,'filterReport'])->name('filter_report');
+
+        Route::get('/school_profile',[NurseDashboard::class,'profile'])->name('school_profile');
+
     });
 
     Route::middleware('nurse.type:district')->group(function(){
@@ -95,6 +99,7 @@ Route::middleware('auth:nurse')->group(function(){
         Route::get('/sample',[ReportController::class,'sample'])->name('sample');
 
         Route::get('/district_profile',[NurseDashboard::class,'profile'])->name('district_profile');
+        Route::post('/district_change_password',[NurseDashboard::class,'changePassword'])->name('district_change_password');
     });
 });
 

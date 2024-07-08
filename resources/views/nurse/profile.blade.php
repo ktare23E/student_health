@@ -42,7 +42,15 @@
                     <div class="p-[2rem] w-full">
                         <div
                             class="bg-white rounded-md px-6 py-4 w-full mx-auto shadow-2xl transition-all hover:shadow-none">
-                            <h1 class="font-semibold text-md mb-4">Nurse Profile</h1>
+                            <div class="flex justify-between items-center">
+                                <h1 class="font-semibold text-md mb-4">Nurse Profile</h1>
+                                <div>
+                                    {{-- <button class="oepn-modal py-3 px-4 text-sm bg-blue-500 rounded-sm text-white" data-modal="modal1">Change Password</button> --}}
+                                    <button data-modal="modal1"
+                                        class="open-modal bg-blue-500 text-sm text-white px-4 py-2 rounded m-2">Change
+                                        Password</button>
+                                </div>
+                            </div>
 
                             <!-- Profile Image -->
                             <div class="flex justify-center mb-4">
@@ -110,8 +118,50 @@
                 </div>
             </div>
         </div>
-
+        @include('components.modal.change_password')
     </div>
+    <script>
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this;
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.textContent = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                icon.textContent = 'visibility';
+            }
+        });
 
+        $('.change_password').click(function(){
+            var password = $('#password').val();
+            var id = {{ $nurse->id }};
+            var route = '{{ $nurse->type === 'district' ? route('district_change_password') : ($nurse->type === 'school' ? route('school_change_password') : route('division_change_password')) }}';
+
+
+            $.ajax({
+                url: route,
+                type: 'POST',
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'password': password,
+                    'id': id
+                },
+                success: function(data) {
+                    console.log(data);
+                    if (data.message === 'success') {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Updated Password",
+                            icon: "success"
+                        }).then(function(){
+                            location.reload();
+                        });
+                    }
+                }
+            });
+        
+        })
+    </script>
     <script src="{{ mix('js/app.js') }}"></script>
 </x-layout>

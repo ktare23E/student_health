@@ -92,6 +92,7 @@
                 }
             });
         });
+        
         $('.create_student').click(function() {
             let first_name = $('#first_name').val();
             let last_name = $('#last_name').val();
