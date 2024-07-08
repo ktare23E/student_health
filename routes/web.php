@@ -94,6 +94,7 @@ Route::middleware('auth:nurse')->group(function(){
         Route::post('/district_filter_report',[ReportController::class,'filterReport'])->name('district_filter_report');
         Route::get('/sample',[ReportController::class,'sample'])->name('sample');
 
+        Route::get('/district_profile',[NurseDashboard::class,'profile'])->name('district_profile');
     });
 });
 

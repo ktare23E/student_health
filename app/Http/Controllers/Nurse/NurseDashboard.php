@@ -9,7 +9,8 @@ use App\Models\School;
 use App\Models\Student;
 use App\Models\Checkup;
 use App\Models\Nurse;
-
+use App\Models\District;
+use App\Models\Division;
 
 class NurseDashboard extends Controller
 {
@@ -74,5 +75,31 @@ class NurseDashboard extends Controller
             'school' => $schoolData,
             'nurse' => $nurseData
         ]);
+    }
+
+    public function profile(){
+        $nurse = Auth::user();
+        $entity_id = $nurse->entity_id;
+
+        if($nurse->type === 'school'){
+            $school = School::findOrFail($entity_id);
+            return view('nurse.profile', [
+                'nurse' => $nurse,
+                'school' => $school
+            ]);
+        }elseif($nurse->type === 'district'){
+            $district = District::findOrFail($entity_id);
+            return view('nurse.profile', [
+                'nurse' => $nurse,
+                'district' => $district
+            ]);
+        }else{
+            $division = Division::findOrFail($entity_id);
+            return view('nurse.profile', [
+                'nurse' => $nurse,
+                'division' => $division
+            ]);
+        }
+        
     }
 }

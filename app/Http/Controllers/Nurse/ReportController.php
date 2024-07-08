@@ -91,7 +91,7 @@ class ReportController extends Controller
 
             $students = Student::with(['checkups' => function ($q) use ($checkups) {
                 $q->whereIn('id', $checkups->pluck('id'));
-            }])
+            }],'school')
                 ->whereIn('id', $checkups->pluck('student_id'))
                 ->get();
 
@@ -236,7 +236,7 @@ class ReportController extends Controller
 
                     $students = Student::with(['checkups' => function ($q) use ($checkups) {
                         $q->whereIn('id', $checkups->pluck('id'));
-                    }])
+                    }],'school')
                         ->whereIn('id', $checkups->pluck('student_id'))
                         ->get();
 

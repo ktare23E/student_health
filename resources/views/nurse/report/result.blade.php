@@ -75,7 +75,9 @@
                                         <th>Student Name</th>
                                         <th>Grade Level</th>
                                         <th>Adviser</th>
+                                        <th>School</th>
                                         <th>Checkup Remarks</th>
+                                        
                                         {{-- <th>Action</th> --}}
                                     </tr>
                                 </thead>
@@ -86,6 +88,7 @@
                                             <td>{{ $student->first_name . ' ' . $student->last_name }}</td>
                                             <td>{{ 'Grade ' . $student->grade_level }}</td>
                                             <td>{{ $student->checkups[0]->adviser_name }}</td>
+                                            <td>{{$student->school->name}}</td>
                                             <td
                                                 class="{{ $student->checkups[0]->remarks === 'Healthy' ? 'text-green-500' : 'text-red-500' }}">
                                                 {{ $student->checkups[0]->remarks }}</td>
