@@ -33,10 +33,10 @@
                                             <td>{{ $school->name }}</td>
                                             <td>{{ $school->address}}</td>
                                             <td>{{ $school->district->name }}</td>
-                                            <td>{{ $school->status }}</td>
+                                            <td class="capitalize text-green-500 text-sm">{{ $school->status }}</td>
                                             <td>
                                                 <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
-                                                    <a href="{{route('view_student',$school->id)}}">view</a>   
+                                                    <a href="{{route('view_school',$school->id)}}">view</a>   
                                                 </button>
                                             </td>
                                         </tr>

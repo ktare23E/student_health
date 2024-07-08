@@ -33,4 +33,11 @@ class NurseDashboard extends Controller
           ]);
         } 
     }
+
+    public function studentList(School $school){
+        $students = $school->students;
+        return view('nurse.student.district_student',[
+            'students' => $students
+        ]);
+    }
 }

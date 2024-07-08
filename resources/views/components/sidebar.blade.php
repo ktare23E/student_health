@@ -74,7 +74,7 @@
             Archive Student
             <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
         </a> --}}
-        <a href="{{route('report')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
+        <a href="{{route('district_report')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
             <span class="material-icons-outlined float-left pr-2">summarize</span>
             Report
             <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
