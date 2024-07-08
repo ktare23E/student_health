@@ -148,7 +148,7 @@
             //display school average in the summary
             for (let school in schoolAverages) {
                 summary.append(
-                    `<p class="pl-10">${school}, student <span class="lowercase font-bold">average ${label}</span>: ${schoolAverages[school]}</p>`
+                    `<p class="pl-10">${school}, student <span class="lowercase font-bold">average ${label}</span>: ${schoolAverages[school] === 0 ? 'No data yet':schoolAverages}</p>`
                 );
             }
 
