@@ -10,7 +10,13 @@
             <div class="w-10/12 flex flex-col">
                 <div>
                     <div class="flex flex-row">
-                        <h1 class="font-bold text-2xl">School Nurse Report</h1>
+                        @if (auth()->user()->type === 'school')
+                            <h1 class="font-bold text-2xl">School Nurse Report</h1>
+                        @elseif (auth()->user()->type === 'district')
+                            <h1 class="font-bold text-2xl">District Nurse Report</h1>
+                        @else
+                            <h1 class="font-bold text-2xl">Division Nurse Report</h1>
+                        @endif
                     </div>
 
 
@@ -29,6 +35,7 @@
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     required>
                                                     <option selected>Select School</option>
+                                                    <option value="all">All</option>
                                                     @foreach ($schools as $school)
                                                         <option value="{{ $school->id }}">{{ $school->name }}</option>
                                                     @endforeach
