@@ -113,12 +113,15 @@
     const category = chartData.map(data => data.category);
     const labels = chartData.map(data => data.student);
     const values = chartData.map(data => data.value);
-    console.log(values);
     // Mapping of string values to numeric
     const valueMapping = {
         'Yes': 1,
         'No': 0
     };
+
+    if(chartData.length === 0){
+        document.querySelector('.summary').innerHTML = `<p class="text-center font-bold text-2xl">No data available</p>`;
+    }
 
     // Reverse mapping for displaying labels
     const reverseMapping = Object.keys(valueMapping).reduce((obj, key) => {
@@ -432,7 +435,6 @@
             }
         });
     }else if(category[0] === 'skin'){
-
         label = 'Skin';
         let summary = document.querySelector('.summary');
         summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal</span>: ${normalCount}</p>
@@ -454,6 +456,9 @@
 
         // Prepare the data for the bar chart
         chartValues = [normalCount,rednessCount,whiteSpotsCount,impetigoCount,skinLessionCount,itchinessCount,acneCount];
+        // Check if chartValues is empty and set default values if it is
+      
+
         const reportChart = new Chart(ctx, {
             type: 'bar', // Bar chart for deworming or iron supplementation
             data: {
