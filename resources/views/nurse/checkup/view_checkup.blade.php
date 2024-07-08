@@ -11,24 +11,52 @@
 
                     <nav class="bg-white p-4 rounded-md shadow-md w-full font-bold">
                         <ol class="list-reset flex text-gray-700">
-                            <li>
-                                <a href="{{ route('nurse_dashboard') }}"
-                                    class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
-                            </li>
-                            <li>
-                                <span class="px-1">></span>
-                            </li>
-                            <li>
-                                <a href="{{ route('student_list') }}"
-                                    class="text-blue-600 hover:text-blue-800 hover:underline">Student</a>
-                            </li>
-                            <li>
-                                <span class="px-1">></span>
-                            </li>
-                            <li>
-                                <a href="{{route('view_student',$checkup->student_id)}}" class="text-blue-600 hover:text-blue-800 hover:underline">Student
-                                    Profile</a>
-                            </li>
+                            @if (auth()->user()->type == 'school')
+                                <li>
+                                    <a href="{{ route('nurse_dashboard') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="{{ route('student_list') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Student</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="{{route('view_student',$checkup->student_id)}}" class="text-blue-600 hover:text-blue-800 hover:underline">Student
+                                        Profile</a>
+                                </li>
+                            @elseif (auth()->user()->type == 'district')
+                                <li>
+                                    <a href="{{ route('district_nurse_dashboard') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="{{ route('school_list') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">School</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>   
+                                <li>
+                                    <a href="{{ route('view_school', ['school' => $school->id]) }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Student List</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="{{route('district_view_student',['student' => $student->id])}}" class="text-blue-600 hover:text-blue-800 hover:underline">Student
+                                        Profile</a>
+                                </li>
+                            @endif
                             <li>
                                 <span class="px-1">></span>
                             </li>

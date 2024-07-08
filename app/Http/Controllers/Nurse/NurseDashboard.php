@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\School;
 use App\Models\Student;
+use App\Models\Checkup;
+use App\Models\Nurse;
+
 
 class NurseDashboard extends Controller
 {
@@ -51,6 +54,20 @@ class NurseDashboard extends Controller
           'student' => $student,
           'studentCheckUps' => $studentCheckUps,
           'studentSchool' => $studentSchool
+      ]);
+  }
+
+  
+  public function viewCheckup(Checkup $checkup){
+      $studentData = Student::with('school')->findOrFail($checkup->student_id);
+      $schoolData = School::findOrFail($studentData->school_id);
+      $nurseData = Nurse::findOrFail($checkup->nurse_id);
+
+      return view('nurse.checkup.view_checkup',[
+          'checkup' => $checkup,
+          'student' => $studentData,
+          'school' => $schoolData,
+          'nurse' => $nurseData
       ]);
   }
 }
