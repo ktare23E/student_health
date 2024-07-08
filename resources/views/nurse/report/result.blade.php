@@ -43,7 +43,10 @@
 
                                 <div class="">
                                     <h1 class="font-bold text-xl">Summary:</h1>
-                                    <p class="summary text-wrap"></p>
+                                    <div class="summary">
+
+                                    </div>
+                                    {{-- <p class="summary text-wrap"></p> --}}
                                 </div>
                             </div>
                             <canvas id="reportChart"></canvas>
@@ -284,7 +287,7 @@
         });
 
         const avgValue = totalValue / count;
-        summary.textContent = `Average student ${category[0] === 'temperature' ? 'Temperature':category[0] === 'heart_rate' ? 'Heart Rate': category[0] === 'pulse_rate' ? 'Pulse Rate': category[0] === 'respiratory_rate' ? 'Respiratory Rate' : ''}: ${avgValue.toFixed(2)}`;
+        summary.innerHTML = `<p>Average <span class="font-bold">${category[0] === 'temperature' ? 'Temperature':category[0] === 'heart_rate' ? 'Heart Rate': category[0] === 'pulse_rate' ? 'Pulse Rate': category[0] === 'respiratory_rate' ? 'Respiratory Rate' : ''}</span>: ${avgValue.toFixed(2)}</p>`;
         const reportChart = new Chart(ctx, {
             type: 'line', // or other types like 'bar', 'radar', etc.
             data: {
@@ -306,7 +309,8 @@
     } else if (category[0] === 'deworming' || category[0] === 'iron_supplementation' || category[0] === 'immunization') {
         label = category[0] === 'deworming' ? 'Deworming' : category[0] === 'iron_supplementation' ? 'Iron Supplementation' : 'Immunization';
         let summary = document.querySelector('.summary');
-        summary.textContent = `Total student that has ${category[0] === 'iron_supplementation' ? 'Iron Supplmentation': category[0] === 'deworming' ? 'Deworming': category[0] === 'immunization' ? 'Immunization':''}: ${yesCount}, Total student that has no ${category[0] === 'iron_supplementation' ? 'Iron Supplmentation': category[0] === 'deworming' ? 'Deworming': category[0] === 'immunization' ? 'Immunization':''}: ${noCount}`;
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">${category[0] === 'iron_supplementation' ? 'Iron Supplmentation': category[0] === 'deworming' ? 'Deworming': category[0] === 'immunization' ? 'Immunization':''}</span>: ${yesCount}</p>
+        <p>Total student that has <span class="font-bold">No ${category[0] === 'iron_supplementation' ? 'Iron Supplmentation': category[0] === 'deworming' ? 'Deworming': category[0] === 'immunization' ? 'Immunization':''}</span>: ${noCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -345,7 +349,11 @@
     }else if (category[0] === 'bmi_weight'){
         label = "BMI Weight";
         let summary = document.querySelector('.summary');
-        summary.textContent = `Total student that has Normal Weight: ${normal_weight}, Total student that has Wasted Underweight: ${wasted_underweight}, Total student that has Severely Wasted Underweight: ${severely_wasted_underweight}, Total student that has Obese: ${obese}, Total student that has Overweight: ${overweight}`;
+        summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal Weight</span>: ${normal_weight}</p>
+                            <p>Total student that has <span class="font-bold">Wasted Underweight</span>: ${wasted_underweight}</p>
+                            <p>Total student that has <span class="font-bold">Severely Wasted Underweight</span>: ${severely_wasted_underweight}</p>
+                            <p>Total student that has <span class="font-bold">Obese</span>: ${obese}</p> 
+                            <p>Total student that has <span class="font-bold">Overweight</span>: ${overweight}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
@@ -385,6 +393,9 @@
         });
     }else if (category[0] === 'vision_screening' || category[0] === 'auditory_screening'){
         label = category[0] === 'vision_screening' ? 'Vision Screening' : 'Auditory Screening';
+        let summary = document.querySelector('.summary');
+        summary.innerHTML = `<p>Total student that passed <span class="font-bold">${category[0] === 'vision_screening' ? 'Vision Screening': 'Auditory Screening'}</span>: ${passedCount}</p>
+                            <p>Total student that failed <span class="font-bold">${category[0] === 'vision_screening' ? 'Vision Screening': 'Auditory Screening'}</span>: ${failedCount}</p>`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,
