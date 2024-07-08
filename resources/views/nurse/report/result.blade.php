@@ -39,6 +39,13 @@
                     <div class="flex flex-col p-[2rem] w-full">
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
                             <h1 class="font-bold text-2xl mb-4">Data Analytics</h1>
+                            <div>
+
+                                <div class="">
+                                    <h1 class="font-bold text-xl">Summary:</h1>
+                                    <p class="summary text-wrap"></p>
+                                </div>
+                            </div>
                             <canvas id="reportChart"></canvas>
 
                         </div>
@@ -281,6 +288,8 @@
         });
     } else if (category[0] === 'deworming' || category[0] === 'iron_supplementation' || category[0] === 'immunization') {
         label = category[0] === 'deworming' ? 'Deworming' : category[0] === 'iron_supplementation' ? 'Iron Supplementation' : 'Immunization';
+        let summary = document.querySelector('.summary');
+        summary.textContent = `Total student that has ${category[0] === 'iron_supplementation' ? 'Iron Supplmentation': category[0] === 'deworming' ? 'Deworming': category[0] === 'immunization' ? 'Immunization':''}: ${yesCount}, Total student that has no ${category[0] === 'iron_supplementation' ? 'Iron Supplmentation': category[0] === 'deworming' ? 'Deworming': category[0] === 'immunization' ? 'Immunization':''}: ${noCount}`;
         yAxisConfig = {
             beginAtZero: true,
             min: 0,

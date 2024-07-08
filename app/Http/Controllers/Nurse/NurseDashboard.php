@@ -14,9 +14,10 @@ use App\Models\Nurse;
 class NurseDashboard extends Controller
 {
     //
-      //
-    public function index(){
-      $nurse = Auth::user();
+    //
+    public function index()
+    {
+        $nurse = Auth::user();
         if ($nurse->type === 'school') {
             return view('nurse.index');
         } elseif ($nurse->type === 'district') {
@@ -26,48 +27,52 @@ class NurseDashboard extends Controller
         }
     }
 
-    public function schoolList(){
+    public function schoolList()
+    {
         $nurse = Auth::user();
         if ($nurse->type === 'district') {
-          $district_id = $nurse->entity_id;
-          $schools = School::with('district')->where('district_id',$district_id)->get();
-       
-          return view('nurse.school.index',[
-            'schools' => $schools
-          ]);
-        } 
+            $district_id = $nurse->entity_id;
+            $schools = School::with('district')->where('district_id', $district_id)->get();
+
+            return view('nurse.school.index', [
+                'schools' => $schools
+            ]);
+        }
     }
 
-    public function studentList(School $school){
+    public function studentList(School $school)
+    {
         $students = $school->students;
-        return view('nurse.student.district_student',[
+        return view('nurse.student.district_student', [
             'students' => $students
         ]);
     }
 
-    public function viewStudent(Student $student){
-      $student = Student::findOrFail($student->id);
-      $studentCheckUps = Student::with('checkups.nurse')->where('id',$student->id)->get();
-      $studentSchool = $student->school;
+    public function viewStudent(Student $student)
+    {
+        $student = Student::findOrFail($student->id);
+        $studentCheckUps = Student::with('checkups.nurse')->where('id', $student->id)->get();
+        $studentSchool = $student->school;
 
-      return view('nurse.student.view_student',[
-          'student' => $student,
-          'studentCheckUps' => $studentCheckUps,
-          'studentSchool' => $studentSchool
-      ]);
-  }
+        return view('nurse.student.view_student', [
+            'student' => $student,
+            'studentCheckUps' => $studentCheckUps,
+            'studentSchool' => $studentSchool
+        ]);
+    }
 
-  
-  public function viewCheckup(Checkup $checkup){
-      $studentData = Student::with('school')->findOrFail($checkup->student_id);
-      $schoolData = School::findOrFail($studentData->school_id);
-      $nurseData = Nurse::findOrFail($checkup->nurse_id);
 
-      return view('nurse.checkup.view_checkup',[
-          'checkup' => $checkup,
-          'student' => $studentData,
-          'school' => $schoolData,
-          'nurse' => $nurseData
-      ]);
-  }
+    public function viewCheckup(Checkup $checkup)
+    {
+        $studentData = Student::with('school')->findOrFail($checkup->student_id);
+        $schoolData = School::findOrFail($studentData->school_id);
+        $nurseData = Nurse::findOrFail($checkup->nurse_id);
+
+        return view('nurse.checkup.view_checkup', [
+            'checkup' => $checkup,
+            'student' => $studentData,
+            'school' => $schoolData,
+            'nurse' => $nurseData
+        ]);
+    }
 }

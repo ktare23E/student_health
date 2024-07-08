@@ -24,10 +24,17 @@
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-[50%] mx-auto">
                             <h1 class="font-bold mb-6">Filter Report</h1>
                             <div class="grid gap-6 mb-6 md:grid-cols-1">
-                                <x-forms.form method="POST" action="{{ route('filter_report') }}">
+                                @php
+                                    $nurse = auth()->user();
+                                @endphp
+                                <x-forms.form method="POST" action="{{ 
+                                        $nurse->type === 'school' ? route('filter_report') : 
+                                        ($nurse->type === 'district' ? route('district_filter_report') : 
+                                        '')
+                                }}" >
                                     @csrf
                                     <div class="grid grid-cols-1 gap-2">
-                                        @if (auth()->user()->type == 'district')
+                                        @if ($nurse->type == 'district' || $nurse->type == 'division')
                                             <div>
                                                 <label for="school_id"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">School</label>
