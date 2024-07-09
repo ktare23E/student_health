@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Log extends Model
+
+class SystemLog extends Model
 {
     use HasFactory;
-    protected $fillable = ['nurse_id','date'];
+    protected $fillable = ['date','nurse_id'];
 
-    public function nurse()
-    {
+    public function nurse(){
         return $this->belongsTo(Nurse::class);
     }
 }

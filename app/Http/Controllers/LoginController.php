@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use App\Models\Nurse;
+use App\Models\SystemLog;
 
 class LoginController extends Controller
 {
@@ -19,10 +21,11 @@ class LoginController extends Controller
         if (Auth::guard('nurse')->attempt($request->only('email', 'password'))) {
             $nurse = Auth::guard('nurse')->user();
 
+
             if ($nurse->type === 'school') {
-                $create  = $nurse->logs->create([
-                    'date' => now(),
-                    'nurse_id'=> $nurse->id
+                SystemLog::create([
+                    'nurse_id' => $nurse->id,
+                    'date' => now()
                 ]);
                 return redirect()->route('nurse_dashboard');
             } elseif ($nurse->type === 'district') {

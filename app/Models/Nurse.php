@@ -45,7 +45,7 @@ class Nurse extends Authenticatable
         return $this->hasMany(Checkup::class);
     }
 
-    public function logs(){
-        return $this->hasMany(Log::class);
+    public function systemLogs(){
+        return $this->hasMany(SystemLog::class);
     }
 }
