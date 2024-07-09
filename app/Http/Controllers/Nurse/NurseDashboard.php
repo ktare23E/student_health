@@ -19,6 +19,7 @@ class NurseDashboard extends Controller
     public function index()
     {
         $nurse = Auth::user();
+
         if ($nurse->type === 'school') {
             return view('nurse.index');
         } elseif ($nurse->type === 'district') {
@@ -34,6 +35,14 @@ class NurseDashboard extends Controller
         if ($nurse->type === 'district') {
             $district_id = $nurse->entity_id;
             $schools = School::with('district')->where('district_id', $district_id)->get();
+
+            return view('nurse.school.index', [
+                'schools' => $schools
+            ]);
+        }elseif($nurse->type === 'division'){
+            $division_id = $nurse->entity_id;
+            $districts = District::where('division_id', $division_id)->get();
+            $schools = School::with('district')->whereIn('district_id', $districts->pluck('id'))->get();
 
             return view('nurse.school.index', [
                 'schools' => $schools
