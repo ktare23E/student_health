@@ -35,12 +35,24 @@
                                     <a href="{{ route('district_report') }}"
                                         class="text-blue-600 hover:text-blue-800 hover:underline">Report</a>
                                 </li>
+                            @else
+                                <li>
+                                    <a href="{{ route('division_nurse_dashboard') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="{{ route('division_report') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Report</a>
+                                </li>
                             @endif
                             <li>
                                 <span class="px-1">></span>
                             </li>
                             <li>
-                                <a href="" class="text-blue-600 hover:text-blue-800 hover:underline">Filter
+                                <a href="#" class="text-blue-600 hover:text-blue-800 hover:underline">Filter
                                     Result
                                 </a>
                             </li>

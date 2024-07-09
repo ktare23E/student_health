@@ -97,7 +97,7 @@ class ReportController extends Controller
 
                 return view('nurse.report.result', compact('checkups', 'students', 'chartData'));
 
-        } else if ($nurse->type === 'district') {
+        } else if ($nurse->type === 'district' || $nurse->type === 'division') {
             // Filter by school if the nurse is not a school nurse
             if ($request->filled('school_id')) {
                 if ($request->school_id == 'all') {

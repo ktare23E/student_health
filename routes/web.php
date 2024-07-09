@@ -111,8 +111,8 @@ Route::middleware('auth:nurse')->group(function(){
 
 
         
-        // Route::get('/district_report',[ReportController::class,'index'])->name('district_report');
-        // Route::post('/district_filter_report',[ReportController::class,'filterReport'])->name('district_filter_report');
+        Route::get('/division_report',[ReportController::class,'index'])->name('division_report');
+        Route::post('/division_filter_report',[ReportController::class,'filterReport'])->name('division_filter_report');
         // Route::get('/sample',[ReportController::class,'sample'])->name('sample');
 
         // Route::get('/district_profile',[NurseDashboard::class,'profile'])->name('district_profile');

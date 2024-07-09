@@ -10,28 +10,54 @@
             <div class="w-10/12 flex flex-col mx-auto">
                 <div>
                     <nav class="bg-white p-4 rounded-md shadow-md w-full font-bold">
-                        <ol class="list-reset flex text-gray-700">
-                            <li>
-                                <a href="{{ route('district_nurse_dashboard') }}"
-                                    class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
-                            </li>
-                            <li>
-                                <span class="px-1">></span>
-                            </li>
-                            <li>
-                                <a href="{{ route('district_report') }}"
-                                    class="text-blue-600 hover:text-blue-800 hover:underline">Report</a>
-                            </li>
-                            <li>
-                                <span class="px-1">></span>
-                            </li>
-                            <li>
-                                <a href="" class="text-blue-600 hover:text-blue-800 hover:underline">Filter
-                                    Result
-                                </a>
-                            </li>
+                        @if (auth()->user()->type === 'district')
+                            <ol class="list-reset flex text-gray-700">
+                                <li>
+                                    <a href="{{ route('district_nurse_dashboard') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="{{ route('district_report') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Report</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="" class="text-blue-600 hover:text-blue-800 hover:underline">Filter
+                                        Result
+                                    </a>
+                                </li>
 
-                        </ol>
+                            </ol>
+                        @else
+                            <ol class="list-reset flex text-gray-700">
+                                <li>
+                                    <a href="{{ route('division_nurse_dashboard') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="{{ route('division_report') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Report</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="" class="text-blue-600 hover:text-blue-800 hover:underline">Filter
+                                        Result
+                                    </a>
+                                </li>
+
+                            </ol>
+                        @endif
+                       
                     </nav>
 
 
@@ -147,8 +173,9 @@
 
             //display school average in the summary
             for (let school in schoolAverages) {
+                console.log(schoolAverages);
                 summary.append(
-                    `<p class="pl-10">${school}, student <span class="lowercase font-bold">average ${label}</span>: ${schoolAverages[school] === 0 ? 'No data yet':schoolAverages}</p>`
+                    `<p class="pl-10">${school}, student <span class="lowercase font-bold">average ${label}</span>: ${schoolAverages[school] === 0 ? 'No data yet':schoolAverages[school]}</p>`
                 );
             }
 
@@ -237,7 +264,7 @@
            //display school average in the summary
             for (let school in schoolAverages) {
                 summary.append(
-                    `<p class="pl-10">${school}, student <span class="lowercase font-bold">average ${label}</span>: ${schoolAverages[school].mostFrequentValue === 0 ? 'No data yet': schoolAverages[school].mostFrequentValue === 'No' ? `Students no ${label} yet`: schoolAverages[school].mostFrequentValue}</p>`
+                    `<p class="pl-10">${school}, student <span class="lowercase font-bold">average ${label} result is</span>: ${schoolAverages[school].mostFrequentValue === 0 ? 'No data yet': schoolAverages[school].mostFrequentValue === 'No' ? `Students no ${label} yet`: schoolAverages[school].mostFrequentValue}</p>`
                 );
             }
 

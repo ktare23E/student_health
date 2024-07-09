@@ -30,7 +30,7 @@
                                 <x-forms.form method="POST" action="{{ 
                                         $nurse->type === 'school' ? route('filter_report') : 
                                         ($nurse->type === 'district' ? route('district_filter_report') : 
-                                        '')
+                                        route('division_filter_report'))
                                 }}" >
                                     @csrf
                                     <div class="grid grid-cols-1 gap-2">
