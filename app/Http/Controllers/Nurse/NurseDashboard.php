@@ -30,15 +30,15 @@ class NurseDashboard extends Controller
             //retrieve 3 nurses with different type
             $nurses = Nurse::where('status', 'active')->orderBy('id', 'desc')->take(3)->get();
             //retrieve the number of active students
-            $activeStudentNumber = Student::where('id',$nurse->entity_id)->where('status', 'active')->count();
+            $activeStudentNumber = Student::where('school_id',$nurse->entity_id)->where('status', 'active')->count();
 
             //retrieve the count of inactive students
-            $inactiveStudentNumber = Student::where('id',$nurse->entity_id)->where('status', 'inactive')->count();
+            $inactiveStudentNumber = Student::where('school_id',$nurse->entity_id)->where('status', 'inactive')->count();
 
             //number of checkup
             $nurseCheckupCount = Checkup::where('nurse_id',$nurse->id)->count();
             $latestCheckup = Checkup::with('student')->where('nurse_id',$nurse->id)->latest()->first();
-            
+
             return view('nurse.index',[
                 'nurse' => $nurse,
                 'division' => $division,

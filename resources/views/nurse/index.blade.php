@@ -221,7 +221,11 @@
                             <div class="px-4 py-3  max-h-24">
                                 <h1 class="font-bold text-2xl">Number of Checkup Made:</h1>
                                 <div class="pl-4 w-full">
-                                    <p class="text-center text-xl mt-4">{{$nurseCheckupCount}}</p>
+                                    @if ($nurseCheckupCount)
+                                        <p class="text-center text-xl mt-4">{{$nurseCheckupCount}}</p>
+                                    @else
+                                        <p class="text-center text-xl mt-4">No checkup yet</p>
+                                    @endif  
 
                                 </div>
                             </div>
@@ -231,8 +235,12 @@
                             <div class="px-4 py-3 max-h-24">
                                 <h1 class="font-bold text-xl">Latest Checkup Made:</h1>
                                 <div class="pl-4 w-full">
-                                    <p class="text-center text-md">Student: {{$latestCheckup->student->first_name.' '.$latestCheckup->student->last_name}}</p>
-                                    <p class="text-center text-md">Date of Checkup: {{ \Carbon\Carbon::parse($latestCheckup->date_of_checkup)->format('F j, Y, g:i A') }}
+                                    @if ($latestCheckup)
+                                        <p class="text-center text-md">Student: {{$latestCheckup->student->first_name.' '.$latestCheckup->student->last_name}}</p>
+                                        <p class="text-center text-md">Date of Checkup: {{ \Carbon\Carbon::parse($latestCheckup->date_of_checkup)->format('F j, Y, g:i A') }}
+                                    @else
+                                        <p class="text-center text-xl mt-4">No checkup yet</p>
+                                    @endif
                                     </p>
                                 </div>
                             </div>
