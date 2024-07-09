@@ -29,9 +29,14 @@
                             <h1 class="font-bold text-2xl">Active Division:</h1>
                             <div class="pl-4 w-full">
                                 @if ($division)
-                                    <p class="text-center text-xl mt-4">{{$division[0]->name}}</p>
+                                    @forelse ($division as $division)
+                                    <p class="text-center text-xl mt-4">{{$division->name}}</p>
+                                    @empty
+                                        <p class="text-center text-xl mt-4">No Division Yet</p>
+                                    @endforelse
                                 @else
-                                    <p class="text-center text-xl mt-4">No Division Yet</p>
+                                <p class="text-center text-xl mt-4">No Division Yet</p>
+
                                 @endif
                             </div>
                         </div>
@@ -41,11 +46,14 @@
                         <div class="px-4 py-3 max-h-24">
                             <h1 class="font-bold text-2xl">Active District:</h1>
                             <div class="pl-4 w-full">
-                                @forelse ($division[0]->districts as $district)
-                                    <p class=" text-center text-xl mt-4">{{$district->name}}</p>
-                                @empty
+                                @if (!$division)
                                     <p class="text-center text-xl mt-4">No District Yet</p>
-                                @endforelse
+                                @else
+                                    @foreach ($division->districts as $district)
+                                        <p class=" text-center text-xl mt-4">{{$district->name}}</p>
+
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                         <a href="{{route('admin.district')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>

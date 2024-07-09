@@ -20,6 +20,10 @@ class LoginController extends Controller
             $nurse = Auth::guard('nurse')->user();
 
             if ($nurse->type === 'school') {
+                $create  = $nurse->logs->create([
+                    'date' => now(),
+                    'nurse_id'=> $nurse->id
+                ]);
                 return redirect()->route('nurse_dashboard');
             } elseif ($nurse->type === 'district') {
                 return redirect()->route('district_nurse_dashboard');

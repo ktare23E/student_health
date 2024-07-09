@@ -82,6 +82,8 @@ Route::middleware('auth:nurse')->group(function(){
         Route::post('/filter_report',[ReportController::class,'filterReport'])->name('filter_report');
 
         Route::get('/school_profile',[NurseDashboard::class,'profile'])->name('school_profile');
+        Route::post('/school_change_password',[NurseDashboard::class,'changePassword'])->name('school_change_password');
+
 
     });
 
