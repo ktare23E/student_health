@@ -7,7 +7,7 @@
         @include('components.header')
 
         <div class="flex flex-row pt-24 px-10 pb-4">
-            <div class="w-10/12 flex flex-col mx-auto">
+            <div class="w-full flex flex-col mx-auto">
                 <div>
                     <nav class="bg-white p-4 rounded-md shadow-md w-full font-bold">
                         <ol class="list-reset flex text-gray-700">
@@ -63,7 +63,10 @@
 
 
                     <div class="flex flex-col p-[2rem] w-full">
-                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
+                        <div class="flex justify-end">
+                            <button id="print" class="py-1 px-2 bg-blue-500 text-white rounded-sm">Print Report</button>
+                        </div>
+                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-[60%] mx-auto">
                             <h1 class="font-bold text-2xl mb-4">Data Analytics</h1>
                             <div>
 
@@ -137,7 +140,11 @@
             $('#myTable2').DataTable();
         });
     </script>
-
+       <script>
+        document.getElementById('print').addEventListener('click', function() {
+            window.print();
+        });
+    </script>
     <script>
         const chartData = @json($chartData);
 

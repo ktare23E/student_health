@@ -7,7 +7,7 @@
         @include('components.header')
 
         <div class="flex flex-row pt-24 px-10 pb-4">
-            <div class="w-10/12 flex flex-col mx-auto">
+            <div class="w-full flex flex-col mx-auto">
                 <div>
                     <nav class="bg-white p-4 rounded-md shadow-md w-full font-bold">
                         @if (auth()->user()->type === 'district')
@@ -57,13 +57,16 @@
 
                             </ol>
                         @endif
-                       
+
                     </nav>
 
 
 
                     <div class="flex flex-col p-[2rem] w-full">
-                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
+                        <div class="flex justify-end">
+                            <button id="print" class="py-1 px-2 bg-blue-500 text-white rounded-sm">Print Report</button>
+                        </div>
+                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-[60%] mx-auto">
                             <h1 class="font-bold text-2xl mb-4">Data Analytics</h1>
                             <div>
 
@@ -80,7 +83,7 @@
                         </div>
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto mt-12">
                             <h1 class="font-bold text-2xl mb-4">Students</h1>
-                            <table id="myTable2" class="display">
+                            <table id="myTable2" class="display overflow-hidden">
                                 <thead>
                                     <tr>
                                         <th>Student LRN</th>
@@ -94,7 +97,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($students as $student)
-                                        <tr class="text-sm">
+                                        <tr class="text-sm overflow-hidden">
                                             <td>{{ $student->student_lrn }}</td>
                                             <td>{{ $student->first_name . ' ' . $student->last_name }}</td>
                                             <td>{{ 'Grade ' . $student->grade_level }}</td>
@@ -192,8 +195,39 @@
                     }]
                 },
                 options: {
+                    layout: {
+                        padding: {
+                            left: 20,
+                            right: 20,
+                            top: 20,
+                            bottom: 20
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    },
                     scales: {
+                        x: {
+                            border: {
+                                color: '#000', // Border color of the x-axis
+                                width: 1 // Width of the border
+                            }
+                        },
                         y: {
+                            border: {
+                                color: '#000', // Border color of the y-axis
+                                width: 1 // Width of the border
+                            },
                             beginAtZero: true,
                             min: 0,
                             max: 100,
@@ -204,9 +238,19 @@
                     }
                 }
             });
-        } else if (category === 'bmi_weight' || category === 'bmi_height' || category === 'vision_screening' || category === 'auditory_screening' || category === 'skin' || category === 'scalp' || category === 'eyes' || category === 'ears' || category === 'nose' || category === 'mouth' || category === 'lungs' || category === 'heart' || category === 'abdomen' || category === 'deformities' || category === 'iron_supplementation' || category === 'deworming' || category === 'immunization') {
-          
-            let label = category === 'bmi_weight' ? 'BMI Weight' : category === 'bmi_height' ? 'BMI Height' : category === 'vision_screening' ? 'Vision Screening' : category === 'auditory_screening' ? 'Auditory Screening' : category === 'skin' ? 'Skin' : category === 'scalp' ? 'Scalp' : category === 'eyes' ? 'Eyes' : category === 'ears' ? 'Ears' : category === 'nose' ? 'Nose' : category === 'mouth' ? 'Mouth' : category === 'lungs' ? 'Lungs' : category === 'heart' ? 'Heart' : category === 'abdomen' ? 'Abdomen' : category === 'deformities' ? 'Deformities' : category === 'iron_supplementation' ? 'Iron Supplementation' : category === 'deworming' ? 'Deworming' : 'Immunization';
+        } else if (category === 'bmi_weight' || category === 'bmi_height' || category === 'vision_screening' || category ===
+            'auditory_screening' || category === 'skin' || category === 'scalp' || category === 'eyes' || category ===
+            'ears' || category === 'nose' || category === 'mouth' || category === 'lungs' || category === 'heart' ||
+            category === 'abdomen' || category === 'deformities' || category === 'iron_supplementation' || category ===
+            'deworming' || category === 'immunization') {
+
+            let label = category === 'bmi_weight' ? 'BMI Weight' : category === 'bmi_height' ? 'BMI Height' : category ===
+                'vision_screening' ? 'Vision Screening' : category === 'auditory_screening' ? 'Auditory Screening' :
+                category === 'skin' ? 'Skin' : category === 'scalp' ? 'Scalp' : category === 'eyes' ? 'Eyes' : category ===
+                'ears' ? 'Ears' : category === 'nose' ? 'Nose' : category === 'mouth' ? 'Mouth' : category === 'lungs' ?
+                'Lungs' : category === 'heart' ? 'Heart' : category === 'abdomen' ? 'Abdomen' : category === 'deformities' ?
+                'Deformities' : category === 'iron_supplementation' ? 'Iron Supplementation' : category === 'deworming' ?
+                'Deworming' : 'Immunization';
             let schoolData = {};
             data.forEach(function(item) {
                 let school = item.school;
@@ -261,7 +305,7 @@
             let counts = uniqueSchools.map(school => schoolAverages[school].count);
             let mostFrequentValues = uniqueSchools.map(school => schoolAverages[school].mostFrequentValue);
 
-           //display school average in the summary
+            //display school average in the summary
             for (let school in schoolAverages) {
                 summary.append(
                     `<p class="pl-10">${school}, student <span class="lowercase font-bold">average ${label} result is</span>: ${schoolAverages[school].mostFrequentValue === 0 ? 'No data yet': schoolAverages[school].mostFrequentValue === 'No' ? `Students no ${label} yet`: schoolAverages[school].mostFrequentValue}</p>`
@@ -278,13 +322,26 @@
                     datasets: [{
                         label: label,
                         data: counts, // Corresponding to y-axis
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)', // Border color of the line
+                        borderWidth: 2, // Width of the border
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Background color (fill)
+                        pointBorderColor: 'rgba(75, 192, 192, 1)', // Border color of the points
+                        pointBackgroundColor: '#fff' // Background
                     }]
                 },
                 options: {
                     scales: {
+                        x: {
+                            border: {
+                                color: '#000', // Border color of the x-axis
+                                width: 1 // Width of the border
+                            }
+                        },
                         y: {
+                            border: {
+                                color: '#000', // Border color of the y-axis
+                                width: 1 // Width of the border
+                            },
                             beginAtZero: true,
                             min: 0,
                             max: 50,
@@ -299,7 +356,8 @@
                                 label: function(context) {
                                     let school = context.label;
                                     let count = context.raw;
-                                    let mostFrequentValue = schoolAverages[school].mostFrequentValue === 0 ? 'No data yet': schoolAverages[school].mostFrequentValue;
+                                    let mostFrequentValue = schoolAverages[school].mostFrequentValue === 0 ?
+                                        'No data yet' : schoolAverages[school].mostFrequentValue;
                                     return `Value: ${mostFrequentValue}, Count: ${count}`;
                                 }
                             }
@@ -309,7 +367,11 @@
             });
         }
     </script>
-
+    <script>
+        document.getElementById('print').addEventListener('click', function() {
+            window.print();
+        });
+    </script>
 
 
 
