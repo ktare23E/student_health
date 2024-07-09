@@ -25,14 +25,16 @@
                     <input type="text" id="address" name="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ozamis City" required />
                 </div>
                 <div>
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email Address</label>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email Address</label>
                     <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="test@gmail.com" required />
                 </div>
-                <div>
-                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                <div class="relative">
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                     <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="*******" required />
+                    <span toggle="#password" class="material-icons absolute top-10 right-0 pr-3 flex items-center text-md leading-5 cursor-pointer" onclick="togglePassword()">visibility</span>
                 </div>
             </div>
+            
             <div class="grid grid-cols-3 gap-2">
                 <div>
                     <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>

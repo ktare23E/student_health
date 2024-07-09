@@ -24,7 +24,7 @@ class LoginController extends Controller
             } elseif ($nurse->type === 'district') {
                 return redirect()->route('district_nurse_dashboard');
             } elseif ($nurse->type === 'division') {
-                return redirect()->intended('/nurse/division/dashboard');
+                return redirect()->route('division_nurse_dashboard');
             }
         }
 

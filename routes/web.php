@@ -101,6 +101,23 @@ Route::middleware('auth:nurse')->group(function(){
         Route::get('/district_profile',[NurseDashboard::class,'profile'])->name('district_profile');
         Route::post('/district_change_password',[NurseDashboard::class,'changePassword'])->name('district_change_password');
     });
+
+    Route::middleware('nurse.type:division')->group(function(){
+        Route::get('/division_nurse_dashboard',[NurseDashboard::class,'index'])->name('division_nurse_dashboard');
+        // Route::get('/school_list',[NurseDashboard::class,'schoolList'])->name('school_list');
+        // Route::get('/view_school/{school}',[NurseDashboard::class,'studentList'])->name('view_school');
+        // Route::get('/district_view_student/{student}',[NurseDashboard::class,'viewStudent'])->name('district_view_student');
+        // Route::get('/district_view_checkup/{checkup}',[NurseDashboard::class,'viewCheckup'])->name('district_view_checkup');
+
+
+        
+        // Route::get('/district_report',[ReportController::class,'index'])->name('district_report');
+        // Route::post('/district_filter_report',[ReportController::class,'filterReport'])->name('district_filter_report');
+        // Route::get('/sample',[ReportController::class,'sample'])->name('sample');
+
+        // Route::get('/district_profile',[NurseDashboard::class,'profile'])->name('district_profile');
+        // Route::post('/district_change_password',[NurseDashboard::class,'changePassword'])->name('district_change_password');
+    });
 });
 
 
