@@ -67,7 +67,7 @@
                 <div class="flex flex-row h-42 mt-6 gap-4 ">
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
-                            <h1 class="font-bold text-xl">Active School:</h1>
+                            <h1 class="font-bold text-xl">Nurse:</h1>
                             <div class="pl-4 w-full">
                                 @forelse ($nurses as $nurse)
                                     <p class="text-center text-sm">{{$nurse->first_name.' '.$nurse->last_name.'-'. $nurse->type. ' Nurse'}}</p>

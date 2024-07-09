@@ -21,11 +21,78 @@ class NurseDashboard extends Controller
         $nurse = Auth::user();
 
         if ($nurse->type === 'school') {
-            return view('nurse.index');
+            $division = Division::with('districts')->get();
+            //retrieve 3 schools that are active
+            $school = School::where('id', $nurse->entity_id)->get();
+
+
+
+            //retrieve 3 nurses with different type
+            $nurses = Nurse::where('status', 'active')->orderBy('id', 'desc')->take(3)->get();
+            //retrieve the number of active students
+            $activeStudentNumber = Student::where('id',$nurse->entity_id)->where('status', 'active')->count();
+
+            //retrieve the count of inactive students
+            $inactiveStudentNumber = Student::where('id',$nurse->entity_id)->where('status', 'inactive')->count();
+
+            //number of checkup
+            $nurseCheckupCount = Checkup::where('nurse_id',$nurse->id)->count();
+            $latestCheckup = Checkup::with('student')->where('nurse_id',$nurse->id)->latest()->first();
+            
+            return view('nurse.index',[
+                'nurse' => $nurse,
+                'division' => $division,
+                'school' => $school,
+                'nurses' => $nurses,
+                'activeStudentNumber' => $activeStudentNumber,
+                'inactiveStudentNumber' => $inactiveStudentNumber,
+                'nurseCheckupCount' => $nurseCheckupCount,
+                'latestCheckup' => $latestCheckup
+            ]);
+
         } elseif ($nurse->type === 'district') {
-            return view('nurse.index');
+            $division = Division::with('districts')->get();
+            //retrieve 3 schools that are active
+            $schools = School::where('status', 'active')->orderBy('id', 'desc')->take(3)->get();
+
+            //retrieve 3 nurses with different type
+            $nurses = Nurse::where('status', 'active')->orderBy('id', 'desc')->take(3)->get();
+            //retrieve the number of active students
+            $activeStudentNumber = Student::where('status', 'active')->count();
+
+            //retrieve the count of inactive students
+            $inactiveStudentNumber = Student::where('status', 'inactive')->count();
+
+            return view('nurse.index',[
+                'nurse' => $nurse,
+                'division' => $division,
+                'schools' => $schools,
+                'nurses' => $nurses,
+                'activeStudentNumber' => $activeStudentNumber,
+                'inactiveStudentNumber' => $inactiveStudentNumber
+            ]);
+
         } elseif ($nurse->type === 'division') {
-            return view('nurse.index');
+            $division = Division::with('districts')->get();
+            //retrieve 3 schools that are active
+            $schools = School::where('status', 'active')->orderBy('id', 'desc')->take(3)->get();
+
+            //retrieve 3 nurses with different type
+            $nurses = Nurse::where('status', 'active')->orderBy('id', 'desc')->take(3)->get();
+            //retrieve the number of active students
+            $activeStudentNumber = Student::where('status', 'active')->count();
+
+            //retrieve the count of inactive students
+            $inactiveStudentNumber = Student::where('status', 'inactive')->count();
+
+            return view('nurse.index',[
+                'nurse' => $nurse,
+                'division' => $division,
+                'schools' => $schools,
+                'nurses' => $nurses,
+                'activeStudentNumber' => $activeStudentNumber,
+                'inactiveStudentNumber' => $inactiveStudentNumber
+            ]);
         }
     }
 
