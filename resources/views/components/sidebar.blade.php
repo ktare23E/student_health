@@ -32,13 +32,13 @@
                 <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
             </a>
         </div>
-        <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
+        <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4 h-24">
             {{-- <a href="{{route('district_profile')}}" class="inline-flex items-center text-gray-600 hover:text-black my-4 w-full rounded-md transition ease-in-out duration-150">
                 <span class="material-icons-outlined mr-2">face</span>
                 Profile
                 <span class="material-icons-outlined ml-auto">keyboard_arrow_right</span>
             </a> --}}
-            <button type="submit" form="logout" class="inline-flex items-center text-gray-600 hover:bg-gray-200 hover:text-black my-4 w-full py-4 rounded-md transition ease-in-out duration-150">
+            <button type="submit" form="logout" class="inline-flex items-center text-gray-600 hover:bg-gray-200 hover:text-black  w-full py-4 rounded-md transition ease-in-out duration-150">
                 <span class="material-icons-outlined mr-2">power_settings_new</span>
                 Log out
                 <span class="material-icons-outlined ml-auto">keyboard_arrow_right</span>

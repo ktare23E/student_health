@@ -35,7 +35,7 @@
                                 @endif
                             </div>
                         </div>
-                        <a href="" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
+                        <a href="{{route('admin.division')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
                     </div>
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
@@ -48,7 +48,7 @@
                                 @endforelse
                             </div>
                         </div>
-                        <a href="" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
+                        <a href="{{route('admin.district')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
                     </div>
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
@@ -61,7 +61,7 @@
                                 @endforelse
                             </div>
                         </div>
-                        <a href="" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
+                        <a href="{{route('admin.school')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
                     </div>
                 </div>
                 <div class="flex flex-row h-42 mt-6 gap-4 ">
@@ -76,7 +76,7 @@
                                 @endforelse
                             </div>
                         </div>
-                        <a href="" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
+                        <a href="{{route('admin_nurse')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
                     </div>
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
@@ -89,7 +89,7 @@
                                 @endif
                             </div>
                         </div>
-                        <a href="" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
+                        {{-- <a href="" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a> --}}
                     </div>
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
@@ -102,7 +102,7 @@
                                 @endif
                             </div>
                         </div>
-                        <a href="" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
+                        {{-- <a href="" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a> --}}
                     </div>
                 </div>
                 
