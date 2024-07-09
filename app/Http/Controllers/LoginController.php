@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Models\Nurse;
 use App\Models\SystemLog;
+use Carbon\Carbon;
+
 
 class LoginController extends Controller
 {
@@ -20,17 +22,26 @@ class LoginController extends Controller
 
         if (Auth::guard('nurse')->attempt($request->only('email', 'password'))) {
             $nurse = Auth::guard('nurse')->user();
+            $currentTime = Carbon::now('Asia/Manila');
 
 
             if ($nurse->type === 'school') {
                 SystemLog::create([
                     'nurse_id' => $nurse->id,
-                    'date' => now()
+                    'date' => $currentTime
                 ]);
                 return redirect()->route('nurse_dashboard');
             } elseif ($nurse->type === 'district') {
+                SystemLog::create([
+                    'nurse_id' => $nurse->id,
+                    'date' => $currentTime
+                ]);
                 return redirect()->route('district_nurse_dashboard');
             } elseif ($nurse->type === 'division') {
+                SystemLog::create([
+                    'nurse_id' => $nurse->id,
+                    'date' => $currentTime
+                ]);
                 return redirect()->route('division_nurse_dashboard');
             }
         }

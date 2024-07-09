@@ -48,4 +48,9 @@ class Nurse extends Authenticatable
     public function systemLogs(){
         return $this->hasMany(SystemLog::class);
     }
+
+    public function getAssignedEntityAttribute()
+    {
+        return $this->entity()->first();
+    }
 }

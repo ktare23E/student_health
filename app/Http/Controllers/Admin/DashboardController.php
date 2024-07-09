@@ -8,6 +8,8 @@ use App\Models\Division;
 use App\Models\School;
 use App\Models\Nurse;
 use App\Models\Student;
+use App\Models\SystemLog;
+
 class DashboardController extends Controller
 {
     //
@@ -42,6 +44,20 @@ class DashboardController extends Controller
             'nurses' => $nurses,
             'activeStudentNumber' => $activeStudentNumber,
             'inactiveStudentNumber' => $inactiveStudentNumber
+        ]);
+    }
+
+    public function systemLogs(){
+        $logs = SystemLog::with('nurse')->get();
+
+        // Include the assigned entity in the response
+        foreach ($logs as $log) {
+            $log->nurse->assigned_entity = $log->nurse->assigned_entity;
+        }
+
+    
+        return view('admin.system_logs',[
+            'logs' => $logs
         ]);
     }
 }

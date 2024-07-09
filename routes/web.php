@@ -30,6 +30,7 @@ Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
 
 Route::middleware(CheckUserType::class)->group(function(){
     Route::get('/admin_dashboard', [DashBoardController::class, 'index'])->name('admin.index');
+    Route::get('/system_logs', [DashBoardController::class, 'systemLogs'])->name('system_logs');
 
 
     Route::get('/division', [DivisionController::class,'index'])->name('admin.division');
