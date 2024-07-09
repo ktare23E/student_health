@@ -35,9 +35,16 @@
                                             <td>{{ $school->district->name }}</td>
                                             <td class="capitalize text-green-500 text-sm">{{ $school->status }}</td>
                                             <td>
-                                                <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
-                                                    <a href="{{route('view_school',$school->id)}}">view</a>   
-                                                </button>
+                                                @if (auth()->user()->type === 'district')
+                                                    <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
+                                                        <a href="{{route('view_school',$school->id)}}">view</a>   
+                                                    </button>
+                                                @else
+                                                    <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
+                                                        <a href="{{route('division_view_school',$school->id)}}">view</a>   
+                                                    </button>
+                                                @endif
+                                                
                                             </td>
                                         </tr>
                                     @endforeach

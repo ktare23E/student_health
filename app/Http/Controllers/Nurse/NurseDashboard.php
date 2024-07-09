@@ -64,6 +64,7 @@ class NurseDashboard extends Controller
         $studentCheckUps = Student::with('checkups.nurse')->where('id', $student->id)->get();
         $studentSchool = $student->school;
 
+
         return view('nurse.student.view_student', [
             'student' => $student,
             'studentCheckUps' => $studentCheckUps,
@@ -77,7 +78,6 @@ class NurseDashboard extends Controller
         $studentData = Student::with('school')->findOrFail($checkup->student_id);
         $schoolData = School::findOrFail($studentData->school_id);
         $nurseData = Nurse::findOrFail($checkup->nurse_id);
-
         return view('nurse.checkup.view_checkup', [
             'checkup' => $checkup,
             'student' => $studentData,

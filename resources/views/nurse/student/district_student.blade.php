@@ -10,25 +10,48 @@
                 <div>
 
                     <nav class="bg-white p-4 rounded-md shadow-md w-full font-bold">
-                        <ol class="list-reset flex text-gray-700">
-                            <li>
-                                <a href="{{ route('district_nurse_dashboard') }}"
-                                    class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
-                            </li>
-                            <li>
-                                <span class="px-1">></span>
-                            </li>
-                            <li>
-                                <a href="{{ route('school_list') }}"
-                                    class="text-blue-600 hover:text-blue-800 hover:underline">School</a>
-                            </li>
-                            <li>
-                                <span class="px-1">></span>
-                            </li>
-                            <li>
-                                <a href="#" class="text-blue-600 hover:text-blue-800 hover:underline">Student</a>
-                            </li>
-                        </ol>
+                        @if (auth()->user()->type === 'district')
+                            <ol class="list-reset flex text-gray-700">
+                                <li>
+                                    <a href="{{ route('district_nurse_dashboard') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="{{ route('school_list') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">School</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-blue-600 hover:text-blue-800 hover:underline">Student</a>
+                                </li>
+                            </ol>
+                        @else
+                            <ol class="list-reset flex text-gray-700">
+                                <li>
+                                    <a href="{{ route('division_nurse_dashboard') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="{{ route('division_school_list') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">School</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-blue-600 hover:text-blue-800 hover:underline">Student</a>
+                                </li>
+                            </ol>
+                        @endif
+                        
                     </nav>
 
                     <div class="p-[2rem] w-full">
@@ -56,9 +79,15 @@
                                             <td>{{ $student->school->name }}</td>
                                             <td class="text-green-500 capitalize">{{ $student->status }}</td>
                                             <td>
-                                                <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
-                                                    <a href="{{route('district_view_student',$student->id)}}">view</a>   
-                                                </button>
+                                                @if (auth()->user()->type === 'district')
+                                                    <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
+                                                        <a href="{{route('district_view_student',$student->id)}}">view</a>   
+                                                    </button>
+                                                @else
+                                                    <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
+                                                        <a href="{{route('division_view_student',$student->id)}}">view</a>   
+                                                    </button>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

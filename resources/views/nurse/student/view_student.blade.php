@@ -42,6 +42,25 @@
                                     <a href="{{ route('view_school', ['school' => $studentSchool->id]) }}"
                                         class="text-blue-600 hover:text-blue-800 hover:underline">Student List</a>
                                 </li>
+                            @else
+                                <li>
+                                    <a href="{{ route('division_nurse_dashboard') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Home</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>
+                                <li>
+                                    <a href="{{ route('division_school_list') }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">School</a>
+                                </li>
+                                <li>
+                                    <span class="px-1">></span>
+                                </li>   
+                                <li>
+                                    <a href="{{ route('division_view_school', ['school' => $studentSchool->id]) }}"
+                                        class="text-blue-600 hover:text-blue-800 hover:underline">Student List</a>
+                                </li>
                             @endif
                           
                             <li>
@@ -166,7 +185,9 @@
                                                 <a href="{{route('view_checkup',$checkup->id)}}">view</a>
                                             @elseif (auth()->user()->type == 'district')
                                                 <a href="{{route('district_view_checkup',$checkup->id)}}">view</a>
-                                                
+                                            @else 
+                                                <a href="{{route('division_view_checkup',$checkup->id)}}">view</a>
+
                                             @endif
                                             
                                         </button>
