@@ -155,27 +155,31 @@ class NurseDashboard extends Controller
 
     public function profile(){
         $nurse = Auth::user();
-        $entity_id = $nurse->entity_id;
+        // $entity_id = $nurse->entity_id;
 
-        if($nurse->type === 'school'){
-            $school = School::findOrFail($entity_id);
-            return view('nurse.profile', [
-                'nurse' => $nurse,
-                'school' => $school
-            ]);
-        }elseif($nurse->type === 'district'){
-            $district = District::findOrFail($entity_id);
-            return view('nurse.profile', [
-                'nurse' => $nurse,
-                'district' => $district
-            ]);
-        }else{
-            $division = Division::findOrFail($entity_id);
-            return view('nurse.profile', [
-                'nurse' => $nurse,
-                'division' => $division
-            ]);
-        }
+        // if($nurse->type === 'school'){
+        //     $school = School::findOrFail($entity_id);
+        //     return view('nurse.profile', [
+        //         'nurse' => $nurse,
+        //         'school' => $school
+        //     ]);
+        // }elseif($nurse->type === 'district'){
+        //     $district = District::findOrFail($entity_id);
+        //     return view('nurse.profile', [
+        //         'nurse' => $nurse,
+        //         'district' => $district
+        //     ]);
+        // }else{
+        //     $division = Division::findOrFail($entity_id);
+        //     return view('nurse.profile', [
+        //         'nurse' => $nurse,
+        //         'division' => $division
+        //     ]);
+        // }
+        
+        return view('nurse.profile', [
+            'nurse' => $nurse
+        ]);
         
     }
 

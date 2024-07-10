@@ -75,7 +75,7 @@
                                 <!-- Name -->
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Name:</p>
-                                    <p class="text-center">{{ $nurse->first_name . ' ' . $nurse->last_name }}</p>
+                                    <p class="text-center">{{ $nurse->full_name }}</p>
                                 </div>
 
                                 <!-- Address -->
@@ -103,25 +103,14 @@
                                 <!-- School -->
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Assigned to:</p>
-                                    @if (auth()->user()->type === 'district')
-                                        <p class="text-center">{{ $district->name }}</p>
-                                    @elseif (auth()->user()->type === 'school')
-                                        <p class="text-center">{{ $school->name }}</p>
-                                    @else
-                                        <p class="text-center">{{ $division->name }}</p>
-                                    @endif
+                                    <p class="text-center">{{ $nurse->entity->name }}</p>
+
                                 </div>
 
                                 <!-- School Address -->
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Entity Address:</p>
-                                    @if (auth()->user()->type === 'district')
-                                        <p class="text-center">{{ $district->address }}</p>
-                                    @elseif (auth()->user()->type === 'school')
-                                        <p class="text-center">{{ $school->address }}</p>
-                                    @else
-                                        <p class="text-center">{{ $division->address }}</p>
-                                    @endif
+                                    <p class="text-center">{{ $nurse->entity->address }}</p>
                                 </div>
                             </div>
                         </div>

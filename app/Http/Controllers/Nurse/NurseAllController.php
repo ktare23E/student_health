@@ -17,6 +17,7 @@ class NurseAllController extends Controller
     public function index(){
         // retrieve auth nurse
         $nurse = Auth::user();
+        
         if($nurse->type === 'school'){
             $students = Student::with('school')->where('school_id',$nurse->entity_id)->where('status','active')->get();
         }
