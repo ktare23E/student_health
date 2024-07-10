@@ -27,6 +27,7 @@
                                         <th>Gender</th>
                                         <th>Address</th>
                                         <th>Nurse Type</th>
+                                        <th>Assigned To</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -39,6 +40,7 @@
                                             <td class="data2">{{ $nurse->gender }}</td>
                                             <td class="data2">{{ $nurse->address }}</td>
                                             <td class="data2">{{ $nurse->type }}</td>
+                                            <td>{{$nurse->entity->name}}</td>
                                             <td class="capitalize text-green-500">{{ $nurse->status }}</td>
                                             <td>
                                                 <button
@@ -57,8 +59,8 @@
                                                 <button id="reset"
                                                     class="text-sm py-1 px-2 rounded-sm bg-red-600 text-white"
                                                     data-id="{{ $nurse->id }}">reset</button>
-                                                <button id="archive"
-                                                    class="bg-blue-500 text-sm text-white py-1 px-2 rounded-sm"
+                                                <button 
+                                                    class="archive bg-blue-500 text-sm text-white py-1 px-2 rounded-sm"
                                                     data-id="{{ $nurse->id }}">archive</button>
                                             </td>
                                         </tr>
@@ -186,7 +188,7 @@
             });
         });
 
-        $('#archive').click(function() {
+        $('.archive').click(function() {
             var id = $(this).data('id');
 
             Swal.fire({

@@ -20,10 +20,13 @@ class NurseController extends Controller
 
     public function index(){
            // Retrieve all nurses with their associated entities
-        $nurses = Nurse::all()->map(function ($nurse) {
-            $nurse->entity = $nurse->entity; // Ensure entity relationship is loaded
-            return $nurse;
-        })->where('status', 'active');
+        // $nurses = Nurse::all()->map(function ($nurse) {
+        //     $nurse->entity = $nurse->entity; // Ensure entity relationship is loaded
+        //     return $nurse;
+        // })->where('status', 'active');
+        // // return $nurses;
+
+        $nurses = Nurse::where('status', 'active')->get();
 
         return view('admin.nurse.index',[
             'nurses' => $nurses

@@ -50,12 +50,12 @@ class DashboardController extends Controller
 
     public function systemLogs(){
         $logs = SystemLog::with('nurse')->get();
-        $currentPhTime = Carbon::now('Asia/Manila')->format('F j, Y g:i A');
-        return $currentPhTime;
+        // $currentPhTime = Carbon::now('Asia/Manila')->format('F j, Y g:i A');
+        // return $currentPhTime;
         // Include the assigned entity in the response
-        foreach ($logs as $log) {
-            $log->nurse->assigned_entity = $log->nurse->assigned_entity;
-        }
+        // foreach ($logs as $log) {
+        //     $log->nurse->assigned_entity = $log->nurse->assigned_entity;
+        // }
 
     
         return view('admin.system_logs',[
