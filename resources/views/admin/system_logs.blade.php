@@ -27,7 +27,7 @@
                                 <tbody>
                                     @foreach ($logs as $log)
                                         <tr>
-                                            <td class="data1">{{ $log->nurse->first_name.' '.$log->nurse->last_name }}</td>
+                                            <td class="data1">{{ $log->nurse->full_name }}</td>
                                             <td>{{$log->nurse->type === 'school' ? 'School Nurse' : ($log->nurse->type === 'district' ? 'District Nurse':'Division Nurse')}}</td>
                                             <td>{{$log->nurse->assigned_entity->name}}</td>
                                             <td class="data2">{{ \Carbon\Carbon::parse($log->date)->format('F j, Y') }}</td>
