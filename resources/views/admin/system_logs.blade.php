@@ -30,7 +30,7 @@
                                             <td class="data1">{{ $log->nurse->full_name }}</td>
                                             <td>{{$log->nurse->type === 'school' ? 'School Nurse' : ($log->nurse->type === 'district' ? 'District Nurse':'Division Nurse')}}</td>
                                             <td>{{$log->nurse->assigned_entity->name}}</td>
-                                            <td class="data2">{{ \Carbon\Carbon::parse($log->date)->format('F j, Y') }}</td>
+                                            <td class="data2">{{$log->readable_date}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

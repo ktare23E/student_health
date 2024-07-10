@@ -9,6 +9,7 @@ use App\Models\School;
 use App\Models\Nurse;
 use App\Models\Student;
 use App\Models\SystemLog;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -49,7 +50,8 @@ class DashboardController extends Controller
 
     public function systemLogs(){
         $logs = SystemLog::with('nurse')->get();
-
+        $currentPhTime = Carbon::now('Asia/Manila')->format('F j, Y g:i A');
+        return $currentPhTime;
         // Include the assigned entity in the response
         foreach ($logs as $log) {
             $log->nurse->assigned_entity = $log->nurse->assigned_entity;
