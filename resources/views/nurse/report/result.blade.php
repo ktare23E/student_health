@@ -78,7 +78,9 @@
                                     {{-- <p class="summary text-wrap"></p> --}}
                                 </div>
                             </div>
-                            <canvas id="reportChart"></canvas>
+                            <div class="w-full">
+                                <canvas id="reportChart" class="w-full"></canvas>
+                            </div>
 
                         </div>
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto mt-12">
@@ -137,7 +139,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#myTable2').DataTable();
+            $('#myTable2').DataTable({
+                // scrollX: true
+            });
         });
     </script>
        <script>
@@ -345,6 +349,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -388,6 +393,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -436,6 +442,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -477,6 +484,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -537,6 +545,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -580,6 +589,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -634,6 +644,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -678,6 +689,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -722,6 +734,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -773,6 +786,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -818,6 +832,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -863,6 +878,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -910,6 +926,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }
@@ -950,6 +967,7 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: yAxisConfig // Apply the dynamic y-axis configuration
                     }

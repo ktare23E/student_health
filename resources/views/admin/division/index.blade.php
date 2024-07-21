@@ -53,6 +53,8 @@
         @include('components.modal.modal_test')
 
     </div>
+    <script src="{{ mix('js/app.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             $('#myTable2').DataTable();
@@ -138,5 +140,4 @@
             });
         });
     </script>
-    <script src="{{ mix('js/app.js') }}"></script>
 </x-layout>

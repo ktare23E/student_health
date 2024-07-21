@@ -24,8 +24,8 @@
                                     <tr>
                                         <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th>Gender</th>
-                                        <th>Address</th>
+                                        {{-- <th>Gender</th> --}}
+                                        {{-- <th>Address</th> --}}
                                         <th>Nurse Type</th>
                                         <th>Assigned To</th>
                                         <th>Status</th>
@@ -37,8 +37,8 @@
                                         <tr>
                                             <td class="data1">{{ $nurse->first_name }}</td>
                                             <td class="data2">{{ $nurse->last_name }}</td>
-                                            <td class="data2">{{ $nurse->gender }}</td>
-                                            <td class="data2">{{ $nurse->address }}</td>
+                                            {{-- <td class="data2">{{ $nurse->gender }}</td> --}}
+                                            {{-- <td class="data2">{{ $nurse->address }}</td> --}}
                                             <td class="data2">{{ $nurse->type }}</td>
                                             <td>{{$nurse->entity->name}}</td>
                                             <td class="capitalize text-green-500">{{ $nurse->status }}</td>
