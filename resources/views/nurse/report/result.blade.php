@@ -215,7 +215,10 @@
         let distendedCount = 0;
         let tendernessCount = 0;
         let dysmenorrheaCount = 0;
-
+        let normal_height = 0;
+        let stunted = 0;
+        let severely_stunted = 0;
+        let tall = 0;
 
         // Count Yes and No values
         values.forEach(value => {
@@ -299,6 +302,14 @@
                 tendernessCount++;
             } else if (value === 'Dysmenorrhea') {
                 dysmenorrheaCount++;
+            }else if (value === 'Normal Height'){
+                normal_height++;
+            }else if (value === 'Stunted'){
+                stunted++;
+            }else if (value === 'Severly Stunted'){
+                severely_stunted++;
+            }else if (value === 'Tall'){
+                tall++;
             }
         });
 
@@ -448,7 +459,52 @@
                     }
                 }
             });
-        } else if (category[0] === 'vision_screening' || category[0] === 'auditory_screening') {
+        } else if (category[0] === 'bmi_height') {
+            label = "BMI Height";
+            let summary = document.querySelector('.summary');
+            summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal Height</span>: ${normal_height}</p>
+                            <p>Total student that has <span class="font-bold">Stunted</span>: ${stunted}</p>
+                            <p>Total student that has <span class="font-bold">Severely Stunted Underweight</span>: ${severely_stunted}</p>
+                            <p>Total student that has <span class="font-bold">Tall</span>: ${tall}</p>`;
+            yAxisConfig = {
+                beginAtZero: true,
+                min: 0,
+                max: Math.max(normal_height, stunted, severely_stunted, tall), // Ensure the y-axis max accommodates the counts
+                ticks: {
+                    stepSize: 1
+                }
+            };
+
+            // Prepare the data for the bar chart
+            chartValues = [normal_height, stunted, severely_stunted, tall];
+            const reportChart = new Chart(ctx, {
+                type: 'bar', // Bar chart for deworming or iron supplementation
+                data: {
+                    labels: ['Normal Height', 'Stunted', 'Severely Stunted', 'Tall'],
+                    datasets: [{
+                        label: label,
+                        data: chartValues, // Use the counts of Yes and No
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: yAxisConfig // Apply the dynamic y-axis configuration
+                    }
+                }
+            });
+        }else if (category[0] === 'vision_screening' || category[0] === 'auditory_screening') {
             label = category[0] === 'vision_screening' ? 'Vision Screening' : 'Auditory Screening';
             let summary = document.querySelector('.summary');
             summary.innerHTML =
