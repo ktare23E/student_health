@@ -29,6 +29,7 @@ class SchoolController extends Controller
             'district_id' => 'required',
             'address' => 'required',
             'status' => 'required',
+            'principal' => 'required'
         ]);
 
         School::create($validatedData);
@@ -42,6 +43,7 @@ class SchoolController extends Controller
             'name' => 'required',
             'district_id' => 'required',
             'address' => 'required',
+            'principal' => 'required',
             'status' => 'required',
         ]);
 

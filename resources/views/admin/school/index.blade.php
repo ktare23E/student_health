@@ -26,8 +26,10 @@
                                     <tr>
                                         <th>School Name</th>
                                         <th>Address</th>
-                                        <th>District</th>
-                                        <th>Status</th>
+                                        <th>School Principal</th>
+                                        <th>Nurse Assigned</th>
+                                        {{-- <th>District</th>
+                                        <th>Status</th> --}}
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -36,8 +38,10 @@
                                         <tr>
                                             <td class="data1">{{ $school->name }}</td>
                                             <td class="data2">{{ $school->address }}</td>
-                                            <td class="data2">{{ $school->district->name }}</td>
-                                            <td class="">{{ $school->status }}</td>
+                                            <td class="data2">{{ $school->principal }}</td>
+                                            <td class="data2">{{ $school->address }}</td>
+                                            {{-- <td class="data2">{{ $school->district->name }}</td>
+                                            <td class="">{{ $school->status }}</td> --}}
                                             <td>
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
@@ -45,7 +49,9 @@
                                                     data-name="{{ $school->name }}"
                                                     data-address="{{ $school->address }}"
                                                     data-status="{{ $school->status }}"
-                                                    data-district="{{$school->district->id}}">
+                                                    data-principal="{{ $school->principal }}"
+                                                    data-district="{{$school->district->id}}"
+                                                    >
                                                     edit
                                                 </button>
                                             </td>
@@ -71,6 +77,7 @@
             var address = $('#address').val();
             var district_id = $('#district_id').val();
             var status = $('#status').val();
+            let principal = $('#principal').val();
             
             $.ajax({
                 url: "{{ route('store_school') }}",
@@ -80,6 +87,7 @@
                     address: address,
                     district_id: district_id,
                     status: status,
+                    principal: principal,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
@@ -103,11 +111,13 @@
                     const button = event.currentTarget;
                     const modalId = button.getAttribute('data-modal');
                     const modal = document.getElementById(modalId);
+
                     const id = button.getAttribute('data-id');
                     const name = button.getAttribute('data-name');
                     const address = button.getAttribute('data-address');
                     const status = button.getAttribute('data-status');
                     const district_id = button.getAttribute('data-district');
+                    const principal = button.getAttribute('data-principal');
 
                     // Open the modal
                     modal.classList.remove('hidden');
@@ -122,6 +132,7 @@
                     $('#edit_status').val(status);
                     $('#edit_district_id').val(district_id);
                     $('#edit_school_id').val(id);
+                    $('#edit_principal').val(principal);
                     
                 });
             });
@@ -132,6 +143,7 @@
             let address = $('#edit_address').val();
             let status = $('#edit_status').val();
             let district_id = $('#edit_district_id').val();
+            let principal = $('#edit_principal').val();
             let id = $('#edit_school_id').val();
     
             $.ajax({
@@ -141,6 +153,7 @@
                     name: name,
                     address: address,
                     status: status,
+                    principal: principal,
                     district_id: district_id,
                     id: id,
                     _token: "{{ csrf_token() }}"
