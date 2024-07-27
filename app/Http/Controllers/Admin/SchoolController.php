@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\School;
 use App\Models\District;
+use App\Models\Nurse;
 
 class SchoolController extends Controller
 {
@@ -13,6 +14,13 @@ class SchoolController extends Controller
 
     public function index(){
         $schools = School::with('district')->get();
+        // $schools = School::with(['nurses' => function($query) {
+        //     $query->where('type', Nurse::TYPE_SCHOOL);
+        // }])->get();
+
+        // $schools = School::with('nurses')->get();
+        // return $schools;
+        // // return $schools;
         $districts = District::all();
 
         return view('admin.school.index',[

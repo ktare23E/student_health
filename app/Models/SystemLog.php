@@ -17,7 +17,7 @@ class SystemLog extends Model
 
     public function getReadableDateAttribute()
     {
-        return Carbon::parse($this->date)->format('F j, Y');
-        // return Carbon::parse($this->date)->format('F j, Y g:i A'); //this is for the datetime format 1:00 PM
+        // return Carbon::parse($this->date)->format('F j, Y');
+        return Carbon::parse($this->date)->format('F j, Y g:i A'); //this is for the datetime format 1:00 PM
     }
 }
