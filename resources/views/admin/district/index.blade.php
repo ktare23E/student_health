@@ -86,7 +86,12 @@
                         Swal.fire({
                             title: "Success!",
                             text: "Sucessfully Created District",
-                            icon: "success"
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
                         }).then(function(){
                             location.reload();
                         });
@@ -149,7 +154,12 @@
                         Swal.fire({
                             title: "Success!",
                             text: "Sucessfully Updated District",
-                            icon: "success"
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
                         }).then(function(){
                             location.reload();
                         });

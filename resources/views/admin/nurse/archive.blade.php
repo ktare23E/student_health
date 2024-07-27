@@ -60,53 +60,58 @@
         });
         
         $('#restore').click(function(){
-                var id = $(this).data('id');
-                
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, restore it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: `{{ route('active_nurse_status', '') }}/${id}`,
-                            type: "POST",
-                            data: {
-                                _token: "{{ csrf_token() }}"
-                            },
-                            success: function(response) {
-                                console.log(response);
-                                if (response.message == 'success') {
-                                    Swal.fire(
-                                        'Restored!',
-                                        'The nurse has been restore.',
-                                        'success'
-                                    ).then(() => {
-                                        location.reload();
-                                    });
-                                } else {
-                                    Swal.fire(
-                                        'Error!',
-                                        'There was an issue restoring the nurse.',
-                                        'error'
-                                    );
-                                }
-                            },
-                            error: function(xhr) {
+            var id = $(this).data('id');
+            
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, restore it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `{{ route('active_nurse_status', '') }}/${id}`,
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            if (response.message == 'success') {
+                                Swal.fire({
+                                    title: 'Restored!',
+                                    text: 'The nurse has been restored.',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK',
+                                    buttonsStyling: false,
+                                    customClass: {
+                                        confirmButton: 'custom-success-button'
+                                    }
+                                }).then(() => {
+                                    location.reload();
+                                });
+                            } else {
                                 Swal.fire(
                                     'Error!',
                                     'There was an issue restoring the nurse.',
                                     'error'
                                 );
                             }
-                        });
-                    }
-                });
+                        },
+                        error: function(xhr) {
+                            Swal.fire(
+                                'Error!',
+                                'There was an issue restoring the nurse.',
+                                'error'
+                            );
+                        }
+                    });
+                }
             });
+        });
     </script>
     <script src="{{ mix('js/app.js') }}"></script>
 </x-layout>

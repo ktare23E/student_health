@@ -77,7 +77,12 @@
                         Swal.fire({
                             title: "Success!",
                             text: "Sucessfully Created Division",
-                            icon: "success"
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
                         }).then(function() {
                             location.reload();
                         });
@@ -131,7 +136,12 @@
                         Swal.fire({
                             title: "Success!",
                             text: "Sucessfully Updated Division",
-                            icon: "success"
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
                         }).then(function(){
                             location.reload();
                         });

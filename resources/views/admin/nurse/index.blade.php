@@ -153,10 +153,6 @@
             var entity_id = $('#entity_id').val();
             var status = $('#status').val();
 
-            console.log(first_name, middle_name, last_name);
-            console.log(address, gender, email);
-            console.log(password, type, entity_id, status);
-
             $.ajax({
                 url: "{{ route('store_nurse') }}",
                 type: "POST",
@@ -174,12 +170,17 @@
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     if (response.message == 'success') {
                         Swal.fire({
                             title: "Success!",
                             text: "Sucessfully Created Nurse",
-                            icon: "success"
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
                         }).then(function() {
                             location.reload();
                         });
@@ -210,11 +211,16 @@
                         success: function(response) {
                             console.log(response);
                             if (response.message == 'success') {
-                                Swal.fire(
-                                    'Archived!',
-                                    'The nurse has been archived.',
-                                    'success'
-                                ).then(() => {
+                                Swal.fire({
+                                    title: 'Archived!',
+                                    text: 'The nurse has been archived.',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK',
+                                    buttonsStyling: false,
+                                    customClass: {
+                                        confirmButton: 'custom-success-button'
+                                    }
+                                }).then(() => {
                                     location.reload();
                                 });
                             } else {
@@ -259,11 +265,16 @@
                         success: function(response) {
                             console.log(response);
                             if (response.message == 'success') {
-                                Swal.fire(
-                                    'Reset!',
-                                    'The nurse password has been reset.',
-                                    'success'
-                                ).then(() => {
+                                Swal.fire({
+                                    title: 'Password Reset!',
+                                    text: 'The nurse password has been reset.',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK',
+                                    buttonsStyling: false,
+                                    customClass: {
+                                        confirmButton: 'custom-success-button'
+                                    }
+                                }).then(() => {
                                     location.reload();
                                 });
                             } else {
@@ -394,8 +405,18 @@
                 },
                 success: function(response) {
                     if (response.message == 'success') {
-                        alert('Nurse updated successfully');
-                        location.reload();
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Sucessfully Updated Nurse",
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
+                        }).then(function() {
+                            location.reload();
+                        });
                     }
                 }
             });

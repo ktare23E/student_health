@@ -100,7 +100,12 @@
                         Swal.fire({
                             title: "Success!",
                             text: "Sucessfully Created School",
-                            icon: "success"
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
                         }).then(function(){
                             location.reload();
                         });
@@ -167,7 +172,12 @@
                         Swal.fire({
                             title: "Success!",
                             text: "Sucessfully Updated School",
-                            icon: "success"
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
                         }).then(function(){
                             location.reload();
                         });
