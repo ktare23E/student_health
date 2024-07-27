@@ -114,15 +114,18 @@
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
-                    if (response.message == 'success') {
-                        Swal.fire({
+                    Swal.fire({
                             title: "Success!",
-                            text: "Sucessfully Created Student",
-                            icon: "success"
-                        }).then(function(){
+                            text: "Sucessfully Updated Nurse",
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
+                        }).then(function() {
                             location.reload();
                         });
-                    }
                 }
             });
         });
@@ -187,9 +190,14 @@
                     if (response.message == 'success') {
                         Swal.fire({
                             title: "Success!",
-                            text: "Sucessfully Updated Student",
-                            icon: "success"
-                        }).then(function(){
+                            text: "Sucessfully Updated Nurse",
+                            icon: "success",
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-confirm-button'
+                            }
+                        }).then(function() {
                             location.reload();
                         });
                     }
@@ -217,13 +225,17 @@
                                 _token: "{{ csrf_token() }}"
                             },
                             success: function(response) {
-                                console.log(response);
                                 if (response.message == 'success') {
-                                    Swal.fire(
-                                        'Archived!',
-                                        'The student has been archived.',
-                                        'success'
-                                    ).then(() => {
+                                    Swal.fire({
+                                    title: 'Archived!',
+                                    text: 'The student has been archived.',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK',
+                                    buttonsStyling: false,
+                                    customClass: {
+                                        confirmButton: 'custom-success-button'
+                                    }
+                                    }).then(() => {
                                         location.reload();
                                     });
                                 } else {

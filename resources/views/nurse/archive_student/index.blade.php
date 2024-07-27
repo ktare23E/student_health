@@ -83,11 +83,16 @@
                             success: function(response) {
                                 console.log(response);
                                 if (response.message == 'success') {
-                                    Swal.fire(
-                                        'Restored!',
-                                        'The student has been restored.',
-                                        'success'
-                                    ).then(() => {
+                                    Swal.fire({
+                                    title: 'Restored!',
+                                    text: 'The student has been restored.',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK',
+                                    buttonsStyling: false,
+                                    customClass: {
+                                        confirmButton: 'custom-success-button'
+                                    }
+                                    }).then(() => {
                                         location.reload();
                                     });
                                 } else {
