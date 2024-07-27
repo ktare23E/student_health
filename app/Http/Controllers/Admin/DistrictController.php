@@ -25,6 +25,7 @@ class DistrictController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'division_id' => 'required',
+            'district_head' => 'required',
             'address' => 'required',
         ]);
 
@@ -37,6 +38,7 @@ class DistrictController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'division_id' => 'required',
+            'district_head' => 'required',
             'address' => 'required',
             'id' => 'required',
         ]);
