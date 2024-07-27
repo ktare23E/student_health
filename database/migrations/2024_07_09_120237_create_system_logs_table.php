@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('system_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Nurse::class)->constrained()->onDelete('cascade');
-            $table->date('date');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }
