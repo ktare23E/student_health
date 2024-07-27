@@ -13,14 +13,7 @@ class SchoolController extends Controller
     //
 
     public function index(){
-        $schools = School::with('district')->get();
-        // $schools = School::with(['nurses' => function($query) {
-        //     $query->where('type', Nurse::TYPE_SCHOOL);
-        // }])->get();
-
-        // $schools = School::with('nurses')->get();
-        // return $schools;
-        // // return $schools;
+        $schools = School::with('nurses')->get();
         $districts = District::all();
 
         return view('admin.school.index',[

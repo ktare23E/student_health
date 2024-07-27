@@ -39,7 +39,11 @@
                                             <td class="data1">{{ $school->name }}</td>
                                             <td class="data2">{{ $school->address }}</td>
                                             <td class="data2">{{ $school->principal }}</td>
-                                            <td class="data2">{{ $school->address }}</td>
+                                            @if ($school->nurses->count() > 0)
+                                                <td class="data2">{{ $school->nurses->first()->first_name.' '.$school->nurses->first()->last_name }}</td>
+                                            @else
+                                                <td class="data2">No Nurse Assigned Yet</td>
+                                            @endif
                                             {{-- <td class="data2">{{ $school->district->name }}</td>
                                             <td class="">{{ $school->status }}</td> --}}
                                             <td>

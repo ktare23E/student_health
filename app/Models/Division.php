@@ -18,6 +18,6 @@ class Division extends Model
 
     public function nurses()
     {
-        return $this->hasMany(Nurse::class)->where('type',Nurse::TYPE_DIVISION);
+        return $this->hasMany(Nurse::class,'entity_id')->where('type',Nurse::TYPE_DIVISION);
     }
 }
