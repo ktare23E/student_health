@@ -11,8 +11,8 @@ class DivisionController extends Controller
     //
 
     public function index(){
-        $divisions = Division::all();
-
+        $divisions = Division::with('nurses')->get();
+  
         return view('admin.division.index',[
             'divisions' => $divisions,
         ]);

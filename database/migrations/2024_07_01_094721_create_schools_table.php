@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(District::class)->constrained()->onDelete('cascade');
             $table->string('name')->unique();
             $table->string('principal');
+            $table->string('school_type');
             $table->string('address');
             $table->string('status');
             $table->timestamps();

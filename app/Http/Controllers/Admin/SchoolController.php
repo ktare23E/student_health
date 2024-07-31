@@ -52,4 +52,8 @@ class SchoolController extends Controller
 
         return response()->json(['message' => 'success']);
     }
+
+    public function viewSchool(District $district){
+        return $district;
+    }
 }
