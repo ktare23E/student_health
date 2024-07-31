@@ -18,7 +18,7 @@ class DashboardController extends Controller
     public function index(){
         $user = auth()->user();
   
-        $divisions = Division::with('districts')->get();
+        $divisions = Division::with('districts.schools')->get();
         $divisions = $divisions->isEmpty() ? [] : $divisions;
         
         // return $divisions;
