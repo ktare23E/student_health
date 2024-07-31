@@ -18,11 +18,11 @@ class DashboardController extends Controller
     public function index(){
         $user = auth()->user();
   
-        $division = Division::with('districts')->get();
-        $division = $division->isEmpty() ? [] : $division;
+        $divisions = Division::with('districts')->get();
+        $divisions = $divisions->isEmpty() ? [] : $divisions;
         
-        // return $division;
-
+        // return $divisions;
+        // return $division[0]->districts->count();
      
         //retrieve 3 schools that are active
         $schools = School::where('status', 'active')->orderBy('id', 'desc')->take(3)->get();
@@ -40,7 +40,7 @@ class DashboardController extends Controller
         }
         return view('admin.index',[
             'user' => $user,
-            'division' => $division,
+            'divisions' => $divisions,
             'schools' => $schools,
             'nurses' => $nurses,
             'activeStudentNumber' => $activeStudentNumber,

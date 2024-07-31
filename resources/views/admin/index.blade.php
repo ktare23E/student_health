@@ -28,29 +28,34 @@
                         <div class="px-4 py-3  max-h-24">
                             <h1 class="font-bold text-2xl">Active Division:</h1>
                             <div class="pl-4 w-full">
-                                @if ($division)
-                                    @forelse ($division as $division)
-                                    <p class="text-center text-xl mt-4">{{$division->name}}</p>
-                                    @empty
-                                        <p class="text-center text-xl mt-4">No Division Yet</p>
-                                    @endforelse
+                                @foreach ($divisions->take(2) as $division )
+                                <p class="text-center text-md">{{$division->name}}</p>
+                                @endforeach
+                                {{-- @if ($divisions)
+                                    @if($divisions->count() > 0)
+                                        @forelse ($divisions as $division)
+                                            <p class="text-center text-xl mt-4">{{$division->name}}</p>
+                                        @empty
+                                            <p class="text-center text-xl mt-4">No Division Yet</p>
+                                        @endforelse
+                                    @endif
                                 @else
                                 <p class="text-center text-xl mt-4">No Division Yet</p>
 
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                         <a href="{{route('admin.division')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
                     </div>
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
-                            <h1 class="font-bold text-2xl">Active District:</h1>
+                            <h1 class="font-bold text-2xl">District:</h1>
                             <div class="pl-4 w-full">
-                                @if (!$division)
+                                @if (!$divisions)
                                     <p class="text-center text-xl mt-4">No District Yet</p>
                                 @else
-                                    @foreach ($division->districts as $district)
-                                        <p class=" text-center text-xl mt-4">{{$district->name}}</p>
+                                    @foreach ($divisions->take(2) as $division)
+                                        <p class=" text-center text-md">{{$division->name.': '. $division->districts->count()}} Disctrict Under</p>
 
                                     @endforeach
                                 @endif
@@ -60,7 +65,7 @@
                     </div>
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
-                            <h1 class="font-bold text-xl">Active School:</h1>
+                            <h1 class="font-bold text-xl">School:</h1>
                             <div class="pl-4 w-full">
                                 @forelse ($schools as $school)
                                     <p class="text-center text-sm">{{$school->name}}</p>
@@ -78,7 +83,7 @@
                             <h1 class="font-bold text-xl">Nurse:</h1>
                             <div class="pl-4 w-full">
                                 @forelse ($nurses as $nurse)
-                                    <p class="text-center text-sm">{{$nurse->first_name.' '.$nurse->last_name.'-'. $nurse->type. ' Nurse'}}</p>
+                                    <p class="text-center text-sm">{{$nurse->first_name.' '.$nurse->last_name.'-'}} <span class="capitalize">{{$nurse->type}}</span> Nurse</p>
                                 @empty
                                     <p class="text-center text-xl mt-4">No Nurse Yet</p>
                                 @endforelse
