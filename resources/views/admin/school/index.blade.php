@@ -55,6 +55,7 @@
                                                     data-name="{{ $school->name }}"
                                                     data-address="{{ $school->address }}"
                                                     data-status="{{ $school->status }}"
+                                                    data-school-type="{{ $school->school_type }}"
                                                     data-principal="{{ $school->principal }}"
                                                     data-district="{{$school->district->id}}"
                                                     >
@@ -85,7 +86,7 @@
             // var status = $('#status').val();
             let principal = $('#principal').val();
             let school_type = $('#school_type').val();
-            
+
             $.ajax({
                 url: "{{ route('store_school') }}",
                 type: "POST",
@@ -130,6 +131,7 @@
                     const status = button.getAttribute('data-status');
                     const district_id = button.getAttribute('data-district');
                     const principal = button.getAttribute('data-principal');
+                    const school_type = button.getAttribute('data-school-type');
 
                     // Open the modal
                     modal.classList.remove('hidden');
@@ -145,7 +147,7 @@
                     $('#edit_district_id').val(district_id);
                     $('#edit_school_id').val(id);
                     $('#edit_principal').val(principal);
-                    
+                    $('#edit_school_type').val(school_type);
                 });
             });
         });
@@ -157,7 +159,8 @@
             let district_id = $('#edit_district_id').val();
             let principal = $('#edit_principal').val();
             let id = $('#edit_school_id').val();
-    
+            let school_type = $('#edit_school_type').val(school_type);
+
             $.ajax({
                 url: "{{ route('update_school') }}",
                 type: "PATCH",
@@ -165,6 +168,7 @@
                     name: name,
                     address: address,
                     status: status,
+                    school_type: school_type,
                     principal: principal,
                     district_id: district_id,
                     id: id,

@@ -32,7 +32,7 @@ class SchoolController extends Controller
             'principal' => 'required',
             'school_type' => 'required',
         ]);
-
+        
         //input static active status in validated data
         $validatedData['status'] = 'active';
 
@@ -48,6 +48,7 @@ class SchoolController extends Controller
             'district_id' => 'required',
             'address' => 'required',
             'principal' => 'required',
+            'school_type' => 'required',
             'status' => 'required',
         ]);
 
