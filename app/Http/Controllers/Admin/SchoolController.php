@@ -66,4 +66,14 @@ class SchoolController extends Controller
             'district' => $district,
         ]);
     }
+
+    public function viewSchool2(District $district){
+        $schools = School::with('nurses')->where('district_id', $district->id)->get();
+        
+
+        return view('admin.school.view_school2',[
+            'schools' => $schools,
+            'district' => $district,
+        ]);
+    }
 }

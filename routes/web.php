@@ -44,6 +44,7 @@ Route::middleware(CheckUserType::class)->group(function(){
 
     Route::get('/school', [SchoolController::class,'index'])->name('admin.school');
     Route::get('/district_view_school_list/{district}', [SchoolController::class,'viewSchool'])->name('district_view_school_list');
+    Route::get('/district_view_school_list2/{district}', [SchoolController::class,'viewSchool2'])->name('district_view_school_list2');
     Route::post('/store_school', [SchoolController::class,'store'])->name('store_school');
     Route::patch('/update_school', [SchoolController::class,'update'])->name('update_school');
 
