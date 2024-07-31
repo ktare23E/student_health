@@ -37,6 +37,9 @@
                                             <td class="data2">{{ $district->district_head }}</td>
                                             <td class="data2">{{ $district->division->name }}</td>
                                             <td>
+                                                <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
+                                                    <a href="{{route('district_view_school_list',$district->id)}}">view school</a>   
+                                                </button>
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
                                                     data-modal="edit_modal" data-id="{{ $district->id }}"

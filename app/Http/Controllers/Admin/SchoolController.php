@@ -29,9 +29,12 @@ class SchoolController extends Controller
             'name' => 'required',
             'district_id' => 'required',
             'address' => 'required',
-            'status' => 'required',
-            'principal' => 'required'
+            'principal' => 'required',
+            'school_type' => 'required',
         ]);
+
+        //input static active status in validated data
+        $validatedData['status'] = 'active';
 
         School::create($validatedData);
 
