@@ -7,11 +7,11 @@
         <div class="h-screen bg-gradient-to-br from-blue-600 to-cyan-300 flex justify-center items-center w-full">
             <x-forms.form method='POST' action="{{ route('login.store') }}">
                 <div class="bg-white px-10 py-8 rounded-xl w-screen shadow-xl max-w-sm">
-                    <div class="space-y-4">
+                    <div class="">
                         <div>
                             <img src="{{ asset('imgs/deped_logo.png') }}" alt="logo" class="w-20 h-20 mx-auto">
                         </div>
-                        <h1 class="text-center text-md font-semibold text-gray-600">Student Health Information Management System</h1>
+                        <h1 class="text-center text-md font-semibold text-gray-600 mb-5">Student Health Information Management System</h1>
                         <hr>
                         <div class="flex items-center border-2 py-2 px-3 rounded-md mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
