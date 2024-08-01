@@ -14,7 +14,8 @@ class School extends Model
         'address',
         'district_id',
         'status',
-        'principal'
+        'principal',
+        'school_type'
     ];
 
     public function district()

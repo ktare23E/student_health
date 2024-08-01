@@ -48,4 +48,12 @@ class DistrictController extends Controller
 
         return response()->json(['message' => 'success']);
     }
+
+    public function viewDistrict(Division $division){
+        $districts = District::with('nurses')->where('division_id', $division->id)->get();
+        return view('admin.district.view_district',[
+            'districts' => $districts,
+            'division' => $division,
+        ]);
+    }
 }

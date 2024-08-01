@@ -29,9 +29,12 @@ class SchoolController extends Controller
             'name' => 'required',
             'district_id' => 'required',
             'address' => 'required',
-            'status' => 'required',
-            'principal' => 'required'
+            'principal' => 'required',
+            'school_type' => 'required',
         ]);
+        
+        //input static active status in validated data
+        $validatedData['status'] = 'active';
 
         School::create($validatedData);
 
@@ -45,11 +48,32 @@ class SchoolController extends Controller
             'district_id' => 'required',
             'address' => 'required',
             'principal' => 'required',
+            'school_type' => 'required',
             'status' => 'required',
         ]);
 
         School::find($request->id)->update($validatedData);
 
         return response()->json(['message' => 'success']);
+    }
+
+    public function viewSchool(District $district){
+        $schools = School::with('nurses')->where('district_id', $district->id)->get();
+        
+
+        return view('admin.school.view_school',[
+            'schools' => $schools,
+            'district' => $district,
+        ]);
+    }
+
+    public function viewSchool2(District $district){
+        $schools = School::with('nurses')->where('district_id', $district->id)->get();
+        
+
+        return view('admin.school.view_school2',[
+            'schools' => $schools,
+            'district' => $district,
+        ]);
     }
 }

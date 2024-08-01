@@ -25,11 +25,12 @@
                                 <thead>
                                     <tr>
                                         <th>School Name</th>
-                                        <th>Address</th>
+                                        {{-- <th>Address</th> --}}
                                         <th>School Principal</th>
                                         <th>Nurse Assigned</th>
-                                        {{-- <th>District</th>
-                                        <th>Status</th> --}}
+                                        <th>District</th>
+                                        <th>School Type</th>
+                                        {{-- <th>Status</th> --}}
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -37,15 +38,16 @@
                                     @foreach ($schools as $school)
                                         <tr>
                                             <td class="data1">{{ $school->name }}</td>
-                                            <td class="data2">{{ $school->address }}</td>
+                                            {{-- <td class="data2">{{ $school->address }}</td> --}}
                                             <td class="data2">{{ $school->principal }}</td>
                                             @if ($school->nurses->count() > 0)
                                                 <td class="data2">{{ $school->nurses->first()->first_name.' '.$school->nurses->first()->last_name }}</td>
                                             @else
                                                 <td class="data2">No Nurse Assigned Yet</td>
                                             @endif
-                                            {{-- <td class="data2">{{ $school->district->name }}</td>
-                                            <td class="">{{ $school->status }}</td> --}}
+                                            <td class="data2">{{ $school->district->name }}</td>
+                                            <td class="data2">{{ $school->school_type }}</td>
+                                            {{--<td class="">{{ $school->status }}</td> --}}
                                             <td>
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
@@ -53,6 +55,7 @@
                                                     data-name="{{ $school->name }}"
                                                     data-address="{{ $school->address }}"
                                                     data-status="{{ $school->status }}"
+                                                    data-school-type="{{ $school->school_type }}"
                                                     data-principal="{{ $school->principal }}"
                                                     data-district="{{$school->district->id}}"
                                                     >
@@ -80,9 +83,10 @@
             var name = $('#name').val();
             var address = $('#address').val();
             var district_id = $('#district_id').val();
-            var status = $('#status').val();
+            // var status = $('#status').val();
             let principal = $('#principal').val();
-            
+            let school_type = $('#school_type').val();
+
             $.ajax({
                 url: "{{ route('store_school') }}",
                 type: "POST",
@@ -90,8 +94,8 @@
                     name: name,
                     address: address,
                     district_id: district_id,
-                    status: status,
                     principal: principal,
+                    school_type: school_type,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
@@ -127,6 +131,7 @@
                     const status = button.getAttribute('data-status');
                     const district_id = button.getAttribute('data-district');
                     const principal = button.getAttribute('data-principal');
+                    const school_type = button.getAttribute('data-school-type');
 
                     // Open the modal
                     modal.classList.remove('hidden');
@@ -142,7 +147,7 @@
                     $('#edit_district_id').val(district_id);
                     $('#edit_school_id').val(id);
                     $('#edit_principal').val(principal);
-                    
+                    $('#edit_school_type').val(school_type);
                 });
             });
         });
@@ -154,7 +159,8 @@
             let district_id = $('#edit_district_id').val();
             let principal = $('#edit_principal').val();
             let id = $('#edit_school_id').val();
-    
+            let school_type = $('#edit_school_type').val(school_type);
+
             $.ajax({
                 url: "{{ route('update_school') }}",
                 type: "PATCH",
@@ -162,6 +168,7 @@
                     name: name,
                     address: address,
                     status: status,
+                    school_type: school_type,
                     principal: principal,
                     district_id: district_id,
                     id: id,

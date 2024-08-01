@@ -24,6 +24,7 @@
                                     <tr>
                                         <th>Division Name</th>
                                         <th>Address</th>
+                                        <th>Nurse Assigned</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -32,7 +33,17 @@
                                         <tr>
                                             <td class="data1">{{ $division->name }}</td>
                                             <td class="data2">{{ $division->address }}</td>
+                                            @if ($division->nurses->count() === 0)
+                                                <td>
+                                                    No Division Nurse Yet
+                                                </td>
+                                            @else
+                                                <td>{{$division->nurses->first()->last_name.' '.$division->nurses->first()->first_name}}</td>
+                                            @endif
                                             <td>
+                                                <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
+                                                    <a href="{{route('view_district',$division->id)}}">view districts</a>   
+                                                </button>
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
                                                     data-modal="edit_modal" data-id="{{ $division->id }}"

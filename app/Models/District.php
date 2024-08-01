@@ -16,4 +16,14 @@ class District extends Model
     {
         return $this->belongsTo(Division::class);
     }
+
+    public function nurses()
+    {
+        return $this->hasMany(Nurse::class,'entity_id')->where('type',Nurse::TYPE_DISTRICT);
+    }
+
+    public function schools()
+    {
+        return $this->hasMany(School::class);
+    }
 }

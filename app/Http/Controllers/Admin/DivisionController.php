@@ -11,8 +11,8 @@ class DivisionController extends Controller
     //
 
     public function index(){
-        $divisions = Division::all();
-
+        $divisions = Division::with('nurses')->get();
+  
         return view('admin.division.index',[
             'divisions' => $divisions,
         ]);
@@ -54,7 +54,7 @@ class DivisionController extends Controller
     
     public function divisions(){
         $divisions = Division::all();
-        
+            
         return view('components.modal.district_modal',[
             'divisions' => $divisions,
         ]);
