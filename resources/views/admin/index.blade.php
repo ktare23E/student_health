@@ -28,9 +28,15 @@
                         <div class="px-4 py-3  max-h-24">
                             <h1 class="font-bold text-2xl">Active Division:</h1>
                             <div class="pl-4 w-full">
-                                @foreach ($divisions->take(2) as $division )
-                                <p class="text-center text-md">{{$division->name}}</p>
-                                @endforeach
+                                @if ($divisions)
+                                    @if($divisions->count() > 0)
+                                        @foreach ($divisions->take(2) as $division )
+                                            <p class="text-center text-md">{{$division->name}}</p>
+                                        @endforeach
+                                    @endif
+                                @else
+                                    <p class="text-center text-xl mt-4">No Division Yet</p>
+                                @endif
                                 {{-- @if ($divisions)
                                     @if($divisions->count() > 0)
                                         @forelse ($divisions as $division)
@@ -40,7 +46,6 @@
                                         @endforelse
                                     @endif
                                 @else
-                                <p class="text-center text-xl mt-4">No Division Yet</p>
 
                                 @endif --}}
                             </div>
@@ -54,9 +59,11 @@
                                 @if (!$divisions)
                                     <p class="text-center text-xl mt-4">No District Yet</p>
                                 @else
-                                    @foreach ($divisions->take(2) as $division)
+                                    @if($divisions->count() > 0)
+                                        @foreach ($divisions->take(2) as $division )
                                         <p class=" text-center text-md">{{$division->name.': '. $division->districts->count()}} Disctrict Under</p>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -66,8 +73,26 @@
                         <div class="px-4 py-3 max-h-24">
                             <h1 class="font-bold text-xl">School:</h1>
                             <div class="pl-4 w-full text-sm text-center">
-                                @forelse ($divisions as $division)
-                                    {{-- <p class="text-center text-sm">{{$school->name}}</p> --}}
+                                @if ($divisions)
+                                    @if($divisions->count() > 0)
+                                        @foreach ($divisions as $division )
+                                            @if ($division->districts->count() > 0)
+                                                @foreach ($division->districts as $district)
+                                                    @if ($district->schools->count() === 0)
+                                                    <p>{{$district->name}} - No schools yet</p>
+                                                    @else
+                                                        <p class="">{{$district->name.'-'.$district->schools->count()}} schools under</p>
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                <p class="text-center text-xl mt-4">No School Yet</p>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                @else
+                                    <p class="text-center text-xl mt-4">No School Yet</p>
+                                @endif
+                                {{-- @forelse ($divisions as $division)
                                     @foreach ($division->districts as $district)
                                         @if ($district->schools->count() === 0)
                                             <p>{{$district->name}} - No schools yet</p>
@@ -77,7 +102,7 @@
                                     @endforeach
                                 @empty
                                     <p class="text-center text-xl mt-4">No School Yet</p>
-                                @endforelse
+                                @endforelse --}}
                             </div>
                         </div>
                         <a href="{{route('admin.school')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
