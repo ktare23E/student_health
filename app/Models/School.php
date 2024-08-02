@@ -18,6 +18,8 @@ class School extends Model
         'school_type'
     ];
 
+
+
     public function district()
     {
         return $this->belongsTo(District::class);
