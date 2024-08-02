@@ -26,7 +26,7 @@
                 <div class="flex flex-row h-42 mt-6 gap-4">
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3  max-h-24">
-                            <h1 class="font-bold text-2xl">Active Division:</h1>
+                            <h1 class="font-bold text-2xl">Division:</h1>
                             <div class="pl-4 w-full">
                                 @if ($divisions)
                                     @if($divisions->count() > 0)

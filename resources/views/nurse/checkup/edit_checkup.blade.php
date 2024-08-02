@@ -144,7 +144,7 @@
                                                 <option value="">Select Value</option>
                                                 <option value="Normal Weight" {{$checkup->bmi_weight ===  'Normal Weight' ? 'selected':'' }}>Normal Weight</option>
                                                 <option value="Wasted Underweight" {{$checkup->bmi_weight ===  'Wasted Underweight' ? 'selected':'' }}>Wasted Underweight</option>
-                                                <option value="Serverly Waster Underweight" {{$checkup->bmi_weight ===  'Serverly Waster Underweight' ? 'selected':'' }}>Serverly Waster Underweight</option>
+                                                <option value="Serverly Wasted Underweight" {{$checkup->bmi_weight ===  'Serverly Wasted Underweight' ? 'selected':'' }}>Serverly Waster Underweight</option>
                                                 <option value="Overweight" {{$checkup->bmi_weight ===  'Overweight' ? 'selected':'' }}>Overweight</option>
                                                 <option value="Obese" {{$checkup->bmi_weight ===  'Obese' ? 'selected':'' }}>Obese</option>
                                             </select>

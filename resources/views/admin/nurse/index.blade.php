@@ -11,7 +11,7 @@
             <div class="w-10/12 flex flex-col">
                 <div>
                     <div class="flex flex-row">
-                        <h1 class="font-bold text-2xl">Nurse List</h1>
+                        <h1 class="font-bold text-2xl">List of Nurse</h1>
                     </div>
                     <div class="w-full flex justify-end px-6">
                         <button data-modal="modal1" class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Create
@@ -22,8 +22,8 @@
                             <table id="myTable2" class="display">
                                 <thead>
                                     <tr>
-                                        <th>First Name</th>
                                         <th>Last Name</th>
+                                        <th>First Name</th>
                                         {{-- <th>Gender</th> --}}
                                         {{-- <th>Address</th> --}}
                                         <th>Nurse Type</th>
@@ -35,8 +35,8 @@
                                 <tbody>
                                     @foreach ($nurses as $nurse)
                                         <tr>
-                                            <td class="data1">{{ $nurse->first_name }}</td>
-                                            <td class="data2">{{ $nurse->last_name }}</td>
+                                            <td class="data1">{{ $nurse->last_name }}</td>
+                                            <td class="data2">{{ $nurse->first_name }}</td>
                                             {{-- <td class="data2">{{ $nurse->gender }}</td> --}}
                                             {{-- <td class="data2">{{ $nurse->address }}</td> --}}
                                             <td class="data2">{{ $nurse->type }}</td>

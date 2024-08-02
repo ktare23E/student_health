@@ -38,7 +38,7 @@
                                                     No Division Nurse Yet
                                                 </td>
                                             @else
-                                                <td>{{$division->nurses->first()->last_name.' '.$division->nurses->first()->first_name}}</td>
+                                                <td>{{$division->nurses->last()->first_name.' '.$division->nurses->first()->last_name}}</td>
                                             @endif
                                             <td>
                                                 <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >

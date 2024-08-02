@@ -11,7 +11,7 @@
             <div class="w-10/12 flex flex-col">
                 <div>
                     <div class="flex flex-row">
-                        <h1 class="font-bold text-2xl">Distric List</h1>
+                        <h1 class="font-bold text-2xl">District List</h1>
                     </div>
                     <div class="w-full flex justify-end px-6">
                         <button data-modal="modal1"
@@ -40,7 +40,7 @@
                                             @if ($district->nurses->count() === 0)
                                                 <td>No nurse assigned yet</td>
                                             @else
-                                                <td class="data2">{{ $district->nurses->first()->last_name.', '. $district->nurses->first()->first_name }}</td>
+                                                <td class="data2">{{ $district->nurses->last()->first_name.' '. $district->nurses->first()->last_name }}</td>
                                             @endif
                                             <td>
                                                 <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
