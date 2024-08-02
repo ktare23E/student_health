@@ -44,7 +44,8 @@ class Checkup extends Model
         'sbfp_beneficiary',
         'four_p_beneficiary',
         'menarche',
-        'remarks'
+        'remarks',
+        'date_of_checkup'
     ];
     
     public function student()

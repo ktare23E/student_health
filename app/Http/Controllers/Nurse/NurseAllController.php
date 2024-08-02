@@ -227,11 +227,13 @@ class NurseAllController extends Controller
             'remarks' => 'required'
         ]);
 
+                
 
+        $currentTime = Carbon::now('Asia/Manila');
 
         $nurse = Auth::user();
         
-      
+        
 
         $checkup = Checkup::create([
             'student_id' => $student->id,

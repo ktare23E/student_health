@@ -37,10 +37,12 @@ class ReportController extends Controller
         ]);
     }
 
+
     public function filterReport(Request $request)
     {
         $nurse = Auth::user();
         $query = Checkup::query();
+
 
         if ($nurse->type === 'school') {
             // Filter by category
@@ -94,6 +96,8 @@ class ReportController extends Controller
             }],'school')
                 ->whereIn('id', $checkups->pluck('student_id'))
                 ->get();
+
+              
 
                 return view('nurse.report.result', compact('checkups', 'students', 'chartData'));
 

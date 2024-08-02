@@ -27,7 +27,6 @@ class NurseDashboard extends Controller
             $school = School::where('id', $nurse->entity_id)->get();
 
 
-
             //retrieve 3 nurses with different type
             $nurses = Nurse::where('status', 'active')->orderBy('id', 'desc')->take(3)->get();
             //retrieve the number of active students
