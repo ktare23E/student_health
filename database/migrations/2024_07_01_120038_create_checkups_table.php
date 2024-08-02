@@ -21,9 +21,7 @@ return new class extends Migration
             $table->string('student_lrn')->nullable();
             $table->string('student_age');
             $table->timestamp('date_of_checkup')->nullable();
-           
             $table->string('adviser_name')->nullable();
-
             $table->string('temperature')->nullable();
             $table->string('systolic')->nullable();
             $table->string('diastolic')->nullable();

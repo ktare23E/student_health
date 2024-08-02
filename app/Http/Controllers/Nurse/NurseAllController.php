@@ -10,6 +10,7 @@ use App\Models\Student;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use App\Models\Nurse;
+use App\Models\SystemLog;
 
 class NurseAllController extends Controller
 {
@@ -158,9 +159,10 @@ class NurseAllController extends Controller
     }
 
     public function viewStudent(Student $student){
-        $student = Student::findOrFail($student->id);
+        $student = Student::with(['school.district.division'])->findOrFail($student->id);
         $studentCheckUps = Student::with('checkups.nurse')->where('id',$student->id)->get();
         $studentSchool = $student->school;
+
 
         return view('nurse.student.view_student',[
             'student' => $student,
@@ -181,15 +183,8 @@ class NurseAllController extends Controller
 
     
         $request->validate([
-            'date_of_birth' => 'required',
-            'birth_place' => 'required',
-            'parent_name' => 'required',
             'student_age' => 'required',
             'adviser_name' => 'required',
-            'school_id' => 'required',
-            'region' => 'required',
-            'division' => 'required',
-            'telephone_no' => 'required',
             'temperature' => 'required',
             'systolic' => 'required',
             'diastolic' => 'required',
@@ -233,15 +228,8 @@ class NurseAllController extends Controller
             'student_lrn' => $student->student_lrn,
             'student_grade_level' => $student->grade_level,
             'student_age' => $request->student_age,
-            'date_of_birth' => $request->date_of_birth,
             'date_of_checkup' => now(),
-            'birth_place' => $request->birth_place,
-            'parent_name' => $request->parent_name,
             'adviser_name' => $request->adviser_name,
-            'school_id' => $request->school_id,
-            'region' => $request->region,
-            'division' => $request->division,
-            'telephone_no' => $request->telephone_no,
             'temperature' => $request->temperature,
             'systolic' => $request->systolic,
             'diastolic' => $request->diastolic,
@@ -272,6 +260,8 @@ class NurseAllController extends Controller
             'menarche' => $request->menarche,
             'remarks' => $request->remarks
         ]);
+
+
 
         return redirect()->route('view_student',$student->id)->with('success','Checkup successfully added');
     }
@@ -341,6 +331,16 @@ class NurseAllController extends Controller
     public function viewCheckup(Checkup $checkup){
         $studentData = Student::with('school')->findOrFail($checkup->student_id);
         $nurseData = Nurse::findOrFail($checkup->nurse_id);
+
+        $nurse = Auth::user();
+
+        $currentTime = Carbon::now('Asia/Manila');
+        
+        SystemLog::create([
+                'nurse_id' => $nurse->id,
+                'date' => $currentTime,
+                'access' => 'Viewed Checkup Details of '.$studentData->first_name.' '.$studentData->last_name.' Student'
+        ]);
 
         return view('nurse.checkup.view_checkup',[
             'checkup' => $checkup,

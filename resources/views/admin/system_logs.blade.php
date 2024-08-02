@@ -21,6 +21,7 @@
                                         <th>Nurse Name</th>
                                         <th>Nurse Type</th>
                                         <th>Assigned To</th>
+                                        <th>Action</th>
                                         <th>Date Accessed</th>
                                     </tr>
                                 </thead>
@@ -30,6 +31,7 @@
                                             <td class="data1">{{ $log->nurse->full_name }}</td>
                                             <td>{{$log->nurse->type === 'school' ? 'School Nurse' : ($log->nurse->type === 'district' ? 'District Nurse':'Division Nurse')}}</td>
                                             <td>{{$log->nurse->assigned_entity->name}}</td>
+                                            <td>{{$log->access}}</td>
                                             <td class="data2">{{$log->readable_date}}</td>
                                         </tr>
                                     @endforeach

@@ -96,17 +96,17 @@
                                 </div>
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Parent/Guardian:</p>
-                                    <p class="text-center">{{ $student->address }}</p>
+                                    <p class="text-center">{{ $student->parent_name }}</p>
                                 </div>
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Cellphone Number:</p>
-                                    <p class="text-center">{{ $student->address }}</p>
+                                    <p class="text-center">{{ $student->cellphone_number }}</p>
                                 </div>
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Status:</p>
-                                    <p
-                                        class="text-center capitalize {{ $student->status == 'active' ? 'text-green-500' : 'text-red-500' }}">
-                                        {{ $student->status }}</p>
+                                    <p class="text-center capitalize {{ $student->status == 'active' ? 'text-green-500' : 'text-red-500' }}">
+                                        {{ $student->status }}
+                                    </p>
                                 </div>
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Grade Level:</p>
@@ -122,27 +122,27 @@
                                 </div>
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">School Id:</p>
-                                    <p class="text-center">{{ $student->school->address }}</p>
+                                    <p class="text-center">{{ $student->school_id}}</p>
                                 </div>
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Date of Birth:</p>
-                                    <p class="text-center">{{ $student->school->address }}</p>
+                                    <p class="text-center">{{ $student->date_of_birth }}</p>
                                 </div>
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Place of Birth:</p>
-                                    <p class="text-center">{{ $student->school->address }}</p>
+                                    <p class="text-center">{{ $student->birth_place }}</p>
                                 </div>
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">District:</p>
-                                    <p class="text-center">{{ $student->school->address }}</p>
+                                    <p class="text-center">{{ $student->school->district->name }}</p>
                                 </div>
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Division:</p>
-                                    <p class="text-center">{{ $student->school->address }}</p>
+                                    <p class="text-center">{{ $student->school->district->division->name }}</p>
                                 </div>
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Region</p>
-                                    <p class="text-center">{{ $student->school->address }}</p>
+                                    <p class="text-center">{{ $student->region }}</p>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +157,6 @@
                             class="bg-white rounded-md px-6 py-4 w-full mx-auto shadow-2xl transition-all hover:shadow-none">
                             <h1 class="font-semibold text-md mb-4">Student Checkup History</h1>
 
-                            <!-- checkup Details -->
                             <!-- Checkup Details -->
                             <div class="space-y-4 flex flex-col items-center justify-center w-full">
                                 <!-- Example Checkup Item -->

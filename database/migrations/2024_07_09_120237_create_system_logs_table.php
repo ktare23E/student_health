@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Nurse::class)->constrained()->onDelete('cascade');
             $table->dateTime('date');
+            $table->string('access');
             $table->timestamps();
         });
     }
