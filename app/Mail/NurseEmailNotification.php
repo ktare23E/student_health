@@ -29,7 +29,7 @@ class NurseEmailNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from : new Address('kristiankharl.tare@nmsc.edu.ph','Student Health Information System'),
+            from : new Address('cyrus.fernandez@nmsc.edu.ph','Student Health Information Management System'),
             subject: 'Nurse Reset Password Notification',
         );
     }
