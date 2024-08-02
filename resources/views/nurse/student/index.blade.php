@@ -100,6 +100,10 @@
             let student_lrn = $('#student_lrn').val();
             let status = $('#status').val();
             let grade_level = $('#grade_level').val();
+            let date_of_birth = $('#date_of_birth').val();
+            let birth_place = $('#birth_place').val();
+            let parent_name = $('#parent_name').val();
+            let cellphone_number = $('#cellphone_number').val();
 
             $.ajax({
                 url: "{{ route('store_student') }}",
@@ -111,6 +115,10 @@
                     student_lrn : student_lrn,
                     status : status,
                     grade_level : grade_level,
+                    date_of_birth : date_of_birth,
+                    birth_place : birth_place,
+                    parent_name : parent_name,
+                    cellphone_number : cellphone_number,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
@@ -128,6 +136,7 @@
                         });
                 }
             });
+
         });
 
         document.addEventListener('DOMContentLoaded', () => {

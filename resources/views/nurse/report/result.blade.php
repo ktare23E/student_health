@@ -66,7 +66,7 @@
                         <div class="flex justify-end">
                             <button id="print" class="py-1 px-2 bg-blue-500 text-white rounded-sm">Print Report</button>
                         </div>
-                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-[60%] mx-auto">
+                        <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
                             <h1 class="font-bold text-2xl mb-4">Data Analytics</h1>
                             <div>
 

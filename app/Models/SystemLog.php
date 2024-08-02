@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class SystemLog extends Model
 {
     use HasFactory;
-    protected $fillable = ['date','nurse_id'];
+    protected $fillable = ['date','nurse_id','access'];
 
     public function nurse(){
         return $this->belongsTo(Nurse::class);

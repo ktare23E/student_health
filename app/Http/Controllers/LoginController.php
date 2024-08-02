@@ -26,22 +26,22 @@ class LoginController extends Controller
 
 
             if ($nurse->type === 'school') {
-                SystemLog::create([
-                    'nurse_id' => $nurse->id,
-                    'date' => $currentTime
-                ]);
+                // SystemLog::create([
+                //     'nurse_id' => $nurse->id,
+                //     'date' => $currentTime
+                // ]);
                 return redirect()->route('nurse_dashboard');
             } elseif ($nurse->type === 'district') {
-                SystemLog::create([
-                    'nurse_id' => $nurse->id,
-                    'date' => $currentTime
-                ]);
+                // SystemLog::create([
+                //     'nurse_id' => $nurse->id,
+                //     'date' => $currentTime
+                // ]);
                 return redirect()->route('district_nurse_dashboard');
             } elseif ($nurse->type === 'division') {
-                SystemLog::create([
-                    'nurse_id' => $nurse->id,
-                    'date' => $currentTime
-                ]);
+                // SystemLog::create([
+                //     'nurse_id' => $nurse->id,
+                //     'date' => $currentTime
+                // ]);
                 return redirect()->route('division_nurse_dashboard');
             }
         }
