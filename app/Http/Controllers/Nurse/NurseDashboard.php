@@ -11,7 +11,8 @@ use App\Models\Checkup;
 use App\Models\Nurse;
 use App\Models\District;
 use App\Models\Division;
-
+use App\Models\SystemLog;
+use Carbon\Carbon;
 class NurseDashboard extends Controller
 {
     //
@@ -145,6 +146,18 @@ class NurseDashboard extends Controller
         $studentData = Student::with('school')->findOrFail($checkup->student_id);
         $schoolData = School::findOrFail($studentData->school_id);
         $nurseData = Nurse::findOrFail($checkup->nurse_id);
+
+        
+        $nurse = Auth::user();
+
+        $currentTime = Carbon::now('Asia/Manila');
+
+        SystemLog::create([
+                'nurse_id' => $nurse->id,
+                'date' => $currentTime,
+                'access' => 'Viewed Checkup Details of '.$studentData->first_name.' '.$studentData->last_name.' Student'
+        ]);
+
         return view('nurse.checkup.view_checkup', [
             'checkup' => $checkup,
             'student' => $studentData,
