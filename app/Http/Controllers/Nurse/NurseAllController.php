@@ -110,15 +110,21 @@ class NurseAllController extends Controller
     
             // Check if student already exists
             $student = Student::where('student_lrn', $data[0])->first();
-    
+            $region = "Region 10";
+
             if ($student) {
                 // Update existing student
                 $student->update([
                     'first_name' => $data[1],
                     'last_name' => $data[2],
-                    'address' => $data[3],
-                    'status' => $data[4],
-                    'grade_level' => $data[5],
+                    'date_of_birth' => $data[3],
+                    'birth_place' => $data[4],
+                    'parent_name' => $data[5],
+                    'cellphone_number' => $data[6],
+                    'address' => $data[7],
+                    'status' => $data[8],
+                    'grade_level' => $data[9],
+                    'region' => $region,
                 ]);
             } else {
                 // Create new student
@@ -127,9 +133,14 @@ class NurseAllController extends Controller
                     'student_lrn' => $data[0],
                     'first_name' => $data[1],
                     'last_name' => $data[2],
-                    'address' => $data[3],
-                    'status' => $data[4],
-                    'grade_level' => $data[5],
+                    'date_of_birth' => $data[3],
+                    'birth_place' => $data[4],
+                    'parent_name' => $data[5],
+                    'cellphone_number' => $data[6],
+                    'address' => $data[7],
+                    'status' => $data[8],
+                    'grade_level' => $data[9],
+                    'region' => $region,
                 ]);
             }
         }
@@ -280,15 +291,10 @@ class NurseAllController extends Controller
     public function updateCheckUp(Request $request,Checkup $checkup){
 
         $validateDate = $request->validate([
-            'date_of_birth' => 'required',
-            'birth_place' => 'required',
-            'parent_name' => 'required',
+          
             'student_age' => 'required',
             'adviser_name' => 'required',
-            'school_id' => 'required',
-            'region' => 'required',
-            'division' => 'required',
-            'telephone_no' => 'required',
+           
             'temperature' => 'required',
             'systolic' => 'required',
             'diastolic' => 'required',
@@ -335,7 +341,7 @@ class NurseAllController extends Controller
         $nurse = Auth::user();
 
         $currentTime = Carbon::now('Asia/Manila');
-        
+
         SystemLog::create([
                 'nurse_id' => $nurse->id,
                 'date' => $currentTime,
