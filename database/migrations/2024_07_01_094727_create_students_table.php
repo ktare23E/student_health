@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('birth_place')->nullable();
             $table->string('parent_name')->nullable();
             $table->string('cellphone_number')->nullable();
-            $table->string('school_id')->nullable();
             $table->string('region')->nullable();
             $table->string('status');
             $table->string('grade_level');

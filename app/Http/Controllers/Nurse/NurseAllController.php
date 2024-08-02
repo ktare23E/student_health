@@ -46,12 +46,20 @@ class NurseAllController extends Controller
             'address' => 'required',
             'student_lrn' => 'required',
             'status' => 'required',
-            'grade_level' => 'required'
+            'grade_level' => 'required',
+            'date_of_birth' => 'required',
+            'birth_place' => 'required',
+            'parent_name' => 'required',
+            'cellphone_number' => 'required'
         ]);
+
+
 
         $nurse = Auth::user();
         $school_id = $nurse->entity_id;
 
+        $region = "Region 10";
+        
         Student::create([
             'school_id' => $school_id,
             'student_lrn' => $request->student_lrn,
@@ -60,6 +68,11 @@ class NurseAllController extends Controller
             'address' => $request->address,
             'status' => $request->status,
             'grade_level' => $request->grade_level,
+            'date_of_birth' => $request->date_of_birth,
+            'birth_place' => $request->birth_place,
+            'parent_name' => $request->parent_name,
+            'cellphone_number' => $request->cellphone_number,
+            'region' => $region
         ]);
 
         return response()->json([

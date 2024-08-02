@@ -21,7 +21,6 @@ class Student extends Model
         'birth_place',
         'parent_name',
         'cellphone_number',
-        'school_id',
         'region'
     ];
 

@@ -45,18 +45,7 @@
                             <h1 class="font-semibold text-md mb-4">Checkup Form</h1>
                             <x-forms.form action="{{route('store_checkup',$student->id)}}" method="POST">
                                 <div class="w-[70%] mx-auto space-y-2">
-                                    <div class="grid grid-cols-3 gap-3 ">
-                                        {{-- <div class="relative max-w-sm">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
-
-                                            <div class="absolute bottom-3 start-0 flex items-center ps-3.5 pointer-events-None">
-                                                <svg class="w-4 h-4 text-blue-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                                </svg>
-                                            </div>
-                                            <input name="data_of_birth" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
-                                        
-                                        </div> --}}
+                                    {{-- <div class="grid grid-cols-3 gap-3 ">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of Birth</label>
                                             <input type="date" id="date_of_birth" name="date_of_birth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required />
@@ -69,7 +58,7 @@
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Parent/Guardian Name</label>
                                             <input type="text" id="parent_name" name="parent_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Mrs. Jane Doe" required />
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
@@ -80,12 +69,16 @@
                                             <input type="text" id="adviser_name" name="adviser_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Adviser Name" required />
                                         </div>
                                         <div>
+                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Temperature</label>
+                                            <input type="text" id="temperature" name="temperature" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="35.00" required />
+                                        </div>
+                                        {{-- <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">School Id</label>
                                             <input type="text" id="school_id" name="school_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="School ID" required />
-                                        </div>
+                                        </div> --}}
                                     
                                     </div> 
-                                    <div class="grid grid-cols-3 gap-3">
+                                    {{-- <div class="grid grid-cols-3 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Region</label>
                                             <input type="text" id="region" name="region" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Region" required />
@@ -98,12 +91,8 @@
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telephone/Cellphone</label>
                                             <input type="text" id="telephone_no" name="telephone_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="+639 3213 3213" required />
                                         </div>
-                                    </div>
-                                    <div class="grid grid-cols-4 gap-3">
-                                        <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Temperature</label>
-                                            <input type="text" id="temperature" name="temperature" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="35.00" required />
-                                        </div>
+                                    </div> --}}
+                                    <div class="grid grid-cols-3 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Systolic</label>
                                             <input type="text" id="systolic" name="systolic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="120" required />
