@@ -80,10 +80,17 @@
 
                             <!-- Profile Image -->
                             <div class="flex justify-center mb-4">
-                                <img src="{{ asset('imgs/default_profile.jpg') }}" alt="Profile Image"
+                                <img src="{{ $student->student_profile === null ? asset('imgs/default_profile.jpg') :  asset('storage/'.$student->student_profile) }}" alt="Profile Image"
                                     class="w-48 h-48 rounded-full object-cover">
                             </div>
-
+                            <div class="w-full flex justify-center px-6">
+                                <button id="toggle-upload" class="bg-blue-500 text-white text-sm px-4 py-2 rounded m-2">Change Profile</button>
+                                <form class="flex items-center justify-center" method="POST" action="{{ route('student_profile', $student->id) }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input id="student_profile" type="file" name="student_profile" class="hidden mt-2 text-sm file:mr-4 file:rounded-md file:border-0 file:bg-teal-500 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-teal-700 focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
+                                    <button id="upload-btn" type="submit" class="hidden bg-green-500 text-white text-sm px-4 py-2 rounded m-2">Upload</button>
+                                </form>
+                            </div>                            
                             <!-- Student Details -->
                             <div class="w-full mx-auto grid grid-cols-7 gap-x-4 gap-y-4">
                                 <div class="flex flex-col items-center">
@@ -238,4 +245,20 @@
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
+    <script>
+        
+        $(document).ready(function() {
+            $('#toggle-upload').on('click', function() {
+                $('#student_profile').click();
+            });
+
+            $('#student_profile').on('change', function() {
+                if (this.files.length > 0) {
+                    $('#toggle-upload').hide(); // Hide the "Change Profile" button
+                    $('#student_profile').removeClass('hidden').addClass('block'); // Show the file input
+                    $('#upload-btn').removeClass('hidden').addClass('block'); // Show the "Upload" button
+                }
+            });
+        });
+    </script>
 </x-layout>

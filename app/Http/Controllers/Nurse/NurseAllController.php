@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use App\Models\Nurse;
 use App\Models\SystemLog;
+use Illuminate\Support\Facades\Storage;
 
 class NurseAllController extends Controller
 {
@@ -355,5 +356,36 @@ class NurseAllController extends Controller
             'student' => $studentData,
             'nurse' => $nurseData
         ]);
+    }
+
+    public function studentProfile(Request $request,Student $student){
+        // Validate the uploaded file
+        $request->validate([
+            'student_profile' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation as needed
+        ]);
+
+        // Handle the uploaded file
+        if ($request->hasFile('student_profile')) {
+            // Get the file
+            $file = $request->file('student_profile');
+            // Define the file path and name
+            $filePath = 'uploads/profiles';
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            // Store the file
+            $path = $file->storeAs($filePath, $fileName, 'public');
+
+            // Optionally, delete the old profile image if it exists
+            if ($student->student_profile) {
+                Storage::disk('public')->delete($student->student_profile);
+            }
+
+            // Save the new profile image path to the student's profile
+            $student->student_profile = $path;
+            $student->save();
+        }
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Profile image updated successfully!');
     }
 }
