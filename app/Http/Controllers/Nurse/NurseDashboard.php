@@ -13,6 +13,7 @@ use App\Models\District;
 use App\Models\Division;
 use App\Models\SystemLog;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 class NurseDashboard extends Controller
 {
     //
@@ -180,5 +181,36 @@ class NurseDashboard extends Controller
         $nurse->save();
         
         return response()->json(['message' => 'success']);
+    }
+
+    public function nurseProfile(Request $request,Nurse $nurse){
+       // Validate the uploaded file
+        $request->validate([
+            'nurse_profile' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation as needed
+        ]);
+
+    // Handle the uploaded file
+    if ($request->hasFile('nurse_profile')) {
+        // Get the file
+        $file = $request->file('nurse_profile');
+        // Define the file path and name
+        $filePath = 'uploads/profiles';
+        $fileName = time() . '_' . $file->getClientOriginalName();
+
+        // Store the file
+        $path = $file->storeAs($filePath, $fileName, 'public');
+
+        // Optionally, delete the old profile image if it exists
+        if ($nurse->nurse_profile) {
+            Storage::disk('public')->delete($nurse->nurse_profile);
+        }
+
+        // Save the new profile image path to the student's profile
+        $nurse->nurse_profile = $path;
+        $nurse->save();
+    }
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'Profile image updated successfully!');
     }
 }

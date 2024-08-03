@@ -88,6 +88,8 @@ Route::middleware('auth:nurse')->group(function(){
 
         Route::get('/school_profile',[NurseDashboard::class,'profile'])->name('school_profile');
         Route::post('/school_change_password',[NurseDashboard::class,'changePassword'])->name('school_change_password');
+        Route::post('/nurse_profile/{nurse}',[NurseAllController::class,'studentProfile'])->name('nurse_profile');
+        Route::post('/nurse_profile/{nurse}',[NurseDashboard::class,'nurseProfile'])->name('nurse_profile');
 
 
     });

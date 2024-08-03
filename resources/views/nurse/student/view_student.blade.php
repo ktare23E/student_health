@@ -84,7 +84,7 @@
                                     class="w-48 h-48 rounded-full object-cover">
                             </div>
                             <div class="w-full flex justify-center px-6">
-                                <button id="toggle-upload" class="bg-blue-500 text-white text-sm px-4 py-2 rounded m-2">Change Profile</button>
+                                <button id="toggle-upload" class="bg-black text-white text-sm px-4 py-2 rounded m-2">Change Profile</button>
                                 <form class="flex items-center justify-center" method="POST" action="{{ route('student_profile', $student->id) }}" enctype="multipart/form-data">
                                     @csrf
                                     <input id="student_profile" type="file" name="student_profile" class="hidden mt-2 text-sm file:mr-4 file:rounded-md file:border-0 file:bg-teal-500 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-teal-700 focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
@@ -246,7 +246,6 @@
 
     <script src="{{ mix('js/app.js') }}"></script>
     <script>
-        
         $(document).ready(function() {
             $('#toggle-upload').on('click', function() {
                 $('#student_profile').click();

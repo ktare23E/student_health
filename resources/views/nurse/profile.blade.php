@@ -66,10 +66,17 @@
 
                             <!-- Profile Image -->
                             <div class="flex justify-center mb-4">
-                                <img src="{{ asset('imgs/default_profile.jpg') }}" alt="Profile Image"
+                                <img src="{{ $nurse->nurse_profile === null ? asset('imgs/default_profile.jpg') :  asset('storage/'.$nurse->nurse_profile) }}" alt="Profile Image"
                                     class="w-48 h-48 rounded-full object-cover">
                             </div>
-
+                            <div class="w-full flex justify-center px-6">
+                                <button id="toggle-upload" class="bg-black text-white text-sm px-4 py-2 rounded m-2">Change Profile</button>
+                                <form class="flex items-center justify-center" method="POST" action="{{ route('nurse_profile', $nurse->id) }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <input id="nurse_profile" type="file" name="nurse_profile" class="hidden mt-2 text-sm file:mr-4 file:rounded-md file:border-0 file:bg-teal-500 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-teal-700 focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
+                                    <button id="upload-btn" type="submit" class="hidden bg-green-500 text-white text-sm px-4 py-2 rounded m-2">Upload</button>
+                                </form>
+                            </div>
                             <!-- Student Details -->
                             <div class="w-[70%] mx-auto grid grid-cols-3 gap-x-4 gap-y-4">
                                 <!-- Name -->
@@ -122,6 +129,20 @@
         @include('components.modal.change_password')
     </div>
     <script>
+        $(document).ready(function() {
+            $('#toggle-upload').on('click', function() {
+                $('#nurse_profile').click();
+            });
+
+            $('#nurse_profile').on('change', function() {
+                if (this.files.length > 0) {
+                    $('#toggle-upload').hide(); // Hide the "Change Profile" button
+                    $('#nurse_profile').removeClass('hidden').addClass('block'); // Show the file input
+                    $('#upload-btn').removeClass('hidden').addClass('block'); // Show the "Upload" button
+                }
+            });
+        });
+        
         document.getElementById('toggle-password').addEventListener('click', function() {
             const passwordInput = document.getElementById('password');
             const icon = this;
