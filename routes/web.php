@@ -109,6 +109,8 @@ Route::middleware('auth:nurse')->group(function(){
 
         Route::get('/district_profile',[NurseDashboard::class,'profile'])->name('district_profile');
         Route::post('/district_change_password',[NurseDashboard::class,'changePassword'])->name('district_change_password');
+        Route::post('/district_nurse_profile/{nurse}',[NurseDashboard::class,'nurseProfile'])->name('district_nurse_profile');
+
     });
 
     Route::middleware('nurse.type:division')->group(function(){
@@ -125,6 +127,9 @@ Route::middleware('auth:nurse')->group(function(){
 
         Route::get('/division_profile',[NurseDashboard::class,'profile'])->name('division_profile');
         Route::post('/division_change_password',[NurseDashboard::class,'changePassword'])->name('division_change_password');
+        Route::post('/nurse_profile/{nurse}',[NurseDashboard::class,'nurseProfile'])->name('nurse_profile');
+        Route::post('/division_nurse_profile/{nurse}',[NurseDashboard::class,'nurseProfile'])->name('division_nurse_profile');
+
     });
 });
 

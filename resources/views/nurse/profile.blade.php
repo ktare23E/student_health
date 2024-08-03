@@ -71,7 +71,7 @@
                             </div>
                             <div class="w-full flex justify-center px-6">
                                 <button id="toggle-upload" class="bg-black text-white text-sm px-4 py-2 rounded m-2">Change Profile</button>
-                                <form class="flex items-center justify-center" method="POST" action="{{ route('nurse_profile', $nurse->id) }}" enctype="multipart/form-data">
+                                <form class="flex items-center justify-center" method="POST" action="{{ $nurse->type === 'distirct' ? route('district_nurse_profile', $nurse->id) : ($nurse->type === 'school' ? route('nurse_profile', $nurse->id) : route('division_nurse_profile', $nurse->id)) }}" enctype="multipart/form-data">
                                     @csrf
                                     <input id="nurse_profile" type="file" name="nurse_profile" class="hidden mt-2 text-sm file:mr-4 file:rounded-md file:border-0 file:bg-teal-500 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-teal-700 focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
                                     <button id="upload-btn" type="submit" class="hidden bg-green-500 text-white text-sm px-4 py-2 rounded m-2">Upload</button>
