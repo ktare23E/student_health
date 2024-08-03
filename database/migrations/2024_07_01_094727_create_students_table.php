@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('region')->nullable();
             $table->string('status');
             $table->string('grade_level');
+            $table->string('student_profile')->nullable();
             $table->timestamps();
 
             // $table->string('school_id')->nullable();

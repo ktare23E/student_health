@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('nurse_profile')->nullable();
             $table->string('status')->default('active');
             $table->enum('type', ['school', 'district', 'division']);
             $table->unsignedBigInteger('entity_id');

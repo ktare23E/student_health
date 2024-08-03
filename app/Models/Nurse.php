@@ -14,7 +14,7 @@ class Nurse extends Authenticatable
     use HasFactory;
 
     protected $table = 'nurses';
-    protected $fillable = ['first_name','middle_name','last_name','gender','address','email','password','status','type','entity_id'];
+    protected $fillable = ['first_name','middle_name','last_name','gender','address','email','password','status','type','entity_id','nurse_profile'];
     protected $hidden = ['password','remember_token'];
     const TYPE_SCHOOL = 'school';
     const TYPE_DISTRICT = 'district';
