@@ -159,7 +159,7 @@
             let district_id = $('#edit_district_id').val();
             let principal = $('#edit_principal').val();
             let id = $('#edit_school_id').val();
-            let school_type = $('#edit_school_type').val(school_type);
+            let school_type = $('#edit_school_type').val();
 
             $.ajax({
                 url: "{{ route('update_school') }}",
