@@ -306,7 +306,7 @@
                 normal_height++;
             }else if (value === 'Stunted'){
                 stunted++;
-            }else if (value === 'Severly Stunted'){
+            }else if (value === 'Severely Stunted'){
                 severely_stunted++;
             }else if (value === 'Tall'){
                 tall++;
@@ -486,10 +486,10 @@
                         label: label,
                         data: chartValues, // Use the counts of Yes and No
                         backgroundColor: [
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(255, 99, 132, 0.2)',
+                            '#0000FF',
+                            '#FFC0CB',
+                            'rgb(255,0,0)',
+                            '#FFA500'
                         ],
                         borderColor: [
                             'rgba(75, 192, 192, 1)',

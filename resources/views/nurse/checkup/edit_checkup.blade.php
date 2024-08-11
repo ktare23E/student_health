@@ -129,7 +129,7 @@
                                                 <option value="">Select Value</option>
                                                 <option value="Normal Weight" {{$checkup->bmi_weight ===  'Normal Weight' ? 'selected':'' }}>Normal Weight</option>
                                                 <option value="Wasted Underweight" {{$checkup->bmi_weight ===  'Wasted Underweight' ? 'selected':'' }}>Wasted Underweight</option>
-                                                <option value="Serverly Wasted Underweight" {{$checkup->bmi_weight ===  'Serverly Wasted Underweight' ? 'selected':'' }}>Serverly Waster Underweight</option>
+                                                <option value="Severely Wasted Underweight" {{$checkup->bmi_weight ===  'Severely Wasted Underweight' ? 'selected':'' }}>Severely Waster Underweight</option>
                                                 <option value="Overweight" {{$checkup->bmi_weight ===  'Overweight' ? 'selected':'' }}>Overweight</option>
                                                 <option value="Obese" {{$checkup->bmi_weight ===  'Obese' ? 'selected':'' }}>Obese</option>
                                             </select>
@@ -140,7 +140,7 @@
                                                 <option value="">Select Value</option>
                                                 <option value="Normal Height" {{$checkup->bmi_height ===  'Normal Height' ? 'selected':'' }}>Normal Height</option>
                                                 <option value="Stunted" {{$checkup->bmi_height ===  'Stunted' ? 'selected':'' }}>Stunted</option>
-                                                <option value="Serverly Stunted" {{$checkup->bmi_height ===  'Serverly Stunted' ? 'selected':'' }}>Serverly Stunted</option>
+                                                <option value="Severely Stunted" {{$checkup->bmi_height ===  'Severely Stunted' ? 'selected':'' }}>Severely Stunted</option>
                                                 <option value="Tall" {{$checkup->bmi_height ===  'Tall' ? 'selected':'' }}>Tall</option>
                                             </select>
                                         </div>

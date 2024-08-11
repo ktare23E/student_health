@@ -142,7 +142,7 @@
                                                 <option value="">Select Value</option>
                                                 <option value="Normal Height">Normal Height</option>
                                                 <option value="Stunted">Stunted</option>
-                                                <option value="Serverly Stunted">Serverly Stunted</option>
+                                                <option value="Severely Stunted">Severely Stunted</option>
                                                 <option value="Tall">Tall</option>
                                             </select>
                                         </div>
