@@ -440,10 +440,11 @@
                         label: label,
                         data: chartValues, // Use the counts of Yes and No
                         backgroundColor: [
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(255, 99, 132, 0.2)',
+                            '#0000FF',
+                            '#FFC0CB',
+                            'rgb(255,0,0)',
+                            'rgb(0,255,0)',
+                            '#FFA500'
                         ],
                         borderColor: [
                             'rgba(75, 192, 192, 1)',

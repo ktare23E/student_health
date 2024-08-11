@@ -124,7 +124,7 @@
                 success: function(response) {
                     Swal.fire({
                             title: "Success!",
-                            text: "Sucessfully Updated Nurse",
+                            text: "Sucessfully Created Student",
                             icon: "success",
                             confirmButtonText: 'OK',
                             buttonsStyling: false,
@@ -199,7 +199,7 @@
                     if (response.message == 'success') {
                         Swal.fire({
                             title: "Success!",
-                            text: "Sucessfully Updated Nurse",
+                            text: "Sucessfully Updated Student",
                             icon: "success",
                             confirmButtonText: 'OK',
                             buttonsStyling: false,
