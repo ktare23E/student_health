@@ -29,7 +29,7 @@ class NurseCreationNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from : new Address('kristiankharl.tare@nmsc.edu.ph','Student Health Information Management System'),
+            from : new Address('tare.kristian@gmail.com','Student Health Information Management System'),
             subject: 'Student Health Information Management System - New Nurse Notification',
         );
     }
