@@ -100,50 +100,72 @@
 
                             <!-- Profile Image -->
                             <div class="flex justify-center mb-4">
-                                <img src="{{ asset('imgs/default_profile.jpg') }}" alt="Profile Image"
-                                    class="w-48 h-48 rounded-full object-cover">
+                                <img src="{{ $student->student_profile === null ? asset('imgs/default_profile.jpg') :  asset('storage/'.$student->student_profile) }}" alt="Profile Image"
+                                class="w-48 h-48 rounded-full object-cover">
                             </div>
 
                             <!-- Student Details -->
-                            <div class="w-[70%] mx-auto grid grid-cols-3 gap-x-4 gap-y-4">
-                                <!-- Name -->
+                            <div class="w-full mx-auto grid grid-cols-7 gap-x-4 gap-y-4">
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Name:</p>
                                     <p class="text-center">{{ $student->first_name . ' ' . $student->last_name }}</p>
                                 </div>
-
-                                <!-- Address -->
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Address:</p>
                                     <p class="text-center">{{ $student->address }}</p>
                                 </div>
-
-                                <!-- Status -->
+                                <div class="flex flex-col items-center">
+                                    <p class="font-semibold text-center">Parent/Guardian:</p>
+                                    <p class="text-center">{{ $student->parent_name }}</p>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <p class="font-semibold text-center">Cellphone Number:</p>
+                                    <p class="text-center">{{ $student->cellphone_number }}</p>
+                                </div>
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Status:</p>
-                                    <p
-                                        class="text-center capitalize {{ $student->status == 'active' ? 'text-green-500' : 'text-red-500' }}">
-                                        {{ $student->status }}</p>
+                                    <p class="text-center capitalize {{ $student->status == 'active' ? 'text-green-500' : 'text-red-500' }}">
+                                        {{ $student->status }}
+                                    </p>
                                 </div>
-
-                                <!-- Grade Level -->
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Grade Level:</p>
                                     <p class="text-center">{{ 'Grade ' . $student->grade_level }}</p>
                                 </div>
-
-                                <!-- School -->
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">School:</p>
                                     <p class="text-center">{{ $student->school->name }}</p>
                                 </div>
-
-                                <!-- School Address -->
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">School Address:</p>
                                     <p class="text-center">{{ $student->school->address }}</p>
                                 </div>
+                                <div class="flex flex-col items-center">
+                                    <p class="font-semibold text-center">School Id:</p>
+                                    <p class="text-center">{{ $student->school_id}}</p>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <p class="font-semibold text-center">Date of Birth:</p>
+                                    <p class="text-center">{{ $student->date_of_birth }}</p>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <p class="font-semibold text-center">Place of Birth:</p>
+                                    <p class="text-center">{{ $student->birth_place }}</p>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <p class="font-semibold text-center">District:</p>
+                                    <p class="text-center">{{ $student->school->district->name }}</p>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <p class="font-semibold text-center">Division:</p>
+                                    <p class="text-center">{{ $student->school->district->division->name }}</p>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <p class="font-semibold text-center">Region</p>
+                                    <p class="text-center">{{ $student->region }}</p>
+                                </div>
                             </div>
+
                             <div class="mt-4">
                                 <h1 class="font-bold">Checkup Details:</h1>
                                 <div class="w-[70%] mx-auto grid grid-cols-3 gap-x-4 gap-y-4">
@@ -152,15 +174,11 @@
                                         <p class="font-semibold text-center">Nurse Conducted:</p>
                                         <p class="text-center">{{ $nurse->first_name . ' ' . $nurse->last_name }}</p>
                                     </div>
-    
                                     @php
-
-
                                         $date = $checkup->date_of_checkup;
                                         $carbonDatetime = \Carbon\Carbon::parse($date);
                                         $formattedDate = $carbonDatetime->format('F j, Y');
                                         $formattedTime = $carbonDatetime->format('g:i A');
-
                                     @endphp
                                     <div class="flex flex-col items-center">
                                         <p class="font-semibold text-center">Date of Checkup:</p>
@@ -172,39 +190,10 @@
                                             class="text-center capitalize {{ $checkup->remarks == 'Healthy' ? 'text-green-500' : 'text-red-500' }}">
                                             {{ $checkup->remarks }}</p>
                                     </div>
-                                    <div class="flex flex-col items-center">
-                                        <p class="font-semibold text-center">Date of Birth:</p>
-                                        <p class="text-center">{{ $checkup->date_of_birth }}</p>
-                                    </div>
-                                    <div class="flex flex-col items-center">
-                                        <p class="font-semibold text-center">Birthplace:</p>
-                                        <p class="text-center">{{ $checkup->birth_place }}</p>
-                                    </div>
-                                    <div class="flex flex-col items-center">
-                                        <p class="font-semibold text-center">Parent Name:</p>
-                                        <p class="text-center">{{ $checkup->parent_name }}</p>
-                                    </div>
-                                    <div class="flex flex-col items-center">
-                                        <p class="font-semibold text-center">Cellphone Number:</p>
-                                        <p class="text-center">{{ $checkup->telephone_no }}</p>
-                                    </div>
+                                    
                                     <div class="flex flex-col items-center">
                                         <p class="font-semibold text-center">Adviser Name:</p>
                                         <p class="text-center">{{ $checkup->adviser_name}}</p>
-                                    </div>
-                                    <div class="flex flex-col items-center">
-                                        <p class="font-semibold text-center">School Id:</p>
-                                        <p class="text-center">{{ $checkup->school_id }}</p>
-                                    </div>
-                                    <div class="flex flex-col items-center">
-                                        <p class="font-semibold text-center">Region:</p>
-                                        <p
-                                            class="text-center">
-                                            {{ $checkup->region }}</p>
-                                    </div>
-                                    <div class="flex flex-col items-center">
-                                        <p class="font-semibold text-center">Division:</p>
-                                        <p class="text-center">{{ $checkup->division }}</p>
                                     </div>
                                     <div class="flex flex-col items-center">
                                         <p class="font-semibold text-center">Student LRN:</p>
