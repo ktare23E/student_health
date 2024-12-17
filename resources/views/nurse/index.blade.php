@@ -158,7 +158,7 @@
                                     @endforelse
                                 </div>
                             </div>
-                            <a href="{{route('division_school_list')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
+                            <a href="{{route('school_list')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
                         </div>
                     </div>
                     <div class="flex flex-row h-42 mt-6 gap-4 ">

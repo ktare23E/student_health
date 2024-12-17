@@ -101,6 +101,7 @@ Route::middleware('auth:nurse')->group(function(){
         Route::get('/district_view_checkup/{checkup}',[NurseDashboard::class,'viewCheckup'])->name('district_view_checkup');
 
 
+
         
         Route::get('/district_report',[ReportController::class,'index'])->name('district_report');
         Route::post('/district_filter_report',[ReportController::class,'filterReport'])->name('district_filter_report');
