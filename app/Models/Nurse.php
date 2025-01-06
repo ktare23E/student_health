@@ -54,10 +54,9 @@ class Nurse extends Authenticatable
         return $this->entity()->first();
     }
 
-    public function getFullNameAttribute()
+    public function getTestNameAttribute()
     {
         return $this->first_name . ' '. $this->last_name;
     }
 
-   
 }

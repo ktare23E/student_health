@@ -82,7 +82,7 @@
                                 <!-- Name -->
                                 <div class="flex flex-col items-center">
                                     <p class="font-semibold text-center">Name:</p>
-                                    <p class="text-center">{{ $nurse->full_name }}</p>
+                                    <p class="text-center">{{ $nurse->test_name }}</p>
                                 </div>
 
                                 <!-- Address -->
