@@ -118,9 +118,11 @@ class NurseDashboard extends Controller
         }
     }
 
-    public function studentList(School $school)
+    public function studentList(School $school,Request $request)
     {
+        // return $request->all();
         $students = $school->students;
+        return $students;
         return view('nurse.student.district_student', [
             'students' => $students
         ]);
@@ -145,6 +147,7 @@ class NurseDashboard extends Controller
     {
         $studentData = Student::with('school')->findOrFail($checkup->student_id);
         $schoolData = School::findOrFail($studentData->school_id);
+        // return $checkup->nurse;
         $nurseData = Nurse::findOrFail($checkup->nurse_id);
 
         

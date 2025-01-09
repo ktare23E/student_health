@@ -96,7 +96,7 @@ Route::middleware('auth:nurse')->group(function(){
     Route::middleware('nurse.type:district')->group(function(){
         Route::get('/district_nurse_dashboard',[NurseDashboard::class,'index'])->name('district_nurse_dashboard');
         Route::get('/school_list',[NurseDashboard::class,'schoolList'])->name('school_list');
-        Route::get('/view_school/{school}',[NurseDashboard::class,'studentList'])->name('view_school');
+        Route::get('/view_school/{id}',[NurseDashboard::class,'studentList'])->name('view_school');
         Route::get('/district_view_student/{student}',[NurseDashboard::class,'viewStudent'])->name('district_view_student');
         Route::get('/district_view_checkup/{checkup}',[NurseDashboard::class,'viewCheckup'])->name('district_view_checkup');
 
