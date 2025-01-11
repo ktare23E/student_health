@@ -5,7 +5,8 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/js/app.js',  // Ensure this path is correct
+                'resources/js/app.js',
+		'resources/css/app.css',  // Ensure this path is correct
             ],
             refresh: true,
         }),

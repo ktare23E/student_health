@@ -64,7 +64,7 @@
         @include('components.modal.modal_test')
 
     </div>
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ vite('js/app.js') }}"></script>
 
     <script>
         $(document).ready(function() {
