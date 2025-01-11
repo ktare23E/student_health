@@ -122,7 +122,7 @@ class NurseDashboard extends Controller
     {
         // return $request->all();
         $students = $school->students;
-        return $students;
+        // return $students;
         return view('nurse.student.district_student', [
             'students' => $students
         ]);
