@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route;	
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\DistrictController;
@@ -31,8 +31,8 @@ Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
 
 
 Route::middleware(CheckUserType::class)->group(function(){
-    Route::get('/admin_dashboard', [DashBoardController::class, 'index'])->name('admin.index');
-    Route::get('/system_logs', [DashBoardController::class, 'systemLogs'])->name('system_logs');
+    Route::get('/admin_dashboard', [DashboardController::class, 'index'])->name('admin.index');
+    Route::get('/system_logs', [DashboardController::class, 'systemLogs'])->name('system_logs');
 
 
     Route::get('/division', [DivisionController::class,'index'])->name('admin.division');

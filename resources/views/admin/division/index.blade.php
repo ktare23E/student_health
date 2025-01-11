@@ -14,8 +14,8 @@
                         <h1 class="font-bold text-2xl">Division List</h1>
                     </div>
                     <div class="w-full flex justify-end px-6">
-                        <button data-modal="modal1"
-                            class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Create Division</button>
+                        <button data-modal="modal1" class="open-modal bg-blue-500 text-white px-4 py-2 rounded m-2">Create
+                            Division</button>
                     </div>
                     <div class="flex flex-row p-[2rem] w-full">
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
@@ -27,7 +27,7 @@
                                         <th>Nurse Assigned</th>
                                         <th>Action</th>
                                     </tr>
-                            </thead>
+                                </thead>
                                 <tbody>
                                     @foreach ($divisions as $division)
                                         <tr>
@@ -38,11 +38,13 @@
                                                     No Division Nurse Yet
                                                 </td>
                                             @else
-                                                <td>{{$division->nurses->last()->first_name.' '.$division->nurses->first()->last_name}}</td>
+                                                <td>{{ $division->nurses->last()->first_name . ' ' . $division->nurses->first()->last_name }}
+                                                </td>
                                             @endif
                                             <td>
-                                                <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
-                                                    <a href="{{route('view_district',$division->id)}}">view districts</a>   
+                                                <button class="text-sm py-1 px-2 rounded-sm bg-black text-white">
+                                                    <a href="{{ route('view_district', $division->id) }}">view
+                                                        districts</a>
                                                 </button>
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
@@ -87,10 +89,13 @@
                     modal.classList.add('hidden');
                     modal.classList.remove('modal-leave-active');
                     modal.classList.add('modal-enter');
-                }, { once: true });
+                }, {
+                    once: true
+                });
             });
         });
     </script>
+
     <script>
         $(document).ready(function() {
             $('#myTable2').DataTable();
@@ -148,7 +153,7 @@
                     $('#edit_name').val(name);
                     $('#edit_address').val(address);
                     $('#edit_division_id').val(id);
-                    
+
                 });
             });
         });
@@ -156,8 +161,8 @@
         $('.update_division').click(function() {
             var name = $('#edit_name').val();
             var address = $('#edit_address').val();
-            var id = $('#edit_division_id').val();  
-        
+            var id = $('#edit_division_id').val();
+
             $.ajax({
                 url: "{{ route('update_division') }}",
                 type: "PATCH",
@@ -178,7 +183,7 @@
                             customClass: {
                                 confirmButton: 'custom-confirm-button'
                             }
-                        }).then(function(){
+                        }).then(function() {
                             location.reload();
                         });
                     }
