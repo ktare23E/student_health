@@ -116,5 +116,33 @@
         });
 
     </script>
-    <script src="{{ mix('js/app.js') }}"></script>
+    {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
+    <script>
+        document.querySelectorAll('.open-modal').forEach(button => {
+            button.addEventListener('click', () => {
+                const modalId = button.getAttribute('data-modal');
+                const modal = document.getElementById(modalId);
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.add('modal-enter-active');
+                    modal.classList.remove('modal-enter');
+                }, 10);
+            });
+        });
+
+        document.querySelectorAll('.close').forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.fixed');
+                modal.classList.add('modal-leave-active');
+                modal.classList.remove('modal-enter-active');
+                modal.addEventListener('transitionend', () => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('modal-leave-active');
+                    modal.classList.add('modal-enter');
+                }, {
+                    once: true
+                });
+            });
+        });
+    </script>
 </x-layout>

@@ -244,7 +244,7 @@
 
     </div>
 
-    <script src="{{ mix('js/app.js') }}"></script>
+    {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
     <script>
         $(document).ready(function() {
             $('#toggle-upload').on('click', function() {
