@@ -6,13 +6,15 @@ use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\SchoolController;
 use App\Http\Controllers\Admin\NurseController;
-use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\DistrictNurse\DistrictDashboard;
 use App\Http\Controllers\DistrictNurse\StudentSchoolList;
 use App\Http\Controllers\Nurse\NurseAllController;
 use App\Http\Middleware\CheckUserType;
 use App\Http\Controllers\Nurse\NurseDashboard;
 use App\Http\Controllers\Nurse\ReportController;
+
+use App\Http\Controllers\Admin\DashboardController;
+
 
 Route::get('/', function () {
     return view('login');
