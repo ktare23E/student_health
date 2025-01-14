@@ -34,7 +34,6 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($nurses as $nurse)
-                                    @dd($nurse->entity->name)
                                         <tr>
                                             <td class="data1">{{ $nurse->last_name }}</td>
                                             <td class="data2">{{ $nurse->first_name }}</td>
@@ -54,7 +53,8 @@
                                                     data-address="{{ $nurse->address }}"
                                                     data-email="{{ $nurse->email }}" data-type="{{ $nurse->type }}"
                                                     data-status="{{ $nurse->status }}"
-                                                    data-entity="{{ $nurse->entity->id }}">
+                                                    {{-- data-entity="{{ $nurse->entity->id }}" --}}
+                                                    >
                                                     edit
                                                 </button>
                                                 <button id="reset"
