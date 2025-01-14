@@ -18,7 +18,7 @@
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
                             <table id="myTable2" class="display">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-sm">
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Gender</th>
@@ -31,14 +31,14 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($nurses as $nurse)
-                                        <tr>
+                                        <tr class="text-xs">
                                             <td class="data1">{{ $nurse->first_name }}</td>
                                             <td class="data2">{{ $nurse->last_name }}</td>
                                             <td class="data2">{{ $nurse->gender }}</td>
                                             <td class="data2">{{ $nurse->address }}</td>
                                             <td class="data2">{{ $nurse->type }}</td>
                                             <td>{{$nurse->entity->name}}</td>
-                                            <td class="data2">{{ $nurse->status }}</td>
+                                            <td class="data2 bg-red-500 capitalize">{{ $nurse->status }}</td>
                                             <td>
                                                 <button id="restore" class="bg-green-500 text-sm text-white py-1 px-2 rounded-sm" data-id="{{$nurse->id}}">restore</button>
                                             </td>
