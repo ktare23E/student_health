@@ -20,7 +20,7 @@
                     <div class="flex flex-row p-[2rem] w-full">
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
                             <table id="myTable2" class="display">
-                                <thead>
+                                <thead class="text-sm">
                                     <tr>
                                         <th>Division Name</th>
                                         <th>Address</th>
@@ -30,7 +30,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($divisions as $division)
-                                        <tr>
+                                        <tr class="text-xs">
                                             <td class="data1">{{ $division->name }}</td>
                                             <td class="data2">{{ $division->address }}</td>
                                             @if ($division->nurses->count() === 0)
