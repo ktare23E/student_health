@@ -21,7 +21,7 @@
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
                             <table id="myTable2" class="display">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-sm">
                                         <th>District Name</th>
                                         <th>Address</th>
                                         <th>District Head</th>
@@ -32,7 +32,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($districts as $district)
-                                        <tr>
+                                        <tr class="text-sm">
                                             <td class="data1">{{ $district->name }}</td>
                                             <td class="data2">{{ $district->address }}</td>
                                             <td class="data2">{{ $district->district_head }}</td>
