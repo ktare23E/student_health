@@ -34,6 +34,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($nurses as $nurse)
+                                    @dd($nurse->entity)
                                         <tr>
                                             <td class="data1">{{ $nurse->last_name }}</td>
                                             <td class="data2">{{ $nurse->first_name }}</td>
