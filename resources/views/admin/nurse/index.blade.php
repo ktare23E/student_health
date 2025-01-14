@@ -21,7 +21,7 @@
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
                             <table id="myTable2" class="display">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-sm">
                                         <th>Last Name</th>
                                         <th>First Name</th>
                                         {{-- <th>Gender</th> --}}
@@ -34,7 +34,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($nurses as $nurse)
-                                        <tr>
+                                        <tr class="text-xs">
                                             <td class="data1">{{ $nurse->last_name }}</td>
                                             <td class="data2">{{ $nurse->first_name }}</td>
                                             {{-- <td class="data2">{{ $nurse->gender }}</td> --}}
