@@ -25,7 +25,7 @@
                                         <th>Last Name</th>
                                         <th>First Name</th>
                                         {{-- <th>Gender</th> --}}
-                                        <th>Email</th>
+                                        {{-- <th>Email</th> --}}
                                         <th>Nurse Type</th>
                                         <th>Assigned To</th>
                                         <th>Status</th>
@@ -38,7 +38,7 @@
                                             <td class="data1">{{ $nurse->last_name }}</td>
                                             <td class="data2">{{ $nurse->first_name }}</td>
                                             {{-- <td class="data2">{{ $nurse->gender }}</td> --}}
-                                            <td class="data2">{{ $nurse->email }}</td>
+                                            {{-- <td class="data2">{{ $nurse->email }}</td> --}}
                                             <td class="capitalize">{{ $nurse->type }}</td>
                                             <td>{{$nurse->entity->name}}</td>
                                             <td class="capitalize text-green-500">{{ $nurse->status }}</td>
