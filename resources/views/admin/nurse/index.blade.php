@@ -57,8 +57,8 @@
                                                     >
                                                     edit
                                                 </button>
-                                                <button id="reset"
-                                                    class="text-sm py-1 px-2 rounded-sm bg-red-600 text-white"
+                                                <button 
+                                                    class="reset text-sm py-1 px-2 rounded-sm bg-red-600 text-white"
                                                     data-id="{{ $nurse->id }}">reset</button>
                                                 <button 
                                                     class="archive bg-blue-500 text-sm text-white py-1 px-2 rounded-sm"
@@ -244,7 +244,7 @@
             });
         });
 
-        $('#reset').click(function() {
+        $('.reset').click(function() {
             var id = $(this).data('id');
 
             Swal.fire({
