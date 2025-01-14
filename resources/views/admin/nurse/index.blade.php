@@ -40,7 +40,7 @@
                                             {{-- <td class="data2">{{ $nurse->gender }}</td> --}}
                                             {{-- <td class="data2">{{ $nurse->address }}</td> --}}
                                             <td class="capitalize">{{ $nurse->type }}</td>
-                                            <td>{{$nurse->entity->name}}</td>
+                                            <td>{{$nurse->entity}}</td>
                                             <td class="capitalize text-green-500">{{ $nurse->status }}</td>
                                             <td>
                                                 <button
