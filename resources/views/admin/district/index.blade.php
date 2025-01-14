@@ -42,7 +42,7 @@
                                             @else
                                                 <td class="data2">{{ $district->nurses->last()->first_name.' '. $district->nurses->first()->last_name }}</td>
                                             @endif
-                                            <td>
+                                            <td class="flex gap-2">
                                                 <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
                                                     <a href="{{route('district_view_school_list2',$district->id)}}">view</a>   
                                                 </button>
