@@ -22,6 +22,7 @@
                             <table id="myTable2" class="display">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Last Name</th>
                                         <th>First Name</th>
                                         {{-- <th>Gender</th> --}}
@@ -35,6 +36,7 @@
                                 <tbody>
                                     @foreach ($nurses as $nurse)
                                         <tr>
+                                            <td>{{$nurse->id}}</td>
                                             <td class="data1">{{ $nurse->last_name }}</td>
                                             <td class="data2">{{ $nurse->first_name }}</td>
                                             {{-- <td class="data2">{{ $nurse->gender }}</td> --}}
