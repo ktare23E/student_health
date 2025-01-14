@@ -26,7 +26,7 @@
                                         <th>Address</th>
                                         <th>District Head</th>
                                         <th>Under of Division</th>  
-                                        {{-- <th>Nurse Assigned</th>   --}}
+                                        <th>Nurse Assigned</th>  
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -37,14 +37,14 @@
                                             <td class="data2">{{ $district->address }}</td>
                                             <td class="data2">{{ $district->district_head }}</td>
                                             <td class="data2">{{ $district->division->name }}</td>
-                                            {{-- @if ($district->nurses->count() === 0)
+                                            @if ($district->nurses->count() === 0)
                                                 <td>No nurse assigned yet</td>
                                             @else
                                                 <td class="data2">{{ $district->nurses->last()->first_name.' '. $district->nurses->first()->last_name }}</td>
-                                            @endif --}}
+                                            @endif
                                             <td>
                                                 <button class="text-sm py-1 px-2 rounded-sm bg-black text-white" >
-                                                    <a href="{{route('district_view_school_list2',$district->id)}}">view school</a>   
+                                                    <a href="{{route('district_view_school_list2',$district->id)}}">view</a>   
                                                 </button>
                                                 <button
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white"
