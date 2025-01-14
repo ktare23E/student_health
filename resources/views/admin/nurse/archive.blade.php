@@ -36,7 +36,7 @@
                                             <td class="data2">{{ $nurse->last_name }}</td>
                                             <td class="data2">{{ $nurse->gender }}</td>
                                             <td class="data2">{{ $nurse->address }}</td>
-                                            <td class="data2">{{ $nurse->type }}</td>
+                                            <td class="data2 capitalize">{{ $nurse->type }}</td>
                                             <td>{{$nurse->entity->name}}</td>
                                             <td class="data2 bg-red-500 capitalize">{{ $nurse->status }}</td>
                                             <td>
