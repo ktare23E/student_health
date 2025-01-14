@@ -22,7 +22,6 @@
                             <table id="myTable2" class="display">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Last Name</th>
                                         <th>First Name</th>
                                         {{-- <th>Gender</th> --}}
@@ -36,13 +35,12 @@
                                 <tbody>
                                     @foreach ($nurses as $nurse)
                                         <tr>
-                                            <td>{{$nurse->id}}</td>
                                             <td class="data1">{{ $nurse->last_name }}</td>
                                             <td class="data2">{{ $nurse->first_name }}</td>
                                             {{-- <td class="data2">{{ $nurse->gender }}</td> --}}
                                             {{-- <td class="data2">{{ $nurse->address }}</td> --}}
                                             <td class="capitalize">{{ $nurse->type }}</td>
-                                            <td>{{$nurse->entity}}</td>
+                                            <td>{{$nurse->entity->name}}</td>
                                             <td class="capitalize text-green-500">{{ $nurse->status }}</td>
                                             <td>
                                                 <button
@@ -55,7 +53,7 @@
                                                     data-address="{{ $nurse->address }}"
                                                     data-email="{{ $nurse->email }}" data-type="{{ $nurse->type }}"
                                                     data-status="{{ $nurse->status }}"
-                                                    {{-- data-entity="{{ $nurse->entity->id }}" --}}
+                                                    data-entity="{{ $nurse->entity->id }}"
                                                     >
                                                     edit
                                                 </button>
