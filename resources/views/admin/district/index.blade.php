@@ -32,7 +32,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($districts as $district)
-                                        <tr class="text-sm">
+                                        <tr class="text-xs">
                                             <td class="data1">{{ $district->name }}</td>
                                             <td class="data2">{{ $district->address }}</td>
                                             <td class="data2">{{ $district->district_head }}</td>
