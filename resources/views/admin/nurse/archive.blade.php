@@ -38,7 +38,7 @@
                                             <td class="data2">{{ $nurse->address }}</td>
                                             <td class="data2 capitalize">{{ $nurse->type }}</td>
                                             <td>{{$nurse->entity->name}}</td>
-                                            <td class="data2 bg-red-500 capitalize">{{ $nurse->status }}</td>
+                                            <td class="data2 text-red-500 capitalize">{{ $nurse->status }}</td>
                                             <td>
                                                 <button id="restore" class="bg-green-500 text-sm text-white py-1 px-2 rounded-sm" data-id="{{$nurse->id}}">restore</button>
                                             </td>
