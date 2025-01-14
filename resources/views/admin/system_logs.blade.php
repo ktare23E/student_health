@@ -17,7 +17,7 @@
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
                             <table id="myTable2" class="display">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-sm">
                                         <th>Nurse Name</th>
                                         <th>Nurse Type</th>
                                         <th>Assigned To</th>
@@ -27,8 +27,8 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($logs as $log)
-                                        <tr>
-                                            <td class="data1">{{ $log->nurse->full_name }}</td>
+                                        <tr class="text-xs">
+                                            <td class="data1">{{ $log->nurse->test_name }}</td>
                                             <td>{{$log->nurse->type === 'school' ? 'School Nurse' : ($log->nurse->type === 'district' ? 'District Nurse':'Division Nurse')}}</td>
                                             <td>{{$log->nurse->assigned_entity->name}}</td>
                                             <td>{{$log->access}}</td>
