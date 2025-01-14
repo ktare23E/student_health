@@ -205,7 +205,7 @@
                                                 <p class="text-center">{{ $checkup->bmi_weight }}</p>
                                             </div>
                                             <div class="flex flex-col items-center">
-                                                <p class="font-semibold text-center">Bllod Pressure:</p>
+                                                <p class="font-semibold text-center">Blood Pressure:</p>
                                                 <p class="text-center">{{ $checkup->systolic . '/' . $checkup->diastolic }}
                                                 </p>
                                             </div>
