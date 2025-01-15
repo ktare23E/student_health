@@ -107,22 +107,27 @@
     </div>
     @endif
     @if (auth()->user()->type == 'district')
-    <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-        <a href="{{route('district_nurse_dashboard')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-            <span class="material-icons-outlined float-left pr-2">dashboard</span>
-            Dashboard
-            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-        </a>
-        <a href="{{route('school_list')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-            <span class="material-icons-outlined float-left pr-2">domain</span>
-            School
-            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-        </a>
-        <a href="{{route('district_report')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-            <span class="material-icons-outlined float-left pr-2">summarize</span>
-            Report
-            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-        </a>
+    <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4 space-y-4">
+        <x-dynamic-link
+            href="{{route('district_nurse_dashboard')}}"
+            is-active="district_nurse_dashboard"
+            icon="dashboard"
+            text="Dashboard"
+        />
+        <x-dynamic-link
+            href="{{route('school_list')}}"
+            is-active="school_list"
+            icon="domain"
+            text="School"
+        />
+
+        <x-dynamic-link
+            href="{{route('district_report')}}"
+            is-active="district_report"
+            icon="summarize"
+            text="Report"
+        />
+
     </div>
     <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
         <a href="{{route('district_profile')}}" class="inline-flex items-center text-gray-600 hover:text-black my-4 w-full rounded-md transition ease-in-out duration-150">
@@ -142,22 +147,27 @@
     </div>
     @endif
     @if (auth()->user()->type == 'division')
-    <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-        <a href="{{route('division_nurse_dashboard')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-            <span class="material-icons-outlined float-left pr-2">dashboard</span>
-            Dashboard
-            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-        </a>
-        <a href="{{route('division_school_list')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-            <span class="material-icons-outlined float-left pr-2">domain</span>
-            School
-            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-        </a>
-        <a href="{{route('division_report')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-            <span class="material-icons-outlined float-left pr-2">summarize</span>
-            Report
-            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-        </a>
+    <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4 space-y-4">
+        <x-dynamic-link
+        href="{{route('division_nurse_dashboard')}}"
+        is-active="division_nurse_dashboard"
+        icon="dashboard"
+        text="Dashboard"
+        />
+
+        <x-dynamic-link
+            href="{{route('division_school_list')}}"
+            is-active="division_school_list"
+            icon="domain"
+            text="School"
+        />
+
+        <x-dynamic-link
+            href="{{route('division_report')}}"
+            is-active="division_report"
+            icon="summarize"
+            text="Report"
+        />
     </div>
     <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
         <a href="{{route('division_profile')}}" class="inline-flex items-center text-gray-600 hover:text-black my-4 w-full rounded-md transition ease-in-out duration-150">
