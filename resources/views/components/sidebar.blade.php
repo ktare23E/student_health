@@ -62,30 +62,35 @@
         </div>
     @endif
     @if (auth()->user()->type == 'school')
-    <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-        <a href="{{route('nurse_dashboard')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-            <span class="material-icons-outlined float-left pr-2">dashboard</span>
-            Dashboard
-            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-        </a>
-        <a href="{{route('student_list')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-            <span class="material-icons-outlined float-left pr-2">group</span>
-            Student
-            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-        </a>
-        <a href="{{route('school.archive_student')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-            <span class="material-icons-outlined float-left pr-2">archive</span>
-            Archive Student
-            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-        </a>
-        <a href="{{route('report')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-            <span class="material-icons-outlined float-left pr-2">summarize</span>
-            Report
-            <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-        </a>
+    <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4 space-y-4">
+        <x-dynamic-link
+            href="{{route('nurse_dashboard')}}"
+            is-active="nurse_dashboard"
+            icon="dashboard"
+            text="Dashboard"
+        />
+        <x-dynamic-link
+            href="{{route('student_list')}}"
+            is-active="student_list"
+            icon="group"
+            text="Student"
+        />
+        <x-dynamic-link
+            href="{{route('school.archive_student')}}"
+            is-active="archive_student"
+            icon="archive"
+            text="Archive"
+        />
+        <x-dynamic-link
+            href="{{route('report')}}"
+            is-active="report"
+            icon="summarize"
+            text="Report"
+        />
     </div>
     <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-        <a href="{{route('school_profile')}}" class="inline-flex items-center text-gray-600 hover:text-black my-4 w-full rounded-md transition ease-in-out duration-150">
+        
+        <a href="{{route('school_profile')}}" class="{{request()->is('school_profile') ? 'bg-blue-200' : ''}} inline-flex items-center text-gray-600 hover:text-black my-4 w-full rounded-md transition ease-in-out duration-150">
             <span class="material-icons-outlined mr-2">face</span>
             Profile
             <span class="material-icons-outlined ml-auto">keyboard_arrow_right</span>
