@@ -26,9 +26,10 @@
                 <div class="flex flex-row h-42 mt-6 gap-4">
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3  max-h-24">
-                            <h1 class="font-bold text-2xl">Division:</h1>
+                            <h1 class="font-bold text-2xl">Number of Division:</h1>
                             <div class="pl-4 w-full">
-                                @if ($divisions)
+                                <p class="text-center text-md">{{$divisionCount}}</p>
+                                {{-- @if ($divisions)
                                     @if($divisions->count() > 0)
                                         @foreach ($divisions->take(2) as $division )
                                             <p class="text-center text-md">{{$division->name}}</p>
@@ -36,7 +37,7 @@
                                     @endif
                                 @else
                                     <p class="text-center text-xl mt-4">No Division Yet</p>
-                                @endif
+                                @endif --}}
                                 {{-- @if ($divisions)
                                     @if($divisions->count() > 0)
                                         @forelse ($divisions as $division)
@@ -54,9 +55,11 @@
                     </div>
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
-                            <h1 class="font-bold text-2xl">District:</h1>
+                            <h1 class="font-bold text-2xl">Number of District:</h1>
                             <div class="pl-4 w-full">
-                                @if (!$divisions)
+                                <p class="text-center text-md">{{$districtCount}}</p>
+
+                                {{-- @if (!$divisions)
                                     <p class="text-center text-xl mt-4">No District Yet</p>
                                 @else
                                     @if($divisions->count() > 0)
@@ -64,16 +67,18 @@
                                         <p class=" text-center text-md">{{$division->name.': '. $division->districts->count()}} Disctrict Under</p>
                                         @endforeach
                                     @endif
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                         <a href="{{route('admin.district')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
                     </div>
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
-                            <h1 class="font-bold text-xl">School:</h1>
+                            <h1 class="font-bold text-xl">Number of School:</h1>
                             <div class="pl-4 w-full text-sm text-center">
-                                @if ($divisions)
+                                <p class="text-center text-md">{{$schoolCount}}</p>
+
+                                {{-- @if ($divisions)
                                     @if($divisions->count() > 0)
                                         @foreach ($divisions as $division )
                                             @if ($division->districts->count() > 0)
@@ -91,7 +96,7 @@
                                     @endif
                                 @else
                                     <p class="text-center text-xl mt-4">No School Yet</p>
-                                @endif
+                                @endif --}}
                                 {{-- @forelse ($divisions as $division)
                                     @foreach ($division->districts as $district)
                                         @if ($district->schools->count() === 0)
@@ -111,9 +116,9 @@
                 <div class="flex flex-row h-42 mt-6 gap-4 ">
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
-                            <h1 class="font-bold text-xl">Nurse:</h1>
+                            <h1 class="font-bold text-xl">School Nurse:</h1>
                             <div class="pl-4 w-full">
-                                @forelse ($nurses as $nurse)
+                                @forelse ($school_nurses as $nurse)
                                     <p class="text-center text-sm">{{$nurse->first_name.' '.$nurse->last_name.'-'}} <span class="capitalize">{{$nurse->type}}</span> Nurse</p>
                                 @empty
                                     <p class="text-center text-xl mt-4">No Nurse Yet</p>
@@ -124,29 +129,29 @@
                     </div>
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
-                            <h1 class="font-bold text-2xl">Number of Active Student :</h1>
+                            <h1 class="font-bold text-xl">Division Nurse:</h1>
                             <div class="pl-4 w-full">
-                                @if ($activeStudentNumber)
-                                    <p class=" text-center text-xl mt-4">{{$activeStudentNumber}}</p>
-                                @else
-                                    <p class="text-center text-xl mt-4">No Student Yet</p>
-                                @endif
+                                @forelse ($division_nurses as $nurse)
+                                    <p class="text-center text-sm">{{$nurse->first_name.' '.$nurse->last_name.'-'}} <span class="capitalize">{{$nurse->type}}</span> Nurse</p>
+                                @empty
+                                    <p class="text-center text-xl mt-4">No Nurse Yet</p>
+                                @endforelse
                             </div>
                         </div>
-                        {{-- <a href="" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a> --}}
+                        <a href="{{route('admin_nurse')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
                     </div>
                     <div class="bg-white rounded-xl shadow-lg w-4/12 flex flex-col justify-between">
                         <div class="px-4 py-3 max-h-24">
-                            <h1 class="font-bold text-xl">Number of Inactive Student :</h1>
+                            <h1 class="font-bold text-xl">District Nurse:</h1>
                             <div class="pl-4 w-full">
-                                @if ($inactiveStudentNumber)
-                                    <p class=" text-center text-xl mt-4">{{$inactiveStudentNumber}}</p>
-                                @else
-                                    <p class="text-center text-xl mt-4">No Student Yet</p>
-                                @endif
+                                @forelse ($district_nurses as $nurse)
+                                    <p class="text-center text-sm">{{$nurse->first_name.' '.$nurse->last_name.'-'}} <span class="capitalize">{{$nurse->type}}</span> Nurse</p>
+                                @empty
+                                    <p class="text-center text-xl mt-4">No Nurse Yet</p>
+                                @endforelse
                             </div>
                         </div>
-                        {{-- <a href="" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a> --}}
+                        <a href="{{route('admin_nurse')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a>
                     </div>
                 </div>
                 
