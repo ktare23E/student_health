@@ -216,4 +216,8 @@ class NurseDashboard extends Controller
     // Redirect back with a success message
     return redirect()->back()->with('success', 'Profile image updated successfully!');
     }
+
+    public function testCheckUp(){
+        return view('nurse.checkup.test_checkup');
+    }
 }
