@@ -26,7 +26,8 @@
                                 <span class="px-1">></span>
                             </li>
                             <li>
-                                <a href="{{route('view_student',$student->id)}}" class="text-blue-600 hover:text-blue-800 hover:underline">Student
+                                <a href="{{ route('view_student', $student->id) }}"
+                                    class="text-blue-600 hover:text-blue-800 hover:underline">Student
                                     Profile</a>
                             </li>
                             <li>
@@ -43,7 +44,7 @@
                         <div
                             class="bg-white rounded-md px-6 py-4 w-full mx-auto shadow-2xl transition-all hover:shadow-None">
                             <h1 class="font-semibold text-md mb-4">Checkup Form</h1>
-                            <x-forms.form action="{{route('store_checkup',$student->id)}}" method="POST">
+                            <x-forms.form action="{{ route('store_checkup', $student->id) }}" method="POST">
                                 <div class="w-[70%] mx-auto space-y-2">
                                     {{-- <div class="grid grid-cols-3 gap-3 ">
                                         <div>
@@ -61,23 +62,33 @@
                                     </div> --}}
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
-                                            <input type="text" id="student_age" name="student_age" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="12 years old" required />
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
+                                            <input type="text" id="student_age" name="student_age"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="12 years old" required />
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Adviser Name</label>
-                                            <input type="text" id="adviser_name" name="adviser_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Adviser Name" required />
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Adviser
+                                                Name</label>
+                                            <input type="text" id="adviser_name" name="adviser_name"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Adviser Name" required />
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Temperature</label>
-                                            <input type="text" id="temperature" name="temperature" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="35.00" required />
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Temperature</label>
+                                            <input type="text" id="temperature" name="temperature"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="35.00" required />
                                         </div>
                                         {{-- <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">School Id</label>
                                             <input type="text" id="school_id" name="school_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="School ID" required />
                                         </div> --}}
-                                    
-                                    </div> 
+
+                                    </div>
                                     {{-- <div class="grid grid-cols-3 gap-3">
                                         <div>
                                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Region</label>
@@ -94,51 +105,85 @@
                                     </div> --}}
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Systolic</label>
-                                            <input type="text" id="systolic" name="systolic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="120" required />
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Systolic</label>
+                                            <input type="text" id="systolic" name="systolic"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="120" required />
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Diastolic</label>
-                                            <input type="text" id="diastolic" name="diastolic" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="80" required />
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Diastolic</label>
+                                            <input type="text" id="diastolic" name="diastolic"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="80" required />
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Heart Rate</label>
-                                            <input type="text" id="heart_rate" name="heart_rate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="72" required />
-                                        </div>
-                                    </div>
-                                    <div class="grid grid-cols-3 gap-3">
-                                        <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pulse Rate</label>
-                                            <input type="text" id="pulse_rate" name="pulse_rate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="60" required />
-                                        </div>
-                                        <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Respiratory Rate</label>
-                                            <input type="text" id="respiratory_rate" name="respiratory_rate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="20" required />
-                                        </div>
-                                        <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Height(cm)</label>
-                                            <input type="text" id="height" name="height" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="160.50 cm" required />
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Heart
+                                                Rate</label>
+                                            <input type="text" id="heart_rate" name="heart_rate"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="72" required />
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
-                                            <label for="name" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Weight(kg)</label>
-                                            <input type="text" id="weight" name="weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="55.75 kg" required />
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pulse
+                                                Rate</label>
+                                            <input type="text" id="pulse_rate" name="pulse_rate"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="60" required />
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nutritional Status (BMI/Wt-for-Age)</label>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Respiratory
+                                                Rate</label>
+                                            <input type="text" id="respiratory_rate" name="respiratory_rate"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="20" required />
+                                        </div>
+                                        <div>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Height(m)</label>
+                                            <input type="text" id="height" name="height"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="160.50 cm" required />
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-4 gap-3">
+                                        <div>
+                                            <label for="name"
+                                                class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Weight(kg)</label>
+                                            <input type="text" id="weight" name="weight"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="55.75 kg" required />
+                                        </div>
+                                        <div>
+                                            <label for="bmi"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">BMI</label>
+                                            <input type="text" id="bmi" name="bmi"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                readonly />
+                                        </div>
+                                        <div>
+                                            <label for="bmi_weight" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nutritional Status (BMI)</label>
                                             <select id="bmi_weight" name="bmi_weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                                 <option value="">Select Value</option>
+                                                <option value="Underweight">Underweight</option>
                                                 <option value="Normal Weight">Normal Weight</option>
-                                                <option value="Wasted Underweight">Wasted Underweight</option>
-                                                <option value="Severely Wasted Underweight">Severely Wasted Underweight</option>
                                                 <option value="Overweight">Overweight</option>
                                                 <option value="Obese">Obese</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nutritional Status (Height-for-Age)</label>
-                                            <select id="bmi_height" name="bmi_height" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-xs font-medium text-gray-900 dark:text-white">Nutritional
+                                                Status (Height)</label>
+                                            <select id="bmi_height" name="bmi_height"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal Height">Normal Height</option>
                                                 <option value="Stunted">Stunted</option>
@@ -149,24 +194,35 @@
                                     </div>
                                     <div class="grid grid-cols-4 gap-3">
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vision Screening</label>
-                                            <select id="vision_screening" name="vision_screening" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vision
+                                                Screening</label>
+                                            <select id="vision_screening" name="vision_screening"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Passed">Passed</option>
                                                 <option value="Failed">Failed</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Auditory Screening</label>
-                                            <select id="auditory_screening" name="auditory_screening" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Auditory
+                                                Screening</label>
+                                            <select id="auditory_screening" name="auditory_screening"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Passed">Passed</option>
                                                 <option value="Failed">Failed</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skin</label>
-                                            <select id="skin" name="skin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skin</label>
+                                            <select id="skin" name="skin"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="Redness of Skin">Redness of Skin</option>
@@ -179,8 +235,11 @@
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Scalp</label>
-                                            <select id="scalp" name="scalp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Scalp</label>
+                                            <select id="scalp" name="scalp"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="Presence of Lice">Presence of Lice</option>
@@ -190,8 +249,11 @@
                                     </div>
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Eyes</label>
-                                            <select id="eyes" name="eyes" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Eyes</label>
+                                            <select id="eyes" name="eyes"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="Stye">Stye</option>
@@ -203,8 +265,11 @@
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ear</label>
-                                            <select id="ears" name="ears" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ear</label>
+                                            <select id="ears" name="ears"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="Ear Discharge">Ear Discharge</option>
@@ -212,19 +277,26 @@
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nose</label>
-                                            <select id="nose" name="nose" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nose</label>
+                                            <select id="nose" name="nose"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="Mucus Discharge">Mucus Discharge</option>
-                                                <option value="Nose Bleeding(Eplstaxis)">Nose Bleeding(Eplstaxis)</option>
+                                                <option value="Nose Bleeding(Eplstaxis)">Nose Bleeding(Eplstaxis)
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mouth/Neck/Throat</label>
-                                            <select id="mouth" name="mouth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mouth/Neck/Throat</label>
+                                            <select id="mouth" name="mouth"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="Enlarge Tonsils">Enlarge Tonsils</option>
@@ -233,35 +305,50 @@
                                                 <option value="Enlarge LymphNodes">Enlarge LymphNodes</option>
                                                 <option value="others">Others, specify</option>
                                             </select>
-                                            <input type="hidden" id="othersInput" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please Specify" required />
+                                            <input type="hidden" id="othersInput"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Please Specify" required />
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lungs</label>
-                                            <select id="lungs" name="lungs" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lungs</label>
+                                            <select id="lungs" name="lungs"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="Rales">Rales</option>
                                                 <option value="Wheeze">Wheeze</option>
                                                 <option value="others">Others</option>
                                             </select>
-                                            <input type="hidden"   id="othersInput2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please Specify" required />
+                                            <input type="hidden" id="othersInput2"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Please Specify" required />
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Heart</label>
-                                            <select id="heart" name="heart" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Heart</label>
+                                            <select id="heart" name="heart"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="Murmur">Murmur</option>
                                                 <option value="Irregular Heart Rate">Irregular Heart Rate</option>
                                                 <option value="others">Others</option>
                                             </select>
-                                            <input type="hidden"   id="othersInput3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please Specify" required />
+                                            <input type="hidden" id="othersInput3"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Please Specify" required />
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Abdomen</label>
-                                            <select id="abdomen" name="abdomen" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Abdomen</label>
+                                            <select id="abdomen" name="abdomen"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="Distended">Distended</option>
@@ -269,20 +356,31 @@
                                                 <option value="Dysmenorrhea">Dysmenorrhea</option>
                                                 <option value="others">Others, specify</option>
                                             </select>
-                                            <input type="hidden" id="othersInput4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please Specify" required />
+                                            <input type="hidden" id="othersInput4"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Please Specify" required />
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deformities</label>
-                                            <select id="deformities" name="deformities" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deformities</label>
+                                            <select id="deformities" name="deformities"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="others">Congenital (Specify)</option>
                                             </select>
-                                            <input type="hidden"   id="othersInput5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Please Specify" required />
+                                            <input type="hidden" id="othersInput5"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Please Specify" required />
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Iron Supplementaion</label>
-                                            <select id="iron_supplementation" name="iron_supplementation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Iron
+                                                Supplementaion</label>
+                                            <select id="iron_supplementation" name="iron_supplementation"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Yes">Yes</option>
                                                 <option value="No">No</option>
@@ -291,24 +389,34 @@
                                     </div>
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deworming</label>
-                                            <select id="deworming" name="deworming" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deworming</label>
+                                            <select id="deworming" name="deworming"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Yes">Yes</option>
                                                 <option value="No">No</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Immunization</label>
-                                            <select id="immunization" name="immunization" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Immunization</label>
+                                            <select id="immunization" name="immunization"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Yes">Yes</option>
                                                 <option value="No">No</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SBFP Beneficiary</label>
-                                            <select id="sbfp_beneficiary" name="sbfp_beneficiary" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SBFP
+                                                Beneficiary</label>
+                                            <select id="sbfp_beneficiary" name="sbfp_beneficiary"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Yes">Yes</option>
                                                 <option value="No">No</option>
@@ -317,40 +425,51 @@
                                     </div>
                                     <div class="grid grid-cols-3 gap-3">
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">4P's Beneficiary</label>
-                                            <select id="four_p_beneficiary" name="four_p_beneficiary" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">4P's
+                                                Beneficiary</label>
+                                            <select id="four_p_beneficiary" name="four_p_beneficiary"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Yes">Yes</option>
                                                 <option value="No">No</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Menarche</label>
-                                            <select id="menarche" name="menarche" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Menarche</label>
+                                            <select id="menarche" name="menarche"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Yes">Yes</option>
                                                 <option value="No">No</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Remarks</label>
-                                            <select id="remarks" name="remarks" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Remarks</label>
+                                            <select id="remarks" name="remarks"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
                                                 <option value="Healthy">Healthy</option>
                                                 <option value="Unhealthy">Unhealthy</option>
                                             </select>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="pt-4 flex justify-center">
-                                        <button type="submit" class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">submit</button>
+                                        <button type="submit"
+                                            class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">submit</button>
                                     </div>
                                 </div>
                             </x-forms.form>
-                            
+
                         </div>
-                        
-                        
+
+
                     </div>
 
                 </div>
@@ -362,89 +481,132 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        document.getElementById('mouth').addEventListener('change', function () {
+        document.getElementById('mouth').addEventListener('change', function() {
             var othersInput = document.getElementById('othersInput');
             if (this.value === 'others') {
                 this.classList.add('hidden');
                 othersInput.type = 'text';
-                othersInput.removeEventListener('input', function () {
+                othersInput.removeEventListener('input', function() {
                     document.getElementById('mouth').value = othersInput.value;
                 });
             } else {
                 othersInput.type = 'hidden';
                 this.classList.remove('hidden');
-                othersInput.removeEventListener('input', function () {
+                othersInput.removeEventListener('input', function() {
                     document.getElementById('mouth').value = othersInput.value;
                 });
             }
         });
 
-        document.getElementById('lungs').addEventListener('change', function () {
+        document.getElementById('lungs').addEventListener('change', function() {
             var othersInput = document.getElementById('othersInput2');
             if (this.value === 'others') {
                 this.classList.add('hidden');
                 othersInput.type = 'text';
-                othersInput.removeEventListener('input', function () {
+                othersInput.removeEventListener('input', function() {
                     document.getElementById('lungs').value = othersInput.value;
                 });
             } else {
                 othersInput.type = 'hidden';
                 this.classList.remove('hidden');
-                othersInput.removeEventListener('input', function () {
+                othersInput.removeEventListener('input', function() {
                     document.getElementById('lungs').value = othersInput.value;
                 });
             }
         });
 
-        document.getElementById('heart').addEventListener('change', function () {
+        document.getElementById('heart').addEventListener('change', function() {
             var othersInput = document.getElementById('othersInput3');
             if (this.value === 'others') {
                 this.classList.add('hidden');
                 othersInput.type = 'text';
-                othersInput.removeEventListener('input', function () {
+                othersInput.removeEventListener('input', function() {
                     document.getElementById('heart').value = othersInput.value;
                 });
             } else {
                 othersInput.type = 'hidden';
                 this.classList.remove('hidden');
-                othersInput.removeEventListener('input', function () {
+                othersInput.removeEventListener('input', function() {
                     document.getElementById('heart').value = othersInput.value;
                 });
             }
         });
 
-        document.getElementById('abdomen').addEventListener('change', function () {
+        document.getElementById('abdomen').addEventListener('change', function() {
             var othersInput = document.getElementById('othersInput4');
             if (this.value === 'others') {
                 this.classList.add('hidden');
                 othersInput.type = 'text';
-                othersInput.removeEventListener('input', function () {
+                othersInput.removeEventListener('input', function() {
                     document.getElementById('abdomen').value = othersInput.value;
                 });
             } else {
                 othersInput.type = 'hidden';
                 this.classList.remove('hidden');
-                othersInput.removeEventListener('input', function () {
+                othersInput.removeEventListener('input', function() {
                     document.getElementById('abdomen').value = othersInput.value;
                 });
             }
         });
 
-        document.getElementById('deformities').addEventListener('change', function () {
+        document.getElementById('deformities').addEventListener('change', function() {
             var othersInput = document.getElementById('othersInput5');
             if (this.value === 'others') {
                 this.classList.add('hidden');
                 othersInput.type = 'text';
-                othersInput.removeEventListener('input', function () {
+                othersInput.removeEventListener('input', function() {
                     document.getElementById('deformities').value = othersInput.value;
                 });
             } else {
                 othersInput.type = 'hidden';
                 this.classList.remove('hidden');
-                othersInput.removeEventListener('input', function () {
+                othersInput.removeEventListener('input', function() {
                     document.getElementById('deformities').value = othersInput.value;
                 });
             }
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            function calculateBMI() {
+                // Retrieve and parse the input values
+                var height = parseFloat($('#height').val());
+                var weight = parseFloat($('#weight').val());
+
+                // Validate the inputs
+                if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+                    $('#bmi').val('Invalid input');
+                    $('#bmi_weight').val('');
+                    return;
+                }
+
+                // Calculate BMI
+                var bmi = weight / (height * height);
+                var bmiRounded = bmi.toFixed(2);
+
+                // Update the BMI input field
+                $('#bmi').val(bmiRounded);
+
+                // Determine nutritional status
+                var status = '';
+                if (bmi < 18.5) {
+                    status = 'Underweight';
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    status = 'Normal Weight';
+                } else if (bmi >= 25 && bmi < 29.9) {
+                    status = 'Overweight';
+                } else if (bmi >= 30) {
+                    status = 'Obese';
+                }
+
+                // Update the nutritional status dropdown
+                $('#bmi_weight').val(status);
+            }
+
+            // Attach the calculateBMI function to input events
+            $('#height, #weight').on('input', function() {
+                calculateBMI();
+            });
         });
     </script>
     {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
