@@ -1,41 +1,48 @@
 <div class="w-2/12 mr-6">
     @if (auth()->user()->role == 'admin')
-        <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-            <a href="{{route('admin.index')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                <span class="material-icons-outlined float-left pr-2">dashboard</span>
-                Dashboard
-                <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-            <a href="{{route('admin.division')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                <span class="material-icons-outlined float-left pr-2">apartment</span>
-                Division
-                <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-            <a href="{{route('admin.district')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                <span class="material-icons-outlined float-left pr-2">domain</span>
-                District
-                <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-            <a href="{{route('admin.school')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                <span class="material-icons-outlined float-left pr-2">domain</span>
-                School
-                <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-            <a href="{{route('admin_nurse')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                <span class="material-icons-outlined float-left pr-2">medication</span>
-                Nurse
-                <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-            <a href="{{route('archive_nurse')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                <span class="material-icons-outlined float-left pr-2">archive</span>
-                Archive Nurse
-                <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
-            <a href="{{route('system_logs')}}" class="inline-block text-gray-600 hover:text-black my-4 w-full">
-                <span class="material-icons-outlined float-left pr-2">archive</span>
-                System Logs
-                <span class="material-icons-outlined float-right">keyboard_arrow_right</span>
-            </a>
+        <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4 space-y-4">
+            <x-dynamic-link
+                href="{{route('admin.index')}}"
+                is-active="admin_dashboard"
+                icon="dashboard"
+                text="Dashboard"
+            />
+            <x-dynamic-link
+                href="{{route('admin.division')}}"
+                is-active="division"
+                icon="apartment"
+                text="Division"
+            />
+            <x-dynamic-link
+                href="{{route('admin.district')}}"
+                is-active="district"
+                icon="domain"
+                text="District"
+            />
+            <x-dynamic-link
+                href="{{route('admin.school')}}"
+                is-active="school"
+                icon="domain"
+                text="School"
+            />
+            <x-dynamic-link
+                href="{{route('admin_nurse')}}"
+                is-active="admin_nurse"
+                icon="medication"
+                text="Nurse"
+            />
+            <x-dynamic-link
+                href="{{route('archive_nurse')}}"
+                is-active="archive_nurse"
+                icon="archive"
+                text="Archive"
+            />
+            <x-dynamic-link
+                href="{{route('system_logs')}}"
+                is-active="system_logs"
+                icon="archive"
+                text="System Logs"
+            />
         </div>
         <div class="bg-white rounded-xl shadow-lg mb-6 px-6 py-4 h-24">
             {{-- <a href="{{route('district_profile')}}" class="inline-flex items-center text-gray-600 hover:text-black my-4 w-full rounded-md transition ease-in-out duration-150">
