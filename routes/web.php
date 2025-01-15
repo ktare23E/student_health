@@ -28,7 +28,7 @@ Route::get('/login', function () {
 Route::post('/login',[LoginController::class,'store'])->name('login.store');
 Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
 
-Route::get('/test_checkup', [NurseDashboard::class, 'testCheckUp'])->name('testCheckup');
+Route::get('/test_checkup/{checkup}', [NurseDashboard::class, 'testCheckUp'])->name('test_checkup');
 
 
 Route::middleware(CheckUserType::class)->group(function(){

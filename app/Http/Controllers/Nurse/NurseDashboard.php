@@ -217,7 +217,14 @@ class NurseDashboard extends Controller
     return redirect()->back()->with('success', 'Profile image updated successfully!');
     }
 
-    public function testCheckUp(){
-        return view('nurse.checkup.test_checkup');
+    public function testCheckUp(Checkup $checkup){
+        $studentData = Student::with('school')->findOrFail($checkup->student_id);
+        $nurseData = Nurse::findOrFail($checkup->nurse_id);
+
+        return view('nurse.checkup.test_checkup',[
+            'checkup' => $checkup,
+            'student' => $studentData,
+            'nurse' => $nurseData
+        ]);
     }
 }
