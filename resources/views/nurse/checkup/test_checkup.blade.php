@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="p-8 bg-gray-100">
+    <div class="p-8 bg-blue-100">
         <!-- Header -->
         <div class="text-center mb-4">
             <h1 class="text-xl font-bold uppercase">Department of Education</h1>
@@ -695,4 +695,9 @@
             </table>
         </div>
     </div>
+    <script>
+        window.onload = function(){
+            window.print();
+        }
+    </script>
 </x-layout>

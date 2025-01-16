@@ -236,8 +236,8 @@
                                 <h1 class="font-bold text-xl">Latest Checkup Made:</h1>
                                 <div class="pl-4 w-full">
                                     @if ($latestCheckup)
-                                        <p class="text-center text-md">Student: {{$latestCheckup->student->first_name.' '.$latestCheckup->student->last_name}}</p>
-                                        <p class="text-center text-md">Date of Checkup: {{ \Carbon\Carbon::parse($latestCheckup->date_of_checkup)->format('F j, Y, g:i A') }}
+                                        <p class="text-center text-sm">Student: {{$latestCheckup->student->first_name.' '.$latestCheckup->student->last_name}}</p>
+                                        <p class="text-center text-sm">Date of Checkup: {{ \Carbon\Carbon::parse($latestCheckup->date_of_checkup)->format('F j, Y, g:i A') }}
                                     @else
                                         <p class="text-center text-xl mt-4">No checkup yet</p>
                                     @endif
@@ -250,7 +250,7 @@
                             <div class="px-4 py-3 max-h-24">
                                 <h1 class="font-bold text-xl">School Assigned :</h1>
                                 <div class="pl-4 w-full">
-                                    <p class="text-center text-xl mt-4">{{$school[0]->name}}</p>
+                                    <p class="text-center text-sm mt-4">{{$school[0]->name}}</p>
                                 </div>
                             </div>
                             {{-- <a href="{{route('division_school_list')}}" class="mt-2 bg-blue-950 text-white rounded-sm overflow-hidden py-2 px-3 block w-full text-center">View details</a> --}}

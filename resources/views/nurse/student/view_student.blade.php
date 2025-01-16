@@ -210,7 +210,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="mt-6 w-full flex justify-center gap-2">
+                                        <div class="mt-6 w-full flex justify-center gap-1">
                                             @if (auth()->user()->type == 'school')
                                                 <a href="{{ route('edit_checkup', $checkup->id) }}"
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white">
@@ -229,7 +229,7 @@
                                                 @endif
 
                                             </button>
-                                            <a href="{{route('test_checkup',$checkup->id)}}" class="text-sm py-1 px-2 rounded-sm bg-blue-500 text-white">check</a>
+                                            <a href="{{route('test_checkup',$checkup->id)}}" class="text-sm py-1 px-2 rounded-sm bg-blue-500 text-white">print</a>
                                         </div>
                                     </div>
                                 @empty
