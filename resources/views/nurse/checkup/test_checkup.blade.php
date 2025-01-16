@@ -106,436 +106,458 @@
                         <td class="border p-2 text-center">
                             {{ $student->grade_level === '1' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}
                         </td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Temperature</td>
                         <td class="border p-2 text-center">
                             {{ $student->grade_level === '1' ? $checkup->temperature : '-' }}
                         </td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->temperature : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->temperature : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->temperature : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->temperature : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->temperature : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->temperature : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->temperature : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->temperature : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->temperature : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->temperature : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->temperature : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">BP</td>
                         <td class="border p-2 text-center">
                             {{ $student->grade_level === '1' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Heart Rate</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->heart_rate : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->heart_rate : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->heart_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->heart_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->heart_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->heart_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->heart_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->heart_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->heart_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->heart_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->heart_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->heart_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->heart_rate : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Pulse Rate</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->pulse_rate : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->pulse_rate : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->pulse_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->pulse_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->pulse_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->pulse_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->pulse_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->pulse_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->pulse_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->pulse_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->pulse_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->pulse_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->pulse_rate : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Respiratory Rate</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->respiratory_rate : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->respiratory_rate : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->respiratory_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->respiratory_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->respiratory_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->respiratory_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->respiratory_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->respiratory_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->respiratory_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->respiratory_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->respiratory_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->respiratory_rate : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->respiratory_rate : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Height</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->height . ' meters' : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->height . ' meters' : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->height . ' meters' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->height . ' meters' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->height . ' meters' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->height . ' meters' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->height . ' meters' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->height . ' meters' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->height . ' meters' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->height . ' meters' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->height . ' meters' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->height . ' meters' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->height . ' meters' : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Weight</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->weight . 'kg' : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->weight . 'kg' : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->weight . 'kg' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->weight . 'kg' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->weight . 'kg' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->weight . 'kg' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->weight . 'kg' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->weight . 'kg' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->weight . 'kg' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->weight . 'kg' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->weight . 'kg' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->weight . 'kg' : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->weight . 'kg' : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Nutritional Status (BMI)</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->bmi_weight : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->bmi_weight : '-' }}
+                        </td>
+                        <td class="border p-2 text-center"> {{ $student->grade_level === '2' ? $checkup->bmi_weight : '-' }}</td>
+                        <td class="border p-2 text-center"> {{ $student->grade_level === '3' ? $checkup->bmi_weight : '-' }}</td>
+                        <td class="border p-2 text-center"> {{ $student->grade_level === '4' ? $checkup->bmi_weight : '-' }}</td>
+                        <td class="border p-2 text-center"> {{ $student->grade_level === '5' ? $checkup->bmi_weight : '-' }}</td>
+                        <td class="border p-2 text-center"> {{ $student->grade_level === '6' ? $checkup->bmi_weight : '-' }}</td>
+                        <td class="border p-2 text-center"> {{ $student->grade_level === '7' ? $checkup->bmi_weight : '-' }}</td>
+                        <td class="border p-2 text-center"> {{ $student->grade_level === '8' ? $checkup->bmi_weight : '-' }}</td>
+                        <td class="border p-2 text-center"> {{ $student->grade_level === '9' ? $checkup->bmi_weight : '-' }}</td>
+                        <td class="border p-2 text-center"> {{ $student->grade_level === '10' ? $checkup->bmi_weight : '-' }}</td>
+                        <td class="border p-2 text-center"> {{ $student->grade_level === '11' ? $checkup->bmi_weight : '-' }}</td>
+                        <td class="border p-2 text-center"> {{ $student->grade_level === '12' ? $checkup->bmi_weight : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Vision Screening</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->vision_screening : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->vision_screening : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->vision_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->vision_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->vision_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->vision_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->vision_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->vision_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->vision_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->vision_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->vision_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->vision_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->vision_screening : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Auditory Screening</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->auditory_screening : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->auditory_screening : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->auditory_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->auditory_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->auditory_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->auditory_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->auditory_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->auditory_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->auditory_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->auditory_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->auditory_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->auditory_screening : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->auditory_screening : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Skin</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '1' ? $checkup->skin : '-' }}
+                        <td class="border p-2 text-center">
+                            {{ $student->grade_level === '1' ? $checkup->skin : '-' }}
                         </td>
-
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->skin : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->skin : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->skin : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->skin : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->skin : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->skin : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->skin : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->skin : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->skin : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->skin : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->skin : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Scalp</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '1' ? $checkup->scalp : '-' }}
+                        <td class="border p-2 text-center">
+                            {{ $student->grade_level === '1' ? $checkup->scalp : '-' }}
                         </td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->scalp : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->scalp : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->scalp : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->scalp : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->scalp : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->scalp : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->scalp : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->scalp : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->scalp : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->scalp : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->scalp : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Eyes</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '1' ? $checkup->eyes : '-' }}
+                        <td class="border p-2 text-center">
+                            {{ $student->grade_level === '1' ? $checkup->eyes : '-' }}
                         </td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->eyes : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->eyes : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->eyes : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->eyes : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->eyes : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->eyes : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->eyes : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->eyes : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->eyes : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->eyes : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->eyes : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Ears</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '1' ? $checkup->ears : '-' }}
+                        <td class="border p-2 text-center">
+                            {{ $student->grade_level === '1' ? $checkup->ears : '-' }}
                         </td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->ears : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->ears : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->ears : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->ears : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->ears : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->ears : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->ears : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->ears : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->ears : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->ears : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->ears : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Nose</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '1' ? $checkup->nose : '-' }}
+                        <td class="border p-2 text-center">
+                            {{ $student->grade_level === '1' ? $checkup->nose : '-' }}
                         </td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->nose : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->nose : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->nose : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->nose : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->nose : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->nose : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->nose : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->nose : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->nose : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->nose : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->nose : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Mouth</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '1' ? $checkup->mouth : '-' }}
+                        <td class="border p-2 text-center">
+                            {{ $student->grade_level === '1' ? $checkup->mouth : '-' }}
                         </td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->mouth : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->mouth : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->mouth : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->mouth : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->mouth : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->mouth : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->mouth : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->mouth : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->mouth : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->mouth : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->mouth : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Lungs</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '1' ? $checkup->lungs : '-' }}
+                        <td class="border p-2 text-center">
+                            {{ $student->grade_level === '1' ? $checkup->lungs : '-' }}
                         </td>
-
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->lungs : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->lungs : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->lungs : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->lungs : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->lungs : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->lungs : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->lungs : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->lungs : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->lungs : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->lungs : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->lungs : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Heart</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '1' ? $checkup->heart : '-' }}
+                        <td class="border p-2 text-center">
+                            {{ $student->grade_level === '1' ? $checkup->heart : '-' }}
                         </td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->heart : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->heart : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->heart : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->heart : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->heart : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->heart : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->heart : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->heart : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->heart : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->heart : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->heart : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Abdomen</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->abdomen : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->abdomen : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->abdomen : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->abdomen : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->abdomen : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->abdomen : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->abdomen : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->abdomen : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->abdomen : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->abdomen : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->abdomen : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->abdomen : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->abdomen : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Deformities</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->deformities : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->deformities : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->deformities : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->deformities : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->deformities : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->deformities : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->deformities : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->deformities : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->deformities : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->deformities : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->deformities : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->deformities : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->deformities : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Iron Supplementation</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->iron_supplementation : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->iron_supplementation : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->iron_supplementation : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->iron_supplementation : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->iron_supplementation : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->iron_supplementation : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->iron_supplementation : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->iron_supplementation : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->iron_supplementation : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->iron_supplementation : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->iron_supplementation : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->iron_supplementation : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->iron_supplementation : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Deworming</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->deworming : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->deworming : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->deworming : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->deworming : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->deworming : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->deworming : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->deworming : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->deworming : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->deworming : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->deworming : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->deworming : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->deworming : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->deworming : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Immunization</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->immunization : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->immunization : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->immunization : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->immunization : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->immunization : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->immunization : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->immunization : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->immunization : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->immunization : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->immunization : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->immunization : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->immunization : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->immunization : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">SBFP Beneficiary</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->sbfp_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->sbfp_beneficiary : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->sbfp_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->sbfp_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->sbfp_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->sbfp_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->sbfp_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->sbfp_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->sbfp_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->sbfp_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->sbfp_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->sbfp_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->sbfp_beneficiary : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">4P's Beneficiary</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->four_p_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->four_p_beneficiary : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->four_p_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->four_p_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->four_p_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->four_p_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->four_p_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->four_p_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->four_p_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->four_p_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->four_p_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->four_p_beneficiary : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->four_p_beneficiary : '-' }}</td>
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Menarche</td>
                         <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->menarche : '-' }}</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
-                        <td class="border p-2 text-center">-</td>
+                            {{ $student->grade_level === '1' ? $checkup->menarche : '-' }}
+                        </td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->menarche : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->menarche : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->menarche : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->menarche : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->menarche : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->menarche : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->menarche : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->menarche : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->menarche : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->menarche : '-' }}</td>
+                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->menarche : '-' }}</td>
                     </tr>
                 </tbody>
             </table>
