@@ -100,6 +100,11 @@ class ReportController extends Controller
 
             $schoolData = $nurse->entity;
 
+            // return [
+            //     $chartData,
+            //     $checkups
+            // ];
+
                 return view('nurse.report.result', compact('checkups', 'students', 'chartData','schoolData'));
 
         } else if ($nurse->type === 'district' || $nurse->type === 'division') {

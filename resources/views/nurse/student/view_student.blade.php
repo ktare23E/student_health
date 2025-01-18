@@ -198,7 +198,7 @@
                                         <div class="w-full grid grid-cols-3 gap-4">
                                             <div class="flex flex-col items-center">
                                                 <p class="font-bold text-center">Height:</p>
-                                                <p class="text-center">{{ $checkup->height }}</p>
+                                                <p class="text-center">{{ $checkup->height.' meters' }}</p>
                                             </div>
                                             <div class="flex flex-col items-center">
                                                 <p class="font-bold text-center">BMI:</p>

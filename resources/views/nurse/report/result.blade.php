@@ -228,7 +228,7 @@
                 noCount++;
             } else if (value === 'Normal Weight') {
                 normal_weight++;
-            } else if (value === 'Wasted Underweight') {
+            } else if (value === 'Underweight') {
                 wasted_underweight++;
             } else if (value === 'Overweight') {
                 overweight++;
@@ -414,7 +414,7 @@
             label = "BMI Weight";
             let summary = document.querySelector('.summary');
             summary.innerHTML = `<p>Total student that has <span class="font-bold">Normal Weight</span>: ${normal_weight}</p>
-                            <p>Total student that has <span class="font-bold">Wasted Underweight</span>: ${wasted_underweight}</p>
+                            <p>Total student that has <span class="font-bold">Underweight</span>: ${wasted_underweight}</p>
                             <p>Total student that has <span class="font-bold">Severely Wasted Underweight</span>: ${severely_wasted_underweight}</p>
                             <p>Total student that has <span class="font-bold">Obese</span>: ${obese}</p> 
                             <p>Total student that has <span class="font-bold">Overweight</span>: ${overweight}</p>`;
@@ -429,12 +429,12 @@
             };
 
             // Prepare the data for the bar chart
-            chartValues = [normal_weight, wasted_underweight, severely_wasted_underweight, obese, overweight];
+            chartValues = [normal_weight, wasted_underweight, overweight,obese];
             const reportChart = new Chart(ctx, {
                 type: 'bar', // Bar chart for deworming or iron supplementation
                 data: {
-                    labels: ['Normal Weight', 'Wasted Underweight', 'Severely Wasted Underweight', 'Obese',
-                        'Overweight'
+                    labels: ['Normal Weight', 'Underweight', 
+                        'Overweight','Obese'
                     ],
                     datasets: [{
                         label: label,
