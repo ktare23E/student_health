@@ -63,11 +63,11 @@
 
 
                     <div class="flex flex-col p-[2rem] w-full">
-                        <div class="flex justify-end">
+                        <div class="flex justify-end mb-2">
                             <button id="print" class="py-1 px-2 bg-blue-500 text-white rounded-sm">Print Report</button>
                         </div>
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
-                            <h1 class="font-bold text-2xl mb-4">Data Analytics</h1>
+                            <h1 class="font-bold text-2xl mb-4 text-center">Data Analytics of {{$schoolData->name}}</h1>
                             <div>
 
                                 <div class="">

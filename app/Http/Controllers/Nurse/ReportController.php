@@ -31,6 +31,7 @@ class ReportController extends Controller
             $schools = School::where('district_id', $district->id)->get();
         }
 
+
         return view('nurse.report.index', [
             'schools' => $schools,
             'district' => $district
@@ -97,9 +98,9 @@ class ReportController extends Controller
                 ->whereIn('id', $checkups->pluck('student_id'))
                 ->get();
 
-              
+            $schoolData = $nurse->entity;
 
-                return view('nurse.report.result', compact('checkups', 'students', 'chartData'));
+                return view('nurse.report.result', compact('checkups', 'students', 'chartData','schoolData'));
 
         } else if ($nurse->type === 'district' || $nurse->type === 'division') {
             // Filter by school if the nurse is not a school nurse

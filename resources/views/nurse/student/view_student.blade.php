@@ -229,7 +229,7 @@
                                                 @endif
 
                                             </button>
-                                            <a href="{{route('test_checkup',$checkup->id)}}" class="text-sm py-1 px-2 rounded-sm bg-blue-500 text-white">print</a>
+                                            <a href="{{route('test_checkup',$checkup->id)}}" class="text-sm py-1 px-2 rounded-sm bg-blue-500 text-white" target="blank">print</a>
                                         </div>
                                     </div>
                                 @empty
