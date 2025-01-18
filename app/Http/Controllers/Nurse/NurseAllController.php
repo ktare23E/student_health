@@ -108,6 +108,9 @@ class NurseAllController extends Controller
     
         foreach ($fileContents as $line) {
             $data = str_getcsv($line);
+
+            $formattedDate = Carbon::createFromFormat('d/m/Y', $data[3])->format('Y-m-d');
+
     
             // Check if student already exists
             $student = Student::where('student_lrn', $data[0])->first();
@@ -118,7 +121,7 @@ class NurseAllController extends Controller
                 $student->update([
                     'first_name' => $data[1],
                     'last_name' => $data[2],
-                    'date_of_birth' => $data[3],
+                    'date_of_birth' => $formattedDate,
                     'birth_place' => $data[4],
                     'parent_name' => $data[5],
                     'cellphone_number' => $data[6],
@@ -134,7 +137,7 @@ class NurseAllController extends Controller
                     'student_lrn' => $data[0],
                     'first_name' => $data[1],
                     'last_name' => $data[2],
-                    'date_of_birth' => $data[3],
+                    'date_of_birth' => $formattedDate,
                     'birth_place' => $data[4],
                     'parent_name' => $data[5],
                     'cellphone_number' => $data[6],
@@ -145,7 +148,7 @@ class NurseAllController extends Controller
                 ]);
             }
         }
-    
+        
         return redirect()->back()->with('success', 'CSV file imported successfully.');
     }
 
