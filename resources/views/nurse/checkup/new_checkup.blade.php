@@ -635,6 +635,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <button class="w-full text-center mt-2 py-1 px-2 bg-blue-600 text-white rounded-sm cursor-pointer">submit</button>
+            </div>
         </div>
 
         <!-- Legend -->
