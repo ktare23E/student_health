@@ -227,4 +227,14 @@ class NurseDashboard extends Controller
             'nurse' => $nurseData
         ]);
     }
+
+    public function checkUpForm(Student $student){
+
+        return $student;
+        
+        return view('nurse.checkup.new_checkup',[
+            'student' => $student,
+            'checkups' => $student->checkup
+        ]);
+    }
 }

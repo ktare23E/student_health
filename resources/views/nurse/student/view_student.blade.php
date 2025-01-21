@@ -153,10 +153,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-20 mb-8 w-full flex justify-end">
+                        <div class="mt-20 mb-8 w-full flex justify-end gap-2">
                             @if (auth()->user()->type == 'school')
                                 <button class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">
                                     <a href="{{ route('checkup_student', $student->id) }}">+Checkup</a>
+                                </button>
+                                <button class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">
+                                    <a href="{{ route('checkup_form', $student->id) }}">+New</a>
                                 </button>
                             @endif
                         </div>
