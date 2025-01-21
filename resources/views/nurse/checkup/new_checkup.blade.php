@@ -1,5 +1,6 @@
 <x-layout>
     <div class="p-8 bg-blue-100">
+        <a href="{{route('view_student',$student->id)}}" class="bg-white py-1 px-2 rounded sm ">Back</a>
         <!-- Header -->
         <div class="text-center mb-4">
             <h1 class="text-xl font-bold uppercase">Department of Education</h1>
@@ -58,22 +59,10 @@
                         value="{{ $student->cellphone_number }}" readonly>
                 </div>
                 <div class="col-span-2">
-                    <div class="grid grid-cols-3 gap-2">
-                        <div>
-                            <label class="block font-semibold">Address:</label>
-                            <input type="text" placeholder="Enter Address" class="border p-2 rounded w-full"
-                                value="{{ $student->address }}" readonly>
-                        </div>
-                        <div>
-                            <label class="block font-semibold">Conducted by:</label>
-                            {{-- <input type="text" placeholder="Enter Address" class="border p-2 rounded w-full"
-                                value="{{ $checkup->nurse->test_name }}" readonly> --}}
-                        </div>
-                        <div>
-                            <label class="block font-semibold">Remarks:</label>
-                            {{-- <input type="text" placeholder="Enter Address" class="border p-2 rounded w-full"
-                                value="{{ $checkup->remarks }}" readonly> --}}
-                        </div>
+                    <div>
+                        <label class="block font-semibold">Address:</label>
+                        <input type="text" placeholder="Enter Address" class="border p-2 rounded w-full"
+                            value="{{ $student->address }}" readonly>
                     </div>
                 </div>
             </div>
@@ -85,479 +74,564 @@
                 <thead>
                     <tr>
                         <th class="border p-2"></th>
-                        <th class="border p-2">Grade 1/SPED</th>
-                        <th class="border p-2">Grade 2/SPED</th>
-                        <th class="border p-2">Grade 3/SPED</th>
-                        <th class="border p-2">Grade 4/SPED</th>
-                        <th class="border p-2">Grade 5/SPED</th>
-                        <th class="border p-2">Grade 6/SPED</th>
-                        <th class="border p-2">Grade 7/SPED</th>
-                        <th class="border p-2">Grade 8/SPED</th>
-                        <th class="border p-2">Grade 9/SPED</th>
-                        <th class="border p-2">Grade 10/SPED</th>
-                        <th class="border p-2">Grade 11/SPED</th>
-                        <th class="border p-2">Grade 12/SPED</th>
+                        @for ($i = 1; $i <= 12; $i++)
+                            <th class="border p-2">Grade {{$i}}/SPED</th>
+                        @endfor
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Placeholder rows for the table -->
                     <tr>
+                        {{-- @dd($checkups) --}}
                         <td class="border p-2 text-center">Date of Examination</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F d, Y') : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F j, Y') }}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Temperature</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->temperature : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->temperature : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->temperature : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->temperature : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->temperature : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->temperature : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->temperature : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->temperature : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->temperature : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->temperature : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->temperature : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->temperature : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->temperature }}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">BP</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->systolic . '/' . $checkup->diastolic : '-' }}</td></td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->systolic.'/'.$checkup->diastolic }}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Heart Rate</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->heart_rate : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->heart_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->heart_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->heart_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->heart_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->heart_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->heart_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->heart_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->heart_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->heart_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->heart_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->heart_rate : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->heart_rate }}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Pulse Rate</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->pulse_rate : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->pulse_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->pulse_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->pulse_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->pulse_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->pulse_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->pulse_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->pulse_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->pulse_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->pulse_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->pulse_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->pulse_rate : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->pulse_rate }}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Respiratory Rate</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->respiratory_rate : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->respiratory_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->respiratory_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->respiratory_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->respiratory_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->respiratory_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->respiratory_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->respiratory_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->respiratory_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->respiratory_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->respiratory_rate : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->respiratory_rate : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->respiratory_rate }}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Height</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->height . ' meters' : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->height . ' meters' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->height . ' meters' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->height . ' meters' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->height . ' meters' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->height . ' meters' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->height . ' meters' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->height . ' meters' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->height . ' meters' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->height . ' meters' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->height . ' meters' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->height . ' meters' : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->height.' meters' }}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Weight</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->weight . 'kg' : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->weight . 'kg' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->weight . 'kg' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->weight . 'kg' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->weight . 'kg' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->weight . 'kg' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->weight . 'kg' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->weight . 'kg' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->weight . 'kg' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->weight . 'kg' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->weight . 'kg' : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->weight . 'kg' : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->weight.'kg' }}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Nutritional Status (BMI)</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->bmi_weight : '-' }}
-                        </td>
-                        <td class="border p-2 text-center"> {{ $student->grade_level === '2' ? $checkup->bmi_weight : '-' }}</td>
-                        <td class="border p-2 text-center"> {{ $student->grade_level === '3' ? $checkup->bmi_weight : '-' }}</td>
-                        <td class="border p-2 text-center"> {{ $student->grade_level === '4' ? $checkup->bmi_weight : '-' }}</td>
-                        <td class="border p-2 text-center"> {{ $student->grade_level === '5' ? $checkup->bmi_weight : '-' }}</td>
-                        <td class="border p-2 text-center"> {{ $student->grade_level === '6' ? $checkup->bmi_weight : '-' }}</td>
-                        <td class="border p-2 text-center"> {{ $student->grade_level === '7' ? $checkup->bmi_weight : '-' }}</td>
-                        <td class="border p-2 text-center"> {{ $student->grade_level === '8' ? $checkup->bmi_weight : '-' }}</td>
-                        <td class="border p-2 text-center"> {{ $student->grade_level === '9' ? $checkup->bmi_weight : '-' }}</td>
-                        <td class="border p-2 text-center"> {{ $student->grade_level === '10' ? $checkup->bmi_weight : '-' }}</td>
-                        <td class="border p-2 text-center"> {{ $student->grade_level === '11' ? $checkup->bmi_weight : '-' }}</td>
-                        <td class="border p-2 text-center"> {{ $student->grade_level === '12' ? $checkup->bmi_weight : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->bmi_weight }}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Vision Screening</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->vision_screening : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->vision_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->vision_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->vision_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->vision_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->vision_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->vision_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->vision_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->vision_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->vision_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->vision_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->vision_screening : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->vision_screening}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Auditory Screening</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->auditory_screening : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->auditory_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->auditory_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->auditory_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->auditory_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->auditory_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->auditory_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->auditory_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->auditory_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->auditory_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->auditory_screening : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->auditory_screening : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->auditory_screening}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Skin</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->skin : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->skin : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->skin : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->skin : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->skin : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->skin : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->skin : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->skin : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->skin : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->skin : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->skin : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->skin : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->skin}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Scalp</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->scalp : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->scalp : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->scalp : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->scalp : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->scalp : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->scalp : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->scalp : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->scalp : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->scalp : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->scalp : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->scalp : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->scalp : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->scalp}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Eyes</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->eyes : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->eyes : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->eyes : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->eyes : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->eyes : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->eyes : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->eyes : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->eyes : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->eyes : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->eyes : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->eyes : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->eyes : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->eyes}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Ears</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->ears : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->ears : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->ears : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->ears : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->ears : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->ears : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->ears : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->ears : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->ears : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->ears : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->ears : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->ears : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->ears}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Nose</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->nose : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->nose : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->nose : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->nose : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->nose : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->nose : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->nose : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->nose : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->nose : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->nose : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->nose : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->nose : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->nose}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Mouth</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->mouth : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->mouth : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->mouth : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->mouth : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->mouth : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->mouth : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->mouth : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->mouth : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->mouth : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->mouth : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->mouth : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->mouth : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->mouth}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Lungs</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->lungs : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->lungs : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->lungs : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->lungs : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->lungs : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->lungs : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->lungs : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->lungs : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->lungs : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->lungs : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->lungs : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->lungs : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->lungs}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Heart</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->heart : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->heart : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->heart : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->heart : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->heart : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->heart : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->heart : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->heart : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->heart : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->heart : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->heart : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->heart : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->heart}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Abdomen</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->abdomen : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->abdomen : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->abdomen : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->abdomen : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->abdomen : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->abdomen : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->abdomen : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->abdomen : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->abdomen : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->abdomen : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->abdomen : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->abdomen : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->abdomen}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Deformities</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->deformities : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->deformities : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->deformities : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->deformities : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->deformities : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->deformities : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->deformities : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->deformities : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->deformities : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->deformities : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->deformities : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->deformities : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->deformities}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Iron Supplementation</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->iron_supplementation : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->iron_supplementation : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->iron_supplementation : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->iron_supplementation : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->iron_supplementation : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->iron_supplementation : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->iron_supplementation : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->iron_supplementation : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->iron_supplementation : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->iron_supplementation : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->iron_supplementation : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->iron_supplementation : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->iron_supplementation}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Deworming</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->deworming : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->deworming : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->deworming : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->deworming : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->deworming : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->deworming : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->deworming : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->deworming : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->deworming : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->deworming : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->deworming : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->deworming : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->deworming}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Immunization</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->immunization : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->immunization : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->immunization : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->immunization : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->immunization : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->immunization : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->immunization : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->immunization : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->immunization : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->immunization : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->immunization : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->immunization : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->immunization}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">SBFP Beneficiary</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->sbfp_beneficiary : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->sbfp_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->sbfp_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->sbfp_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->sbfp_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->sbfp_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->sbfp_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->sbfp_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->sbfp_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->sbfp_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->sbfp_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->sbfp_beneficiary : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->sbfp_beneficiary}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">4P's Beneficiary</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->four_p_beneficiary : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->four_p_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->four_p_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->four_p_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->four_p_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->four_p_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->four_p_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->four_p_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->four_p_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->four_p_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->four_p_beneficiary : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->four_p_beneficiary : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->four_p_beneficiary}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                     <tr>
                         <td class="border p-2 text-center">Menarche</td>
-                        <td class="border p-2 text-center">
-                            {{ $student->grade_level === '1' ? $checkup->menarche : '-' }}
-                        </td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '2' ? $checkup->menarche : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '3' ? $checkup->menarche : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '4' ? $checkup->menarche : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '5' ? $checkup->menarche : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '6' ? $checkup->menarche : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '7' ? $checkup->menarche : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '8' ? $checkup->menarche : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '9' ? $checkup->menarche : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '10' ? $checkup->menarche : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '11' ? $checkup->menarche : '-' }}</td>
-                        <td class="border p-2 text-center">{{ $student->grade_level === '12' ? $checkup->menarche : '-' }}</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->menarche}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
+                    </tr>
+                    <tr>
+                        <td class="border p-2 text-center">Conducted by:</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->nurse->test_name}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
+                    </tr>
+                    <tr>
+                        <td class="border p-2 text-center">Remarks:</td>
+                        @foreach ($checkupsByGrade as $grade => $checkups )
+                            @for ($i = 1; $i<13; $i++)
+                                <td class="border p-2 text-center">
+                                    @if ($grade == $i )
+                                    {{-- <p>naa ko dre</p> --}}
+                                        @foreach ($checkups as $checkup)
+                                            {{ $checkup->remarks}}
+                                        @endforeach
+                                    @else
+                                        @if ($i == $student->grade_level)
+                                            <input type="text" class="border-2">
+                                        @endif
+                                    @endif
+                                </td>
+                            @endfor
+                        @endforeach
                     </tr>
                 </tbody>
             </table>
@@ -695,9 +769,4 @@
             </table>
         </div>
     </div>
-    <script>
-        window.onload = function(){
-            window.print();
-        }
-    </script>
 </x-layout>
