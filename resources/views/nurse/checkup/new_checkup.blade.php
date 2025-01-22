@@ -84,166 +84,165 @@
                     <tbody>
                         <!-- Placeholder rows for the table -->
                         <tr>
-                            {{-- @dd($checkups) --}}
                             <td class="border p-2 text-center">Date of Examination</td>
-                            @foreach ($checkupsByGrade as $grade => $checkups )
-                                @for ($i = 1; $i<13; $i++)
-                                    <td class="border p-2 text-center">
-                                        @if ($grade == $i )
-                                        {{-- <p>naa ko dre</p> --}}
-                                            @foreach ($checkups as $checkup)
-                                                {{ \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F j, Y') }}
-                                            @endforeach
-                                        @else
-                                            @if ($i == $student->grade_level)
-                                                <div>
-                                                    <label for="name"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Date of Examination</label>
-                                                    <input type="text" id="student_age" name="date_of_checkup" value="{{ now()->format('F d, Y') }}"
-                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        required />
-                                                </div>  
-                                                {{-- <input type="text" class="border-2" name="date" value="{{ now()->format('F d, Y') }}"> --}}
-                                            @endif
+                            @for ($i = 1; $i <= 12; $i++)
+                                <td class="border p-2 textcenter">
+                                    @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
+                                        {{-- Display heart rate data for the grade --}}
+                                        @foreach ($checkupsByGrade[$i] as $checkup)
+                                            {{ \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F j, Y') }}
+                                        @endforeach
+                                    @else
+                                        {{-- Display input field for the grade with no records --}}
+                                        @if ($i == $student->grade_level)
+                                            <div>
+                                                <label for="date_of_checkup_{{$i}}"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Date of Examination</label>
+                                                <input type="text" id="date_of_chekup_{{$i}}" name="date_of_checkup_{{$i}}" value="{{ now()->format('F d, Y') }}"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    required />
+                                            </div> 
                                         @endif
-                                    </td>
-                                @endfor
-                            @endforeach
+                                    @endif
+                                </td>
+                            @endfor
                         </tr>
                         <tr>
                             <td class="border p-2 text-center">Age</td>
-                            @foreach ($checkupsByGrade as $grade => $checkups )
-                                @for ($i = 1; $i<13; $i++)
-                                    <td class="border p-2 text-center">
-                                        @if ($grade == $i )
-                                        {{-- <p>naa ko dre</p> --}}
-                                            @foreach ($checkups as $checkup)
-                                                {{ $checkup->student_age }}
-                                            @endforeach
-                                        @else
-                                            @if ($i == $student->grade_level)
-                                                <div>
-                                                    <label for="name"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Age</label>
-                                                    <input type="text" id="student_age" name="student_age"
-                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        placeholder="12 years old" required />
-                                                </div>                                        
-                                            @endif
+                            @for ($i = 1; $i <= 12; $i++)
+                                <td class="border p-2 text-center">
+                                    @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
+                                        {{-- Display heart rate data for the grade --}}
+                                        @foreach ($checkupsByGrade[$i] as $checkup)
+                                            {{ $checkup->student_age }}
+                                        @endforeach
+                                    @else
+                                        {{-- Display input field for the grade with no records --}}
+                                        @if ($i == $student->grade_level)
+                                            <div>
+                                                <label for="heart_rate_{{ $i }}"
+                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                    Age
+                                                </label>
+                                                <input type="text" id="student_age_{{ $i }}" name="student_age_{{ $i }}]"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="15" required />
+                                            </div>
                                         @endif
-                                    </td>
-                                @endfor
-                            @endforeach
+                                    @endif
+                                </td>
+                            @endfor
                         </tr>
                         <tr>
                             <td class="border p-2 text-center">Adviser</td>
-                            @foreach ($checkupsByGrade as $grade => $checkups )
-                                @for ($i = 1; $i<13; $i++)
-                                    <td class="border p-2 text-center">
-                                        @if ($grade == $i )
-                                        {{-- <p>naa ko dre</p> --}}
-                                            @foreach ($checkups as $checkup)
-                                                {{ $checkup->adviser_name }}
-                                            @endforeach
-                                        @else
-                                            @if ($i == $student->grade_level)
-                                                <div>
-                                                    <label for="name"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Adviser Name</label>
-                                                    <input type="text" id="student_age" name="adviser_name"
-                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        placeholder="Ms. Juvy Test" required />
-                                                </div>  
-                                            @endif
+                            @for ($i = 1; $i <= 12; $i++)
+                                <td class="border p-2 text-center">
+                                    @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
+                                        {{-- Display heart rate data for the grade --}}
+                                        @foreach ($checkupsByGrade[$i] as $checkup)
+                                            {{ $checkup->adviser_name }}
+                                        @endforeach
+                                    @else
+                                        {{-- Display input field for the grade with no records --}}
+                                        @if ($i == $student->grade_level)
+                                            <div>
+                                                <label for="heart_rate_{{ $i }}"
+                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                    Adviser
+                                                </label>
+                                                <input type="text" id="adviser_name_{{ $i }}" name="adviser_name_{{ $i }}]"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="15" required />
+                                            </div>
                                         @endif
-                                    </td>
-                                @endfor
-                            @endforeach
+                                    @endif
+                                </td>
+                            @endfor
                         </tr>
                         <tr>
                             <td class="border p-2 text-center">Temperature</td>
-                            @foreach ($checkupsByGrade as $grade => $checkups )
-                                @for ($i = 1; $i<13; $i++)
-                                    <td class="border p-2 text-center">
-                                        @if ($grade == $i )
-                                        {{-- <p>naa ko dre</p> --}}
-                                            @foreach ($checkups as $checkup)
-                                                {{ $checkup->temperature }}
-                                            @endforeach
-                                        @else
-                                            @if ($i == $student->grade_level)
-                                                <div>
-                                                    <label for="name"
-                                                        class="block mb-2 text-sm font-medium text-start text-gray-900 dark:text-white">Temperature</label>
-                                                    <input type="text" id="temperature" name="temperature"
-                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        placeholder="35.00" required />
-                                                </div>
-                                            @endif
+                            @for ($i = 1; $i <= 12; $i++)
+                                <td class="border p-2 text-center">
+                                    @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
+                                        {{-- Display heart rate data for the grade --}}
+                                        @foreach ($checkupsByGrade[$i] as $checkup)
+                                            {{ $checkup->temperature }}
+                                        @endforeach
+                                    @else
+                                        {{-- Display input field for the grade with no records --}}
+                                        @if ($i == $student->grade_level)
+                                            <div>
+                                                <label for="temperature{{ $i }}"
+                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                    Temperature
+                                                </label>
+                                                <input type="text" id="temperature_{{ $i }}" name="temperature_{{ $i }}]"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="15" required />
+                                            </div>
                                         @endif
-                                    </td>
-                                @endfor
-                            @endforeach
+                                    @endif
+                                </td>
+                            @endfor
                         </tr>
                         <tr>
                             <td class="border p-2 text-center">BP</td>
-                            @foreach ($checkupsByGrade as $grade => $checkups )
-                                @for ($i = 1; $i<13; $i++)
-                                    <td class="border p-2 text-center">
-                                        @if ($grade == $i )
-                                        {{-- <p>naa ko dre</p> --}}
-                                            @foreach ($checkups as $checkup)
-                                                {{ $checkup->systolic.'/'.$checkup->diastolic }}
-                                            @endforeach
-                                        @else
-                                            @if ($i == $student->grade_level)
-                                                <div class="flex gap-2">
-                                                    <div class="mb-2">
-                                                        <label for="name"
-                                                            class="block mb-2 text-sm font-medium text-start text-gray-900 dark:text-white">Systolic</label>
-                                                        <input type="text" id="systolic" name="systolic"
-                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            placeholder="120" required />
-                                                    </div>
-                                                    <div>
-                                                        <label for="name"
-                                                            class="block mb-2 text-sm font-medium  text-start text-gray-900 dark:text-white">Diastolic</label>
-                                                        <input type="text" id="diastolic" name="diastolic"
-                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                            placeholder="80" required />
-                                                    </div>
-                                                </div>
-                                            @endif
+                            @for ($i = 1; $i <= 12; $i++)
+                                <td class="border p-2 textcenter">
+                                    @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
+                                        {{-- Display heart rate data for the grade --}}
+                                        @foreach ($checkupsByGrade[$i] as $checkup)
+                                            {{ $checkup->heart_rate }}
+                                        @endforeach
+                                    @else
+                                        {{-- Display input field for the grade with no records --}}
+                                        @if ($i == $student->grade_level)
+                                        <div class="flex gap-2">
+                                            <div class="mb-2">
+                                                <label for="name"
+                                                    class="block mb-2 text-sm font-medium text-start text-gray-900 dark:text-white">Systolic</label>
+                                                <input type="text" id="systolic" name="systolic"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="120" required />
+                                            </div>
+                                            <div>
+                                                <label for="name"
+                                                    class="block mb-2 text-sm font-medium  text-start text-gray-900 dark:text-white">Diastolic</label>
+                                                <input type="text" id="diastolic" name="diastolic"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="80" required />
+                                            </div>
+                                        </div>
                                         @endif
-                                    </td>
-                                @endfor
-                            @endforeach
+                                    @endif
+                                </td>
+                            @endfor
                         </tr>
                         <tr>
                             <td class="border p-2 text-center">Heart Rate</td>
-                            @foreach ($checkupsByGrade as $grade => $checkups )
-                                @for ($i = 1; $i<13; $i++)
-                                    <td class="border p-2 text-center">
-                                        @if ($grade == $i )
-                                        {{-- <p>naa ko dre</p> --}}
-                                            @foreach ($checkups as $checkup)
-                                                {{ $checkup->heart_rate }}
-                                            @endforeach
-                                        @else
-                                            @if ($i == $student->grade_level)
+                            @for ($i = 1; $i <= 12; $i++)
+                                <td class="border p-2 text-center">
+                                    @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
+                                        {{-- Display heart rate data for the grade --}}
+                                        @foreach ($checkupsByGrade[$i] as $checkup)
+                                            {{ $checkup->heart_rate }}
+                                        @endforeach
+                                    @else
+                                        {{-- Display input field for the grade with no records --}}
+                                        @if ($i == $student->grade_level)
                                             <div>
-                                                <label for="name"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Heart
-                                                    Rate</label>
-                                                <input type="text" id="heart_rate" name="heart_rate"
+                                                <label for="heart_rate_{{ $i }}"
+                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                    Heart Rate
+                                                </label>
+                                                <input type="text" id="heart_rate_{{ $i }}" name="heart_rate[{{ $i }}]"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="72" required />
                                             </div>
-                                            @endif
                                         @endif
-                                    </td>
-                                @endfor
-                            @endforeach
+                                    @endif
+                                </td>
+                            @endfor
                         </tr>
                         <tr>
                             <td class="border p-2 text-center">Pulse Rate</td>
@@ -996,7 +995,7 @@
                                                 <div>
                                                     <label for="name"
                                                         class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Conducted by</label>
-                                                    <input type="text" value="{{$nurse->test_name}}"
+                                                    <input type="text" name="nurse_name" value="{{$nurse->test_name}}"
                                                     id="heart_rate" name="heart_rate"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         placeholder="72" required />
