@@ -26,7 +26,8 @@ Route::get('/login', function () {
 
 
 Route::post('/login',[LoginController::class,'store'])->name('login.store');
-Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
+// Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
+Route::post('/admin_logout',[LoginController::class,'adminLogout'])->name('admin_logout');
 
 Route::get('/test_checkup/{checkup}', [NurseDashboard::class, 'testCheckUp'])->name('test_checkup');
 
@@ -62,10 +63,12 @@ Route::middleware(CheckUserType::class)->group(function(){
 });
 
 Route::middleware('auth:nurse')->group(function(){
+
     Route::middleware('nurse.type:school')->group(function(){
         Route::get('/nurse_dashboard',[NurseDashboard::class,'index'])->name('nurse_dashboard');
         Route::get('/checkup_form/{student}', [NurseDashboard::class, 'checkUpForm'])->name('checkup_form');
 
+        Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
 
         Route::get('/student_list',[NurseAllController::class,'index'])->name('student_list');
         Route::post('/store_student',[NurseAllController::class, 'store'])->name('store_student');
@@ -107,7 +110,7 @@ Route::middleware('auth:nurse')->group(function(){
 
 
 
-        
+
         Route::get('/district_report',[ReportController::class,'index'])->name('district_report');
         Route::post('/district_filter_report',[ReportController::class,'filterReport'])->name('district_filter_report');
         Route::get('/sample',[ReportController::class,'sample'])->name('sample');

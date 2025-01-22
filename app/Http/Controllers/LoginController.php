@@ -26,22 +26,25 @@ class LoginController extends Controller
 
 
             if ($nurse->type === 'school') {
-                // SystemLog::create([
-                //     'nurse_id' => $nurse->id,
-                //     'date' => $currentTime
-                // ]);
+                SystemLog::create([
+                    'nurse_id' => $nurse->id,
+                    'date' => $currentTime,
+                    'access' => 'Logged in the system'
+                ]);
                 return redirect()->route('nurse_dashboard');
             } elseif ($nurse->type === 'district') {
-                // SystemLog::create([
-                //     'nurse_id' => $nurse->id,
-                //     'date' => $currentTime
-                // ]);
+                SystemLog::create([
+                    'nurse_id' => $nurse->id,
+                    'date' => $currentTime,
+                    'access' => 'Logged in the system'
+                ]);
                 return redirect()->route('district_nurse_dashboard');
             } elseif ($nurse->type === 'division') {
-                // SystemLog::create([
-                //     'nurse_id' => $nurse->id,
-                //     'date' => $currentTime
-                // ]);
+                SystemLog::create([
+                    'nurse_id' => $nurse->id,
+                    'date' => $currentTime,
+                    'access' => 'Logged in the system'
+                ]);
                 return redirect()->route('division_nurse_dashboard');
             }
         }
@@ -59,8 +62,30 @@ class LoginController extends Controller
         ]);
     }
 
-
     public function destroy(){
+        $currentTime = Carbon::now('Asia/Manila');
+    
+        // Create a log before logging out
+        SystemLog::create([
+            'nurse_id' => auth()->user()->id,
+            'date' => $currentTime,
+            'access' => 'Logged out of the system' // Adjust this message to reflect logout action
+        ]);
+    
+        // Log the user out
+        Auth::logout();
+    
+        // Invalidate the session to prevent unauthorized access
+        request()->session()->invalidate();
+    
+        // Regenerate the CSRF token to prevent any potential reuse
+        request()->session()->regenerateToken();
+    
+        // Redirect to login page
+        return redirect()->route('login');
+    }
+    
+    public function adminLogout(){
         Auth::logout();
 
         // Invalidate the session to prevent unauthorized access
