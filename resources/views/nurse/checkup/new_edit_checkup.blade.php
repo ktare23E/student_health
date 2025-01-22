@@ -115,7 +115,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Loop through checkups for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            @if ($checkup->student_grade_level == $student->grade_level)
+                                            @if ($checkup->student_grade_level == $i)
                                                 <div>
                                                     <label for="student_age_{{ $i }}"
                                                         class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -127,17 +127,14 @@
                                                         placeholder="15" required />
                                                 </div>
                                             @else
-                                                {{ $checkup->student_age }}
-
+                                                <span>{{ $checkup->student_age }}</span>
                                             @endif
                                         @endforeach
-                                    @else
-                                        {{-- No records for this grade --}}
-                                        {{-- Optionally, display a message or leave blank --}}
                                     @endif
                                 </td>
                             @endfor
                         </tr>
+                        
                         <tr>
                             <td class="border p-2 text-center">Adviser</td>
                             @for ($i = 1; $i <= 12; $i++)
@@ -145,21 +142,20 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->adviser_name }}
+                                            @if ($checkup->student_grade_level == $i)
+                                                <div>
+                                                    <label for="heart_rate_{{ $i }}"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                        Adviser
+                                                    </label>
+                                                    <input type="text" id="adviser_name_{{ $i }}" name="adviser_name" value="{{$checkup->adviser_name}}"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="Test Name" required />
+                                                </div>
+                                            @else
+                                                {{ $checkup->adviser_name }}
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="heart_rate_{{ $i }}"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                    Adviser
-                                                </label>
-                                                <input type="text" id="adviser_name_{{ $i }}" name="adviser_name" value="{{$checkup->adviser_name}}"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Test Name" required />
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
