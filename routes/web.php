@@ -82,8 +82,10 @@ Route::middleware('auth:nurse')->group(function(){
         Route::post('/store_checkup/{student}',[NurseAllController::class,'storeCheckup'])->name('store_checkup');
         Route::post('/student_profile/{student}',[NurseAllController::class,'studentProfile'])->name('student_profile');
         Route::get('/edit_checkup/{checkup}',[NurseAllController::class,'editCheckup'])->name('edit_checkup');
+        Route::get('/new_edit_checkup/{checkup}',[NurseAllController::class,'newEditCheckUp'])->name('new_edit_checkup');
         Route::patch('/update_checkup/{checkup}',[NurseAllController::class,'updateCheckup'])->name('update_checkup');
         Route::get('/view_checkup/{checkup}',[NurseAllController::class,'viewCheckup'])->name('view_checkup');
+        Route::get('/new_view_checkup/{checkup}',[NurseAllController::class,'newViewCheckUp'])->name('new_view_checkup');
         
 
         Route::get('/report',[ReportController::class,'index'])->name('report');

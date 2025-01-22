@@ -155,18 +155,17 @@
                         </div>
                         <div class="mt-20 mb-8 w-full flex justify-end gap-2">
                             @if (auth()->user()->type == 'school')
-                                <button class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">
+                                {{-- <button class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">
                                     <a href="{{ route('checkup_student', $student->id) }}">+Checkup</a>
-                                </button>
+                                </button> --}}
                                 <button class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">
-                                    <a href="{{ route('checkup_form', $student->id) }}">+New</a>
+                                    <a href="{{ route('checkup_form', $student->id) }}">+Checkup</a>
                                 </button>
                             @endif
                         </div>
                         <div
                             class="bg-white rounded-md px-6 py-4 w-full mx-auto shadow-2xl transition-all hover:shadow-none">
                             <h1 class="font-semibold text-md mb-4">Student Checkup History</h1>
-
                             <!-- Checkup Details -->
                             <div class="space-y-4 flex flex-col items-center justify-center w-full">
                                 <!-- Example Checkup Item -->
@@ -215,7 +214,11 @@
                                         </div>
                                         <div class="mt-6 w-full flex justify-center gap-1">
                                             @if (auth()->user()->type == 'school')
-                                                <a href="{{ route('edit_checkup', $checkup->id) }}"
+                                                {{-- <a href="{{ route('edit_checkup', $checkup->id) }}"
+                                                    class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white">
+                                                    edit
+                                                </a> --}}
+                                                <a href="{{ route('new_edit_checkup', $checkup->id) }}"
                                                     class="open-modal bg-orange-400 py-1 px-2 text-sm rounded-sm text-white">
                                                     edit
                                                 </a>
@@ -223,6 +226,7 @@
                                             <button class="text-sm py-1 px-2 rounded-sm bg-black text-white">
                                                 @if (auth()->user()->type == 'school')
                                                     <a href="{{ route('view_checkup', $checkup->id) }}">view</a>
+                                                    {{-- <a href="{{ route('new_view_checkup', $checkup->id) }}">view</a> --}}
                                                 @elseif (auth()->user()->type == 'district')
                                                     <a
                                                         href="{{ route('district_view_checkup', $checkup->id) }}">view</a>

@@ -294,6 +294,14 @@ class NurseAllController extends Controller
         ]);
     }
 
+    public function newEditCheckUp(Checkup $checkup){
+        $nurse = Auth::user();
+        $student = $checkup->student;
+        $checkupsByGrade = $student->checkups->groupBy('student_grade_level');
+
+        return view('nurse.checkup.new_edit_checkup',compact(['student','checkupsByGrade','nurse']));
+    }
+
     public function updateCheckUp(Request $request,Checkup $checkup){
 
         $validateDate = $request->validate([
@@ -355,6 +363,27 @@ class NurseAllController extends Controller
         ]);
 
         return view('nurse.checkup.view_checkup',[
+            'checkup' => $checkup,
+            'student' => $studentData,
+            'nurse' => $nurseData
+        ]);
+    }
+    
+    public function newViewCheckUp(Checkup $checkup){
+        $studentData = Student::with('school')->findOrFail($checkup->student_id);
+        $nurseData = Nurse::findOrFail($checkup->nurse_id);
+
+        $nurse = Auth::user();
+
+        $currentTime = Carbon::now('Asia/Manila');
+
+        SystemLog::create([
+                'nurse_id' => $nurse->id,
+                'date' => $currentTime,
+                'access' => 'Viewed Checkup Details of '.$studentData->first_name.' '.$studentData->last_name.' Student'
+        ]);
+
+        return view('nurse.checkup.new_view_checkup',[
             'checkup' => $checkup,
             'student' => $studentData,
             'nurse' => $nurseData
