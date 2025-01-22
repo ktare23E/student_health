@@ -247,13 +247,15 @@ class ReportController extends Controller
                         ];
                     }
 
+                    $user = Auth::user();
+
                     $students = Student::with(['checkups' => function ($q) use ($checkups) {
                         $q->whereIn('id', $checkups->pluck('id'));
                     }],'school')
                         ->whereIn('id', $checkups->pluck('student_id'))
                         ->get();
 
-                        return view('nurse.report.result', compact('checkups', 'students', 'chartData'));
+                        return view('nurse.report.result', compact('checkups', 'students', 'chartData','user'));
 
                 }
             }
