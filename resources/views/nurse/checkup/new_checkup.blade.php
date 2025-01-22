@@ -124,7 +124,7 @@
                                                     class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                     Age
                                                 </label>
-                                                <input type="text" id="student_age_{{ $i }}" name="student_age_{{ $i }}"
+                                                <input type="text" id="student_age_{{ $i }}" name="student_age"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="15" required />
                                             </div>
@@ -150,7 +150,7 @@
                                                     class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                     Adviser
                                                 </label>
-                                                <input type="text" id="adviser_name_{{ $i }}" name="adviser_name_{{ $i }}"
+                                                <input type="text" id="adviser_name_{{ $i }}" name="adviser_name"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="Test Name" required />
                                             </div>
@@ -176,9 +176,9 @@
                                                     class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                     Temperature
                                                 </label>
-                                                <input type="text" id="temperature_{{ $i }}" name="temperature_{{ $i }}"
+                                                <input type="text" id="temperature_{{ $i }}" name="temperature"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="32" required />
+                                                    placeholder="35.00" required />
                                             </div>
                                         @endif
                                     @endif
@@ -235,7 +235,7 @@
                                                     class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                     Heart Rate
                                                 </label>
-                                                <input type="text" id="heart_rate_{{ $i }}" name="heart_rate_{{ $i }}"
+                                                <input type="text" id="heart_rate" name="heart_rate"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="72" required />
                                             </div>
@@ -261,9 +261,9 @@
                                                     class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                     Pulse Rate
                                                 </label>
-                                                <input type="text" id="pulse_rate_{{ $i }}" name="pulse_rate_{{ $i }}"
+                                                <input type="text" id="pulse_rate_{{ $i }}" name="pulse_rate"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="72" required />
+                                                    placeholder="60" required />
                                             </div>
                                         @endif
                                     @endif
@@ -287,9 +287,9 @@
                                                     class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                     Respiratory Rate
                                                 </label>
-                                                <input type="text" id="respiratory_rate_{{ $i }}" name="respiratory_rate_{{ $i }}"
+                                                <input type="text" id="respiratory_rate_{{ $i }}" name="respiratory_rate"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="72" required />
+                                                    placeholder="20" required />
                                             </div>
                                         @endif
                                     @endif
@@ -313,9 +313,9 @@
                                                     class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                     Height
                                                 </label>
-                                                <input type="text" id="height_{{ $i }}" name="height_{{ $i }}"
+                                                <input type="text" id="height" name="height"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="72" required />
+                                                    placeholder="1.60 meters" required />
                                             </div>
                                         @endif
                                     @endif
@@ -339,7 +339,7 @@
                                                     class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                     Weight
                                                 </label>
-                                                <input type="text" id="weight_{{ $i }}" name="weight_{{ $i }}"
+                                                <input type="text" id="weight" name="weight"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="72" required />
                                             </div>
@@ -983,7 +983,7 @@
                                             <div>
                                                 <label for="name"
                                                     class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Conducted by</label>
-                                                <input type="text" name="nurse_name" value="{{$nurse->test_name}}" disabled
+                                                <input type="text" name="nurse_name" value="{{$nurse->test_name}}" 
                                                 id="heart_rate" name="heart_rate"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="72" required />
