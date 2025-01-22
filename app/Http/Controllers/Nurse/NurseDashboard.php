@@ -229,14 +229,16 @@ class NurseDashboard extends Controller
     }
 
     public function checkUpForm(Student $student){
+        $nurse = Auth::user();
 
+        
         $checkupsByGrade = $student->checkups->groupBy('student_grade_level');
-
         // return $checkupsByGrade;
         
         return view('nurse.checkup.new_checkup',[
             'student' => $student,
-            'checkupsByGrade' => $checkupsByGrade
+            'checkupsByGrade' => $checkupsByGrade,
+            'nurse' => $nurse
             // 'checkups' => $student->checkups
         ]);
     }

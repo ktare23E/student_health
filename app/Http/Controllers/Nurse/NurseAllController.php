@@ -196,7 +196,7 @@ class NurseAllController extends Controller
 
     public function storeCheckup(Request $request,Student $student){
 
-    
+        // return $request->all();
         $request->validate([
             'student_age' => 'required',
             'adviser_name' => 'required',
