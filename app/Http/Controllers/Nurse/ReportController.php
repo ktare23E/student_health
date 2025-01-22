@@ -187,12 +187,15 @@ class ReportController extends Controller
                             ];
                         }
                     }
+
+                    $user = Auth::user();
             
                     // Return the grouped data or further process it as needed
                     return view('nurse.report.all_school_result',
                             [
                                 'students' => $students,
-                                'chartData' => $chartData
+                                'chartData' => $chartData,
+                                'user' => $user
                             ]
                         );
                 }
