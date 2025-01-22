@@ -124,7 +124,7 @@
                                                     class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                     Age
                                                 </label>
-                                                <input type="text" id="student_age_{{ $i }}" name="student_age"
+                                                <input type="text" id="age" name="student_age"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="15" required />
                                             </div>
@@ -404,7 +404,6 @@
                                                     <option value="Normal Height">Normal Height</option>
                                                     <option value="Stunted">Stunted</option>
                                                     <option value="Severely Stunted">Severely Stunted</option>
-                                                    <option value="Tall">Tall</option>
                                                 </select>
                                             </div>
                                         @endif
@@ -1285,5 +1284,55 @@
                 calculateBMI();
             });
         });
+    </script>
+    <script>
+        $(document).ready(function () {
+            const whoData = {
+                5: { median: 1.10, sd: 0.05 },
+                6: { median: 1.15, sd: 0.05 },
+                7: { median: 1.20, sd: 0.06 },
+                8: { median: 1.27, sd: 0.06 },
+                9: { median: 1.33, sd: 0.07 },
+                10: { median: 1.38, sd: 0.07 },
+                11: { median: 1.43, sd: 0.07 },
+                12: { median: 1.48, sd: 0.08 },
+                13: { median: 1.54, sd: 0.08 },
+                14: { median: 1.59, sd: 0.07 },
+                15: { median: 1.63, sd: 0.08 },
+                16: { median: 1.66, sd: 0.08 },
+                17: { median: 1.68, sd: 0.08 },
+                18: { median: 1.70, sd: 0.09 },
+                19: { median: 1.71, sd: 0.09 },
+                20: { median: 1.72, sd: 0.09 },
+            };
+
+            $('#age, #height').on('input', function () {
+                const age = parseInt($('#age').val());
+                const height = parseFloat($('#height').val());
+
+                if (whoData[age] && height) {
+                    const median = whoData[age].median;
+                    const sd = whoData[age].sd;
+
+                    const zScore = (height - median) / sd;
+                    let nutritionalStatus = '';
+
+                    if (zScore >= -2) {
+                        nutritionalStatus = 'Normal Height';
+                    } else if (zScore < -3) {
+                        nutritionalStatus = 'Severely Stunted';
+                    } else {
+                        nutritionalStatus = 'Stunted';
+                    }
+
+                    // Set the <select> value based on the calculated status
+                    $('#bmi_height').val(nutritionalStatus);
+                } else {
+                    // Reset the <select> field if inputs are invalid
+                    $('#bmi_height').val('');
+                }
+            });
+        });
+
     </script>
 </x-layout>
