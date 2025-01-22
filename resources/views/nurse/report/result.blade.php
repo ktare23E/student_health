@@ -68,7 +68,8 @@
                         </div>
                         <div class="bg-white rounded-md shadow-lg px-6 py-4 w-full mx-auto">
                             <h1 class="font-bold text-2xl text-center">Data Analytics of {{auth()->user()->type === 'school' ? $schoolData->name : $user->entity->name}} </h1>
-                            <h1 class="font-bold text-lg mb-4 text-center">Address: {{auth()->user()->type === 'school' ? $schoolData->address : $user->entity->address}}</h1>
+                            <h1 class="font-bold text-lg text-center">Address: {{auth()->user()->type === 'school' ? $schoolData->address : $user->entity->address}}</h1>
+                            <h1 class="font-bold text-lg mb-4 text-center">Category: {{$category}}</h1>
                             <div>
 
                                 <div class="">

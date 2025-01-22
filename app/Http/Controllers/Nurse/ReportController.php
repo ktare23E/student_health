@@ -43,6 +43,77 @@ class ReportController extends Controller
     {
         $nurse = Auth::user();
         $query = Checkup::query();
+        $category = $request->category;
+        
+        switch ($category) {
+            case "bmi_weight":
+                $category = "BMI WEIGHT";
+                break;
+            case "bmi_height":
+                $category = "BMI HEIGHT";
+                break;
+            case "temperature":
+                $category = "TEMPERATURE";
+                break;
+            case "heart_rate":
+                $category = "HEART RATE";
+                break;
+            case "pulse_rate":
+                $category = "PULSE RATE";
+                break;
+            case "respiratory_rate":
+                $category = "RESPIRATORY RATE";
+                break;
+            case "vision_screening":
+                $category = "VISION SCREENING";
+                break;
+            case "auditory_screening":
+                $category = "AUDITORY SCREENING";
+                break;
+            case "skin":
+                $category = "SKIN";
+                break;
+            case "scalp":
+                $category = "SCALP";
+                break;
+            case "eyes":
+                $category = "EYES";
+                break;
+            case "ears":
+                $category = "EARS";
+                break;
+            case "nose":
+                $category = "NOSE";
+                break;
+            case "mouth":
+                $category = "MOUTH";
+                break;
+            case "lungs":
+                $category = "LUNGS";
+                break;
+            case "heart":
+                $category = "HEART";
+                break;
+            case "abdomen":
+                $category = "ABDOMEN";
+                break;
+            case "deformities":
+                $category = "DEFORMITIES";
+                break;
+            case "iron_supplementation":
+                $category = "IRON SUPPLEMENTATION";
+                break;
+            case "deworming":
+                $category = "DEWORMING";
+                break;
+            case "immunization":
+                $category = "IMMUNIZATION";
+                break;
+            default:
+                $category = "UNKNOWN CATEGORY";
+                break;
+        }
+        
 
 
         if ($nurse->type === 'school') {
@@ -105,7 +176,7 @@ class ReportController extends Controller
             //     $checkups
             // ];
 
-                return view('nurse.report.result', compact('checkups', 'students', 'chartData','schoolData'));
+                return view('nurse.report.result', compact('checkups', 'students', 'chartData','schoolData','category'));
 
         } else if ($nurse->type === 'district' || $nurse->type === 'division') {
             // Filter by school if the nurse is not a school nurse
@@ -195,7 +266,8 @@ class ReportController extends Controller
                             [
                                 'students' => $students,
                                 'chartData' => $chartData,
-                                'user' => $user
+                                'user' => $user,
+                                'category' => $category
                             ]
                         );
                 }
@@ -255,7 +327,7 @@ class ReportController extends Controller
                         ->whereIn('id', $checkups->pluck('student_id'))
                         ->get();
 
-                        return view('nurse.report.result', compact('checkups', 'students', 'chartData','user'));
+                        return view('nurse.report.result', compact('checkups', 'students', 'chartData','user','category'));
 
                 }
             }
