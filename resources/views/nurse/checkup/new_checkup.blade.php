@@ -518,19 +518,14 @@
                                         @if ($i == $student->grade_level)
                                         <div>
                                             <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skin</label>
+                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Scalp</label>
                                             <select id="skin" name="scalp"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
-                                                <option value="Redness of Skin">Redness of Skin</option>
-                                                <option value="White Spots">White Spots</option>
-                                                <option value="Impetigo/Boil">Impetigo/Boil</option>
-                                                <option value="Bruises/Injuries">Bruises/Injuries</option>
-                                                <option value="Skin Lessions">Skin Lessions</option>
+                                                <option value="Presence of Lice">Presence of Lice</option>
                                                 <option value="Itchiness">Itchiness</option>
-                                                <option value="Acne/Pimple">Acne/Pimple</option>
                                             </select>
                                         </div>
                                         @endif
@@ -552,19 +547,18 @@
                                         @if ($i == $student->grade_level)
                                         <div>
                                             <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skin</label>
+                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Eyes</label>
                                             <select id="skin" name="eyes"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 required>
                                                 <option value="">Select Value</option>
                                                 <option value="Normal">Normal</option>
-                                                <option value="Redness of Skin">Redness of Skin</option>
-                                                <option value="White Spots">White Spots</option>
-                                                <option value="Impetigo/Boil">Impetigo/Boil</option>
-                                                <option value="Bruises/Injuries">Bruises/Injuries</option>
-                                                <option value="Skin Lessions">Skin Lessions</option>
-                                                <option value="Itchiness">Itchiness</option>
-                                                <option value="Acne/Pimple">Acne/Pimple</option>
+                                                <option value="Stye">Stye</option>
+                                                <option value="Eye Redness">Eye Redness</option>
+                                                <option value="Ocular Misallignment">Ocular Misallignment</option>
+                                                <option value="Pale Conjunctiva">Pale Conjunctiva</option>
+                                                <option value="Eye Discharge">Eye Discharge</option>
+                                                <option value="Matted Eyelashes">Matted Eyelashes</option>
                                             </select>
                                         </div>
                                         @endif
