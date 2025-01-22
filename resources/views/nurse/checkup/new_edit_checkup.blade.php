@@ -91,19 +91,18 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F j, Y') }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="date_of_checkup"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Date of Examination</label>
+                                                    <input type="text" id="date_of_chekup" name="date_of_checkup" value="{{\Carbon\Carbon::parse($checkup->date_of_checkup)->format('F j, Y')}}" readonly
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required />
+                                                </div> 
+                                            @else
+                                                <span>{{ \Carbon\Carbon::parse($checkup->date_of_checkup)->format('F j, Y') }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="date_of_checkup"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Date of Examination</label>
-                                                <input type="text" id="date_of_chekup" name="date_of_checkup" value="{{\Carbon\Carbon::parse($checkup->date_of_checkup)->format('F j, Y')}}"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required />
-                                            </div> 
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -115,7 +114,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Loop through checkups for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            @if ($checkup->student_grade_level == $i)
+                                            @if ($checkup->student_grade_level == $check_up_grade_level )
                                                 <div>
                                                     <label for="student_age_{{ $i }}"
                                                         class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -142,7 +141,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            @if ($checkup->student_grade_level == $i)
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
                                                 <div>
                                                     <label for="heart_rate_{{ $i }}"
                                                         class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -167,21 +166,21 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->temperature }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="temperature{{ $i }}"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                        Temperature
+                                                    </label>
+                                                    <input type="text" id="temperature_{{ $i }}" name="temperature" value="{{$checkup->temperature}}"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="35.00" required />
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->temperature }}</span>
+                                            @endif
+                                            
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="temperature{{ $i }}"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                    Temperature
-                                                </label>
-                                                <input type="text" id="temperature_{{ $i }}" name="temperature" value="{{$checkup->temperature}}"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="35.00" required />
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -193,28 +192,27 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->systolic.'/'.$checkup->diastolic }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div class="flex gap-2">
+                                                    <div class="mb-2">
+                                                        <label for="name"
+                                                            class="block mb-2 text-sm font-medium text-start text-gray-900 dark:text-white">Systolic</label>
+                                                        <input type="text" id="systolic" name="systolic" value="{{$checkup->systolic}}"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            placeholder="120" required />
+                                                    </div>
+                                                    <div>
+                                                        <label for="name"
+                                                            class="block mb-2 text-sm font-medium  text-start text-gray-900 dark:text-white">Diastolic</label>
+                                                        <input type="text" id="diastolic" name="diastolic" value="{{$checkup->diastolic}}"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            placeholder="80" required />
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->systolic.'/'.$checkup->diastolic }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div class="flex gap-2">
-                                            <div class="mb-2">
-                                                <label for="name"
-                                                    class="block mb-2 text-sm font-medium text-start text-gray-900 dark:text-white">Systolic</label>
-                                                <input type="text" id="systolic" name="systolic" value="{{$checkup->systolic}}"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="120" required />
-                                            </div>
-                                            <div>
-                                                <label for="name"
-                                                    class="block mb-2 text-sm font-medium  text-start text-gray-900 dark:text-white">Diastolic</label>
-                                                <input type="text" id="diastolic" name="diastolic" value="{{$checkup->diastolic}}"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="80" required />
-                                            </div>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -226,21 +224,20 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->heart_rate }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="heart_rate_{{ $i }}"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                        Heart Rate
+                                                    </label>
+                                                    <input type="text" id="heart_rate" name="heart_rate" value="{{$checkup->heart_rate}}"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="72" required />
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->heart_rate }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="heart_rate_{{ $i }}"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                    Heart Rate
-                                                </label>
-                                                <input type="text" id="heart_rate" name="heart_rate" value="{{$checkup->heart_rate}}"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="72" required />
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -252,21 +249,20 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->pulse_rate }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="heart_rate_{{ $i }}"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                        Pulse Rate
+                                                    </label>
+                                                    <input type="text" id="pulse_rate_{{ $i }}" name="pulse_rate" value="{{$checkup->pulse_rate}}"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="60" required />
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->pulse_rate }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="heart_rate_{{ $i }}"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                    Pulse Rate
-                                                </label>
-                                                <input type="text" id="pulse_rate_{{ $i }}" name="pulse_rate" value="{{$checkup->pulse_rate}}"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="60" required />
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -278,21 +274,20 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->respiratory_rate }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="heart_rate_{{ $i }}"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                        Respiratory Rate
+                                                    </label>
+                                                    <input type="text" id="respiratory_rate_{{ $i }}" name="respiratory_rate" value="{{$checkup->respiratory_rate}}"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="20" required />
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->respiratory_rate }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="heart_rate_{{ $i }}"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                    Respiratory Rate
-                                                </label>
-                                                <input type="text" id="respiratory_rate_{{ $i }}" name="respiratory_rate" value="{{$checkup->respiratory_rate}}"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="20" required />
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -304,21 +299,20 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->height.' meters' }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="heart_rate_{{ $i }}"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                        Height
+                                                    </label>
+                                                    <input type="text" id="height" name="height" value="{{$checkup->height}}"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="1.60 meters" required />
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->height.' meters' }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="heart_rate_{{ $i }}"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                    Height
-                                                </label>
-                                                <input type="text" id="height" name="height" value="{{$checkup->height}}"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="1.60 meters" required />
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -330,21 +324,20 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->weight.'kg' }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="heart_rate_{{ $i }}"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                        Weight
+                                                    </label>
+                                                    <input type="text" id="weight" name="weight" value="{{$checkup->weight}}"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="72" required />
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->weight.'kg' }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="heart_rate_{{ $i }}"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                    Weight
-                                                </label>
-                                                <input type="text" id="weight" name="weight" value="{{$checkup->weight}}"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="72" required />
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -356,28 +349,27 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->bmi_weight }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div class="mb-2">
+                                                    <label for="bmi"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">BMI</label>
+                                                    <input type="text" id="bmi" name="bmi"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        readonly />
+                                                </div>
+                                                <div>
+                                                    <label for="bmi_weight" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Nutritional Status (BMI)</label>
+                                                    <select id="bmi_weight" name="bmi_weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                                        <option value="Underweight" {{$checkup->bmi_weight === 'Underweight' ? 'selected' : ''}}>Underweight</option>
+                                                        <option value="Normal Weight" {{$checkup->bmi_weight === 'Normal Weight' ? 'selected' : ''}}>Normal Weight</option>
+                                                        <option value="Overweight" {{$checkup->bmi_weight === 'Overweight' ? 'selected' : ''}}>Overweight</option>
+                                                        <option value="Obese" {{$checkup->bmi_weight === 'Obese' ? 'selected' : ''}}>Obese</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->bmi_weight }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div class="mb-2">
-                                                <label for="bmi"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">BMI</label>
-                                                <input type="text" id="bmi" name="bmi"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    readonly />
-                                            </div>
-                                            <div>
-                                                <label for="bmi_weight" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Nutritional Status (BMI)</label>
-                                                <select id="bmi_weight" name="bmi_weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                                    <option value="Underweight" {{$checkup->bmi_weight === 'Underweight' ? 'selected' : ''}}>Underweight</option>
-                                                    <option value="Normal Weight" {{$checkup->bmi_weight === 'Normal Weight' ? 'selected' : ''}}>Normal Weight</option>
-                                                    <option value="Overweight" {{$checkup->bmi_weight === 'Overweight' ? 'selected' : ''}}>Overweight</option>
-                                                    <option value="Obese" {{$checkup->bmi_weight === 'Obese' ? 'selected' : ''}}>Obese</option>
-                                                </select>
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -389,24 +381,23 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->bmi_height }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="bmi"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nutritional Status (Height)</label>
+                                                    <select id="bmi_height" name="bmi_height"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="Normal Height" {{$checkup->bmi_height  === 'Underweight' ? 'selected' : ''}}>Normal Height</option>
+                                                        <option value="Stunted" {{$checkup->bmi_height  === 'Stunted' ? 'selected' : ''}}>Stunted</option>
+                                                        <option value="Severely Stunted" {{$checkup->bmi_height  === 'Severely Stunted' ? 'selected' : ''}}>Severely Stunted</option>
+                                                        <option value="Tall" {{$checkup->bmi_height  === 'Tall' ? 'selected' : ''}}>Tall</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->bmi_height }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="bmi"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nutritional Status (Height)</label>
-                                                <select id="bmi_height" name="bmi_height"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required>
-                                                    <option value="Normal Height" {{$checkup->bmi_height  === 'Underweight' ? 'selected' : ''}}>Normal Height</option>
-                                                    <option value="Stunted" {{$checkup->bmi_height  === 'Stunted' ? 'selected' : ''}}>Stunted</option>
-                                                    <option value="Severely Stunted" {{$checkup->bmi_height  === 'Severely Stunted' ? 'selected' : ''}}>Severely Stunted</option>
-                                                    <option value="Tall" {{$checkup->bmi_height  === 'Tall' ? 'selected' : ''}}>Tall</option>
-                                                </select>
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -418,24 +409,23 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->vision_screening }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vision
+                                                        Screening</label>
+                                                    <select id="vision_screening" name="vision_screening"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Passed" {{$checkup->vision_screening === 'Passed' ? 'selected' : ''}}>Passed</option>
+                                                        <option value="Failed" {{$checkup->vision_screening === 'Failed' ? 'selected' : ''}}>Failed</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->vision_screening }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vision
-                                                Screening</label>
-                                            <select id="vision_screening" name="vision_screening"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Passed" {{$checkup->vision_screening === 'Passed' ? 'selected' : ''}}>Passed</option>
-                                                <option value="Failed" {{$checkup->vision_screening === 'Failed' ? 'selected' : ''}}>Failed</option>
-                                            </select>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -447,24 +437,23 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->auditory_screening }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Auditory
+                                                        Screening</label>
+                                                    <select id="auditory_screening" name="auditory_screening"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Passed" {{$checkup->auditory_screening === 'Passed' ? 'selected' : ''}}>Passed</option>
+                                                        <option value="Failed" {{$checkup->auditory_screening === 'Failed' ? 'selected' : ''}}>Failed</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->auditory_screening }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Auditory
-                                                Screening</label>
-                                            <select id="auditory_screening" name="auditory_screening"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Passed" {{$checkup->auditory_screening === 'Passed' ? 'selected' : ''}}>Passed</option>
-                                                <option value="Failed" {{$checkup->auditory_screening === 'Failed' ? 'selected' : ''}}>Failed</option>
-                                            </select>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -476,29 +465,28 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->skin }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skin</label>
+                                                    <select id="skin" name="skin"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Normal" {{$checkup->skin === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Redness of Skin" {{$checkup->skin === 'Redness of Skin' ? 'selected' : ''}}>Redness of Skin</option>
+                                                        <option value="White Spots" {{$checkup->skin === 'White Spots' ? 'selected' : ''}}>White Spots</option>
+                                                        <option value="Impetigo/Boil" {{$checkup->skin === 'Impetigo/Boil' ? 'selected' : ''}}>Impetigo/Boil</option>
+                                                        <option value="Bruises/Injuries" {{$checkup->skin === 'Bruises/Injuries' ? 'selected' : ''}}>Bruises/Injuries</option>
+                                                        <option value="Skin Lessions" {{$checkup->skin === 'Skin Lessions' ? 'selected' : ''}}>Skin Lessions</option>
+                                                        <option value="Itchiness" {{$checkup->skin === 'Itchiness' ? 'selected' : ''}}>Itchiness</option>
+                                                        <option value="Acne/Pimple" {{$checkup->skin === 'Acne/Pimple' ? 'selected' : ''}}>Acne/Pimple</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->skin }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skin</label>
-                                            <select id="skin" name="skin"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Normal" {{$checkup->skin === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                <option value="Redness of Skin" {{$checkup->skin === 'Redness of Skin' ? 'selected' : ''}}>Redness of Skin</option>
-                                                <option value="White Spots" {{$checkup->skin === 'White Spots' ? 'selected' : ''}}>White Spots</option>
-                                                <option value="Impetigo/Boil" {{$checkup->skin === 'Impetigo/Boil' ? 'selected' : ''}}>Impetigo/Boil</option>
-                                                <option value="Bruises/Injuries" {{$checkup->skin === 'Bruises/Injuries' ? 'selected' : ''}}>Bruises/Injuries</option>
-                                                <option value="Skin Lessions" {{$checkup->skin === 'Skin Lessions' ? 'selected' : ''}}>Skin Lessions</option>
-                                                <option value="Itchiness" {{$checkup->skin === 'Itchiness' ? 'selected' : ''}}>Itchiness</option>
-                                                <option value="Acne/Pimple" {{$checkup->skin === 'Acne/Pimple' ? 'selected' : ''}}>Acne/Pimple</option>
-                                            </select>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -510,23 +498,22 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->scalp }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skin</label>
+                                                    <select id="skin" name="scalp"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="Normal" {{$checkup->scalp === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Presence of Lice" {{$checkup->scalp === 'Presence of Lice' ? 'selected' : ''}}>Presence of Lice</option>
+                                                        <option value="Itchiness" {{$checkup->scalp === 'Itchiness' ? 'selected' : ''}}>Itchiness</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->scalp }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skin</label>
-                                            <select id="skin" name="scalp"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="Normal" {{$checkup->scalp === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                <option value="Presence of Lice" {{$checkup->scalp === 'Presence of Lice' ? 'selected' : ''}}>Presence of Lice</option>
-                                                <option value="Itchiness" {{$checkup->scalp === 'Itchiness' ? 'selected' : ''}}>Itchiness</option>
-                                            </select>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -538,28 +525,27 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->eyes }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Eyes</label>
+                                                    <select id="skin" name="eyes"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Normal" {{$checkup->eyes === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Stye" {{$checkup->eyes === 'Stye' ? 'selected' : ''}}>Stye</option>
+                                                        <option value="Eye Redness" {{$checkup->eyes === 'Eye Redness' ? 'selected' : ''}}>Eye Redness</option>
+                                                        <option value="Ocular Misallignment" {{$checkup->eyes === 'Ocular Misallignment' ? 'selected' : ''}}>Ocular Misallignment</option>
+                                                        <option value="Pale Conjunctiva" {{$checkup->eyes === 'Pale Conjunctiva"' ? 'selected' : ''}}>Pale Conjunctiva</option>
+                                                        <option value="Eye Discharge" {{$checkup->eyes === 'Eye Discharge' ? 'selected' : ''}}>Eye Discharge</option>
+                                                        <option value="Matted Eyelashes" {{$checkup->eyes === 'Matted Eyelashes' ? 'selected' : ''}}>Matted Eyelashes</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->eyes }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Eyes</label>
-                                            <select id="skin" name="eyes"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Normal" {{$checkup->eyes === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                <option value="Stye" {{$checkup->eyes === 'Stye' ? 'selected' : ''}}>Stye</option>
-                                                <option value="Eye Redness" {{$checkup->eyes === 'Eye Redness' ? 'selected' : ''}}>Eye Redness</option>
-                                                <option value="Ocular Misallignment" {{$checkup->eyes === 'Ocular Misallignment' ? 'selected' : ''}}>Ocular Misallignment</option>
-                                                <option value="Pale Conjunctiva" {{$checkup->eyes === 'Pale Conjunctiva"' ? 'selected' : ''}}>Pale Conjunctiva</option>
-                                                <option value="Eye Discharge" {{$checkup->eyes === 'Eye Discharge' ? 'selected' : ''}}>Eye Discharge</option>
-                                                <option value="Matted Eyelashes" {{$checkup->eyes === 'Matted Eyelashes' ? 'selected' : ''}}>Matted Eyelashes</option>
-                                            </select>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -571,24 +557,23 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->ears }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ears</label>
+                                                    <select id="ears" name="ears"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Normal" {{$checkup->ears === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Ear Discharge" {{$checkup->ears === 'Ear Discharge' ? 'selected' : ''}}>Ear Discharge</option>
+                                                        <option value="Impacted Cerumen" {{$checkup->ears === 'Impacted Cerumen' ? 'selected' : ''}}>Impacted Cerumen</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->ears }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ears</label>
-                                            <select id="ears" name="ears"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Normal" {{$checkup->ears === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                <option value="Ear Discharge" {{$checkup->ears === 'Ear Discharge' ? 'selected' : ''}}>Ear Discharge</option>
-                                                <option value="Impacted Cerumen" {{$checkup->ears === 'Impacted Cerumen' ? 'selected' : ''}}>Impacted Cerumen</option>
-                                            </select>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -600,25 +585,24 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->nose }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nose</label>
+                                                    <select id="nose" name="nose"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Normal" {{$checkup->nose === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Mucus Discharge" {{$checkup->nose === 'Mucus Discharge' ? 'selected' : ''}}>Mucus Discharge</option>
+                                                        <option value="Nose Bleeding(Eplstaxis)" {{$checkup->nose === 'Nose Bleeding(Eplstaxis)' ? 'selected' : ''}}>Nose Bleeding(Eplstaxis)
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->nose }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nose</label>
-                                            <select id="nose" name="nose"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Normal" {{$checkup->nose === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                <option value="Mucus Discharge" {{$checkup->nose === 'Mucus Discharge' ? 'selected' : ''}}>Mucus Discharge</option>
-                                                <option value="Nose Bleeding(Eplstaxis)" {{$checkup->nose === 'Nose Bleeding(Eplstaxis)' ? 'selected' : ''}}>Nose Bleeding(Eplstaxis)
-                                                </option>
-                                            </select>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -630,30 +614,29 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->mouth }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mouth/Neck/Throat</label>
+                                                    <select id="mouth" name="mouth"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Normal" {{$checkup->mouth === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Enlarge Tonsils" {{$checkup->mouth === 'Enlarge Tonsils' ? 'selected' : ''}}>Enlarge Tonsils</option>
+                                                        <option value="Presence of Lesions" {{$checkup->mouth === 'Presence of Lesions' ? 'selected' : ''}}>Presence of Lesions</option>
+                                                        <option value="Inflamed Pharynx" {{$checkup->mouth === 'Inflamed Pharynx' ? 'selected' : ''}}>Inflamed Pharynx</option>
+                                                        <option value="Enlarge LymphNodes" {{$checkup->mouth === 'Enlarge LymphNodes' ? 'selected' : ''}}>Enlarge LymphNodes</option>
+                                                        <option value="others">Others, specify</option>
+                                                    </select>
+                                                    <input type="hidden" id="othersInput"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="Please Specify" required />
+                                                </div>
+                                            @else   
+                                                <span>{{ $checkup->mouth }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mouth/Neck/Throat</label>
-                                            <select id="mouth" name="mouth"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Normal" {{$checkup->mouth === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                <option value="Enlarge Tonsils" {{$checkup->mouth === 'Enlarge Tonsils' ? 'selected' : ''}}>Enlarge Tonsils</option>
-                                                <option value="Presence of Lesions" {{$checkup->mouth === 'Presence of Lesions' ? 'selected' : ''}}>Presence of Lesions</option>
-                                                <option value="Inflamed Pharynx" {{$checkup->mouth === 'Inflamed Pharynx' ? 'selected' : ''}}>Inflamed Pharynx</option>
-                                                <option value="Enlarge LymphNodes" {{$checkup->mouth === 'Enlarge LymphNodes' ? 'selected' : ''}}>Enlarge LymphNodes</option>
-                                                <option value="others">Others, specify</option>
-                                            </select>
-                                            <input type="hidden" id="othersInput"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Please Specify" required />
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -665,28 +648,27 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->lungs }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lungs</label>
+                                                    <select id="lungs" name="lungs"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Normal" {{$checkup->lungs === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Rales" {{$checkup->lungs === 'Rales' ? 'selected' : ''}}>Rales</option>
+                                                        <option value="Wheeze" {{$checkup->lungs === 'Wheeze' ? 'selected' : ''}}>Wheeze</option>
+                                                        <option value="others" {{$checkup->lungs === 'others' ? 'selected' : ''}}>Others</option>
+                                                    </select>
+                                                    <input type="hidden" id="othersInput2"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="Please Specify" required />
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->lungs }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lungs</label>
-                                            <select id="lungs" name="lungs"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Normal" {{$checkup->lungs === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                <option value="Rales" {{$checkup->lungs === 'Rales' ? 'selected' : ''}}>Rales</option>
-                                                <option value="Wheeze" {{$checkup->lungs === 'Wheeze' ? 'selected' : ''}}>Wheeze</option>
-                                                <option value="others" {{$checkup->lungs === 'others' ? 'selected' : ''}}>Others</option>
-                                            </select>
-                                            <input type="hidden" id="othersInput2"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Please Specify" required />
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -698,28 +680,27 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->heart }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Heart</label>
+                                                    <select id="heart" name="heart"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Normal" {{$checkup->heart === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Murmur" {{$checkup->heart === 'Murmur' ? 'selected' : ''}}>Murmur</option>
+                                                        <option value="Irregular Heart Rate" {{$checkup->heart === 'Irregular Heart Rate' ? 'selected' : ''}}>Irregular Heart Rate</option>
+                                                        <option value="others" {{$checkup->heart === 'others' ? 'selected' : ''}}>Others</option>
+                                                    </select>
+                                                    <input type="hidden" id="othersInput3"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="Please Specify" required />
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->heart }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Heart</label>
-                                            <select id="heart" name="heart"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Normal" {{$checkup->heart === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                <option value="Murmur" {{$checkup->heart === 'Murmur' ? 'selected' : ''}}>Murmur</option>
-                                                <option value="Irregular Heart Rate" {{$checkup->heart === 'Irregular Heart Rate' ? 'selected' : ''}}>Irregular Heart Rate</option>
-                                                <option value="others" {{$checkup->heart === 'others' ? 'selected' : ''}}>Others</option>
-                                            </select>
-                                            <input type="hidden" id="othersInput3"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Please Specify" required />
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -731,29 +712,28 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->abdomen }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Abdomen</label>
+                                                    <select id="abdomen" name="abdomen"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Normal" {{$checkup->abdomen === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Distended" {{$checkup->abdomen === 'Distended' ? 'selected' : ''}}>Distended</option>
+                                                        <option value="Tenderness" {{$checkup->abdomen === 'Tenderness' ? 'selected' : ''}}>Tenderness</option>
+                                                        <option value="Dysmenorrhea" {{$checkup->abdomen === 'Dysmenorrhea' ? 'selected' : ''}}>Dysmenorrhea</option>
+                                                        <option value="others" {{$checkup->abdomen === 'others' ? 'selected' : ''}}>Others, specify</option>
+                                                    </select>
+                                                    <input type="hidden" id="othersInput4"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="Please Specify" required />
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->abdomen }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Abdomen</label>
-                                            <select id="abdomen" name="abdomen"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Normal" {{$checkup->abdomen === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                <option value="Distended" {{$checkup->abdomen === 'Distended' ? 'selected' : ''}}>Distended</option>
-                                                <option value="Tenderness" {{$checkup->abdomen === 'Tenderness' ? 'selected' : ''}}>Tenderness</option>
-                                                <option value="Dysmenorrhea" {{$checkup->abdomen === 'Dysmenorrhea' ? 'selected' : ''}}>Dysmenorrhea</option>
-                                                <option value="others" {{$checkup->abdomen === 'others' ? 'selected' : ''}}>Others, specify</option>
-                                            </select>
-                                            <input type="hidden" id="othersInput4"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Please Specify" required />
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -765,26 +745,25 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->deformities }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deformities</label>
+                                                    <select id="deformities" name="deformities"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Normal" {{$checkup->deformities === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="others" {{$checkup->deformities === 'others' ? 'selected' : ''}}>Congenital (Specify)</option>
+                                                    </select>
+                                                    <input type="hidden" id="othersInput5"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="Please Specify" required />
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->deformities }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deformities</label>
-                                            <select id="deformities" name="deformities"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Normal" {{$checkup->deformities === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                <option value="others" {{$checkup->deformities === 'others' ? 'selected' : ''}}>Congenital (Specify)</option>
-                                            </select>
-                                            <input type="hidden" id="othersInput5"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Please Specify" required />
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -796,24 +775,23 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->iron_supplementation }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Iron
+                                                        Supplementaion</label>
+                                                    <select id="iron_supplementation" name="iron_supplementation"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Yes" {{$checkup->iron_supplementation === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{$checkup->iron_supplementation === 'No' ? 'selected' : ''}}>No</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->iron_supplementation }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Iron
-                                                Supplementaion</label>
-                                            <select id="iron_supplementation" name="iron_supplementation"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Yes" {{$checkup->iron_supplementation === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                <option value="No" {{$checkup->iron_supplementation === 'No' ? 'selected' : ''}}>No</option>
-                                            </select>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -825,23 +803,22 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->deworming }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deworming</label>
+                                                    <select id="deworming" name="deworming"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Yes" {{$checkup->deworming === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{$checkup->deworming === 'No' ? 'selected' : ''}}>No</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->deworming }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="name"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deworming</label>
-                                                <select id="deworming" name="deworming"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required>
-                                                    <option value="">Select Value</option>
-                                                    <option value="Yes" {{$checkup->deworming === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                    <option value="No" {{$checkup->deworming === 'No' ? 'selected' : ''}}>No</option>
-                                                </select>
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -853,23 +830,22 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->immunization }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Immunization</label>
+                                                    <select id="immunization" name="immunization"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Yes" {{$checkup->immunization === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{$checkup->immunization === 'No' ? 'selected' : ''}}>No</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->immunization }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Immunization</label>
-                                            <select id="immunization" name="immunization"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Yes" {{$checkup->immunization === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                <option value="No" {{$checkup->immunization === 'No' ? 'selected' : ''}}>No</option>
-                                            </select>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -881,24 +857,23 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->sbfp_beneficiary }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">SBFP
+                                                        Beneficiary</label>
+                                                    <select id="sbfp_beneficiary" name="sbfp_beneficiary"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Yes" {{$checkup->sbfp_beneficiary === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{$checkup->sbfp_beneficiary === 'No' ? 'selected' : ''}}>No</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->sbfp_beneficiary }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="name"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">SBFP
-                                                    Beneficiary</label>
-                                                <select id="sbfp_beneficiary" name="sbfp_beneficiary"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required>
-                                                    <option value="">Select Value</option>
-                                                    <option value="Yes" {{$checkup->sbfp_beneficiary === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                    <option value="No" {{$checkup->sbfp_beneficiary === 'No' ? 'selected' : ''}}>No</option>
-                                                </select>
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -910,24 +885,23 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->four_p_beneficiary }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">4P's
+                                                        Beneficiary</label>
+                                                    <select id="four_p_beneficiary" name="four_p_beneficiary"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Yes" {{$checkup->four_p_beneficiary === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{$checkup->four_p_beneficiary === 'No' ? 'selected' : ''}}>No</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->four_p_beneficiary }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="name"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">4P's
-                                                    Beneficiary</label>
-                                                <select id="four_p_beneficiary" name="four_p_beneficiary"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    required>
-                                                    <option value="">Select Value</option>
-                                                    <option value="Yes" {{$checkup->four_p_beneficiary === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                    <option value="No" {{$checkup->four_p_beneficiary === 'No' ? 'selected' : ''}}>No</option>
-                                                </select>
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -939,23 +913,22 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->menarche }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Menarche</label>
+                                                    <select id="menarche" name="menarche"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Yes" {{$checkup->menarche === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{$checkup->menarche === 'No' ? 'selected' : ''}}>No</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->menarche }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Menarche</label>
-                                            <select id="menarche" name="menarche"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Yes" {{$checkup->menarche === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                <option value="No" {{$checkup->menarche === 'No' ? 'selected' : ''}}>No</option>
-                                            </select>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -967,20 +940,19 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->nurse->test_name }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Conducted by</label>
+                                                    <input type="text" name="nurse_name" value="{{$nurse->test_name}}" 
+                                                    id="heart_rate" name="heart_rate"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="72" required />
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->nurse->test_name }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                            <div>
-                                                <label for="name"
-                                                    class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Conducted by</label>
-                                                <input type="text" name="nurse_name" value="{{$nurse->test_name}}" 
-                                                id="heart_rate" name="heart_rate"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="72" required />
-                                            </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor
@@ -992,24 +964,23 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->remarks }}
+                                            @if ($checkup->student_grade_level == $check_up_grade_level)
+                                                <div>
+                                                    <label for="name"
+                                                        class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Remarks</label>
+                                                    <select id="remarks" name="remarks"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        required>
+                                                        <option value="">Select Value</option>
+                                                        <option value="Normal" {{$checkup->remarks === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Healthy" {{$checkup->remarks === 'Healthy' ? 'selected' : ''}}>Healthy</option>
+                                                        <option value="Unhealthy" {{$checkup->remarks === 'Unhealthy' ? 'selected' : ''}}>Unhealthy</option>
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <span>{{ $checkup->remarks }}</span>
+                                            @endif
                                         @endforeach
-                                    @else
-                                        {{-- Display input field for the grade with no records --}}
-                                        @if ($i == $student->grade_level)
-                                        <div>
-                                            <label for="name"
-                                                class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Remarks</label>
-                                            <select id="remarks" name="remarks"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                required>
-                                                <option value="">Select Value</option>
-                                                <option value="Normal" {{$checkup->remarks === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                <option value="Healthy" {{$checkup->remarks === 'Healthy' ? 'selected' : ''}}>Healthy</option>
-                                                <option value="Unhealthy" {{$checkup->remarks === 'Unhealthy' ? 'selected' : ''}}>Unhealthy</option>
-                                            </select>
-                                        </div>
-                                        @endif
                                     @endif
                                 </td>
                             @endfor

@@ -184,6 +184,9 @@
                                             <h2 class="font-bold text-md">Checkup Date: <span
                                                     class="font-normal text-sm">{{ $formattedDate . ' ' . $formattedTime }}</span>
                                             </h2>
+                                            <h1 class="font-semibold">Grade: <span
+                                                    class="font-normal text-sm">{{ $checkup->student_grade_level }}</span></span>
+                                            </h1>
                                             <h1 class="font-semibold">School: <span
                                                     class="font-normal text-sm">{{ $student->school->name }}</span></span>
                                             </h1>

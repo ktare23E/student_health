@@ -295,11 +295,12 @@ class NurseAllController extends Controller
     }
 
     public function newEditCheckUp(Checkup $checkup){
+        $check_up_grade_level = $checkup->student_grade_level;
         $nurse = Auth::user();
         $student = $checkup->student;
         $checkupsByGrade = $student->checkups->groupBy('student_grade_level');
 
-        return view('nurse.checkup.new_edit_checkup',compact(['student','checkupsByGrade','nurse','checkup']));
+        return view('nurse.checkup.new_edit_checkup',compact(['student','checkupsByGrade','nurse','checkup','check_up_grade_level']));
     }
 
     public function updateCheckUp(Request $request,Checkup $checkup){
