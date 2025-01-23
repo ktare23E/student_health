@@ -350,13 +350,16 @@
             summary.innerHTML =
                 `<p>Average <span class="font-bold">${category[0] === 'temperature' ? 'Temperature':category[0] === 'heart_rate' ? 'Heart Rate': category[0] === 'pulse_rate' ? 'Pulse Rate': category[0] === 'respiratory_rate' ? 'Respiratory Rate' : ''}</span>: ${avgValue.toFixed(2)}</p>`;
             const reportChart = new Chart(ctx, {
-                type: 'line', // or other types like 'bar', 'radar', etc.
+                type: 'bar', // or other types like 'bar', 'radar', etc.
                 data: {
                     labels: labels,
                     datasets: [{
                         label: label,
-                        data: chartValues, // Use dynamically determined values
-                        borderColor: 'rgba(75, 192, 192, 1)',
+                        data: chartValues,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)'
+                        ], // Use dynamically determined values
+                        borderColor: 'rgba(255, 99, 132, 0.2)',                            
                         borderWidth: 1,
                         fill: false
                     }]
