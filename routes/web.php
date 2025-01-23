@@ -68,6 +68,7 @@ Route::middleware('auth:nurse')->group(function(){
     Route::middleware('nurse.type:school')->group(function(){
         Route::get('/nurse_dashboard',[NurseDashboard::class,'index'])->name('nurse_dashboard');
         Route::get('/checkup_form/{student}', [NurseDashboard::class, 'checkUpForm'])->name('checkup_form');
+        Route::get('/print_student_checkup/{student}',[NurseDashboard::class,'printStudentCheckup'])->name('print_student_checkup');
 
 
         Route::get('/student_list',[NurseAllController::class,'index'])->name('student_list');
@@ -79,7 +80,6 @@ Route::middleware('auth:nurse')->group(function(){
         Route::post('/update_student_status/{id}',[NurseAllController::class,'updateStatus'])->name('update_student_status');
         Route::post('/restore_student/{id}',[NurseAllController::class,'restoreStudent'])->name('restore_student');
         Route::get('/view_student/{student}',[NurseAllController::class,'viewStudent'])->name('view_student');
-
 
         Route::get('/checkup_student/{id}',[NurseAllController::class,'checkupStudent'])->name('checkup_student');
         Route::post('/store_checkup/{student}',[NurseAllController::class,'storeCheckup'])->name('store_checkup');
@@ -121,7 +121,6 @@ Route::middleware('auth:nurse')->group(function(){
     });
 
     Route::middleware('nurse.type:division')->group(function(){
-
         Route::get('/division_nurse_dashboard',[NurseDashboard::class,'index'])->name('division_nurse_dashboard');
         Route::get('/division_school_list',[NurseDashboard::class,'schoolList'])->name('division_school_list');
         Route::get('/division_view_school/{school}',[NurseDashboard::class,'studentList'])->name('division_view_school');

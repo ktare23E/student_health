@@ -161,6 +161,8 @@
                                 <button class="text-sm bg-blue-500 rounded-sm py-1 px-2 text-white">
                                     <a href="{{ route('checkup_form', $student->id) }}">+Checkup</a>
                                 </button>
+                                <a href="{{route('print_student_checkup',$student->id)}}" class="capitalize py-1 px-2 bg-blue-500 text-white rounded-sm text-sm">+print checkup</a>
+                                {{-- <button class="capitalize py-1 px-2 bg-blue-500 text-white rounded-sm text-sm">+print checkup</button> --}}
                             @endif
                         </div>
                         <div
@@ -239,7 +241,7 @@
                                                 @endif
 
                                             </button>
-                                            <a href="{{route('test_checkup',$checkup->id)}}" class="text-sm py-1 px-2 rounded-sm bg-blue-500 text-white" target="blank">print</a>
+                                            {{-- <a href="{{route('test_checkup',$checkup->id)}}" class="text-sm py-1 px-2 rounded-sm bg-blue-500 text-white" target="blank">print</a> --}}
                                         </div>
                                     </div>
                                 @empty

@@ -242,4 +242,21 @@ class NurseDashboard extends Controller
             // 'checkups' => $student->checkups
         ]);
     }
+
+
+    public function printStudentCheckup(Student $student){
+        $nurse = Auth::user();
+
+        //
+        $checkupsByGrade = $student->checkups->groupBy('student_grade_level');
+        // return $checkupsByGrade;
+        
+        return view('nurse.checkup.print_checkup',[
+            'student' => $student,
+            'checkupsByGrade' => $checkupsByGrade,
+            'nurse' => $nurse
+            // 'checkups' => $student->checkups
+        ]);
+    }
+
 }
