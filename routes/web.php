@@ -109,6 +109,7 @@ Route::middleware('auth:nurse')->group(function(){
         Route::get('/district_view_checkup/{checkup}',[NurseDashboard::class,'viewCheckup'])->name('district_view_checkup');
 
 
+        Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
 
 
         Route::get('/district_report',[ReportController::class,'index'])->name('district_report');
@@ -122,11 +123,13 @@ Route::middleware('auth:nurse')->group(function(){
     });
 
     Route::middleware('nurse.type:division')->group(function(){
+
         Route::get('/division_nurse_dashboard',[NurseDashboard::class,'index'])->name('division_nurse_dashboard');
         Route::get('/division_school_list',[NurseDashboard::class,'schoolList'])->name('division_school_list');
         Route::get('/division_view_school/{school}',[NurseDashboard::class,'studentList'])->name('division_view_school');
         Route::get('/division_view_student/{student}',[NurseDashboard::class,'viewStudent'])->name('division_view_student');
         Route::get('/division_view_checkup/{checkup}',[NurseDashboard::class,'viewCheckup'])->name('division_view_checkup');
+        Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
 
 
         

@@ -64,14 +64,32 @@ class LoginController extends Controller
 
     public function destroy(){
         $currentTime = Carbon::now('Asia/Manila');
-    
-        // Create a log before logging out
-        SystemLog::create([
-            'nurse_id' => auth()->user()->id,
-            'date' => $currentTime,
-            'access' => 'Logged out of the system' // Adjust this message to reflect logout action
-        ]);
-    
+        $nurse = Auth::guard('nurse')->user();
+
+
+        if($nurse->type === 'school'){
+            // Create a log before logging out
+            SystemLog::create([
+                'nurse_id' => $nurse->id,
+                'date' => $currentTime,
+                'access' => 'Logged out of the system' // Adjust this message to reflect logout action
+            ]);
+        }elseif($nurse->type === 'district'){
+            // Create a log before logging out
+            SystemLog::create([
+                'nurse_id' => $nurse->id,
+                'date' => $currentTime,
+                'access' => 'Logged out of the system' // Adjust this message to reflect logout action
+            ]);
+        }elseif($nurse->type === 'division'){ 
+            // Create a log before logging out
+            SystemLog::create([
+                'nurse_id' => $nurse->id,
+                'date' => $currentTime,
+                'access' => 'Logged out of the system' // Adjust this message to reflect logout action
+            ]);
+        }
+
         // Log the user out
         Auth::logout();
     
