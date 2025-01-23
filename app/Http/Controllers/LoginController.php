@@ -62,44 +62,28 @@ class LoginController extends Controller
         ]);
     }
 
-    public function destroy(){
+    public function destroy()
+    {
         $currentTime = Carbon::now('Asia/Manila');
         $nurse = Auth::guard('nurse')->user();
-
-
-        if($nurse->type === 'school'){
-            // Create a log before logging out
+    
+        // Log the logout action based on nurse type
+        if (in_array($nurse->type, ['school', 'district', 'division'])) {
             SystemLog::create([
                 'nurse_id' => $nurse->id,
                 'date' => $currentTime,
-                'access' => 'Logged out of the system' // Adjust this message to reflect logout action
-            ]);
-        }elseif($nurse->type === 'district'){
-            // Create a log before logging out
-            SystemLog::create([
-                'nurse_id' => $nurse->id,
-                'date' => $currentTime,
-                'access' => 'Logged out of the system' // Adjust this message to reflect logout action
-            ]);
-        }elseif($nurse->type === 'division'){ 
-            // Create a log before logging out
-            SystemLog::create([
-                'nurse_id' => $nurse->id,
-                'date' => $currentTime,
-                'access' => 'Logged out of the system' // Adjust this message to reflect logout action
+                'access' => 'Logged out of the system'
             ]);
         }
-
+    
         // Log the user out
-        Auth::logout();
+        Auth::guard('nurse')->logout();
     
-        // Invalidate the session to prevent unauthorized access
+        // Invalidate the session and regenerate the token
         request()->session()->invalidate();
-    
-        // Regenerate the CSRF token to prevent any potential reuse
         request()->session()->regenerateToken();
     
-        // Redirect to login page
+        // Redirect to the login page
         return redirect()->route('login');
     }
     

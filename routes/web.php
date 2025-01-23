@@ -63,12 +63,12 @@ Route::middleware(CheckUserType::class)->group(function(){
 });
 
 Route::middleware('auth:nurse')->group(function(){
+    Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
 
     Route::middleware('nurse.type:school')->group(function(){
         Route::get('/nurse_dashboard',[NurseDashboard::class,'index'])->name('nurse_dashboard');
         Route::get('/checkup_form/{student}', [NurseDashboard::class, 'checkUpForm'])->name('checkup_form');
 
-        Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
 
         Route::get('/student_list',[NurseAllController::class,'index'])->name('student_list');
         Route::post('/store_student',[NurseAllController::class, 'store'])->name('store_student');
@@ -109,8 +109,6 @@ Route::middleware('auth:nurse')->group(function(){
         Route::get('/district_view_checkup/{checkup}',[NurseDashboard::class,'viewCheckup'])->name('district_view_checkup');
 
 
-        Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
-
 
         Route::get('/district_report',[ReportController::class,'index'])->name('district_report');
         Route::post('/district_filter_report',[ReportController::class,'filterReport'])->name('district_filter_report');
@@ -129,8 +127,6 @@ Route::middleware('auth:nurse')->group(function(){
         Route::get('/division_view_school/{school}',[NurseDashboard::class,'studentList'])->name('division_view_school');
         Route::get('/division_view_student/{student}',[NurseDashboard::class,'viewStudent'])->name('division_view_student');
         Route::get('/division_view_checkup/{checkup}',[NurseDashboard::class,'viewCheckup'])->name('division_view_checkup');
-        Route::post('/logout',[LoginController::class,'destroy'])->name('logout');
-
 
         
         Route::get('/division_report',[ReportController::class,'index'])->name('division_report');
