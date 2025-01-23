@@ -187,13 +187,13 @@
             }
 
             var chart = new Chart(ctx, {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: uniqueSchools,
                     datasets: [{
                         label: label,
                         data: schoolAverages,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
                     }]
@@ -320,15 +320,15 @@
 
             // Step 4: Create the chart
             const myChart = new Chart(ctx, {
-                type: 'line', // or any other chart type
+                type: 'bar', // or any other chart type
                 data: {
                     labels: uniqueSchools,
                     datasets: [{
                         label: label,
                         data: counts, // Corresponding to y-axis
-                        borderColor: 'rgba(75, 192, 192, 1)', // Border color of the line
+                        borderColor: 'rgba(255, 99, 132, 0.2)',// Border color of the line
                         borderWidth: 2, // Width of the border
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Background color (fill)
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Background color (fill)
                         pointBorderColor: 'rgba(75, 192, 192, 1)', // Border color of the points
                         pointBackgroundColor: '#fff' // Background
                     }]
