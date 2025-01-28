@@ -108,8 +108,8 @@
                                             <td>{{ $student->checkups[0]->adviser_name }}</td>
                                             <td>{{ $student->school->name }}</td>
                                             <td
-                                                class="{{ $student->checkups[0]->remarks === 'Healthy' ? 'text-green-500' : 'text-red-500' }}">
-                                                {{ $student->checkups[0]->remarks }}</td>
+                                                class="{{ Crypt::decrypt($student->checkups[0]->remarks) === 'Healthy' ? 'text-green-500' : 'text-red-500' }}">
+                                                {{ Crypt::decrypt($student->checkups[0]->remarks) }}</td>
                                             {{-- <td>
 
                                                 <button class="text-sm py-1 px-2 rounded-sm bg-black text-white">

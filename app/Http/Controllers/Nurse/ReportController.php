@@ -252,7 +252,7 @@ class ReportController extends Controller
                                 $chartData[] = [
                                     'category' => $request->category,
                                     'school' => $schoolName,
-                                    'value' => $checkup->$category // Or the selected category value
+                                    'value' => Crypt::decrypt($checkup->$category) // Or the selected category value
                                 ];
                             }
                         } else {
@@ -264,6 +264,7 @@ class ReportController extends Controller
                             ];
                         }
                     }
+
 
                     $user = Auth::user();
             
@@ -321,9 +322,10 @@ class ReportController extends Controller
                         $chartData[] = [
                             'category' => $request->category,
                             'student' => 'Student ' . $student,
-                            'value' => $checkup->{$request->category}
+                            'value' => Crypt::decrypt($checkup->{$request->category})
                         ];
                     }
+
 
                     $user = Auth::user();
 
