@@ -198,22 +198,22 @@
                                                     class="font-normal tex-sm">{{ $checkup->nurse->first_name . ' ' . $checkup->nurse->last_name }}</span>
                                             </h2>
                                             <h1 class="font-semibold">Checkup Remarks: <span
-                                                    class="capitalize {{ $checkup->remarks === 'Healthy' ? 'text-green-500' : 'text-red-500' }}">{{ $checkup->remarks }}</span>
+                                                    class="capitalize {{ $checkup->remarks === 'Healthy' ? 'text-green-500' : 'text-red-500' }}">{{ Crypt::decrypt($checkup->remarks) }}</span>
                                             </h1>
                                         </div>
                                         <h1 class="font-semibold mt-4">Checkup Details:</h1>
                                         <div class="w-full grid grid-cols-3 gap-4">
                                             <div class="flex flex-col items-center">
                                                 <p class="font-bold text-center">Height:</p>
-                                                <p class="text-center">{{ $checkup->height.' meters' }}</p>
+                                                <p class="text-center">{{ Crypt::decrypt($checkup->height).' meters' }}</p>
                                             </div>
                                             <div class="flex flex-col items-center">
                                                 <p class="font-bold text-center">BMI:</p>
-                                                <p class="text-center">{{ $checkup->bmi_weight }}</p>
+                                                <p class="text-center">{{ Crypt::decrypt($checkup->bmi_weight) }}</p>
                                             </div>
                                             <div class="flex flex-col items-center">
                                                 <p class="font-semibold text-center">Blood Pressure:</p>
-                                                <p class="text-center">{{ $checkup->systolic . '/' . $checkup->diastolic }}
+                                                <p class="text-center">{{ Crypt::decrypt($checkup->systolic) . '/' . Crypt::decrypt($checkup->diastolic) }}
                                                 </p>
                                             </div>
                                         </div>
