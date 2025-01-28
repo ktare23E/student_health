@@ -172,12 +172,12 @@
                                                         class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                         Temperature
                                                     </label>
-                                                    <input type="text" id="temperature_{{ $i }}" name="temperature" value="{{$checkup->temperature}}"
+                                                    <input type="text" id="temperature_{{ $i }}" name="temperature" value="{{Crypt::decrypt($checkup->temperature)}}"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         placeholder="35.00" required />
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->temperature }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->temperature) }}</span>
                                             @endif
                                             
                                         @endforeach
@@ -197,20 +197,20 @@
                                                     <div class="mb-2">
                                                         <label for="name"
                                                             class="block mb-2 text-sm font-medium text-start text-gray-900 dark:text-white">Systolic</label>
-                                                        <input type="text" id="systolic" name="systolic" value="{{$checkup->systolic}}"
+                                                        <input type="text" id="systolic" name="systolic" value="{{Crypt::decrypt($checkup->systolic)}}"
                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                             placeholder="120" required />
                                                     </div>
                                                     <div>
                                                         <label for="name"
                                                             class="block mb-2 text-sm font-medium  text-start text-gray-900 dark:text-white">Diastolic</label>
-                                                        <input type="text" id="diastolic" name="diastolic" value="{{$checkup->diastolic}}"
+                                                        <input type="text" id="diastolic" name="diastolic" value="{{Crypt::decrypt($checkup->diastolic)}}"
                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                             placeholder="80" required />
                                                     </div>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->systolic.'/'.$checkup->diastolic }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->systolic.'/'.$checkup->diastolic) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -230,12 +230,12 @@
                                                         class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                         Heart Rate
                                                     </label>
-                                                    <input type="text" id="heart_rate" name="heart_rate" value="{{$checkup->heart_rate}}"
+                                                    <input type="text" id="heart_rate" name="heart_rate" value="{{Crypt::decrypt($checkup->heart_rate)}}"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         placeholder="72" required />
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->heart_rate }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->heart_rate) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -255,12 +255,12 @@
                                                         class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                         Pulse Rate
                                                     </label>
-                                                    <input type="text" id="pulse_rate_{{ $i }}" name="pulse_rate" value="{{$checkup->pulse_rate}}"
+                                                    <input type="text" id="pulse_rate_{{ $i }}" name="pulse_rate" value="{{Crypt::decrypt($checkup->pulse_rate)}}"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         placeholder="60" required />
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->pulse_rate }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->pulse_rate) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -280,12 +280,12 @@
                                                         class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                         Respiratory Rate
                                                     </label>
-                                                    <input type="text" id="respiratory_rate_{{ $i }}" name="respiratory_rate" value="{{$checkup->respiratory_rate}}"
+                                                    <input type="text" id="respiratory_rate_{{ $i }}" name="respiratory_rate" value="{{Crypt::decrypt($checkup->respiratory_rate)}}"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         placeholder="20" required />
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->respiratory_rate }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->respiratory_rate) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -305,12 +305,12 @@
                                                         class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                         Height
                                                     </label>
-                                                    <input type="text" id="height" name="height" value="{{$checkup->height}}"
+                                                    <input type="text" id="height" name="height" value="{{Crypt::decrypt($checkup->height)}}"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         placeholder="1.60 meters" required />
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->height.' meters' }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->height).' meters' }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -330,12 +330,12 @@
                                                         class="text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                         Weight
                                                     </label>
-                                                    <input type="text" id="weight" name="weight" value="{{$checkup->weight}}"
+                                                    <input type="text" id="weight" name="weight" value="{{Crypt::decrypt($checkup->weight)}}"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         placeholder="72" required />
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->weight.'kg' }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->weight).'kg' }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -360,14 +360,14 @@
                                                 <div>
                                                     <label for="bmi_weight" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Nutritional Status (BMI)</label>
                                                     <select id="bmi_weight" name="bmi_weight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                                        <option value="Underweight" {{$checkup->bmi_weight === 'Underweight' ? 'selected' : ''}}>Underweight</option>
-                                                        <option value="Normal Weight" {{$checkup->bmi_weight === 'Normal Weight' ? 'selected' : ''}}>Normal Weight</option>
-                                                        <option value="Overweight" {{$checkup->bmi_weight === 'Overweight' ? 'selected' : ''}}>Overweight</option>
-                                                        <option value="Obese" {{$checkup->bmi_weight === 'Obese' ? 'selected' : ''}}>Obese</option>
+                                                        <option value="Underweight" {{Crypt::decrypt($checkup->bmi_weight) === 'Underweight' ? 'selected' : ''}}>Underweight</option>
+                                                        <option value="Normal Weight" {{Crypt::decrypt($checkup->bmi_weight) === 'Normal Weight' ? 'selected' : ''}}>Normal Weight</option>
+                                                        <option value="Overweight" {{Crypt::decrypt($checkup->bmi_weight) === 'Overweight' ? 'selected' : ''}}>Overweight</option>
+                                                        <option value="Obese" {{Crypt::decrypt($checkup->bmi_weight) === 'Obese' ? 'selected' : ''}}>Obese</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->bmi_weight }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->bmi_weight) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -388,14 +388,14 @@
                                                     <select id="bmi_height" name="bmi_height"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
-                                                        <option value="Normal Height" {{$checkup->bmi_height  === 'Underweight' ? 'selected' : ''}}>Normal Height</option>
-                                                        <option value="Stunted" {{$checkup->bmi_height  === 'Stunted' ? 'selected' : ''}}>Stunted</option>
-                                                        <option value="Severely Stunted" {{$checkup->bmi_height  === 'Severely Stunted' ? 'selected' : ''}}>Severely Stunted</option>
-                                                        <option value="Tall" {{$checkup->bmi_height  === 'Tall' ? 'selected' : ''}}>Tall</option>
+                                                        <option value="Normal Height" {{Crypt::decrypt($checkup->bmi_height)  === 'Underweight' ? 'selected' : ''}}>Normal Height</option>
+                                                        <option value="Stunted" {{Crypt::decrypt($checkup->bmi_height)  === 'Stunted' ? 'selected' : ''}}>Stunted</option>
+                                                        <option value="Severely Stunted" {{Crypt::decrypt($checkup->bmi_height)  === 'Severely Stunted' ? 'selected' : ''}}>Severely Stunted</option>
+                                                        <option value="Tall" {{Crypt::decrypt($checkup->bmi_height)  === 'Tall' ? 'selected' : ''}}>Tall</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->bmi_height }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->bmi_height) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -418,12 +418,12 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Passed" {{$checkup->vision_screening === 'Passed' ? 'selected' : ''}}>Passed</option>
-                                                        <option value="Failed" {{$checkup->vision_screening === 'Failed' ? 'selected' : ''}}>Failed</option>
+                                                        <option value="Passed" {{Crypt::decrypt($checkup->vision_screening) === 'Passed' ? 'selected' : ''}}>Passed</option>
+                                                        <option value="Failed" {{Crypt::decrypt($checkup->vision_screening) === 'Failed' ? 'selected' : ''}}>Failed</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->vision_screening }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->vision_screening) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -446,12 +446,12 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Passed" {{$checkup->auditory_screening === 'Passed' ? 'selected' : ''}}>Passed</option>
-                                                        <option value="Failed" {{$checkup->auditory_screening === 'Failed' ? 'selected' : ''}}>Failed</option>
+                                                        <option value="Passed" {{Crypt::decrypt($checkup->auditory_screening) === 'Passed' ? 'selected' : ''}}>Passed</option>
+                                                        <option value="Failed" {{Crypt::decrypt($checkup->auditory_screening) === 'Failed' ? 'selected' : ''}}>Failed</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->auditory_screening }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->auditory_screening) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -473,18 +473,18 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Normal" {{$checkup->skin === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                        <option value="Redness of Skin" {{$checkup->skin === 'Redness of Skin' ? 'selected' : ''}}>Redness of Skin</option>
-                                                        <option value="White Spots" {{$checkup->skin === 'White Spots' ? 'selected' : ''}}>White Spots</option>
-                                                        <option value="Impetigo/Boil" {{$checkup->skin === 'Impetigo/Boil' ? 'selected' : ''}}>Impetigo/Boil</option>
-                                                        <option value="Bruises/Injuries" {{$checkup->skin === 'Bruises/Injuries' ? 'selected' : ''}}>Bruises/Injuries</option>
-                                                        <option value="Skin Lessions" {{$checkup->skin === 'Skin Lessions' ? 'selected' : ''}}>Skin Lessions</option>
-                                                        <option value="Itchiness" {{$checkup->skin === 'Itchiness' ? 'selected' : ''}}>Itchiness</option>
-                                                        <option value="Acne/Pimple" {{$checkup->skin === 'Acne/Pimple' ? 'selected' : ''}}>Acne/Pimple</option>
+                                                        <option value="Normal" {{Crypt::decrypt($checkup->skin) === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Redness of Skin" {{Crypt::decrypt($checkup->skin) === 'Redness of Skin' ? 'selected' : ''}}>Redness of Skin</option>
+                                                        <option value="White Spots" {{Crypt::decrypt($checkup->skin) === 'White Spots' ? 'selected' : ''}}>White Spots</option>
+                                                        <option value="Impetigo/Boil" {{Crypt::decrypt($checkup->skin) === 'Impetigo/Boil' ? 'selected' : ''}}>Impetigo/Boil</option>
+                                                        <option value="Bruises/Injuries" {{Crypt::decrypt($checkup->skin) === 'Bruises/Injuries' ? 'selected' : ''}}>Bruises/Injuries</option>
+                                                        <option value="Skin Lessions" {{Crypt::decrypt($checkup->skin) === 'Skin Lessions' ? 'selected' : ''}}>Skin Lessions</option>
+                                                        <option value="Itchiness" {{Crypt::decrypt($checkup->skin) === 'Itchiness' ? 'selected' : ''}}>Itchiness</option>
+                                                        <option value="Acne/Pimple" {{Crypt::decrypt($checkup->skin) === 'Acne/Pimple' ? 'selected' : ''}}>Acne/Pimple</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->skin }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->skin) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -505,13 +505,13 @@
                                                     <select id="skin" name="scalp"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
-                                                        <option value="Normal" {{$checkup->scalp === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                        <option value="Presence of Lice" {{$checkup->scalp === 'Presence of Lice' ? 'selected' : ''}}>Presence of Lice</option>
-                                                        <option value="Itchiness" {{$checkup->scalp === 'Itchiness' ? 'selected' : ''}}>Itchiness</option>
+                                                        <option value="Normal" {{Crypt::decrypt($checkup->scalp) === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Presence of Lice" {{Crypt::decrypt($checkup->scalp) === 'Presence of Lice' ? 'selected' : ''}}>Presence of Lice</option>
+                                                        <option value="Itchiness" {{Crypt::decrypt($checkup->scalp) === 'Itchiness' ? 'selected' : ''}}>Itchiness</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->scalp }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->scalp) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -533,17 +533,17 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Normal" {{$checkup->eyes === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                        <option value="Stye" {{$checkup->eyes === 'Stye' ? 'selected' : ''}}>Stye</option>
-                                                        <option value="Eye Redness" {{$checkup->eyes === 'Eye Redness' ? 'selected' : ''}}>Eye Redness</option>
-                                                        <option value="Ocular Misallignment" {{$checkup->eyes === 'Ocular Misallignment' ? 'selected' : ''}}>Ocular Misallignment</option>
-                                                        <option value="Pale Conjunctiva" {{$checkup->eyes === 'Pale Conjunctiva"' ? 'selected' : ''}}>Pale Conjunctiva</option>
-                                                        <option value="Eye Discharge" {{$checkup->eyes === 'Eye Discharge' ? 'selected' : ''}}>Eye Discharge</option>
-                                                        <option value="Matted Eyelashes" {{$checkup->eyes === 'Matted Eyelashes' ? 'selected' : ''}}>Matted Eyelashes</option>
+                                                        <option value="Normal" {{Crypt::decrypt($checkup->eyes) === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Stye" {{Crypt::decrypt($checkup->eyes) === 'Stye' ? 'selected' : ''}}>Stye</option>
+                                                        <option value="Eye Redness" {{Crypt::decrypt($checkup->eyes) === 'Eye Redness' ? 'selected' : ''}}>Eye Redness</option>
+                                                        <option value="Ocular Misallignment" {{Crypt::decrypt($checkup->eyes) === 'Ocular Misallignment' ? 'selected' : ''}}>Ocular Misallignment</option>
+                                                        <option value="Pale Conjunctiva" {{Crypt::decrypt($checkup->eyes) === 'Pale Conjunctiva"' ? 'selected' : ''}}>Pale Conjunctiva</option>
+                                                        <option value="Eye Discharge" {{Crypt::decrypt($checkup->eyes) === 'Eye Discharge' ? 'selected' : ''}}>Eye Discharge</option>
+                                                        <option value="Matted Eyelashes" {{Crypt::decrypt($checkup->eyes) === 'Matted Eyelashes' ? 'selected' : ''}}>Matted Eyelashes</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->eyes }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->eyes) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -565,13 +565,13 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Normal" {{$checkup->ears === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                        <option value="Ear Discharge" {{$checkup->ears === 'Ear Discharge' ? 'selected' : ''}}>Ear Discharge</option>
-                                                        <option value="Impacted Cerumen" {{$checkup->ears === 'Impacted Cerumen' ? 'selected' : ''}}>Impacted Cerumen</option>
+                                                        <option value="Normal" {{Crypt::decrypt($checkup->ears) === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Ear Discharge" {{Crypt::decrypt($checkup->ears) === 'Ear Discharge' ? 'selected' : ''}}>Ear Discharge</option>
+                                                        <option value="Impacted Cerumen" {{Crypt::decrypt($checkup->ears) === 'Impacted Cerumen' ? 'selected' : ''}}>Impacted Cerumen</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->ears }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->ears) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -593,14 +593,14 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Normal" {{$checkup->nose === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                        <option value="Mucus Discharge" {{$checkup->nose === 'Mucus Discharge' ? 'selected' : ''}}>Mucus Discharge</option>
-                                                        <option value="Nose Bleeding(Eplstaxis)" {{$checkup->nose === 'Nose Bleeding(Eplstaxis)' ? 'selected' : ''}}>Nose Bleeding(Eplstaxis)
+                                                        <option value="Normal" {{Crypt::decrypt($checkup->nose) === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Mucus Discharge" {{Crypt::decrypt($checkup->nose) === 'Mucus Discharge' ? 'selected' : ''}}>Mucus Discharge</option>
+                                                        <option value="Nose Bleeding(Eplstaxis)" {{Crypt::decrypt($checkup->nose) === 'Nose Bleeding(Eplstaxis)' ? 'selected' : ''}}>Nose Bleeding(Eplstaxis)
                                                         </option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->nose }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->nose) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -622,11 +622,11 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Normal" {{$checkup->mouth === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                        <option value="Enlarge Tonsils" {{$checkup->mouth === 'Enlarge Tonsils' ? 'selected' : ''}}>Enlarge Tonsils</option>
-                                                        <option value="Presence of Lesions" {{$checkup->mouth === 'Presence of Lesions' ? 'selected' : ''}}>Presence of Lesions</option>
-                                                        <option value="Inflamed Pharynx" {{$checkup->mouth === 'Inflamed Pharynx' ? 'selected' : ''}}>Inflamed Pharynx</option>
-                                                        <option value="Enlarge LymphNodes" {{$checkup->mouth === 'Enlarge LymphNodes' ? 'selected' : ''}}>Enlarge LymphNodes</option>
+                                                        <option value="Normal" {{Crypt::decrypt($checkup->mouth) === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Enlarge Tonsils" {{Crypt::decrypt($checkup->mouth) === 'Enlarge Tonsils' ? 'selected' : ''}}>Enlarge Tonsils</option>
+                                                        <option value="Presence of Lesions" {{Crypt::decrypt($checkup->mouth) === 'Presence of Lesions' ? 'selected' : ''}}>Presence of Lesions</option>
+                                                        <option value="Inflamed Pharynx" {{Crypt::decrypt($checkup->mouth) === 'Inflamed Pharynx' ? 'selected' : ''}}>Inflamed Pharynx</option>
+                                                        <option value="Enlarge LymphNodes" {{Crypt::decrypt($checkup->mouth) === 'Enlarge LymphNodes' ? 'selected' : ''}}>Enlarge LymphNodes</option>
                                                         <option value="others">Others, specify</option>
                                                     </select>
                                                     <input type="hidden" id="othersInput"
@@ -634,7 +634,7 @@
                                                         placeholder="Please Specify" required />
                                                 </div>
                                             @else   
-                                                <span>{{ $checkup->mouth }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->mouth) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -656,17 +656,17 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Normal" {{$checkup->lungs === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                        <option value="Rales" {{$checkup->lungs === 'Rales' ? 'selected' : ''}}>Rales</option>
-                                                        <option value="Wheeze" {{$checkup->lungs === 'Wheeze' ? 'selected' : ''}}>Wheeze</option>
-                                                        <option value="others" {{$checkup->lungs === 'others' ? 'selected' : ''}}>Others</option>
+                                                        <option value="Normal" {{Crypt::decrypt($checkup->lungs) === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Rales" {{Crypt::decrypt($checkup->lungs) === 'Rales' ? 'selected' : ''}}>Rales</option>
+                                                        <option value="Wheeze" {{Crypt::decrypt($checkup->lungs) === 'Wheeze' ? 'selected' : ''}}>Wheeze</option>
+                                                        <option value="others" {{Crypt::decrypt($checkup->lungs) === 'others' ? 'selected' : ''}}>Others</option>
                                                     </select>
                                                     <input type="hidden" id="othersInput2"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         placeholder="Please Specify" required />
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->lungs }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->lungs) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -688,17 +688,17 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Normal" {{$checkup->heart === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                        <option value="Murmur" {{$checkup->heart === 'Murmur' ? 'selected' : ''}}>Murmur</option>
-                                                        <option value="Irregular Heart Rate" {{$checkup->heart === 'Irregular Heart Rate' ? 'selected' : ''}}>Irregular Heart Rate</option>
-                                                        <option value="others" {{$checkup->heart === 'others' ? 'selected' : ''}}>Others</option>
+                                                        <option value="Normal" {{Crypt::decrypt($checkup->heart) === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Murmur" {{Crypt::decrypt($checkup->heart) === 'Murmur' ? 'selected' : ''}}>Murmur</option>
+                                                        <option value="Irregular Heart Rate" {{Crypt::decrypt($checkup->heart) === 'Irregular Heart Rate' ? 'selected' : ''}}>Irregular Heart Rate</option>
+                                                        <option value="others" {{Crypt::decrypt($checkup->heart) === 'others' ? 'selected' : ''}}>Others</option>
                                                     </select>
                                                     <input type="hidden" id="othersInput3"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         placeholder="Please Specify" required />
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->heart }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->heart) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -720,18 +720,18 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Normal" {{$checkup->abdomen === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                        <option value="Distended" {{$checkup->abdomen === 'Distended' ? 'selected' : ''}}>Distended</option>
-                                                        <option value="Tenderness" {{$checkup->abdomen === 'Tenderness' ? 'selected' : ''}}>Tenderness</option>
-                                                        <option value="Dysmenorrhea" {{$checkup->abdomen === 'Dysmenorrhea' ? 'selected' : ''}}>Dysmenorrhea</option>
-                                                        <option value="others" {{$checkup->abdomen === 'others' ? 'selected' : ''}}>Others, specify</option>
+                                                        <option value="Normal" {{Crypt::decrypt($checkup->abdomen) === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Distended" {{Crypt::decrypt($checkup->abdomen) === 'Distended' ? 'selected' : ''}}>Distended</option>
+                                                        <option value="Tenderness" {{Crypt::decrypt($checkup->abdomen) === 'Tenderness' ? 'selected' : ''}}>Tenderness</option>
+                                                        <option value="Dysmenorrhea" {{Crypt::decrypt($checkup->abdomen) === 'Dysmenorrhea' ? 'selected' : ''}}>Dysmenorrhea</option>
+                                                        <option value="others" {{Crypt::decrypt($checkup->abdomen) === 'others' ? 'selected' : ''}}>Others, specify</option>
                                                     </select>
                                                     <input type="hidden" id="othersInput4"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         placeholder="Please Specify" required />
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->abdomen }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->abdomen) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -753,15 +753,15 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Normal" {{$checkup->deformities === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                        <option value="others" {{$checkup->deformities === 'others' ? 'selected' : ''}}>Congenital (Specify)</option>
+                                                        <option value="Normal" {{Crypt::decrypt($checkup->deformities) === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="others" {{Crypt::decrypt($checkup->deformities) === 'others' ? 'selected' : ''}}>Congenital (Specify)</option>
                                                     </select>
                                                     <input type="hidden" id="othersInput5"
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         placeholder="Please Specify" required />
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->deformities }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->deformities) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -784,12 +784,12 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Yes" {{$checkup->iron_supplementation === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                        <option value="No" {{$checkup->iron_supplementation === 'No' ? 'selected' : ''}}>No</option>
+                                                        <option value="Yes" {{Crypt::decrypt($checkup->iron_supplementation) === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{Crypt::decrypt($checkup->iron_supplementation) === 'No' ? 'selected' : ''}}>No</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->iron_supplementation }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->iron_supplementation) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -811,12 +811,12 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Yes" {{$checkup->deworming === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                        <option value="No" {{$checkup->deworming === 'No' ? 'selected' : ''}}>No</option>
+                                                        <option value="Yes" {{Crypt::decrypt($checkup->deworming) === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{Crypt::decrypt($checkup->deworming) === 'No' ? 'selected' : ''}}>No</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->deworming }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->deworming) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -838,12 +838,12 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Yes" {{$checkup->immunization === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                        <option value="No" {{$checkup->immunization === 'No' ? 'selected' : ''}}>No</option>
+                                                        <option value="Yes" {{Crypt::decrypt($checkup->immunization) === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{Crypt::decrypt($checkup->immunization) === 'No' ? 'selected' : ''}}>No</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->immunization }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->immunization) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -866,12 +866,12 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Yes" {{$checkup->sbfp_beneficiary === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                        <option value="No" {{$checkup->sbfp_beneficiary === 'No' ? 'selected' : ''}}>No</option>
+                                                        <option value="Yes" {{Crypt::decrypt($checkup->sbfp_beneficiary) === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{Crypt::decrypt($checkup->sbfp_beneficiary) === 'No' ? 'selected' : ''}}>No</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->sbfp_beneficiary }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->sbfp_beneficiary) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -894,12 +894,12 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Yes" {{$checkup->four_p_beneficiary === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                        <option value="No" {{$checkup->four_p_beneficiary === 'No' ? 'selected' : ''}}>No</option>
+                                                        <option value="Yes" {{Crypt::decrypt($checkup->four_p_beneficiary) === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{Crypt::decrypt($checkup->four_p_beneficiary) === 'No' ? 'selected' : ''}}>No</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->four_p_beneficiary }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->four_p_beneficiary) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -921,12 +921,12 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Yes" {{$checkup->menarche === 'Yes' ? 'selected' : ''}}>Yes</option>
-                                                        <option value="No" {{$checkup->menarche === 'No' ? 'selected' : ''}}>No</option>
+                                                        <option value="Yes" {{Crypt::decrypt($checkup->menarche) === 'Yes' ? 'selected' : ''}}>Yes</option>
+                                                        <option value="No" {{Crypt::decrypt($checkup->menarche) === 'No' ? 'selected' : ''}}>No</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->menarche }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->menarche) }}</span>
                                             @endif
                                         @endforeach
                                     @endif
@@ -972,13 +972,13 @@
                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         required>
                                                         <option value="">Select Value</option>
-                                                        <option value="Normal" {{$checkup->remarks === 'Normal' ? 'selected' : ''}}>Normal</option>
-                                                        <option value="Healthy" {{$checkup->remarks === 'Healthy' ? 'selected' : ''}}>Healthy</option>
-                                                        <option value="Unhealthy" {{$checkup->remarks === 'Unhealthy' ? 'selected' : ''}}>Unhealthy</option>
+                                                        <option value="Normal" {{Crypt::decrypt($checkup->remarks) === 'Normal' ? 'selected' : ''}}>Normal</option>
+                                                        <option value="Healthy" {{Crypt::decrypt($checkup->remarks) === 'Healthy' ? 'selected' : ''}}>Healthy</option>
+                                                        <option value="Unhealthy" {{Crypt::decrypt($checkup->remarks) === 'Unhealthy' ? 'selected' : ''}}>Unhealthy</option>
                                                     </select>
                                                 </div>
                                             @else
-                                                <span>{{ $checkup->remarks }}</span>
+                                                <span>{{ Crypt::decrypt($checkup->remarks) }}</span>
                                             @endif
                                         @endforeach
                                     @endif

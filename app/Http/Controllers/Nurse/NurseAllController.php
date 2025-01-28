@@ -307,10 +307,8 @@ class NurseAllController extends Controller
     public function updateCheckUp(Request $request,Checkup $checkup){
 
         $validateDate = $request->validate([
-          
             'student_age' => 'required',
             'adviser_name' => 'required',
-           
             'temperature' => 'required',
             'systolic' => 'required',
             'diastolic' => 'required',
@@ -343,8 +341,43 @@ class NurseAllController extends Controller
         ]);
 
         // $student_id = $request->student_id;
+        
 
-        $checkups = Checkup::findOrFail($checkup->id)->update($validateDate);
+        // $checkups = Checkup::findOrFail($checkup->id)->update(Crypt::encrypt($validateDate));
+
+        $checkup->update([
+            'student_age' => $request->student_age,
+            'adviser_name' => $request->adviser_name,
+            'temperature' => Crypt::encrypt($request->temperature),
+            'systolic' => Crypt::encrypt($request->systolic),
+            'diastolic' => Crypt::encrypt($request->diastolic),
+            'heart_rate' => Crypt::encrypt($request->heart_rate),
+            'respiratory_rate' => Crypt::encrypt($request->respiratory_rate),
+            'pulse_rate' => Crypt::encrypt($request->pulse_rate),
+            'weight' => Crypt::encrypt($request->weight),
+            'height' => Crypt::encrypt($request->height),
+            'bmi_weight' => Crypt::encrypt($request->bmi_weight),
+            'bmi_height' => Crypt::encrypt($request->bmi_height),
+            'vision_screening' => Crypt::encrypt($request->vision_screening),
+            'auditory_screening' => Crypt::encrypt($request->auditory_screening),
+            'skin' => Crypt::encrypt($request->skin),
+            'scalp' => Crypt::encrypt($request->scalp),
+            'ears' => Crypt::encrypt($request->ears),
+            'eyes' => Crypt::encrypt($request->eyes),
+            'nose' => Crypt::encrypt($request->nose),
+            'mouth' => Crypt::encrypt($request->mouth),
+            'lungs' => Crypt::encrypt($request->lungs),
+            'heart' => Crypt::encrypt($request->heart),
+            'abdomen' => Crypt::encrypt($request->abdomen),
+            'deformities' => Crypt::encrypt($request->deformities),
+            'iron_supplementation' => Crypt::encrypt($request->iron_supplementation),
+            'deworming' => Crypt::encrypt($request->deworming),
+            'immunization' => Crypt::encrypt($request->immunization),
+            'sbfp_beneficiary' => Crypt::encrypt($request->sbfp_beneficiary),
+            'four_p_beneficiary' => Crypt::encrypt($request->four_p_beneficiary),
+            'menarche' => Crypt::encrypt($request->menarche),
+            'remarks' => Crypt::encrypt($request->remarks)
+        ]);
 
 
         return redirect()->route('view_student',$checkup->student_id)->with('success','Checkup successfully updated');
