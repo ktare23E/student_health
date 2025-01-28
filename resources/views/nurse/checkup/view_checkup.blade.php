@@ -149,13 +149,13 @@
                                     </div>
                                     <div><strong>Adviser Name:</strong> {{ $checkup->adviser_name }}</div>
                                     <div><strong>Temperature:</strong> {{ Crypt::decrypt($checkup->temperature) }}</div>
-                                    <div><strong>Blood Pressure:</strong> {{ $checkup->systolic }}/{{ $checkup->diastolic }}</div>
-                                    <div><strong>Heart Rate:</strong> {{ $checkup->heart_rate }}</div>
-                                    <div><strong>Height:</strong> {{ $checkup->height }}</div>
-                                    <div><strong>Weight:</strong> {{ $checkup->weight }}</div>
-                                    <div><strong>Vision Screening:</strong> {{ $checkup->vision_screening }}</div>
-                                    <div><strong>Iron Supplementation:</strong> {{ $checkup->iron_supplementation }}</div>
-                                    <div><strong>Immunization:</strong> {{ $checkup->immunization }}</div>
+                                    <div><strong>Blood Pressure:</strong> {{ Crypt::decrypt($checkup->systolic) }}/{{ Crypt::decrypt($checkup->diastolic) }}</div>
+                                    <div><strong>Heart Rate:</strong> {{ Crypt::decrypt($checkup->heart_rate) }}</div>
+                                    <div><strong>Height:</strong> {{ Crypt::decrypt($checkup->height) }}</div>
+                                    <div><strong>Weight:</strong> {{ Crypt::decrypt($checkup->weight) }}</div>
+                                    <div><strong>Vision Screening:</strong> {{ Crypt::decrypt($checkup->vision_screening) }}</div>
+                                    <div><strong>Iron Supplementation:</strong> {{ Crypt::decrypt($checkup->iron_supplementation) }}</div>
+                                    <div><strong>Immunization:</strong> {{ Crypt::decrypt($checkup->immunization) }}</div>
                                 </div>
                             </div>
                         </div>
