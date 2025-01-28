@@ -143,12 +143,12 @@
                                     <div><strong>Nurse Conducted:</strong> {{ $nurse->first_name . ' ' . $nurse->last_name }}</div>
                                     <div><strong>Date of Checkup:</strong> {{ $formattedDate . ' ' . $formattedTime }}</div>
                                     <div><strong>Remarks:</strong> 
-                                        <span class="{{ $checkup->remarks == 'Healthy' ? 'text-green-500' : 'text-red-500' }}">
-                                            {{ $checkup->remarks }}
+                                        <span class="{{ Crypt::decrypt($checkup->remarks) == 'Healthy' ? 'text-green-500' : 'text-red-500' }}">
+                                            {{ Crypt::decrypt($checkup->remarks) }}
                                         </span>
                                     </div>
                                     <div><strong>Adviser Name:</strong> {{ $checkup->adviser_name }}</div>
-                                    <div><strong>Temperature:</strong> {{ $checkup->temperature }}</div>
+                                    <div><strong>Temperature:</strong> {{ Crypt::decrypt($checkup->temperature) }}</div>
                                     <div><strong>Blood Pressure:</strong> {{ $checkup->systolic }}/{{ $checkup->diastolic }}</div>
                                     <div><strong>Heart Rate:</strong> {{ $checkup->heart_rate }}</div>
                                     <div><strong>Height:</strong> {{ $checkup->height }}</div>

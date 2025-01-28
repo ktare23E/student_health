@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use App\Models\Nurse;
 use App\Models\SystemLog;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 
 class NurseAllController extends Controller
@@ -247,35 +248,35 @@ class NurseAllController extends Controller
             'student_age' => $request->student_age,
             'date_of_checkup' => now(),
             'adviser_name' => $request->adviser_name,
-            'temperature' => $request->temperature,
-            'systolic' => $request->systolic,
-            'diastolic' => $request->diastolic,
-            'heart_rate' => $request->heart_rate,
-            'respiratory_rate' => $request->respiratory_rate,
-            'pulse_rate' => $request->pulse_rate,
-            'weight' => $request->weight,
-            'height' => $request->height,
-            'bmi_weight' => $request->bmi_weight,
-            'bmi_height' => $request->bmi_height,
-            'vision_screening' => $request->vision_screening,
-            'auditory_screening' => $request->auditory_screening,
-            'skin' => $request->skin,
-            'scalp' => $request->scalp,
-            'ears' => $request->ears,
-            'eyes' => $request->eyes,
-            'nose' => $request->nose,
-            'mouth' => $request->mouth,
-            'lungs' => $request->lungs,
-            'heart' => $request->heart,
-            'abdomen' => $request->abdomen,
-            'deformities' => $request->deformities,
-            'iron_supplementation' => $request->iron_supplementation,
-            'deworming' => $request->deworming,
-            'immunization' => $request->immunization,
-            'sbfp_beneficiary' => $request->sbfp_beneficiary,
-            'four_p_beneficiary' => $request->four_p_beneficiary,
-            'menarche' => $request->menarche,
-            'remarks' => $request->remarks
+            'temperature' => Crypt::encrypt($request->temperature),
+            'systolic' => Crypt::encrypt($request->systolic),
+            'diastolic' => Crypt::encrypt($request->diastolic),
+            'heart_rate' => Crypt::encrypt($request->heart_rate),
+            'respiratory_rate' => Crypt::encrypt($request->respiratory_rate),
+            'pulse_rate' => Crypt::encrypt($request->pulse_rate),
+            'weight' => Crypt::encrypt($request->weight),
+            'height' => Crypt::encrypt($request->height),
+            'bmi_weight' => Crypt::encrypt($request->bmi_weight),
+            'bmi_height' => Crypt::encrypt($request->bmi_height),
+            'vision_screening' => Crypt::encrypt($request->vision_screening),
+            'auditory_screening' => Crypt::encrypt($request->auditory_screening),
+            'skin' => Crypt::encrypt($request->skin),
+            'scalp' => Crypt::encrypt($request->scalp),
+            'ears' => Crypt::encrypt($request->ears),
+            'eyes' => Crypt::encrypt($request->eyes),
+            'nose' => Crypt::encrypt($request->nose),
+            'mouth' => Crypt::encrypt($request->mouth),
+            'lungs' => Crypt::encrypt($request->lungs),
+            'heart' => Crypt::encrypt($request->heart),
+            'abdomen' => Crypt::encrypt($request->abdomen),
+            'deformities' => Crypt::encrypt($request->deformities),
+            'iron_supplementation' => Crypt::encrypt($request->iron_supplementation),
+            'deworming' => Crypt::encrypt($request->deworming),
+            'immunization' => Crypt::encrypt($request->immunization),
+            'sbfp_beneficiary' => Crypt::encrypt($request->sbfp_beneficiary),
+            'four_p_beneficiary' => Crypt::encrypt($request->four_p_beneficiary),
+            'menarche' => Crypt::encrypt($request->menarche),
+            'remarks' => Crypt::encrypt($request->remarks)
         ]);
 
 
