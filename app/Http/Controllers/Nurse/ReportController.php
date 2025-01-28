@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Student;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
 
 class ReportController extends Controller
@@ -44,6 +45,7 @@ class ReportController extends Controller
         $nurse = Auth::user();
         $query = Checkup::query();
         $category = $request->category;
+
         
         switch ($category) {
             case "bmi_weight":
@@ -122,6 +124,7 @@ class ReportController extends Controller
                 $query->select($request->category, 'student_id', 'id', 'date_of_checkup');
             }
 
+
             // Filter by grade level
             if ($request->filled('grade_level') && $request->grade_level != 'all') {
                 $query->whereHas('student', function ($q) use ($request) {
@@ -159,9 +162,12 @@ class ReportController extends Controller
                 $chartData[] = [
                     'category' => $request->category,
                     'student' => 'Student ' . $student,
-                    'value' => $checkup->{$request->category}
+                    'value' => Crypt::decrypt($checkup->{$request->category}) 
                 ];
             }
+
+        
+
 
             $students = Student::with(['checkups' => function ($q) use ($checkups) {
                 $q->whereIn('id', $checkups->pluck('id'));
