@@ -166,7 +166,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->temperature }}
+                                            {{ Crypt::decrypt($checkup->temperature) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -192,7 +192,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->systolic.'/'.$checkup->diastolic }}
+                                            {{ Crypt::decrypt($checkup->systolic).'/'.Crypt::decrypt($checkup->diastolic) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -225,7 +225,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->heart_rate }}
+                                            {{ Crypt::decrypt($checkup->heart_rate) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -251,7 +251,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->pulse_rate }}
+                                            {{ Crypt::decrypt($checkup->pulse_rate) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -277,7 +277,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->respiratory_rate }}
+                                            {{ Crypt::decrypt($checkup->respiratory_rate) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -303,7 +303,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->height.' meters' }}
+                                            {{ Crypt::decrypt($checkup->height).' meters' }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -329,7 +329,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->weight.'kg' }}
+                                            {{ Crypt::decrypt($checkup->weight).'kg' }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -355,7 +355,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->bmi_weight }}
+                                            {{ Crypt::decrypt($checkup->bmi_weight) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -389,7 +389,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->bmi_height }}
+                                            {{ Crypt::decrypt($checkup->bmi_height) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -418,7 +418,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->vision_screening }}
+                                            {{ Crypt::decrypt($checkup->vision_screening) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -447,7 +447,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->auditory_screening }}
+                                            {{ Crypt::decrypt($checkup->auditory_screening) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -476,7 +476,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->skin }}
+                                            {{ Crypt::decrypt($checkup->skin) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -510,7 +510,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->scalp }}
+                                            {{ Crypt::decrypt($checkup->scalp) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -539,7 +539,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->eyes }}
+                                            {{ Crypt::decrypt($checkup->eyes) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -572,7 +572,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->ears }}
+                                            {{ Crypt::decrypt($checkup->ears) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -601,7 +601,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->nose }}
+                                            {{ Crypt::decrypt($checkup->nose) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -631,7 +631,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->mouth }}
+                                            {{ Crypt::decrypt($checkup->mouth) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -666,7 +666,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->lungs }}
+                                            {{ Crypt::decrypt($checkup->lungs) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -699,7 +699,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->heart }}
+                                            {{ Crypt::decrypt($checkup->heart) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -732,7 +732,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->abdomen }}
+                                            {{ Crypt::decrypt($checkup->abdomen) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -766,7 +766,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->deformities }}
+                                            {{ Crypt::decrypt($checkup->deformities) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -797,7 +797,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->iron_supplementation }}
+                                            {{ Crypt::decrypt($checkup->iron_supplementation) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -826,7 +826,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->deworming }}
+                                            {{ Crypt::decrypt($checkup->deworming) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -854,7 +854,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->immunization }}
+                                            {{ Crypt::decrypt($checkup->immunization) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -882,7 +882,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->sbfp_beneficiary }}
+                                            {{ Crypt::decrypt($checkup->sbfp_beneficiary) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -911,7 +911,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->four_p_beneficiary }}
+                                            {{ Crypt::decrypt($checkup->four_p_beneficiary) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -940,7 +940,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->menarche }}
+                                            {{ Crypt::decrypt($checkup->menarche) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -993,7 +993,7 @@
                                     @if (isset($checkupsByGrade[$i]) && count($checkupsByGrade[$i]) > 0)
                                         {{-- Display heart rate data for the grade --}}
                                         @foreach ($checkupsByGrade[$i] as $checkup)
-                                            {{ $checkup->remarks }}
+                                            {{ Crypt::decrypt($checkup->remarks) }}
                                         @endforeach
                                     @else
                                         {{-- Display input field for the grade with no records --}}
@@ -1018,6 +1018,11 @@
                     </tbody>
                 </table>
                 <div>
+                    @if (count($checkupsByGrade) > 0)
+                        naa nay checkup
+                    @else
+                        wla pa
+                    @endif
                     <button type="submit" class="w-full text-center mt-2 py-1 px-2 bg-blue-600 text-white rounded-sm cursor-pointer">submit</button>
                 </div>
             </x-forms>
