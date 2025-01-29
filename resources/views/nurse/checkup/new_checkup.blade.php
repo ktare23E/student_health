@@ -1018,12 +1018,7 @@
                     </tbody>
                 </table>
                 <div>
-                    @if (count($checkupsByGrade) > 0)
-                        naa nay checkup
-                    @else
-                        wla pa
-                    @endif
-                    <button type="submit" class="w-full text-center mt-2 py-1 px-2 bg-blue-600 text-white rounded-sm cursor-pointer">submit</button>
+                    <button type="submit" class="checkup-button w-full text-center mt-2 py-1 px-2 bg-blue-600 text-white rounded-sm cursor-pointer" data-student-id="{{$student->id}}" data-grade="{{$student->grade_level}}">submit</button>
                 </div>
             </x-forms>
             
@@ -1161,6 +1156,21 @@
             </table>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            // to hide if already been checkup
+            let checkupsByGrade = {!! json_encode($checkupsByGrade) !!};
+    
+            $(".checkup-button").each(function () {
+                let studentId = $(this).data("student-id");
+                let studentGrade = $(this).data("grade");
+    
+                if (checkupsByGrade[studentGrade] && checkupsByGrade[studentGrade].some(checkup => checkup.student_id == studentId)) {
+                    $(this).hide();
+                }
+            });
+        });
+    </script>
     <script>
         document.getElementById('mouth').addEventListener('change', function() {
             var othersInput = document.getElementById('othersInput');

@@ -233,7 +233,6 @@ class NurseDashboard extends Controller
 
         //
         $checkupsByGrade = $student->checkups->groupBy('student_grade_level');
-        // return $checkupsByGrade;
         
         return view('nurse.checkup.new_checkup',[
             'student' => $student,
